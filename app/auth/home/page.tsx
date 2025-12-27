@@ -158,7 +158,8 @@ const Home = () => {
     if (stageRef.current) {
       // Apply CSS background to stage container
       const container = stageRef.current.container();
-      container.style.backgroundColor = 'green';
+      container.style.backgroundImage = 'url("/images/Elsa-nightGrow.jpeg")';
+      container.style.backgroundSize = 'cover';
     }
   }, []);
 
