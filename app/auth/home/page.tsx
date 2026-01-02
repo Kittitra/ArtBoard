@@ -30,7 +30,7 @@ const Home = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const stageRef = useRef<Konva.Stage | null>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-    const [editingTarget, setEditingTarget] = useState<EditingTarget>(null);
+    // const [editingTarget, setEditingTarget] = useState<EditingTarget>(null);
     const [notes, setNotes] = useState<NoteItem[]>([]);
     const [links, setLinks] = useState<LinkItem[]>([]);
     const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
@@ -78,71 +78,29 @@ const Home = () => {
       updateNote(id, { isEditing: false });
     };
 
-    const stopEditLink = (id: string) => {
-      updateLink(id, { isEditing: false });
+    // const stopEditLink = (id: string) => {
+    //   updateLink(id, { isEditing: false });
+    // };
+
+    const stopEditLink = async (id: string, url: string) => {
+      // 1. ส่ง url (จาก text) ไป server
+      const res = await fetch("/api/link-preview", {
+        method: "POST",
+        body: JSON.stringify({ url }),
+      });
+      const data = await res.json();
+
+      // 2. server ส่ง og:image กลับมา
+      // const { image, title } = await res.json();
+      console.log("Fetched preview image:", data.image);
+      // 3. update state
+      updateLink(id, {
+        isEditing: false,
+        previewImage: data.image ?? null, // 👈 เกิดตรงนี้
+        title: data.title ?? undefined,
+      });
     };
-  
-    // function getTextareaStyle(note: NoteItem) {
-    //   if (!stageRef.current || !containerRef.current) return {};
-      
-    //   const stage = stageRef.current;
-    //   const scale = stage.scaleX();
-    //   const stagePos = stage.position();
-    //   const containerRect = containerRef.current.getBoundingClientRect();
-    //   return {
-    //     position: "absolute" as const,
-    //     left: stagePos.x + note.x * scale,
-    //     top: stagePos.y + note.y * scale,
-    //     width: note.width * scale,
-    //     height: note.height * scale,
-    //     padding: `${PADDING * scale}px`,
-    //     margin: "0",
-    //     fontFamily: FONT.family,
-    //     fontSize: `${FONT.size * scale}px`,
-    //     lineHeight: FONT.lineHeight.toString(),
-    //     letterSpacing: `${FONT.letterSpacing}px`,
-    //     color: "#333",
-    //     background: "transparent",
-    //     border: "none",
-    //     outline: "none",
-    //     resize: "none",
-    //     overflow: "hidden",
-    //     whiteSpace: "pre-wrap",
-    //     wordWrap: "break-word",
-    //     boxSizing: "border-box",
-    //   };
-    // }
-
-    // function getTextareaLinkStyle(note: LinkItem) {
-    //   if (!stageRef.current || !containerRef.current) return {};
-      
-    //   const stage = stageRef.current;
-    //   const scale = stage.scaleX();
-    //   const stagePos = stage.position();
-    //   return {
-    //     position: "absolute" as const,
-    //     left: stagePos.x + note.x * scale,
-    //     top: stagePos.y + note.y * scale,
-    //     width: note.width * scale,
-    //     height: note.height * scale,
-    //     padding: `${PADDING * scale}px`,
-    //     margin: "0",
-    //     fontFamily: FONT.family,
-    //     fontSize: `${FONT.size * scale}px`,
-    //     lineHeight: FONT.lineHeight.toString(),
-    //     letterSpacing: `${FONT.letterSpacing}px`,
-    //     color: "#333",
-    //     background: "transparent",
-    //     border: "none",
-    //     outline: "none",
-    //     resize: "none",
-    //     overflow: "hidden",
-    //     whiteSpace: "pre-wrap",
-    //     wordWrap: "break-word",
-    //     boxSizing: "border-box",
-    //   };
-    // }
-
+    
     function getTextareaStyleBase(
       item: { x: number; y: number; width: number; height: number }
     ) {
@@ -160,19 +118,8 @@ const Home = () => {
         height: item.height * scale,
         padding: `${PADDING * scale}px`,
         margin: "0",
-        // fontFamily: FONT.family,
-        // fontSize: `${FONT.size * scale}px`,
-        // lineHeight: FONT.lineHeight.toString(),
-        // letterSpacing: `${FONT.letterSpacing}px`,
-        // color: "#000",
-        // background: "transparent",
-        // border: "none",
         outline: "none",
         resize: "none",
-        // overflow: "hidden",
-        // whiteSpace: "pre-wrap",
-        // wordWrap: "break-word",
-        // boxSizing: "border-box",
       };
     }
 
@@ -245,6 +192,7 @@ const Home = () => {
       width: 200,
       height: 120,
       text: "",
+      previewImage: null,
       isEditing: true,
     });
   }
@@ -293,7 +241,7 @@ const Home = () => {
                   autoFocus
                   value={link.text}
                   onChange={(e) => updateTextLink(link.id, e.target.value)}
-                  onBlur={() => stopEditLink(link.id)}
+                  onBlur={() => stopEditLink(link.id, link.text)}
                   style={getTextareaStyleBase(link) as React.CSSProperties}
               />
               )

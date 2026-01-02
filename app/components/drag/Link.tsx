@@ -1,11 +1,10 @@
 "use client";
 
-import Menu from '@/app/components/Menu'
-import Navbar from '@/app/components/Navbar'
-import Tools from '@/app/components/Tools'
 import { LinkItem, NoteItem } from '@/lib/type';
 import React, { useEffect, useRef, useState } from 'react'
-import { Group, Layer, Rect, Stage, Text } from 'react-konva'
+import { Group, Layer, Rect, Stage, Text, Image as KonvaImage } from 'react-konva'
+import useImage from "use-image";
+
 
 
 type NoteProps = {
@@ -27,17 +26,20 @@ const MIN_SIZE = 100;
 const RESIZE_HANDLE_SIZE = 12;
 
 const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProps) => {
-
-  const startEdit = (id: string) => {
+    const startEdit = (id: string) => {
       updateLink(id, { isEditing: true });
       setSelectedLinkId(id);
     };
+    
 
   return (
         <Layer>
             {links.map((link) => {
             const isSelected = link.id === selectedLinkId;
-            
+            const imageHeight = link.previewImage ? link.height * 0.6 : 0;
+            const proxiedSrc = `/api/image-proxy?url=${encodeURIComponent(link.previewImage!)}`;
+
+            // console.log("proxy Image src:", proxiedSrc);
             return (
                 <Group key={link.id}>
                 <Group
@@ -64,18 +66,44 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                     stroke={isSelected ? "gray" : "transparent"}
                     strokeWidth={2}
                     />
+                    {link.previewImage && (
+                        <Group
+                        clip={{
+                            x: 0,
+                            y: 0,
+                            width: link.width,
+                            height: imageHeight,
+                        }}
+                        >
+                        <LinkPreviewImage
+                            src={proxiedSrc}
+                            maxWidth={link.width}
+                            maxHeight={imageHeight}
+                        />
+                        </Group>
+                    )}
                     <Text
-                    text={link.text}
+                    text={link.title || link.text}
                     x={PADDING}
-                    y={PADDING}
+                    y={imageHeight + PADDING}
                     width={link.width - PADDING * 2}
                     fontFamily={FONT.family}
                     fontSize={FONT.size}
                     lineHeight={FONT.lineHeight}
                     letterSpacing={FONT.letterSpacing}
-                    fill="#333"
+                    fill="blue"
                     opacity={link.isEditing ? 0 : 1}
                     wrap="word"
+                    textDecoration={isSelected ? "underline" : "none"}
+                    onMouseEnter={(e) => {
+                        const stage = e.target.getStage();
+                        stage!.container().style.cursor = "pointer";
+                    }}
+                    onMouseLeave={(e) => {
+                        const stage = e.target.getStage();
+                        stage!.container().style.cursor = "default";
+                    }}
+                    onClick={() => window.open(link.text, "_blank")}
                     />
                 </Group>
                 
@@ -120,3 +148,36 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
         </Layer>
   )}
 export default Link
+
+const LinkPreviewImage = ({
+  src,
+  maxWidth,
+  maxHeight,
+}: {
+  src: string;
+  maxWidth: number;
+  maxHeight: number;
+}) => {
+  const [image] = useImage(src, "anonymous");
+
+  if (!image) return null;
+
+  const ratio = Math.min(
+    maxWidth / image.width,
+    maxHeight / image.height
+  );
+
+  const width = image.width * ratio;
+  const height = image.height * ratio;
+
+  return (
+    <KonvaImage
+      image={image}
+      width={width}
+      height={height}
+      x={(maxWidth - width) / 2}   // จัดกึ่งกลาง
+      y={(maxHeight - height) / 2}
+    />
+  );
+};
+
