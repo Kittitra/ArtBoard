@@ -5,8 +5,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Group, Layer, Rect, Stage, Text, Image as KonvaImage } from 'react-konva'
 import useImage from "use-image";
 
-
-
 type NoteProps = {
     setSelectedLinkId: (id: string | null) => void;
     links: LinkItem[];
@@ -24,22 +22,33 @@ const FONT = {
 const PADDING = 8;
 const MIN_SIZE = 100;
 const RESIZE_HANDLE_SIZE = 12;
+const MAX_TEXT_LINES = 2;
+const HANDLE_OFFSET = 6;
+const HANDLE_SIZE = 8;
 
 const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProps) => {
     const startEdit = (id: string) => {
       updateLink(id, { isEditing: true });
       setSelectedLinkId(id);
     };
+    const textLineHeight = FONT.size * FONT.lineHeight;
+    const textHeight = MAX_TEXT_LINES * textLineHeight;
+
     
 
   return (
         <Layer>
             {links.map((link) => {
             const isSelected = link.id === selectedLinkId;
-            const imageHeight = link.previewImage ? link.height * 0.6 : 0;
+            const imageHeight = link.previewImage
+            ? Math.min(
+                link.height * 0.8,
+                link.height - textHeight - PADDING * 2
+                )
+            : 0;
             const proxiedSrc = `/api/image-proxy?url=${encodeURIComponent(link.previewImage!)}`;
 
-            // console.log("proxy Image src:", proxiedSrc);
+            //ขยายรูปภาพให้พอดีกับกล่อง
             return (
                 <Group key={link.id}>
                 <Group
@@ -56,7 +65,7 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                     }}
                 >
                     <Rect
-                    width={link.width}
+                     width={link.width}
                     height={link.height}
                     fill="white"
                     cornerRadius={0}
@@ -77,8 +86,9 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                         >
                         <LinkPreviewImage
                             src={proxiedSrc}
-                            maxWidth={link.width}
-                            maxHeight={imageHeight}
+                            width={link.width}
+                            height={imageHeight}
+                       
                         />
                         </Group>
                     )}
@@ -87,10 +97,12 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                     x={PADDING}
                     y={imageHeight + PADDING}
                     width={link.width - PADDING * 2}
+                    height={textHeight}
                     fontFamily={FONT.family}
                     fontSize={FONT.size}
                     lineHeight={FONT.lineHeight}
                     letterSpacing={FONT.letterSpacing}
+                    ellipsis
                     fill="blue"
                     opacity={link.isEditing ? 0 : 1}
                     wrap="word"
@@ -110,38 +122,56 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                 {/* Resize Handle */}
                 {isSelected && !link.isEditing && (
                     <Group
-                    x={link.x + link.width}
-                    y={link.y + link.height}
-                    draggable
-                    onDragMove={(e) => {
+                        x={link.x + link.width - HANDLE_SIZE}
+                        y={link.y + link.height - HANDLE_SIZE}
+                        draggable
+                        onMouseEnter={(e) => {
+                            const stage = e.target.getStage();
+                            if (stage) {
+                                stage.container().style.cursor = "nwse-resize";
+                            }
+                        }}
+                        onMouseLeave={(e) => {
+                            const stage = e.target.getStage();
+                            if (stage) {
+                                stage.container().style.cursor = "default";
+                            }
+                        }}
+                        onDragMove={(e) => {
                         const pos = e.target.position();
-                        const newWidth = Math.max(MIN_SIZE, pos.x - link.x);
-                        const newHeight = Math.max(MIN_SIZE, pos.y - link.y);
-                        
+
+                        const newWidth = Math.max(
+                            MIN_SIZE,
+                            pos.x - link.x + HANDLE_SIZE
+                        );
+
+                        const newHeight = link.imageRatio
+                            ? newWidth / link.imageRatio
+                            : Math.max(
+                                MIN_SIZE,
+                                pos.y - link.y + HANDLE_SIZE
+                            );
+
                         updateLink(link.id, {
-                        width: newWidth,
-                        height: newHeight,
+                            width: newWidth,
+                            height: newHeight,
                         });
-                        
-                        // Reset handle position
+
                         e.target.position({
-                        x: link.x + newWidth,
-                        y: link.y + newHeight,
+                            x: link.x + newWidth - HANDLE_SIZE,
+                            y: link.y + newHeight - HANDLE_SIZE,
                         });
-                    }}
+                        }}
                     >
-                    <Rect
-                        x={-RESIZE_HANDLE_SIZE / 2}
-                        y={-RESIZE_HANDLE_SIZE / 2}
-                        width={RESIZE_HANDLE_SIZE}
-                        height={RESIZE_HANDLE_SIZE}
-                        fill="gray"
-                        cornerRadius={2}
-                        stroke="white"
-                        strokeWidth={2}
-                    />
+                        <Rect
+                        width={HANDLE_SIZE}
+                        height={HANDLE_SIZE}
+                        fill="rgba(0,0,0,0.25)"
+                        cornerRadius={HANDLE_SIZE}
+                        />
                     </Group>
-                )}
+                    )}
+
                 </Group>
             );
             })}
@@ -151,33 +181,31 @@ export default Link
 
 const LinkPreviewImage = ({
   src,
-  maxWidth,
-  maxHeight,
+  width,
+  height,
 }: {
   src: string;
-  maxWidth: number;
-  maxHeight: number;
+  width: number;
+  height: number;
 }) => {
   const [image] = useImage(src, "anonymous");
 
   if (!image) return null;
 
-  const ratio = Math.min(
-    maxWidth / image.width,
-    maxHeight / image.height
-  );
-
-  const width = image.width * ratio;
-  const height = image.height * ratio;
+  const ratio = Math.max(width / image.width, height / image.height);
 
   return (
-    <KonvaImage
-      image={image}
-      width={width}
-      height={height}
-      x={(maxWidth - width) / 2}   // จัดกึ่งกลาง
-      y={(maxHeight - height) / 2}
-    />
+    <Group clip={{ x: 0, y: 0, width, height }}>
+      <KonvaImage
+        image={image}
+        width={image.width * ratio}
+        height={image.height * ratio}
+        x={(width - image.width * ratio) / 2}
+        y={(height - image.height * ratio) / 2}
+      />
+    </Group>
   );
 };
+
+
 

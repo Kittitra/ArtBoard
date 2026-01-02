@@ -198,6 +198,7 @@ const Home = () => {
   }
 };
 
+
   return (
     <div className="flex flex-col h-screen overflow-y-hidden">
       <Navbar />
@@ -236,13 +237,16 @@ const Home = () => {
           {links.map(
           (link) =>
               link.isEditing && (
+                
               <textarea
                   key={link.id}
                   autoFocus
                   value={link.text}
                   onChange={(e) => updateTextLink(link.id, e.target.value)}
                   onBlur={() => stopEditLink(link.id, link.text)}
-                  style={getTextareaStyleBase(link) as React.CSSProperties}
+                  style={{...getTextareaStyleBase(link) as React.CSSProperties,
+                    marginTop: link.previewImage ? link.height * 0.6 : 0
+                  }}
               />
               )
           )}

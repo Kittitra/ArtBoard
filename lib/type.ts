@@ -16,6 +16,7 @@ export type LinkItem = {
   height: number;
   text: string;            // URL ที่ user ใส่
   previewImage?: string | null;   // og:image (URL รูป)
+  imageRatio?: number;
   title?: string;
   isEditing: boolean;
 };
