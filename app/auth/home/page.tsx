@@ -8,7 +8,8 @@ import Konva from 'konva';
 import React, { useEffect, useRef, useState } from 'react'
 import { Group, Layer, Rect, Stage, Text } from 'react-konva'
 import Link from '@/app/components/drag/Link';
-import { LinkItem, NoteItem } from '@/lib/type';
+import { LinkItem, NoteItem, BoardItem } from '@/lib/type';
+import Board from '@/app/components/drag/Board';
 
 const FONT = {
   family: "Inter, system-ui, -apple-system, sans-serif",
@@ -33,8 +34,10 @@ const Home = () => {
     // const [editingTarget, setEditingTarget] = useState<EditingTarget>(null);
     const [notes, setNotes] = useState<NoteItem[]>([]);
     const [links, setLinks] = useState<LinkItem[]>([]);
+    const [board, setBoard] = useState<LinkItem[]>([]);
     const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
     const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
+    const [selectedBoardId, setSelectedBoardId] = useState<string | null>(null);
 
     useEffect(() => {
       const updateDimensions = () => {
@@ -57,6 +60,9 @@ const Home = () => {
         )
       );
     };
+    const updateText = (id: string, text: string) => {
+      updateNote(id, { text });
+    };
 
     const updateLink = (id: string, updates: Partial<LinkItem>) => {
       setLinks((prev) =>
@@ -65,11 +71,6 @@ const Home = () => {
         )
       );
     };
-
-    const updateText = (id: string, text: string) => {
-      updateNote(id, { text });
-    };
-
     const updateTextLink = (id: string, text: string) => {
       updateLink(id, { text });
     };
@@ -90,13 +91,11 @@ const Home = () => {
       });
       const data = await res.json();
 
-      // 2. server ส่ง og:image กลับมา
-      // const { image, title } = await res.json();
       console.log("Fetched preview image:", data.image);
-      // 3. update state
+
       updateLink(id, {
         isEditing: false,
-        previewImage: data.image ?? null, // 👈 เกิดตรงนี้
+        previewImage: data.image ?? null, 
         title: data.title ?? undefined,
       });
     };
@@ -152,13 +151,22 @@ const Home = () => {
     setSelectedNoteId(newNote.id);
   };
 
-  const createLink = (noteData: Omit<LinkItem, 'id'>) => {
+  const createLink = (linkData: Omit<LinkItem, 'id'>) => {
     const newLink = {
-        ...noteData,
+        ...linkData,
         id: crypto.randomUUID(),
     };
     setLinks((prev) => [...prev, newLink]);
     setSelectedLinkId(newLink.id);
+  };
+
+  const createBoard = (boardData: Omit<BoardItem, 'id'>) => {
+    const newBoard = {
+        ...boardData,
+        id: crypto.randomUUID(),
+    };
+    setBoard((prev) => [...prev, newBoard]);
+    setSelectedBoardId(newBoard.id);
   };
 
  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -195,6 +203,15 @@ const Home = () => {
       previewImage: null,
       isEditing: true,
     });
+  }else if(payload.type === "board") {
+    createBoard({
+      x: pos.x,
+      y: pos.y,
+      width: 200,
+      height: 120,
+      text: "",
+      isEditing: true,
+    });
   }
 };
 
@@ -220,6 +237,7 @@ const Home = () => {
           >
             <Note updateNote={updateNote} notes={notes} selectedNoteId={selectedNoteId} setSelectedNoteId={setSelectedNoteId}/>
             <Link updateLink={updateLink} links={links} selectedLinkId={selectedLinkId} setSelectedLinkId={setSelectedLinkId}/>
+            <Board updateBoard={updateBoard} board={board} selectedBoardId={selectedBoardId} setSelectedBoardId={setSelectedBoardId}/>
           </Stage>
           {notes.map(
           (note) =>

@@ -21,5 +21,15 @@ export type LinkItem = {
   isEditing: boolean;
 };
 
+export type BoardItem = {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  text: string;        
+  isEditing: boolean;
+};
+
 export type NoteItem = CanvasItem;
 // export type LinkItem = CanvasItem;
