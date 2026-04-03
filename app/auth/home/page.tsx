@@ -34,7 +34,7 @@ const Home = () => {
     // const [editingTarget, setEditingTarget] = useState<EditingTarget>(null);
     const [notes, setNotes] = useState<NoteItem[]>([]);
     const [links, setLinks] = useState<LinkItem[]>([]);
-    const [board, setBoard] = useState<LinkItem[]>([]);
+    const [board, setBoard] = useState<BoardItem[]>([]);
     const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
     const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
     const [selectedBoardId, setSelectedBoardId] = useState<string | null>(null);
@@ -77,6 +77,14 @@ const Home = () => {
   
     const stopEdit = (id: string) => {
       updateNote(id, { isEditing: false });
+    };
+
+    const updateBoard = (id: string, updates: Partial<BoardItem>) => {
+      setLinks((prev) =>
+        prev.map((link) =>
+          link.id === id ? { ...link, ...updates } : link
+        )
+      );
     };
 
     // const stopEditLink = (id: string) => {
@@ -207,10 +215,10 @@ const Home = () => {
     createBoard({
       x: pos.x,
       y: pos.y,
-      width: 200,
-      height: 120,
+      width: 65,
+      height: 65,
       text: "",
-      isEditing: true,
+      isEditing: false,
     });
   }
 };

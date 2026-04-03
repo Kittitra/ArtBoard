@@ -29,91 +29,56 @@ const RESIZE_HANDLE_SIZE = 12;
 const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId }: BoardProps) => {
 
   const startEdit = (id: string) => {
-      updateBoard(id, { isEditing: true });
+      updateBoard(id, { isEditing: false });
       setSelectedBoardId(id);
     };
 
   return (
         <Layer>
-            {board.map((note) => {
-            const isSelected = selectedBoardId === note.id;
+            {board.map((item) => {
+            const isSelected = selectedBoardId === item.id;
             
             return (
-                <Group key={note.id}>
-                <Group
-                    x={note.x}
-                    y={note.y}
-                    draggable={!note.isEditing}
-                    onClick={() => setSelectedBoardId(note.id)}
-                    onTap={() => setSelectedBoardId(note.id)}
-                    onDblClick={() => startEdit(note.id)}
-                    onDblTap={() => startEdit(note.id)}
-                    onDragEnd={(e) => {
-                        const { x, y } = e.target.position();
-                        updateBoard(note.id, { x, y });
-                    }}
-                >
-                    <Rect
-                    width={note.width}
-                    height={note.height}
-                    fill="white"
-                    cornerRadius={8}
-                    shadowBlur={4}
-                    shadowOpacity={0.1}
-                    shadowOffsetY={2}
-                    stroke={isSelected ? "gray" : "transparent"}
-                    strokeWidth={2}
-                    />
-                    <Text
-                    text={note.text}
-                    x={PADDING}
-                    y={PADDING}
-                    width={note.width - PADDING * 2}
-                    fontFamily={FONT.family}
-                    fontSize={FONT.size}
-                    lineHeight={FONT.lineHeight}
-                    letterSpacing={FONT.letterSpacing}
-                    fill="#333"
-                    opacity={note.isEditing ? 0 : 1}
-                    wrap="word"
-                    />
-                </Group>
-                
-                {/* Resize Handle */}
-                {isSelected && !note.isEditing && (
+                <Group key={item.id}>
                     <Group
-                    x={note.x + note.width}
-                    y={note.y + note.height}
-                    draggable
-                    onDragMove={(e) => {
-                        const pos = e.target.position();
-                        const newWidth = Math.max(MIN_SIZE, pos.x - note.x);
-                        const newHeight = Math.max(MIN_SIZE, pos.y - note.y);
+                        x={item.x}
+                        y={item.y}
+                        draggable={!item.isEditing}
+                        onClick={() => setSelectedBoardId(item.id)}
+                        onTap={() => setSelectedBoardId(item.id)}
                         
-                        updateBoard(note.id, {
-                        width: newWidth,
-                        height: newHeight,
-                        });
-                        
-                        // Reset handle position
-                        e.target.position({
-                        x: note.x + newWidth,
-                        y: note.y + newHeight,
-                        });
-                    }}
+                        onDragEnd={(e) => {
+                            const { x, y } = e.target.position();
+                            updateBoard(item.id, { x, y });
+                        }}
                     >
-                    <Rect
-                        x={-RESIZE_HANDLE_SIZE / 2}
-                        y={-RESIZE_HANDLE_SIZE / 2}
-                        width={RESIZE_HANDLE_SIZE}
-                        height={RESIZE_HANDLE_SIZE}
-                        fill="gray"
-                        cornerRadius={2}
-                        stroke="white"
+                        <Rect
+                        width={item.width}
+                        height={item.height}
+                        fill="white"
+                        cornerRadius={8}
+                        shadowBlur={4}
+                        shadowOpacity={0.1}
+                        shadowOffsetY={2}
+                        stroke={isSelected ? "gray" : "transparent"}
                         strokeWidth={2}
-                    />
+                        />
+                        <Text
+                        text="5555555555555555555"
+                        x={10}
+                        y={PADDING + 60}
+                        width={item.width - PADDING * 2}
+                        fontFamily={FONT.family}
+                        fontSize={FONT.size}
+                        letterSpacing={FONT.letterSpacing}
+                        lineHeight={FONT.lineHeight}
+                        onDblClick={() => startEdit(item.id)}
+                        onDblTap={() => startEdit(item.id)}
+                        fill="#000"
+                        opacity={item.isEditing ? 0 : 1}
+                        // wrap="word"
+                        />
                     </Group>
-                )}
                 </Group>
             );
             })}

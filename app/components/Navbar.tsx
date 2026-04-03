@@ -5,6 +5,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import path from 'path';
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
 import { IoSettingsOutline } from 'react-icons/io5'
@@ -14,16 +17,26 @@ type Props = {}
 
 const Navbar = (props: Props) => {
     const user = useCurrentUser();
+    const pathname = usePathname()
 
     const SignOut = () => {
         signOut();
     }
+
   return (
-    <nav className='w-full bg-white h-fit px-5 py-2 text-black'>
+    <nav className='w-full bg-white h-fit px-5 py-2 text-black absolute top-0 left-0 z-10 shadow-md'>
         <div className='w-full flex justify-between items-center'>
-            <span>
-                Home
-            </span>
+
+            <div className='flex flex-row gap-5 justify-between items-center'>
+                <Link href={"/auth/project"}>
+                    <div className='bg-gray-600 rounded-full w-6 h-6'></div>
+                </Link>
+
+                {/* <Link href={`/auth/project/${pathname.split("/")[3]}`}> */}
+                    <span>{pathname.split("/")[3] === "settings" ? "" : pathname.split("/")[3]}</span>
+                {/* </Link> */}
+            </div>
+
             <div className='flex flex-row gap-5'>
                 <MdNotificationsNone size={27} className='text-gray-600' />
 
