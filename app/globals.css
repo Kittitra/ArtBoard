@@ -51,6 +51,55 @@
   }
 }
 
+/* Screenplay CSS */
+[data-type="scene-heading"] {
+  font-family: "Courier Prime", "Courier New", monospace;
+  font-size: 12pt;
+  text-transform: uppercase;
+  margin-top: 2em;
+  font-weight: bold;
+}
+
+[data-type="action"] {
+  font-family: "Courier Prime", monospace;
+  text-transform: uppercase;
+  margin-left: 0%;
+}
+
+[data-type="character"] {
+  font-family: "Courier Prime", monospace;
+  text-transform: uppercase;
+  margin-left: 40%;
+  margin-top: 1em;
+}
+
+[data-type="dialogue"] {
+  font-family: "Courier Prime", monospace;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+[data-type="parenthetical"] {
+  font-family: "Courier Prime", monospace;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+div[data-type="parenthetical"]::before {
+  content: "(";
+}
+
+div[data-type="parenthetical"]::after {
+  content: ")";
+}
+
+[data-type="transition"] {
+  font-family: "Courier Prime", monospace;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+
 
 @custom-variant dark (&:is(.dark *));
 

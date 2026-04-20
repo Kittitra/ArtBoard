@@ -1,7 +1,7 @@
 "use client";
 
-import SideBarDesign from '@/app/components/SideBarDesign';
-import SideBarStoryBoard from '@/app/components/SideBarStoryBoard';
+import SideBarDesign from '@/app/components/workspace/design/SideBarDesign';
+import SideBarStoryBoard from '@/app/components/workspace/storyboard/SideBarStoryBoard';
 import SideBarWorkFlow from '@/app/components/SideBarWorkFlow'
 import React, { useState } from 'react'
 

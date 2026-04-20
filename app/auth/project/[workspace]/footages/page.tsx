@@ -1,27 +1,27 @@
 'use client';
 
 import SideBarWorkFlow from '@/app/components/SideBarWorkFlow'
-import Animation from '@/app/components/workspace/Animation';
+import Animation from '@/app/components/workspace/animation/Animation';
 import { title } from 'process';
 import { useState } from 'react'
 
 const page = () => {
     const arr = [
         {
-            title: "in-between",
+            title: "shots",
         },
         {
-            title : "blocking",
+            title : "scene",
         },
         {
-            title: "coloring",
+            title: "squence",
         },
     ]
     const [selected, setSelected] = useState(arr[0].title);
 
     const data = [
         {
-            title: "in-between",
+            title: "shots",
             data: [
                 {
                     image: "/images/Elsa-nightGrow.jpeg",
@@ -35,7 +35,7 @@ const page = () => {
             ]
          },
         {
-            title: "blocking",
+            title: "scene",
             data: [
                 {
                     image: "/images/Elsa-nightGrow.jpeg",
@@ -58,7 +58,7 @@ const page = () => {
             ]
         },
         {
-            title: "coloring",
+            title: "squence",
             data: [
                 {
                     image: "/images/Elsa-nightGrow.jpeg",

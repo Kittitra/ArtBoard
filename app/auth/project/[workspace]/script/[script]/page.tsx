@@ -1,5 +1,6 @@
 import React from 'react'
 import Editor from './editor';
+import NavScript from '@/app/components/workspace/script/NavScript';
 
 interface ScriptPageProps {
   params: Promise<{ script: string }>
@@ -11,9 +12,8 @@ const page = async ({ params }: ScriptPageProps) => {
   console.log("Document ID:", documentId);
 
   return (
-    <div className='bg-custom w-full h-screen p-10'>
-      <div className='text-white text-2xl'>page: {documentId}</div>
-      <Editor />
+    <div className='flex flex-col relative w-full overflow-y-scroll'>
+        <Editor />
     </div>
   )
 }
