@@ -13,7 +13,7 @@ import { Dialogue } from "@/extentions/Dialogue";
 import { Action } from "@/extentions/Action";
 import { LuArrowLeftRight, LuMegaphone, LuMessageCircleMore, LuRedo2, LuUndo2 } from "react-icons/lu";
 import { LiaTheaterMasksSolid } from "react-icons/lia";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Document, Page, Text, View, StyleSheet, pdf } from "@react-pdf/renderer"
 import { BsFileEarmarkPdf, BsThreeDotsVertical } from "react-icons/bs";
 import Underline from "@tiptap/extension-underline";
@@ -26,6 +26,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { PiExport } from "react-icons/pi";
+import { IoSaveOutline } from "react-icons/io5";
+import { createScript, updateScript } from "@/action/script";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { AlertBasic } from "@/app/components/Aleart";
+import { usePathname } from "next/navigation";
+import { useUnsavedChanges } from "@/hooks/use-unsaved-changes"
 
 const PAGE_HEIGHT = 1123  // A4 px
 const PAGE_PADDING = 96   // 1 inch
@@ -94,9 +100,27 @@ const ScreenplayPDF = ({ content }: { content: any }) => (
   </Document>
 )
 
-export default function Editor() {
+interface DraftProps {
+  draft: any;
+}
+
+export default function Editor( { draft }: DraftProps ) {
   const pageRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null)
+  // const [scriptId, setScriptId] = useState<string | null>(null)
+  const [isSaving, setIsSaving] = useState(false)
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [aleart, setAleart] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+  
+  const path = usePathname();
+  
+  const scriptId = path.split("/")[5];
+
+  const user = useCurrentUser();
+
+  useUnsavedChanges(hasUnsavedChanges);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -115,18 +139,18 @@ export default function Editor() {
       Transition,
       Action,
       Underline,
+      
     ],
-    content: "<p>Hello World!</p>",
+    content: draft?.content || "",
     immediatelyRender: false,
     editorProps: {
       attributes: {
         class: "focus:outline-none",
       },
     },
-    // onUpdate: ({ editor }) => {
-    //   const json = editor.getJSON();
-    //   console.log("Editor content in JSON format:", json);
-    // }
+    onUpdate: ({ editor }) => {
+      setHasUnsavedChanges(true)
+    },
   });
 
   const detectBlockType = (text: string, x?: number): string => {
@@ -167,7 +191,7 @@ export default function Editor() {
     return "paragraph"
   }
 
-    const state = useEditorState({
+  const state = useEditorState({
     editor,
     selector: (ctx) => ({
       isSceneHeading: ctx.editor?.isActive("sceneHeading"),
@@ -178,6 +202,7 @@ export default function Editor() {
       isAction: ctx.editor?.isActive("action"),
     }),
   });
+  
 
   const exportPDF = async () => {
     const json = editor?.getJSON()
@@ -266,11 +291,78 @@ export default function Editor() {
     editor?.commands.setContent({ type: "doc", content: blocks })
   }
 
+  const handleSave = async () => {
+    setIsSaving(true)
+    setSuccess("")
+    setError("")
+
+    try {
+      if (!user?.id) {
+        setError("Can't find userId")
+        return
+      }
+
+      const content = JSON.parse(JSON.stringify(editor?.getJSON()))
+
+      if (scriptId) {
+        // อัปเดต Script ที่มีอยู่
+        await updateScript({ id: scriptId, content })
+        setSuccess("Save Success")
+
+      } else {
+        // สร้าง Script ใหม่
+        const script = await createScript({
+          title: "Untitled Screenplay",
+          content,
+          userId: user.id,
+        })
+        // setScriptId(script.id)
+        setSuccess("Created Successfully")
+      }
+      setHasUnsavedChanges(false)
+
+    } catch (err) {
+      setError("Save failed, please try again")
+      console.error(err)
+    } finally {
+      setIsSaving(false)
+      handleAleart()
+    }
+  }
+  const handleAleart = () => {
+    setAleart(true);
+
+    setTimeout(() => {
+      setAleart(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (hasUnsavedChanges) {
+        e.preventDefault()
+      }
+    }
+    window.addEventListener("beforeunload", handleBeforeUnload)
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload)
+  }, [hasUnsavedChanges])
+
 
   if (!editor) return null;
 
   return (
-    <div className="flex flex-col w-full !min-h-screen items-center mt-10 relative">
+    <div className="flex flex-col w-full h-full items-center mt-10 relative overflow-x-hidden">
+      {/* Aleart */}
+      <div
+        className={`absolute bottom-4 -right-10
+        transition-all duration-300 ease-out
+        ${aleart
+          ? "opacity-100 -translate-x-15 scale-100"
+          : "opacity-0 translate-x-10 scale-95 pointer-events-none"
+        }`}
+      >
+        <AlertBasic message={success || error} />
+      </div>
       {/* Toolbar */}
       <div className="flex flex-row justify-between gap-7 w-full h-15 px-7 bg-[#F1F1F1] fixed top-[43px] left-[74.4px] border-b border-gray-400 z-10">
         <div className="flex flex-row items-center gap-7 w-full">
@@ -331,6 +423,12 @@ export default function Editor() {
         </div>
 
         <div className="group flex flex-row items-center w-fit pr-20 gap-7">
+          <button className="flex flex-row gap-3 items-center p-2 px-3 rounded-sm bg-sky-500 text-white hover:cursor-pointer"
+          onClick={handleSave} disabled={isSaving}
+          >
+            <IoSaveOutline className="" size={20} />
+            <span className="">{isSaving ? "Saving..." : "Save"}</span>
+          </button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="hover:cursor-pointer">
               <BsThreeDotsVertical />
@@ -393,6 +491,7 @@ export default function Editor() {
           <EditorContent editor={editor} />
         </div>
       </div>
+
     </div>
   );
 }

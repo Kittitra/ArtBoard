@@ -1,10 +1,20 @@
 import React from 'react'
 import { IoIosGitBranch, IoIosSearch } from 'react-icons/io'
+import { IoSaveOutline } from 'react-icons/io5';
 import { MdNotificationsNone } from 'react-icons/md';
 
-type Props = {}
+interface Version {
+    id: string
+    name: string
+    content: any
+}
 
-const Menu = (props: Props) => {
+interface Props {
+  updateVersionData: (data: Version[]) => void
+  onSave: () => void
+}
+
+const Menu = ({ updateVersionData, versionContent, onSave }: Props & { versionContent: any }) => {
   const iconsSize = 25;
   return (
     <div className='flex flex-col justify-start items-center w-fit h-full bg-[#F2F2F2] border-[#dadada] border-l p-2 
@@ -22,6 +32,14 @@ const Menu = (props: Props) => {
             Version
           </span>
         </span>
+
+        <span className='tool-icons'>
+          <IoSaveOutline size={iconsSize} onClick={onSave} />
+          <span className='text-ligth'>
+            Save
+          </span>
+        </span>
+
     </div>
   )
 }

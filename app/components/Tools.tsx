@@ -25,8 +25,8 @@ const Tools = () => {
   };
 
   return (
-    <div className='flex flex-col justify-start items-center w-fit h-full bg-[#F2F2F2] border-[#dadada] border-r p-2 no-scrollbar
-    overflow-y-auto gap-6'>
+    <div className='flex flex-col justify-start items-center w-fit h-full bg-[#F2F2F2] border-[#dadada] border-r p-2 pt-5
+    overflow-y-auto gap-6 scrollbar-hide'>
         <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "board")} >
             <MdOutlineDashboard size={iconsSize}  />
             <span className='text-ligth'>

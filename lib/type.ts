@@ -6,6 +6,7 @@ export type CanvasItem = {
   height: number;
   text: string;
   isEditing: boolean;
+  version?: any
 };
 
 export type LinkItem = {
@@ -33,3 +34,10 @@ export type BoardItem = {
 
 export type NoteItem = CanvasItem;
 // export type LinkItem = CanvasItem;
+
+export interface Version {
+    id: string
+    name: string
+    content: any
+    createdAt: string
+}

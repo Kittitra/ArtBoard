@@ -54,53 +54,53 @@ const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId }: NoteProp
                     }}
                 >
                     <Rect
-                    width={note.width}
-                    height={note.height}
-                    fill="white"
-                    cornerRadius={8}
-                    shadowBlur={4}
-                    shadowOpacity={0.1}
-                    shadowOffsetY={2}
-                    stroke={isSelected ? "gray" : "transparent"}
-                    strokeWidth={2}
+                        width={note.width}
+                        height={note.height}
+                        fill="white"
+                        cornerRadius={8}
+                        shadowBlur={4}
+                        shadowOpacity={0.1}
+                        shadowOffsetY={2}
+                        stroke={isSelected ? "gray" : "transparent"}
+                        strokeWidth={2}
                     />
                     <Text
-                    text={note.text}
-                    x={PADDING}
-                    y={PADDING}
-                    width={note.width - PADDING * 2}
-                    fontFamily={FONT.family}
-                    fontSize={FONT.size}
-                    lineHeight={FONT.lineHeight}
-                    letterSpacing={FONT.letterSpacing}
-                    fill="#333"
-                    opacity={note.isEditing ? 0 : 1}
-                    wrap="word"
+                        text={note.text}
+                        x={PADDING}
+                        y={PADDING}
+                        width={note.width - PADDING * 2}
+                        fontFamily={FONT.family}
+                        fontSize={FONT.size}
+                        lineHeight={FONT.lineHeight}
+                        letterSpacing={FONT.letterSpacing}
+                        fill="#333"
+                        opacity={note.isEditing ? 0 : 1}
+                        wrap="word"
                     />
                 </Group>
                 
                 {/* Resize Handle */}
                 {isSelected && !note.isEditing && (
                     <Group
-                    x={note.x + note.width}
-                    y={note.y + note.height}
-                    draggable
-                    onDragMove={(e) => {
-                        const pos = e.target.position();
-                        const newWidth = Math.max(MIN_SIZE, pos.x - note.x);
-                        const newHeight = Math.max(MIN_SIZE, pos.y - note.y);
-                        
-                        updateNote(note.id, {
-                        width: newWidth,
-                        height: newHeight,
-                        });
-                        
-                        // Reset handle position
-                        e.target.position({
-                        x: note.x + newWidth,
-                        y: note.y + newHeight,
-                        });
-                    }}
+                        x={note.x + note.width}
+                        y={note.y + note.height}
+                        draggable
+                        onDragMove={(e) => {
+                            const pos = e.target.position();
+                            const newWidth = Math.max(MIN_SIZE, pos.x - note.x);
+                            const newHeight = Math.max(MIN_SIZE, pos.y - note.y);
+                            
+                            updateNote(note.id, {
+                                width: newWidth,
+                                height: newHeight,
+                            });
+                            
+                            // Reset handle position
+                            e.target.position({
+                                x: note.x + newWidth,
+                                y: note.y + newHeight,
+                            });
+                        }}
                     >
                     <Rect
                         x={-RESIZE_HANDLE_SIZE / 2}

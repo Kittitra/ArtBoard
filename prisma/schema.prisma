@@ -24,10 +24,16 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
- 
+
+  scriptOwner Script[]
+  projectMembers UserProject[]
+  DesignCategoryOwner DesignCategory[]
+  DesignOwner DesignSubClass[]
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
  
 model Account {
   userId            String
@@ -82,4 +88,116 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
   @@id([userId, credentialID])
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  projectMembers UserProject[]
+  scripts      Script[]
+  designCategories DesignCategory[]
+}
+
+model Script {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  author      String?  // ชื่อผู้เขียนบน cover page
+
+  // เก็บ Tiptap JSON ทั้งหมดเป็น Json
+  content     Json     @default("{}")
+
+  // metadata
+  status      ScriptStatus @default(DRAFT)
+  version     Int          @default(1)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  scenes      Scene[]
+
+  @@index([ownerId])
+}
+
+// แยก Scene ออกมาเพื่อ query ได้ง่าย
+model Scene {
+  id          String  @id @default(uuid())
+  sceneNumber Int
+  heading     String  // "INT. COFFEE SHOP - DAY"
+  pageStart   Int?    // หน้าที่เริ่ม
+
+  scriptId    String
+  script      Script  @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+
+  @@index([scriptId])
+}
+
+enum ScriptStatus {
+  DRAFT
+  IN_REVIEW
+  FINAL
+  ARCHIVED
+}
+
+model DesignCategory {
+  id          String  @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  designs DesignSubClass[]
+}
+
+model DesignSubClass {
+  id          String  @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  categoryId String?
+  category DesignCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  versions    DesignSubClassVersion[]
+}
+
+model DesignSubClassVersion {
+  id          String  @id @default(uuid())
+  name        String
+  content     Json     @default("{}") // เก็บข้อมูลการออกแบบทั้งหมดเป็น Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownerId      String
+
+  DesignSubClassId String?
+  DesignSubClass DesignSubClass? @relation(fields: [DesignSubClassId], references: [id], onDelete: SetNull)
+}
+
+//explicit
+model UserProject {
+  userId    String  
+  projectId String 
+
+  role    String  // "owner", "editor
+  createdAt   DateTime @default(now())
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
 }
