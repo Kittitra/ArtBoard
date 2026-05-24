@@ -107,13 +107,17 @@ export const updateDesignVersionContent = async (versionId: string, content: any
         return {error: "Version ID and content are required!"};
     }
 
+    console.log("content in updateDesignVersionContent: ", content[0]?.content);
+
+    const contentData = content[0]?.content;
+
     try{
         await db.designSubClassVersion.update({
             where: {
                 id: versionId
             },
             data: {
-                content
+                content: contentData
             }
         })
     }catch(error){

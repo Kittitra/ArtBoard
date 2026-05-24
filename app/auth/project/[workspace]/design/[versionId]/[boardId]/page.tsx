@@ -9,8 +9,9 @@ import { AlertBasic } from '@/app/components/Aleart';
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { usePathname } from 'next/navigation';
 import { createDesignCategory, createDesignSubClass, createDesignVersion, updateDesignVersionContent } from '@/action/design';
-import { getDesignCategoryByProjectId } from '@/lib/api/Design';
+import { getDesignCategoryByProjectId, getDesignVersionByVersionId } from '@/lib/api/Design';
 import { Version } from '@/lib/type';
+import { da } from 'zod/v4/locales';
 
 
 
@@ -50,6 +51,9 @@ const page = () => {
   const path = usePathname();
   
   const projectPath = path.split("/")[3];
+  const versionPath = path.split("/")[5];
+  const boardPath = path.split("/")[6];
+
 
   const handleAleart = () => {
       setAleart(true);
@@ -211,6 +215,20 @@ const page = () => {
         })
     }, [projectPath]);
 
+    useEffect(() => {
+        if(versionPath && boardPath) {
+          getDesignVersionByVersionId(versionPath)
+            .then((versionData) => {
+                setVersion(versionData);
+                console.log("Design Version Data:", versionData);
+                
+            }).catch((error) => {
+                console.error("Failed to fetch design version data:", error);
+            })
+        }
+    }, [boardPath, versionPath]);
+    
+    console.log("Version Data:", version);
 
   return (
     // ✅ flex row ให้ sidebar อยู่ซ้าย content อยู่ขวา
@@ -229,11 +247,8 @@ const page = () => {
         setNewVersionName={setNewVersionName}
       />
       <div className='flex-1 bg-custom'>
-        {/* {version && version.length > 0 ? (
-            <Design versions={version} updateVersionData={updateVersionData} />
-        ):(
-            <></>
-        )} */}
+        <Design versions={version} updateVersionData={updateVersionData} parentBoardId={boardPath} />
+
       </div>
 
       <div

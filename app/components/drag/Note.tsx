@@ -13,6 +13,8 @@ type NoteProps = {
   notes: NoteItem[];
   selectedNoteId: string | null;
   updateNote: (id: string, updates: Partial<NoteItem>) => void;
+  selectNote: (id: string) => void;
+  parentBoardId: string | undefined;
 };
 
 const FONT = {
@@ -26,26 +28,32 @@ const PADDING = 8;
 const MIN_SIZE = 100;
 const RESIZE_HANDLE_SIZE = 12;
 
-const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId }: NoteProps) => {
+const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId, selectNote, parentBoardId }: NoteProps) => {
 
   const startEdit = (id: string) => {
       updateNote(id, { isEditing: true });
       setSelectedNoteId(id);
     };
 
+    
+
   return (
-        <Layer>
-            {notes.map((note) => {
+    <>
+        {notes.map((note) => {
             const isSelected = selectedNoteId === note.id;
-            
+
+            if(note.parentBoardId && !parentBoardId || note.parentBoardId !== parentBoardId) {
+                return null; // ข้ามการเรนเดอร์ถ้า parentBoardId มีค่า
+            }
+
             return (
                 <Group key={note.id}>
                 <Group
                     x={note.x}
                     y={note.y}
                     draggable={!note.isEditing}
-                    onClick={() => setSelectedNoteId(note.id)}
-                    onTap={() => setSelectedNoteId(note.id)}
+                    onClick={() => selectNote(note.id)}
+                    onTap={() => selectNote(note.id)}
                     onDblClick={() => startEdit(note.id)}
                     onDblTap={() => startEdit(note.id)}
                     onDragEnd={(e) => {
@@ -116,7 +124,7 @@ const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId }: NoteProp
                 )}
                 </Group>
             );
-            })}
-        </Layer>
+        })}
+    </>
   )}
 export default Note

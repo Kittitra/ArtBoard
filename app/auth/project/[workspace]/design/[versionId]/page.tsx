@@ -9,7 +9,7 @@ import { AlertBasic } from '@/app/components/Aleart';
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { usePathname } from 'next/navigation';
 import { createDesignCategory, createDesignSubClass, createDesignVersion, updateDesignVersionContent } from '@/action/design';
-import { getDesignCategoryByProjectId } from '@/lib/api/Design';
+import { getDesignCategoryByProjectId, getDesignVersionByVersionId } from '@/lib/api/Design';
 import { Version } from '@/lib/type';
 
 
@@ -50,6 +50,7 @@ const page = () => {
   const path = usePathname();
   
   const projectPath = path.split("/")[3];
+  const versionPath = path.split("/")[5];
 
   const handleAleart = () => {
       setAleart(true);
@@ -211,6 +212,17 @@ const page = () => {
         })
     }, [projectPath]);
 
+    useEffect(() => {
+        if(versionPath) {
+            getDesignVersionByVersionId(versionPath)
+            .then((versionData) => {
+                setVersion(versionData);
+            }).catch((error) => {
+                console.error("Failed to fetch design version data:", error);
+            })
+        }
+    }, [versionPath]);
+
 
   return (
     // ✅ flex row ให้ sidebar อยู่ซ้าย content อยู่ขวา
@@ -229,11 +241,11 @@ const page = () => {
         setNewVersionName={setNewVersionName}
       />
       <div className='flex-1 bg-custom'>
-        {/* {version && version.length > 0 ? (
+        {version && version.length > 0 ? (
             <Design versions={version} updateVersionData={updateVersionData} />
         ):(
             <></>
-        )} */}
+        )}
       </div>
 
       <div

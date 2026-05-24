@@ -37,7 +37,7 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
     
 
   return (
-        <Layer>
+        <>
             {links.map((link) => {
             const isSelected = link.id === selectedLinkId;
             const imageHeight = link.previewImage
@@ -175,7 +175,7 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
                 </Group>
             );
             })}
-        </Layer>
+        </>
   )}
 export default Link
 

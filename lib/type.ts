@@ -7,6 +7,7 @@ export type CanvasItem = {
   text: string;
   isEditing: boolean;
   version?: any
+  parentBoardId?: string;
 };
 
 export type LinkItem = {
@@ -20,17 +21,21 @@ export type LinkItem = {
   imageRatio?: number;
   title?: string;
   isEditing: boolean;
+  parentBoardId?: string;
 };
 
-export type BoardItem = {
-  id: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  text: string;        
-  isEditing: boolean;
-};
+export interface BoardItem {
+    id: string
+    x: number
+    y: number
+    width: number
+    height: number
+    text: string
+    title: string        // ← เพิ่ม
+    isEditingTitle: boolean  // ← เพิ่ม
+    isEditing: boolean
+    parentBoardId?: string
+}
 
 export type NoteItem = CanvasItem;
 // export type LinkItem = CanvasItem;

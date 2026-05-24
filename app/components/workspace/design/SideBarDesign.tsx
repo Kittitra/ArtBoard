@@ -25,9 +25,10 @@ import { BsThreeDots } from "react-icons/bs";
 import Link from "next/link";
 import { createDesignCategory } from "@/action/design";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AlertBasic } from "../../Aleart";
 import { Version } from "@/lib/type";
+import { useDesignStore } from "@/lib/store/designStore";
 
 
 
@@ -86,7 +87,13 @@ const SideBarDesign = ({
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const [dialogAddNew, setDialogAddNew] = useState(false);
     const [dialogMethod, setDialogMethod] = useState<DialogMethod>(null);
-    const [selectedVersions, setSelectedVersions] = useState<Version[]>([]);  // ✅ เก็บ version ของ subClass ที่เลือก
+    // const [selectedVersions, setSelectedVersions] = useState<Version[]>([]);  // ✅ เก็บ version ของ subClass ที่เลือก
+
+    const path = usePathname();
+    const router = useRouter();
+    const projectPath = path.split("/")[3];
+
+    const { selectedVersions, setSelectedVersions, setCurrentVersion } = useDesignStore();
 
     const handleClick = (id: string) => {
         setClick(id);
@@ -122,9 +129,11 @@ const SideBarDesign = ({
     }
 
     const handleVersion = (v: Version[]) => {
-        setVersion(v);
+        router.push(`/auth/project/${projectPath}/design/${v[0].id}`); // ✅ เปลี่ยนเส้นทางไปยัง version ที่เลือก
+        // setVersion(v);
+        setCurrentVersion(v[0]);  // ← เก็บใน store แทน
         handleClose();
-        console.log("Selected version:", v);
+        // console.log("Selected version:", v);
     }
 
     const handleAddNewCategory = () => {
@@ -133,10 +142,12 @@ const SideBarDesign = ({
 
     const CategoryTitle = data.find(cate => cate.id === selectedItem)?.name || "";
     const SubCategoryTitle = data.flatMap(cate => cate.designs || []).find(sub => sub.id === selectedItem)?.name || "";
+    
+    // console.log("Selected version123: ", selectedVersions);
 
     return (
         <>
-        <div className="flex flex-col h-full justify-between w-fit relative overflow-x-hidden">
+        <div className="flex flex-col h-full justify-between w-fit relative overflow-x-hidden min-w-fit">
             <div className='flex flex-col w-50 h-full gap-5 bg-custom !p-5 !pt-20 shadow-2xl '>
                 {loading ? 
                     <div className="w-full max-w-sm rounded-md p-4">
@@ -233,7 +244,6 @@ const SideBarDesign = ({
                                                     </span>
                                                 ));
                                             })}
-                                    
                                 </div>
                             </div>
                         ))} 
@@ -304,7 +314,7 @@ const SideBarDesign = ({
                                     <span key={v.id} 
                                     className="flex flex-row justify-between items-center p-2 border rounded-md hover:cursor-pointer">
                                         <span className="text-sm px-5" onClick={() => handleVersion([v])} >
-                                            {v.name}
+                                                {v.name}
                                         </span>
                                     </span>
                                 </span>

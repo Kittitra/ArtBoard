@@ -13,9 +13,11 @@ import { RiSketching } from 'react-icons/ri'
 import { RxArrowTopRight } from 'react-icons/rx'
 import { TfiText } from 'react-icons/tfi'
 
-type Props = {}
+interface Props {
+  deleteSelected: () => void
+}
 
-const Tools = () => {
+const Tools = ({ deleteSelected }: Props) => {
   const iconsSize = 25;
   const onDragStart = (e: React.DragEvent, type: string) => {
     e.dataTransfer.setData(
@@ -113,7 +115,7 @@ const Tools = () => {
                   Upload
                 </span>
             </span>
-          <span className='tool-icons mb-5'>
+          <span className='tool-icons mb-5' onClick={() => deleteSelected()}>
             <FaTrash size={iconsSize} />
               <span className='text-ligth'>
                 Trash
