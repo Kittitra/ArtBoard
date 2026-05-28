@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import {
   DropdownMenu,
@@ -29,6 +29,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AlertBasic } from "../../Aleart";
 import { Version } from "@/lib/type";
 import { useDesignStore } from "@/lib/store/designStore";
+import { is } from "cheerio/dist/commonjs/api/traversing";
 
 
 
@@ -64,6 +65,7 @@ interface Props {
     loading: boolean
     handleCreateNewVersion: (subCategoryId: string) => void
     setNewVersionName: (name: string) => void
+    version: Version[]
 }
 
 type DialogMethod = "re_name" | "new_sub" | null;
@@ -80,6 +82,8 @@ const SideBarDesign = ({
     loading,
     handleCreateNewVersion,
     setNewVersionName,
+    version,
+    
     
 }: Props) => {
     const [click, setClick] = useState(data[0]?.id || ""); // ✅ ตั้งค่าเริ่มต้นเป็น id ของ design category แรก
@@ -89,11 +93,17 @@ const SideBarDesign = ({
     const [dialogMethod, setDialogMethod] = useState<DialogMethod>(null);
     // const [selectedVersions, setSelectedVersions] = useState<Version[]>([]);  // ✅ เก็บ version ของ subClass ที่เลือก
 
+    const selectedVersions =
+    data
+        .flatMap(cate => cate.designs || [])
+        .find(sub => sub.id === selectedItem)
+        ?.versions || [];
+
     const path = usePathname();
     const router = useRouter();
     const projectPath = path.split("/")[3];
 
-    const { selectedVersions, setSelectedVersions, setCurrentVersion } = useDesignStore();
+    // const { selectedVersions, setSelectedVersions, setCurrentVersion } = useDesignStore();
 
     const handleClick = (id: string) => {
         setClick(id);
@@ -120,7 +130,7 @@ const SideBarDesign = ({
     // ✅ รับ versions ของ subClass ที่กด
     const handleOpenVersion = (subClass: SubClass) => {
         setSelectedItem(subClass.id);
-        setSelectedVersions(subClass.versions);
+        // setSelectedVersions(subClass.versions);
         setOpenDialog("version");
     }
 
@@ -130,8 +140,8 @@ const SideBarDesign = ({
 
     const handleVersion = (v: Version[]) => {
         router.push(`/auth/project/${projectPath}/design/${v[0].id}`); // ✅ เปลี่ยนเส้นทางไปยัง version ที่เลือก
-        // setVersion(v);
-        setCurrentVersion(v[0]);  // ← เก็บใน store แทน
+        setVersion(v);
+        // setCurrentVersion(v[0]);  // ← เก็บใน store แทน
         handleClose();
         // console.log("Selected version:", v);
     }
@@ -143,8 +153,8 @@ const SideBarDesign = ({
     const CategoryTitle = data.find(cate => cate.id === selectedItem)?.name || "";
     const SubCategoryTitle = data.flatMap(cate => cate.designs || []).find(sub => sub.id === selectedItem)?.name || "";
     
+    
     // console.log("Selected version123: ", selectedVersions);
-
     return (
         <>
         <div className="flex flex-col h-full justify-between w-fit relative overflow-x-hidden min-w-fit">
@@ -215,7 +225,7 @@ const SideBarDesign = ({
 
                                 <div className="flex flex-col pt-2 ">
                                             {data.map((dataItem) => {
-                                                if (dataItem.name !== item.name) return null;
+                                                if (dataItem.id !== item.id) return null;
                                                 // ✅ loop subClass array ถูกต้อง
                                                 return dataItem.designs?.map((sub) => (
                                                     <span key={sub.id} className="flex flex-row justify-start gap-3 items-center px-2 text-white">
@@ -309,7 +319,7 @@ const SideBarDesign = ({
                         {selectedVersions.length === 0 ? (
                             <span className="text-sm text-gray-400">No versions yet</span>
                         ) : (
-                            selectedVersions.map((v) => (
+                            selectedVersions.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()).map((v) => (
                                 <span key={v.id} className="flex flex-col gap-10">
                                     <span key={v.id} 
                                     className="flex flex-row justify-between items-center p-2 border rounded-md hover:cursor-pointer">

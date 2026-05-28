@@ -1,13 +1,13 @@
 "use client";
-import { NoteItem } from '@/lib/type';
+import { HeaderTextItem } from '@/lib/type';
 import { Group, Rect, Text } from 'react-konva'
 
-type NoteProps = {
-  setSelectedNoteId: (id: string | null) => void;
-  notes: NoteItem[];
-  selectedNoteId: string | null;
-  updateNote: (id: string, updates: Partial<NoteItem>) => void;
-  selectNote: (id: string) => void;
+type HeaderTextProps = {
+  setSelectedTextId: (id: string | null) => void;
+  texts: HeaderTextItem[];
+  selectedTextId: string | null;
+  updateText: (id: string, updates: Partial<HeaderTextItem>) => void;
+  selectText: (id: string) => void;
   parentBoardId: string | undefined;
   onDragMove?: () => void;
   onDragEnd?: (id: string, x: number, y: number) => void;
@@ -18,105 +18,108 @@ type NoteProps = {
 
 const FONT = {
   family: "Inter, system-ui, -apple-system, sans-serif",
-  size: 16,
+  size: 24,
   lineHeight: 1.4,
   letterSpacing: 0,
 };
 
 const PADDING = 8;
 const MIN_SIZE = 100;
-const RESIZE_HANDLE_SIZE = 12;
+const RESIZE_HANDLE_SIZE = 10;
 
-const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId, selectNote, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group }: NoteProps) => {
+const HeaderText = ({ texts, updateText, selectedTextId, setSelectedTextId, selectText, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group }: HeaderTextProps) => {
 
     const startEdit = (id: string) => {
-      updateNote(id, { isEditing: true });
-      setSelectedNoteId(id);
+      updateText(id, { isEditing: true });
+      setSelectedTextId(id);
     };
 
   return (
     <>
-        {notes.map((note) => {
-            const isSelected = selectedNoteId === note.id;
+        {texts.map((text) => {
+            const isSelected = selectedTextId === text.id;
 
-            if(note.parentBoardId && !parentBoardId || note.parentBoardId !== parentBoardId) {
+            if(text.parentBoardId && !parentBoardId || text.parentBoardId !== parentBoardId) {
                 return null; // ข้ามการเรนเดอร์ถ้า parentBoardId มีค่า
             }
 
             return (
-                <Group key={note.id}>
+                <Group key={text.id}>
                 <Group
-                    x={note.x}
-                    y={note.y}
-                    draggable={!note.isEditing}
-                    onClick={() => selectNote(note.id)}
-                    onTap={() => selectNote(note.id)}
-                    onDblClick={() => startEdit(note.id)}
-                    onDblTap={() => startEdit(note.id)}
+                    x={text.x}
+                    y={text.y}
+                    draggable={!text.isEditing}
+                    onClick={() => selectText(text.id)}
+                    onTap={() => selectText(text.id)}
+                    onDblClick={() => startEdit(text.id)}
+                    onDblTap={() => startEdit(text.id)}
                      onDragStart={(e) => {
                         const { x, y } = e.target.position();
-                        onDragStart?.(note.id, x, y);
+                        onDragStart?.(text.id, x, y);
                     }}
                     onDragMove={(e) => {
                         const { x, y } = e.target.position();
-                        updateNote(note.id, { x, y });  // ← ต้องมีบรรทัดนี้
+                        updateText(text.id, { x, y });  // ← ต้องมีบรรทัดนี้
                         onDragMove?.();
-                        if (selectedIds?.includes(note.id)) {
-                            onDragMove_group?.(note.id, x, y);
+                        if (selectedIds?.includes(text.id)) {
+                            onDragMove_group?.(text.id, x, y);
                         }
                     }}
                     onDragEnd={(e) => {
                         const { x, y } = e.target.position();
-                        onDragEnd?.(note.id, x, y);
+                        onDragEnd?.(text.id, x, y);
                     }}
                 >
                     <Rect
-                        width={note.width}
-                        height={note.height}
-                        fill="white"
-                        cornerRadius={8}
+                        width={text.width}
+                        height={text.height}
+                        fillEnabled={true}
+                        fill="rgba(0,0,0,0)"
                         shadowBlur={4}
                         shadowOpacity={0.1}
                         shadowOffsetY={2}
-                        stroke={selectedIds?.includes(note.id) ? "#4A90D9" : isSelected ? "gray" : "transparent"}
-                        strokeWidth={2}
+                        stroke={selectedIds?.includes(text.id) ? "#4A90D9" : isSelected ? "gray" : "transparent"}
+                        strokeWidth={1}
                         
                     />
                     <Text
-                        text={note.text}
-                        x={PADDING}
-                        y={PADDING}
-                        width={note.width - PADDING * 2}
+                        text={text.text}
+                        width={text.width}
+                        height={text.height}
+                        align="center"
+                        verticalAlign="middle"
+                        fontStyle="bold"
                         fontFamily={FONT.family}
                         fontSize={FONT.size}
                         lineHeight={FONT.lineHeight}
                         letterSpacing={FONT.letterSpacing}
                         fill="#333"
-                        opacity={note.isEditing ? 0 : 1}
+                        opacity={text.isEditing ? 0 : 1}
                         wrap="word"
+                        
                     />
                 </Group>
                 
                 {/* Resize Handle */}
-                {isSelected && !note.isEditing && (
+                {isSelected && !text.isEditing && (
                     <Group
-                        x={note.x + note.width}
-                        y={note.y + note.height}
+                        x={text.x + text.width}
+                        y={text.y + text.height}
                         draggable
                         onDragMove={(e) => {
                             const pos = e.target.position();
-                            const newWidth = Math.max(MIN_SIZE, pos.x - note.x);
-                            const newHeight = Math.max(MIN_SIZE, pos.y - note.y);
+                            const newWidth = Math.max(MIN_SIZE, pos.x - text.x);
+                            const newHeight = Math.max(MIN_SIZE, pos.y - text.y);
                             
-                            updateNote(note.id, {
+                            updateText(text.id, {
                                 width: newWidth,
                                 height: newHeight,
                             });
                             
                             // Reset handle position
                             e.target.position({
-                                x: note.x + newWidth,
-                                y: note.y + newHeight,
+                                x: text.x + newWidth,
+                                y: text.y + newHeight,
                             });
                         }}
                     >
@@ -126,8 +129,7 @@ const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId, selectNote
                         width={RESIZE_HANDLE_SIZE}
                         height={RESIZE_HANDLE_SIZE}
                         fill="gray"
-                        cornerRadius={2}
-                        stroke="white"
+                        cornerRadius={10}
                         strokeWidth={2}
                     />
                     
@@ -138,4 +140,4 @@ const Note = ({ notes, updateNote, selectedNoteId, setSelectedNoteId, selectNote
         })}
     </>
   )}
-export default Note
+export default HeaderText

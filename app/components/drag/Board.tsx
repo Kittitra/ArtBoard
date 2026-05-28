@@ -19,6 +19,12 @@ type BoardProps = {
   startEditBoardTitle : (id: string) => void;
   versionId: string;
   parentBoardId: string | undefined;
+    onDragMove?: () => void;
+  onDragEnd?: (id: string, x: number, y: number) => void;
+  selectedIds?: string[];
+  onDragMove_group?: (id: string, dx: number, dy: number) => void;
+  onDragStart?: (id: string, x: number, y: number) => void;
+  
 };
 
 const FONT = {
@@ -32,7 +38,7 @@ const PADDING = 8;
 const MIN_SIZE = 100;
 const RESIZE_HANDLE_SIZE = 12;
 
-const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startEditBoardTitle, versionId, parentBoardId }: BoardProps) => {
+const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startEditBoardTitle, versionId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group }: BoardProps) => {
 
     const startEdit = (id: string) => {
       updateBoard(id, { isEditing: false });
@@ -79,10 +85,22 @@ const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startE
                             draggable={!item.isEditing}
                             onClick={() => startEdit(item.id)}
                             onTap={() => startEdit(item.id)}
-                            
+                             onDragStart={(e) => {
+                                const { x, y } = e.target.position();
+                                onDragStart?.(item.id, x, y);
+                            }}
+                            onDragMove={(e) => {
+                                const { x, y } = e.target.position();
+                                updateBoard(item.id, { x, y });  // ← เพิ่ม update ตัวเองด้วย
+                                onDragMove?.();
+                                if (selectedIds?.includes(item.id)) {
+                                    onDragMove_group?.(item.id, x, y);
+                                }
+                            }}
                             onDragEnd={(e) => {
                                 const { x, y } = e.target.position();
                                 updateBoard(item.id, { x, y });
+                                onDragEnd?.(item.id, x, y);
                             }}
                         >
                             <Group
@@ -107,7 +125,7 @@ const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startE
                                     shadowBlur={4}
                                     shadowOpacity={0.1}
                                     shadowOffsetY={2}
-                                    stroke={isSelected ? "gray" : "transparent"}
+                                    stroke={selectedIds?.includes(item.id) ? "#4A90D9" : isSelected ? "gray" : "transparent"}
                                     strokeWidth={2}
                                     
                                 />

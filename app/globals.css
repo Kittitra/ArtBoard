@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@tailwindcss/typography";
 
 @layer utilities {
   .flex-center {
@@ -64,6 +65,18 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #adb5bd;
+    pointer-events: none;
+    height: 0;
+}
+
+.tiptap:focus {
+    outline: none;
 }
 
 /* Screenplay CSS */

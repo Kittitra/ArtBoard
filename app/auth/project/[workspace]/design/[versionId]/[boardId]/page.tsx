@@ -205,7 +205,7 @@ const page = () => {
     useEffect(() => {
       getDesignCategoryByProjectId(projectPath)
         .then((categories) => {
-          console.log("Design Categories:", categories);
+        //   console.log("Design Categories:", categories);
           setDesignCategories(categories);
         })
         .catch((error) => {
@@ -220,7 +220,7 @@ const page = () => {
           getDesignVersionByVersionId(versionPath)
             .then((versionData) => {
                 setVersion(versionData);
-                console.log("Design Version Data:", versionData);
+                // console.log("Design Version Data:", versionData);
                 
             }).catch((error) => {
                 console.error("Failed to fetch design version data:", error);
@@ -228,13 +228,14 @@ const page = () => {
         }
     }, [boardPath, versionPath]);
     
-    console.log("Version Data:", version);
+    // console.log("Version Data:", version);
 
   return (
     // ✅ flex row ให้ sidebar อยู่ซ้าย content อยู่ขวา
     <div className='flex flex-row w-full h-screen relative overflow-x-hidden'>
       <SideBarDesign
         // items={arr}
+        version={version}
         data={designCategories}
         onSelect={(title) => setSelected(title)}
         setVersion={setVersion}

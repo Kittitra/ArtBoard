@@ -47,19 +47,19 @@ const Tools = ({ deleteSelected }: Props) => {
               Link
             </span>
         </span>
-        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "line")}>
+        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "arrow")}>
           <RxArrowTopRight size={iconsSize} />
             <span className='text-ligth'>
               Line
             </span>
         </span>
-        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "head")}>
+        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "header")}>
           <TfiText size={iconsSize} />
             <span className='text-ligth'>
               Heading
             </span>
         </span>
-        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "colors")}>
+        <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "colorcard")}>
           <HiOutlineColorSwatch size={iconsSize} />
             <span className='text-ligth'>
               Colors

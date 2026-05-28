@@ -157,6 +157,24 @@ const page = () => {
                 if (newVersion) {
                     setVersion((prev) => [newVersion, ...prev]); // 🔥 เพิ่มบนสุด
                 }
+
+                if (!newVersion) return;
+
+                setDesignCategories((prev) =>
+                    prev.map((category) => ({
+                        ...category,
+                        designs: category.designs?.map((sub) =>
+                            sub.id === subCategoryId
+                                ? {
+                                    ...sub,
+                                    versions: [newVersion, ...(sub.versions || [])],
+                                }
+                                : sub
+                        ),
+                    }))
+                );
+
+                // console.log("newVersion from createDesignVersion: ", newVersion);
     
                 setError(data?.error);
                 setSuccess(data?.success);
@@ -201,7 +219,7 @@ const page = () => {
     useEffect(() => {
       getDesignCategoryByProjectId(projectPath)
         .then((categories) => {
-          console.log("Design Categories:", categories);
+        //   console.log("Design Categories:", categories);
           setDesignCategories(categories);
         })
         .catch((error) => {
@@ -217,6 +235,7 @@ const page = () => {
     <div className='flex flex-row w-full h-screen relative overflow-x-hidden'>
       <SideBarDesign
         // items={arr}
+        version = {version}
         data={designCategories}
         onSelect={(title) => setSelected(title)}
         setVersion={setVersion}

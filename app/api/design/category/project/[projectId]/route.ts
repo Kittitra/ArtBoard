@@ -7,7 +7,7 @@ export async function GET(
 ) {
   const { projectId } = await context.params;
     // console.log("context: ", context);
-    console.log("Received projectId: ", projectId); // ✅ ตรวจสอบค่า projectId ที่ได้รับจาก URL
+    // console.log("Received projectId: ", projectId); // ✅ ตรวจสอบค่า projectId ที่ได้รับจาก URL
   try {
     const designCategory = await db.designCategory.findMany({
         where: {

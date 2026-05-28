@@ -158,7 +158,7 @@ const page = () => {
                 if (newVersion) {
                     setVersion((prev) => [newVersion, ...prev]); // 🔥 เพิ่มบนสุด
                 }
-    
+
                 setError(data?.error);
                 setSuccess(data?.success);
             })
@@ -202,7 +202,7 @@ const page = () => {
     useEffect(() => {
       getDesignCategoryByProjectId(projectPath)
         .then((categories) => {
-          console.log("Design Categories:", categories);
+        //   console.log("Design Categories:", categories);
           setDesignCategories(categories);
         })
         .catch((error) => {
@@ -229,6 +229,7 @@ const page = () => {
     <div className='flex flex-row w-full h-screen relative overflow-x-hidden'>
       <SideBarDesign
         // items={arr}
+        version={version}
         data={designCategories}
         onSelect={(title) => setSelected(title)}
         setVersion={setVersion}
