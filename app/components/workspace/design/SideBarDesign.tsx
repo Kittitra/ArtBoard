@@ -224,36 +224,36 @@ const SideBarDesign = ({
                                 </div>
 
                                 <div className="flex flex-col pt-2 ">
-                                            {data.map((dataItem) => {
-                                                if (dataItem.id !== item.id) return null;
-                                                // ✅ loop subClass array ถูกต้อง
-                                                return dataItem.designs?.map((sub) => (
-                                                    <span key={sub.id} className="flex flex-row justify-start gap-3 items-center px-2 text-white">
-                                                        <GoDotFill size={10} />
-                                                        <span className="truncate flex-1 min-w-0">{sub.name}</span>
-                                                        <DropdownMenu>
-                                                            <DropdownMenuTrigger asChild>
-                                                                <BsThreeDots className='hover:cursor-pointer flex-shrink-0' size={15} />
-                                                            </DropdownMenuTrigger>
-                                                            <DropdownMenuContent>
-                                                                <DropdownMenuGroup>
-                                                                    <DropdownMenuLabel>{sub.name}</DropdownMenuLabel>
-                                                                    <DropdownMenuSeparator />
-                                                                    <DropdownMenuItem onSelect={() => handleOpenRename(sub.id)}>
-                                                                        Re-name
-                                                                    </DropdownMenuItem>
-                                                                    <DropdownMenuItem onSelect={() => handleOpenDelete(sub.id)}>
-                                                                        Delete
-                                                                    </DropdownMenuItem>
-                                                                    <DropdownMenuItem onSelect={() => handleOpenVersion(sub)}>
-                                                                        Versions
-                                                                    </DropdownMenuItem>
-                                                                </DropdownMenuGroup>
-                                                            </DropdownMenuContent>
-                                                        </DropdownMenu>
-                                                    </span>
-                                                ));
-                                            })}
+                                        {data.map((dataItem) => {
+                                            if (dataItem.id !== item.id) return null;
+                                            // ✅ loop subClass array ถูกต้อง
+                                            return dataItem.designs?.map((sub) => (
+                                                <span key={sub.id} className="flex flex-row justify-start gap-3 items-center px-2 text-white">
+                                                    <GoDotFill size={10} />
+                                                    <span className="truncate flex-1 min-w-0">{sub.name}</span>
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger asChild>
+                                                            <BsThreeDots className='hover:cursor-pointer flex-shrink-0' size={15} />
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent>
+                                                            <DropdownMenuGroup>
+                                                                <DropdownMenuLabel>{sub.name}</DropdownMenuLabel>
+                                                                <DropdownMenuSeparator />
+                                                                <DropdownMenuItem onSelect={() => handleOpenRename(sub.id)}>
+                                                                    Re-name
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuItem onSelect={() => handleOpenDelete(sub.id)}>
+                                                                    Delete
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuItem onSelect={() => handleOpenVersion(sub)}>
+                                                                    Versions
+                                                                </DropdownMenuItem>
+                                                            </DropdownMenuGroup>
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                </span>
+                                            ));
+                                        })}
                                 </div>
                             </div>
                         ))} 

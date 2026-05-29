@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@tailwindcss/typography";
+/* @import "@tailwindcss/typography"; */
 
 @layer utilities {
   .flex-center {

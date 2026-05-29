@@ -8,7 +8,7 @@ import Konva from 'konva';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Group, Layer, Rect, Stage, Text } from 'react-konva'
 import Link from '@/app/components/drag/Link';
-import { LinkItem, NoteItem, BoardItem, ArrowItem, HeaderTextItem, ColorCardItem, DocumentItem } from '@/lib/type';
+import { LinkItem, NoteItem, BoardItem, ArrowItem, HeaderTextItem, ColorCardItem, DocumentItem, SketchItem } from '@/lib/type';
 import Board from '@/app/components/drag/Board';
 import { useDesignStore } from '@/lib/store/designStore';
 import ArrowConnector, { getEdgePoint } from '../../drag/ArrowConnector';
@@ -19,6 +19,8 @@ import ColorCard from '../../drag/ColorCard';
 import ColorPicker from './ColorPicker';
 import DocumentIcon from '../../drag/DocumentIcon';
 import DocumentEditor from '../../drag/DocumentEditor';
+import SketchIcon from '../../drag/SketchIcon';
+import SketchEditor from '../../drag/SketchEditor';
 
 interface CanvasState {
     notes: NoteItem[]
@@ -29,8 +31,6 @@ interface CanvasState {
     colorCards: ColorCardItem[]
     documents: DocumentItem[]
 }
-
-
 
 const PADDING = 8;
 
@@ -48,7 +48,6 @@ interface Props {
 
 const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
 
-
     const containerRef = useRef<HTMLDivElement>(null);
     const stageRef = useRef<Konva.Stage | null>(null);
     const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
@@ -64,7 +63,10 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     const [colorPickerPos, setColorPickerPos] = useState<{ x: number; y: number } | null>(null);
     const [documents, setDocuments] = useState<DocumentItem[]>([]);
     const [openDocId, setOpenDocId] = useState<string | null>(null);
-    
+    const [sketches, setSketches] = useState<SketchItem[]>([]);
+
+    const [selectedSketchId, setSelectedSketchId] = useState<string | null>(null);
+    const [openSketchId, setOpenSketchId] = useState<string | null>(null);
     const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
     const [colorPickerTargetId, setColorPickerTargetId] = useState<string | null>(null);
     const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
@@ -90,7 +92,6 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     };
 
     const { state, push, undo, redo, canUndo, canRedo, canUndoRef, canRedoRef } = useHistory<CanvasState>(initialState);
-
 
     useEffect(() => {
         if (versions.length > 0) {
@@ -179,6 +180,9 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     };
     const updateTextLink = (id: string, text: string) => {
         updateLink(id, { text });
+    };
+    const updateSketch = (id: string, updates: Partial<SketchItem>) => {
+        setSketches((prev) => prev.map((s) => s.id === id ? { ...s, ...updates } : s));
     };
     
     const stopEdit = (id: string) => {
@@ -377,6 +381,18 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         setDocuments((prev) => [...prev, newDoc]);
     };
 
+    const createSketch = (x: number, y: number) => {
+        const newSketch: SketchItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 90,
+            height: 90,
+            thumbnail: null,
+            parentBoardId,
+        };
+        setSketches((prev) => [...prev, newSketch]);
+    };
+
       const startEditBoardTitle = (id: string) => {
             setBoard((prev) =>
                 prev.map((b) => b.id === id ? { ...b, isEditingTitle: true } : b)
@@ -403,6 +419,20 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             setSelectedBoardId(null);
             setSelectedArrowId(null);
             setSelectedCardId(null);
+        };
+
+        const selectSketch = (id: string) => {
+            setSelectedSketchId(id);
+            setSelectedNoteId(null);
+            setSelectedLinkId(null);
+            setSelectedBoardId(null);
+            setSelectedArrowId(null);
+            setSelectedCardId(null);
+        };
+
+        const handleSketchSave = (id: string, dataUrl: string) => {
+            updateSketch(id, { thumbnail: dataUrl });
+            setOpenSketchId(null);
         };
     
      const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -488,6 +518,10 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             const transform = stage.getAbsoluteTransform().copy().invert();
             const sp = transform.point(pos);
             createDocument(sp.x, sp.y);
+        }else if (payload.type === "sketch") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createSketch(sp.x, sp.y);
         }
     };
 
@@ -830,10 +864,28 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             return { ...t, x: original.x + dx, y: original.y + dy };
         });
 
+        const newColorCards = colorCards.map((c) => {
+            if (!selectedIds.includes(c.id)) return c;
+            if (c.id === draggedId) return { ...c, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === c.id);
+            if (!original) return c;
+            return { ...c, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newDocuments = documents.map((d) => {
+            if (!selectedIds.includes(d.id)) return d;
+            if (d.id === draggedId) return { ...d, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === d.id);
+            if (!original) return d;
+            return { ...d, x: original.x + dx, y: original.y + dy };
+        });
+
         setNotes(newNotes);
         setLinks(newLinks);
         setBoard(newBoard);
         setHeaderTexts(newHeaderTexts);
+        setColorCards(newColorCards);
+        setDocuments(newDocuments);
         triggerUpdate();
     };
 
@@ -1022,6 +1074,20 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                                     onDragEnd={handleGroupDragEnd}
                                     onOpenDoc={setOpenDocId}
                                 />
+                                <SketchIcon
+                                    sketches={sketches}
+                                    selectedSketchId={selectedSketchId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateSketch={updateSketch}
+                                    selectSketch={selectSketch}
+                                    setSelectedSketchId={setSelectedSketchId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    onOpenSketch={setOpenSketchId}
+                                />
                             </React.Fragment>
                         ))}
                     </Layer>
@@ -1138,6 +1204,15 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                         doc={documents.find((d) => d.id === openDocId)!}
                         onClose={() => setOpenDocId(null)}
                         onUpdate={updateDoc}
+                    />
+                )}
+
+                {openSketchId && (
+                    <SketchEditor
+                        sketchId={openSketchId}
+                        initialData={sketches.find((s) => s.id === openSketchId)?.thumbnail ?? null}
+                        onSave={handleSketchSave}
+                        onCancel={() => setOpenSketchId(null)}
                     />
                 )}
 

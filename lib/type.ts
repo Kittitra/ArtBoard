@@ -90,6 +90,16 @@ export interface DocumentItem {
     parentBoardId?: string
 }
 
+export interface SketchItem {
+    id: string
+    x: number
+    y: number
+    width: number
+    height: number
+    thumbnail: string | null  // base64 preview
+    parentBoardId?: string
+}
+
 export type NoteItem = CanvasItem;
 // export type LinkItem = CanvasItem;
 
