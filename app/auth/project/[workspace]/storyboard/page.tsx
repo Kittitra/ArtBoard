@@ -2,7 +2,7 @@
 
 import SideBarDesign from '@/app/components/workspace/design/SideBarDesign';
 import SideBarStoryBoard from '@/app/components/workspace/storyboard/SideBarStoryBoard';
-import SideBarWorkFlow from '@/app/components/SideBarWorkFlow'
+import SideBarWorkFlow from '@/app/components/SideBarVideo'
 import React, { useState } from 'react'
 
 type Props = {}

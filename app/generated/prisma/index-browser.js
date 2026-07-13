@@ -237,6 +237,35 @@ exports.Prisma.UserProjectScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.AnimationStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.AnimationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.AnimationVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  animationId: 'animationId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -280,7 +309,10 @@ exports.Prisma.ModelName = {
   DesignCategory: 'DesignCategory',
   DesignSubClass: 'DesignSubClass',
   DesignSubClassVersion: 'DesignSubClassVersion',
-  UserProject: 'UserProject'
+  UserProject: 'UserProject',
+  AnimationState: 'AnimationState',
+  Animation: 'Animation',
+  AnimationVersion: 'AnimationVersion'
 };
 
 /**

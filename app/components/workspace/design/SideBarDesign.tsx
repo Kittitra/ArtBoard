@@ -22,14 +22,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GoDotFill } from "react-icons/go";
 import { BsThreeDots } from "react-icons/bs";
-import Link from "next/link";
-import { createDesignCategory } from "@/action/design";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import { usePathname, useRouter } from "next/navigation";
-import { AlertBasic } from "../../Aleart";
 import { Version } from "@/lib/type";
-import { useDesignStore } from "@/lib/store/designStore";
-import { is } from "cheerio/dist/commonjs/api/traversing";
 
 
 

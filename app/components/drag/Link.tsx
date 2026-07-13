@@ -16,6 +16,7 @@ type NoteProps = {
     selectedIds?: string[];
     onDragMove_group?: (id: string, dx: number, dy: number) => void;
     onDragStart?: (id: string, x: number, y: number) => void;
+    onSelect?: () => void;
 };
 
 const FONT = {
@@ -32,7 +33,7 @@ const MAX_TEXT_LINES = 2;
 const HANDLE_OFFSET = 6;
 const HANDLE_SIZE = 8;
 
-const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group }: NoteProps) => {
+const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group, onSelect }: NoteProps) => {
     const startEdit = (id: string) => {
       updateLink(id, { isEditing: true });
       setSelectedLinkId(id);
@@ -65,8 +66,14 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId, parentBoar
                         x={link.x}
                         y={link.y}
                         draggable={!link.isEditing}
-                        onClick={() => setSelectedLinkId(link.id)}
-                        onTap={() => setSelectedLinkId(link.id)}
+                        onClick={() => {
+                            onSelect?.();
+                            setSelectedLinkId(link.id);
+                        }}
+                        onTap={() => {
+                            onSelect?.();
+                            setSelectedLinkId(link.id);
+                        }}
                         onDblClick={() => startEdit(link.id)}
                         onDblTap={() => startEdit(link.id)}
                          onDragStart={(e) => {

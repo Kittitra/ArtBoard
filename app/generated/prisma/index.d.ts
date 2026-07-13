@@ -73,6 +73,21 @@ export type DesignSubClassVersion = $Result.DefaultSelection<Prisma.$DesignSubCl
  * 
  */
 export type UserProject = $Result.DefaultSelection<Prisma.$UserProjectPayload>
+/**
+ * Model AnimationState
+ * 
+ */
+export type AnimationState = $Result.DefaultSelection<Prisma.$AnimationStatePayload>
+/**
+ * Model Animation
+ * 
+ */
+export type Animation = $Result.DefaultSelection<Prisma.$AnimationPayload>
+/**
+ * Model AnimationVersion
+ * 
+ */
+export type AnimationVersion = $Result.DefaultSelection<Prisma.$AnimationVersionPayload>
 
 /**
  * Enums
@@ -329,6 +344,36 @@ export class PrismaClient<
     * ```
     */
   get userProject(): Prisma.UserProjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.animationState`: Exposes CRUD operations for the **AnimationState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnimationStates
+    * const animationStates = await prisma.animationState.findMany()
+    * ```
+    */
+  get animationState(): Prisma.AnimationStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.animation`: Exposes CRUD operations for the **Animation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Animations
+    * const animations = await prisma.animation.findMany()
+    * ```
+    */
+  get animation(): Prisma.AnimationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.animationVersion`: Exposes CRUD operations for the **AnimationVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnimationVersions
+    * const animationVersions = await prisma.animationVersion.findMany()
+    * ```
+    */
+  get animationVersion(): Prisma.AnimationVersionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -774,7 +819,10 @@ export namespace Prisma {
     DesignCategory: 'DesignCategory',
     DesignSubClass: 'DesignSubClass',
     DesignSubClassVersion: 'DesignSubClassVersion',
-    UserProject: 'UserProject'
+    UserProject: 'UserProject',
+    AnimationState: 'AnimationState',
+    Animation: 'Animation',
+    AnimationVersion: 'AnimationVersion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -790,7 +838,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject" | "animationState" | "animation" | "animationVersion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1682,6 +1730,228 @@ export namespace Prisma {
           }
         }
       }
+      AnimationState: {
+        payload: Prisma.$AnimationStatePayload<ExtArgs>
+        fields: Prisma.AnimationStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnimationStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnimationStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          findFirst: {
+            args: Prisma.AnimationStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnimationStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          findMany: {
+            args: Prisma.AnimationStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>[]
+          }
+          create: {
+            args: Prisma.AnimationStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          createMany: {
+            args: Prisma.AnimationStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnimationStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>[]
+          }
+          delete: {
+            args: Prisma.AnimationStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          update: {
+            args: Prisma.AnimationStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.AnimationStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnimationStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnimationStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.AnimationStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationStatePayload>
+          }
+          aggregate: {
+            args: Prisma.AnimationStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnimationState>
+          }
+          groupBy: {
+            args: Prisma.AnimationStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnimationStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnimationStateCountArgs<ExtArgs>
+            result: $Utils.Optional<AnimationStateCountAggregateOutputType> | number
+          }
+        }
+      }
+      Animation: {
+        payload: Prisma.$AnimationPayload<ExtArgs>
+        fields: Prisma.AnimationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnimationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnimationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          findFirst: {
+            args: Prisma.AnimationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnimationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          findMany: {
+            args: Prisma.AnimationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>[]
+          }
+          create: {
+            args: Prisma.AnimationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          createMany: {
+            args: Prisma.AnimationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnimationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>[]
+          }
+          delete: {
+            args: Prisma.AnimationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          update: {
+            args: Prisma.AnimationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnimationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnimationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnimationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>[]
+          }
+          upsert: {
+            args: Prisma.AnimationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationPayload>
+          }
+          aggregate: {
+            args: Prisma.AnimationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnimation>
+          }
+          groupBy: {
+            args: Prisma.AnimationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnimationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnimationCountArgs<ExtArgs>
+            result: $Utils.Optional<AnimationCountAggregateOutputType> | number
+          }
+        }
+      }
+      AnimationVersion: {
+        payload: Prisma.$AnimationVersionPayload<ExtArgs>
+        fields: Prisma.AnimationVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnimationVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnimationVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.AnimationVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnimationVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          findMany: {
+            args: Prisma.AnimationVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>[]
+          }
+          create: {
+            args: Prisma.AnimationVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          createMany: {
+            args: Prisma.AnimationVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnimationVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>[]
+          }
+          delete: {
+            args: Prisma.AnimationVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          update: {
+            args: Prisma.AnimationVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnimationVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnimationVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnimationVersionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AnimationVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnimationVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.AnimationVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnimationVersion>
+          }
+          groupBy: {
+            args: Prisma.AnimationVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnimationVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnimationVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<AnimationVersionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1802,6 +2072,9 @@ export namespace Prisma {
     designSubClass?: DesignSubClassOmit
     designSubClassVersion?: DesignSubClassVersionOmit
     userProject?: UserProjectOmit
+    animationState?: AnimationStateOmit
+    animation?: AnimationOmit
+    animationVersion?: AnimationVersionOmit
   }
 
   /* Types for Logging */
@@ -1889,6 +2162,7 @@ export namespace Prisma {
     projectMembers: number
     DesignCategoryOwner: number
     DesignOwner: number
+    AnimationOwner: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1899,6 +2173,7 @@ export namespace Prisma {
     projectMembers?: boolean | UserCountOutputTypeCountProjectMembersArgs
     DesignCategoryOwner?: boolean | UserCountOutputTypeCountDesignCategoryOwnerArgs
     DesignOwner?: boolean | UserCountOutputTypeCountDesignOwnerArgs
+    AnimationOwner?: boolean | UserCountOutputTypeCountAnimationOwnerArgs
   }
 
   // Custom InputTypes
@@ -1961,6 +2236,13 @@ export namespace Prisma {
     where?: DesignSubClassWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAnimationOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationWhereInput
+  }
+
 
   /**
    * Count Type ProjectCountOutputType
@@ -1970,12 +2252,14 @@ export namespace Prisma {
     projectMembers: number
     scripts: number
     designCategories: number
+    animationCategories: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     projectMembers?: boolean | ProjectCountOutputTypeCountProjectMembersArgs
     scripts?: boolean | ProjectCountOutputTypeCountScriptsArgs
     designCategories?: boolean | ProjectCountOutputTypeCountDesignCategoriesArgs
+    animationCategories?: boolean | ProjectCountOutputTypeCountAnimationCategoriesArgs
   }
 
   // Custom InputTypes
@@ -2008,6 +2292,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountDesignCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DesignCategoryWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountAnimationCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationStateWhereInput
   }
 
 
@@ -2101,6 +2392,68 @@ export namespace Prisma {
    */
   export type DesignSubClassCountOutputTypeCountVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DesignSubClassVersionWhereInput
+  }
+
+
+  /**
+   * Count Type AnimationStateCountOutputType
+   */
+
+  export type AnimationStateCountOutputType = {
+    animations: number
+  }
+
+  export type AnimationStateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    animations?: boolean | AnimationStateCountOutputTypeCountAnimationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AnimationStateCountOutputType without action
+   */
+  export type AnimationStateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationStateCountOutputType
+     */
+    select?: AnimationStateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AnimationStateCountOutputType without action
+   */
+  export type AnimationStateCountOutputTypeCountAnimationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationWhereInput
+  }
+
+
+  /**
+   * Count Type AnimationCountOutputType
+   */
+
+  export type AnimationCountOutputType = {
+    AnimationVersions: number
+  }
+
+  export type AnimationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    AnimationVersions?: boolean | AnimationCountOutputTypeCountAnimationVersionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AnimationCountOutputType without action
+   */
+  export type AnimationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationCountOutputType
+     */
+    select?: AnimationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AnimationCountOutputType without action
+   */
+  export type AnimationCountOutputTypeCountAnimationVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationVersionWhereInput
   }
 
 
@@ -2303,6 +2656,7 @@ export namespace Prisma {
     projectMembers?: boolean | User$projectMembersArgs<ExtArgs>
     DesignCategoryOwner?: boolean | User$DesignCategoryOwnerArgs<ExtArgs>
     DesignOwner?: boolean | User$DesignOwnerArgs<ExtArgs>
+    AnimationOwner?: boolean | User$AnimationOwnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2348,6 +2702,7 @@ export namespace Prisma {
     projectMembers?: boolean | User$projectMembersArgs<ExtArgs>
     DesignCategoryOwner?: boolean | User$DesignCategoryOwnerArgs<ExtArgs>
     DesignOwner?: boolean | User$DesignOwnerArgs<ExtArgs>
+    AnimationOwner?: boolean | User$AnimationOwnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2363,6 +2718,7 @@ export namespace Prisma {
       projectMembers: Prisma.$UserProjectPayload<ExtArgs>[]
       DesignCategoryOwner: Prisma.$DesignCategoryPayload<ExtArgs>[]
       DesignOwner: Prisma.$DesignSubClassPayload<ExtArgs>[]
+      AnimationOwner: Prisma.$AnimationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2774,6 +3130,7 @@ export namespace Prisma {
     projectMembers<T extends User$projectMembersArgs<ExtArgs> = {}>(args?: Subset<T, User$projectMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DesignCategoryOwner<T extends User$DesignCategoryOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$DesignCategoryOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DesignOwner<T extends User$DesignOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$DesignOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignSubClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AnimationOwner<T extends User$AnimationOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$AnimationOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3364,6 +3721,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DesignSubClassScalarFieldEnum | DesignSubClassScalarFieldEnum[]
+  }
+
+  /**
+   * User.AnimationOwner
+   */
+  export type User$AnimationOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    where?: AnimationWhereInput
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    cursor?: AnimationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
   }
 
   /**
@@ -7906,6 +8287,7 @@ export namespace Prisma {
     projectMembers?: boolean | Project$projectMembersArgs<ExtArgs>
     scripts?: boolean | Project$scriptsArgs<ExtArgs>
     designCategories?: boolean | Project$designCategoriesArgs<ExtArgs>
+    animationCategories?: boolean | Project$animationCategoriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -7938,6 +8320,7 @@ export namespace Prisma {
     projectMembers?: boolean | Project$projectMembersArgs<ExtArgs>
     scripts?: boolean | Project$scriptsArgs<ExtArgs>
     designCategories?: boolean | Project$designCategoriesArgs<ExtArgs>
+    animationCategories?: boolean | Project$animationCategoriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7949,6 +8332,7 @@ export namespace Prisma {
       projectMembers: Prisma.$UserProjectPayload<ExtArgs>[]
       scripts: Prisma.$ScriptPayload<ExtArgs>[]
       designCategories: Prisma.$DesignCategoryPayload<ExtArgs>[]
+      animationCategories: Prisma.$AnimationStatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8353,6 +8737,7 @@ export namespace Prisma {
     projectMembers<T extends Project$projectMembersArgs<ExtArgs> = {}>(args?: Subset<T, Project$projectMembersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     scripts<T extends Project$scriptsArgs<ExtArgs> = {}>(args?: Subset<T, Project$scriptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     designCategories<T extends Project$designCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$designCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    animationCategories<T extends Project$animationCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$animationCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8844,6 +9229,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DesignCategoryScalarFieldEnum | DesignCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Project.animationCategories
+   */
+  export type Project$animationCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    where?: AnimationStateWhereInput
+    orderBy?: AnimationStateOrderByWithRelationInput | AnimationStateOrderByWithRelationInput[]
+    cursor?: AnimationStateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnimationStateScalarFieldEnum | AnimationStateScalarFieldEnum[]
   }
 
   /**
@@ -15574,6 +15983,3385 @@ export namespace Prisma {
 
 
   /**
+   * Model AnimationState
+   */
+
+  export type AggregateAnimationState = {
+    _count: AnimationStateCountAggregateOutputType | null
+    _min: AnimationStateMinAggregateOutputType | null
+    _max: AnimationStateMaxAggregateOutputType | null
+  }
+
+  export type AnimationStateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type AnimationStateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type AnimationStateCountAggregateOutputType = {
+    id: number
+    name: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type AnimationStateMinAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type AnimationStateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type AnimationStateCountAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type AnimationStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnimationState to aggregate.
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationStates to fetch.
+     */
+    orderBy?: AnimationStateOrderByWithRelationInput | AnimationStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnimationStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnimationStates
+    **/
+    _count?: true | AnimationStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnimationStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnimationStateMaxAggregateInputType
+  }
+
+  export type GetAnimationStateAggregateType<T extends AnimationStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnimationState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnimationState[P]>
+      : GetScalarType<T[P], AggregateAnimationState[P]>
+  }
+
+
+
+
+  export type AnimationStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationStateWhereInput
+    orderBy?: AnimationStateOrderByWithAggregationInput | AnimationStateOrderByWithAggregationInput[]
+    by: AnimationStateScalarFieldEnum[] | AnimationStateScalarFieldEnum
+    having?: AnimationStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnimationStateCountAggregateInputType | true
+    _min?: AnimationStateMinAggregateInputType
+    _max?: AnimationStateMaxAggregateInputType
+  }
+
+  export type AnimationStateGroupByOutputType = {
+    id: string
+    name: string
+    projectId: string | null
+    _count: AnimationStateCountAggregateOutputType | null
+    _min: AnimationStateMinAggregateOutputType | null
+    _max: AnimationStateMaxAggregateOutputType | null
+  }
+
+  type GetAnimationStateGroupByPayload<T extends AnimationStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnimationStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnimationStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnimationStateGroupByOutputType[P]>
+            : GetScalarType<T[P], AnimationStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnimationStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+    animations?: boolean | AnimationState$animationsArgs<ExtArgs>
+    _count?: boolean | AnimationStateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["animationState"]>
+
+  export type AnimationStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["animationState"]>
+
+  export type AnimationStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["animationState"]>
+
+  export type AnimationStateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+  }
+
+  export type AnimationStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "projectId", ExtArgs["result"]["animationState"]>
+  export type AnimationStateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+    animations?: boolean | AnimationState$animationsArgs<ExtArgs>
+    _count?: boolean | AnimationStateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AnimationStateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+  }
+  export type AnimationStateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | AnimationState$projectArgs<ExtArgs>
+  }
+
+  export type $AnimationStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnimationState"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs> | null
+      animations: Prisma.$AnimationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      projectId: string | null
+    }, ExtArgs["result"]["animationState"]>
+    composites: {}
+  }
+
+  type AnimationStateGetPayload<S extends boolean | null | undefined | AnimationStateDefaultArgs> = $Result.GetResult<Prisma.$AnimationStatePayload, S>
+
+  type AnimationStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnimationStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnimationStateCountAggregateInputType | true
+    }
+
+  export interface AnimationStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnimationState'], meta: { name: 'AnimationState' } }
+    /**
+     * Find zero or one AnimationState that matches the filter.
+     * @param {AnimationStateFindUniqueArgs} args - Arguments to find a AnimationState
+     * @example
+     * // Get one AnimationState
+     * const animationState = await prisma.animationState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnimationStateFindUniqueArgs>(args: SelectSubset<T, AnimationStateFindUniqueArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnimationState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnimationStateFindUniqueOrThrowArgs} args - Arguments to find a AnimationState
+     * @example
+     * // Get one AnimationState
+     * const animationState = await prisma.animationState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnimationStateFindUniqueOrThrowArgs>(args: SelectSubset<T, AnimationStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnimationState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateFindFirstArgs} args - Arguments to find a AnimationState
+     * @example
+     * // Get one AnimationState
+     * const animationState = await prisma.animationState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnimationStateFindFirstArgs>(args?: SelectSubset<T, AnimationStateFindFirstArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnimationState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateFindFirstOrThrowArgs} args - Arguments to find a AnimationState
+     * @example
+     * // Get one AnimationState
+     * const animationState = await prisma.animationState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnimationStateFindFirstOrThrowArgs>(args?: SelectSubset<T, AnimationStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnimationStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnimationStates
+     * const animationStates = await prisma.animationState.findMany()
+     * 
+     * // Get first 10 AnimationStates
+     * const animationStates = await prisma.animationState.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const animationStateWithIdOnly = await prisma.animationState.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnimationStateFindManyArgs>(args?: SelectSubset<T, AnimationStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnimationState.
+     * @param {AnimationStateCreateArgs} args - Arguments to create a AnimationState.
+     * @example
+     * // Create one AnimationState
+     * const AnimationState = await prisma.animationState.create({
+     *   data: {
+     *     // ... data to create a AnimationState
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnimationStateCreateArgs>(args: SelectSubset<T, AnimationStateCreateArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnimationStates.
+     * @param {AnimationStateCreateManyArgs} args - Arguments to create many AnimationStates.
+     * @example
+     * // Create many AnimationStates
+     * const animationState = await prisma.animationState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnimationStateCreateManyArgs>(args?: SelectSubset<T, AnimationStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnimationStates and returns the data saved in the database.
+     * @param {AnimationStateCreateManyAndReturnArgs} args - Arguments to create many AnimationStates.
+     * @example
+     * // Create many AnimationStates
+     * const animationState = await prisma.animationState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnimationStates and only return the `id`
+     * const animationStateWithIdOnly = await prisma.animationState.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnimationStateCreateManyAndReturnArgs>(args?: SelectSubset<T, AnimationStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnimationState.
+     * @param {AnimationStateDeleteArgs} args - Arguments to delete one AnimationState.
+     * @example
+     * // Delete one AnimationState
+     * const AnimationState = await prisma.animationState.delete({
+     *   where: {
+     *     // ... filter to delete one AnimationState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnimationStateDeleteArgs>(args: SelectSubset<T, AnimationStateDeleteArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnimationState.
+     * @param {AnimationStateUpdateArgs} args - Arguments to update one AnimationState.
+     * @example
+     * // Update one AnimationState
+     * const animationState = await prisma.animationState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnimationStateUpdateArgs>(args: SelectSubset<T, AnimationStateUpdateArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnimationStates.
+     * @param {AnimationStateDeleteManyArgs} args - Arguments to filter AnimationStates to delete.
+     * @example
+     * // Delete a few AnimationStates
+     * const { count } = await prisma.animationState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnimationStateDeleteManyArgs>(args?: SelectSubset<T, AnimationStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnimationStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnimationStates
+     * const animationState = await prisma.animationState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnimationStateUpdateManyArgs>(args: SelectSubset<T, AnimationStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnimationStates and returns the data updated in the database.
+     * @param {AnimationStateUpdateManyAndReturnArgs} args - Arguments to update many AnimationStates.
+     * @example
+     * // Update many AnimationStates
+     * const animationState = await prisma.animationState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnimationStates and only return the `id`
+     * const animationStateWithIdOnly = await prisma.animationState.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnimationStateUpdateManyAndReturnArgs>(args: SelectSubset<T, AnimationStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnimationState.
+     * @param {AnimationStateUpsertArgs} args - Arguments to update or create a AnimationState.
+     * @example
+     * // Update or create a AnimationState
+     * const animationState = await prisma.animationState.upsert({
+     *   create: {
+     *     // ... data to create a AnimationState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnimationState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnimationStateUpsertArgs>(args: SelectSubset<T, AnimationStateUpsertArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnimationStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateCountArgs} args - Arguments to filter AnimationStates to count.
+     * @example
+     * // Count the number of AnimationStates
+     * const count = await prisma.animationState.count({
+     *   where: {
+     *     // ... the filter for the AnimationStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnimationStateCountArgs>(
+      args?: Subset<T, AnimationStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnimationStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnimationState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnimationStateAggregateArgs>(args: Subset<T, AnimationStateAggregateArgs>): Prisma.PrismaPromise<GetAnimationStateAggregateType<T>>
+
+    /**
+     * Group by AnimationState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnimationStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnimationStateGroupByArgs['orderBy'] }
+        : { orderBy?: AnimationStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnimationStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnimationStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnimationState model
+   */
+  readonly fields: AnimationStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnimationState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnimationStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends AnimationState$projectArgs<ExtArgs> = {}>(args?: Subset<T, AnimationState$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    animations<T extends AnimationState$animationsArgs<ExtArgs> = {}>(args?: Subset<T, AnimationState$animationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnimationState model
+   */
+  interface AnimationStateFieldRefs {
+    readonly id: FieldRef<"AnimationState", 'String'>
+    readonly name: FieldRef<"AnimationState", 'String'>
+    readonly projectId: FieldRef<"AnimationState", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnimationState findUnique
+   */
+  export type AnimationStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationState to fetch.
+     */
+    where: AnimationStateWhereUniqueInput
+  }
+
+  /**
+   * AnimationState findUniqueOrThrow
+   */
+  export type AnimationStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationState to fetch.
+     */
+    where: AnimationStateWhereUniqueInput
+  }
+
+  /**
+   * AnimationState findFirst
+   */
+  export type AnimationStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationState to fetch.
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationStates to fetch.
+     */
+    orderBy?: AnimationStateOrderByWithRelationInput | AnimationStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnimationStates.
+     */
+    cursor?: AnimationStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnimationStates.
+     */
+    distinct?: AnimationStateScalarFieldEnum | AnimationStateScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationState findFirstOrThrow
+   */
+  export type AnimationStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationState to fetch.
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationStates to fetch.
+     */
+    orderBy?: AnimationStateOrderByWithRelationInput | AnimationStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnimationStates.
+     */
+    cursor?: AnimationStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnimationStates.
+     */
+    distinct?: AnimationStateScalarFieldEnum | AnimationStateScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationState findMany
+   */
+  export type AnimationStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationStates to fetch.
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationStates to fetch.
+     */
+    orderBy?: AnimationStateOrderByWithRelationInput | AnimationStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnimationStates.
+     */
+    cursor?: AnimationStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationStates.
+     */
+    skip?: number
+    distinct?: AnimationStateScalarFieldEnum | AnimationStateScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationState create
+   */
+  export type AnimationStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AnimationState.
+     */
+    data: XOR<AnimationStateCreateInput, AnimationStateUncheckedCreateInput>
+  }
+
+  /**
+   * AnimationState createMany
+   */
+  export type AnimationStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnimationStates.
+     */
+    data: AnimationStateCreateManyInput | AnimationStateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnimationState createManyAndReturn
+   */
+  export type AnimationStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnimationStates.
+     */
+    data: AnimationStateCreateManyInput | AnimationStateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnimationState update
+   */
+  export type AnimationStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AnimationState.
+     */
+    data: XOR<AnimationStateUpdateInput, AnimationStateUncheckedUpdateInput>
+    /**
+     * Choose, which AnimationState to update.
+     */
+    where: AnimationStateWhereUniqueInput
+  }
+
+  /**
+   * AnimationState updateMany
+   */
+  export type AnimationStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnimationStates.
+     */
+    data: XOR<AnimationStateUpdateManyMutationInput, AnimationStateUncheckedUpdateManyInput>
+    /**
+     * Filter which AnimationStates to update
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * Limit how many AnimationStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnimationState updateManyAndReturn
+   */
+  export type AnimationStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * The data used to update AnimationStates.
+     */
+    data: XOR<AnimationStateUpdateManyMutationInput, AnimationStateUncheckedUpdateManyInput>
+    /**
+     * Filter which AnimationStates to update
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * Limit how many AnimationStates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnimationState upsert
+   */
+  export type AnimationStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AnimationState to update in case it exists.
+     */
+    where: AnimationStateWhereUniqueInput
+    /**
+     * In case the AnimationState found by the `where` argument doesn't exist, create a new AnimationState with this data.
+     */
+    create: XOR<AnimationStateCreateInput, AnimationStateUncheckedCreateInput>
+    /**
+     * In case the AnimationState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnimationStateUpdateInput, AnimationStateUncheckedUpdateInput>
+  }
+
+  /**
+   * AnimationState delete
+   */
+  export type AnimationStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    /**
+     * Filter which AnimationState to delete.
+     */
+    where: AnimationStateWhereUniqueInput
+  }
+
+  /**
+   * AnimationState deleteMany
+   */
+  export type AnimationStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnimationStates to delete
+     */
+    where?: AnimationStateWhereInput
+    /**
+     * Limit how many AnimationStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnimationState.project
+   */
+  export type AnimationState$projectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * AnimationState.animations
+   */
+  export type AnimationState$animationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    where?: AnimationWhereInput
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    cursor?: AnimationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationState without action
+   */
+  export type AnimationStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Animation
+   */
+
+  export type AggregateAnimation = {
+    _count: AnimationCountAggregateOutputType | null
+    _min: AnimationMinAggregateOutputType | null
+    _max: AnimationMaxAggregateOutputType | null
+  }
+
+  export type AnimationMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type AnimationMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type AnimationCountAggregateOutputType = {
+    id: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    approved: number
+    description: number
+    ownerId: number
+    stateId: number
+    status: number
+    _all: number
+  }
+
+
+  export type AnimationMinAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type AnimationMaxAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type AnimationCountAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+    _all?: true
+  }
+
+  export type AnimationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Animation to aggregate.
+     */
+    where?: AnimationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Animations to fetch.
+     */
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnimationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Animations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Animations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Animations
+    **/
+    _count?: true | AnimationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnimationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnimationMaxAggregateInputType
+  }
+
+  export type GetAnimationAggregateType<T extends AnimationAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnimation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnimation[P]>
+      : GetScalarType<T[P], AggregateAnimation[P]>
+  }
+
+
+
+
+  export type AnimationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationWhereInput
+    orderBy?: AnimationOrderByWithAggregationInput | AnimationOrderByWithAggregationInput[]
+    by: AnimationScalarFieldEnum[] | AnimationScalarFieldEnum
+    having?: AnimationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnimationCountAggregateInputType | true
+    _min?: AnimationMinAggregateInputType
+    _max?: AnimationMaxAggregateInputType
+  }
+
+  export type AnimationGroupByOutputType = {
+    id: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    approved: boolean
+    description: string | null
+    ownerId: string
+    stateId: string | null
+    status: string
+    _count: AnimationCountAggregateOutputType | null
+    _min: AnimationMinAggregateOutputType | null
+    _max: AnimationMaxAggregateOutputType | null
+  }
+
+  type GetAnimationGroupByPayload<T extends AnimationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnimationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnimationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnimationGroupByOutputType[P]>
+            : GetScalarType<T[P], AnimationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnimationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+    AnimationVersions?: boolean | Animation$AnimationVersionsArgs<ExtArgs>
+    _count?: boolean | AnimationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["animation"]>
+
+  export type AnimationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["animation"]>
+
+  export type AnimationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["animation"]>
+
+  export type AnimationSelectScalar = {
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+  }
+
+  export type AnimationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "approved" | "description" | "ownerId" | "stateId" | "status", ExtArgs["result"]["animation"]>
+  export type AnimationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+    AnimationVersions?: boolean | Animation$AnimationVersionsArgs<ExtArgs>
+    _count?: boolean | AnimationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AnimationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+  }
+  export type AnimationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Animation$stateArgs<ExtArgs>
+  }
+
+  export type $AnimationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Animation"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      state: Prisma.$AnimationStatePayload<ExtArgs> | null
+      AnimationVersions: Prisma.$AnimationVersionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      approved: boolean
+      description: string | null
+      ownerId: string
+      stateId: string | null
+      status: string
+    }, ExtArgs["result"]["animation"]>
+    composites: {}
+  }
+
+  type AnimationGetPayload<S extends boolean | null | undefined | AnimationDefaultArgs> = $Result.GetResult<Prisma.$AnimationPayload, S>
+
+  type AnimationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnimationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnimationCountAggregateInputType | true
+    }
+
+  export interface AnimationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Animation'], meta: { name: 'Animation' } }
+    /**
+     * Find zero or one Animation that matches the filter.
+     * @param {AnimationFindUniqueArgs} args - Arguments to find a Animation
+     * @example
+     * // Get one Animation
+     * const animation = await prisma.animation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnimationFindUniqueArgs>(args: SelectSubset<T, AnimationFindUniqueArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Animation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnimationFindUniqueOrThrowArgs} args - Arguments to find a Animation
+     * @example
+     * // Get one Animation
+     * const animation = await prisma.animation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnimationFindUniqueOrThrowArgs>(args: SelectSubset<T, AnimationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Animation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationFindFirstArgs} args - Arguments to find a Animation
+     * @example
+     * // Get one Animation
+     * const animation = await prisma.animation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnimationFindFirstArgs>(args?: SelectSubset<T, AnimationFindFirstArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Animation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationFindFirstOrThrowArgs} args - Arguments to find a Animation
+     * @example
+     * // Get one Animation
+     * const animation = await prisma.animation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnimationFindFirstOrThrowArgs>(args?: SelectSubset<T, AnimationFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Animations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Animations
+     * const animations = await prisma.animation.findMany()
+     * 
+     * // Get first 10 Animations
+     * const animations = await prisma.animation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const animationWithIdOnly = await prisma.animation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnimationFindManyArgs>(args?: SelectSubset<T, AnimationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Animation.
+     * @param {AnimationCreateArgs} args - Arguments to create a Animation.
+     * @example
+     * // Create one Animation
+     * const Animation = await prisma.animation.create({
+     *   data: {
+     *     // ... data to create a Animation
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnimationCreateArgs>(args: SelectSubset<T, AnimationCreateArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Animations.
+     * @param {AnimationCreateManyArgs} args - Arguments to create many Animations.
+     * @example
+     * // Create many Animations
+     * const animation = await prisma.animation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnimationCreateManyArgs>(args?: SelectSubset<T, AnimationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Animations and returns the data saved in the database.
+     * @param {AnimationCreateManyAndReturnArgs} args - Arguments to create many Animations.
+     * @example
+     * // Create many Animations
+     * const animation = await prisma.animation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Animations and only return the `id`
+     * const animationWithIdOnly = await prisma.animation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnimationCreateManyAndReturnArgs>(args?: SelectSubset<T, AnimationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Animation.
+     * @param {AnimationDeleteArgs} args - Arguments to delete one Animation.
+     * @example
+     * // Delete one Animation
+     * const Animation = await prisma.animation.delete({
+     *   where: {
+     *     // ... filter to delete one Animation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnimationDeleteArgs>(args: SelectSubset<T, AnimationDeleteArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Animation.
+     * @param {AnimationUpdateArgs} args - Arguments to update one Animation.
+     * @example
+     * // Update one Animation
+     * const animation = await prisma.animation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnimationUpdateArgs>(args: SelectSubset<T, AnimationUpdateArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Animations.
+     * @param {AnimationDeleteManyArgs} args - Arguments to filter Animations to delete.
+     * @example
+     * // Delete a few Animations
+     * const { count } = await prisma.animation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnimationDeleteManyArgs>(args?: SelectSubset<T, AnimationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Animations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Animations
+     * const animation = await prisma.animation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnimationUpdateManyArgs>(args: SelectSubset<T, AnimationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Animations and returns the data updated in the database.
+     * @param {AnimationUpdateManyAndReturnArgs} args - Arguments to update many Animations.
+     * @example
+     * // Update many Animations
+     * const animation = await prisma.animation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Animations and only return the `id`
+     * const animationWithIdOnly = await prisma.animation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnimationUpdateManyAndReturnArgs>(args: SelectSubset<T, AnimationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Animation.
+     * @param {AnimationUpsertArgs} args - Arguments to update or create a Animation.
+     * @example
+     * // Update or create a Animation
+     * const animation = await prisma.animation.upsert({
+     *   create: {
+     *     // ... data to create a Animation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Animation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnimationUpsertArgs>(args: SelectSubset<T, AnimationUpsertArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Animations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationCountArgs} args - Arguments to filter Animations to count.
+     * @example
+     * // Count the number of Animations
+     * const count = await prisma.animation.count({
+     *   where: {
+     *     // ... the filter for the Animations we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnimationCountArgs>(
+      args?: Subset<T, AnimationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnimationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Animation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnimationAggregateArgs>(args: Subset<T, AnimationAggregateArgs>): Prisma.PrismaPromise<GetAnimationAggregateType<T>>
+
+    /**
+     * Group by Animation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnimationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnimationGroupByArgs['orderBy'] }
+        : { orderBy?: AnimationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnimationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnimationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Animation model
+   */
+  readonly fields: AnimationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Animation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnimationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    state<T extends Animation$stateArgs<ExtArgs> = {}>(args?: Subset<T, Animation$stateArgs<ExtArgs>>): Prisma__AnimationStateClient<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    AnimationVersions<T extends Animation$AnimationVersionsArgs<ExtArgs> = {}>(args?: Subset<T, Animation$AnimationVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Animation model
+   */
+  interface AnimationFieldRefs {
+    readonly id: FieldRef<"Animation", 'String'>
+    readonly title: FieldRef<"Animation", 'String'>
+    readonly createdAt: FieldRef<"Animation", 'DateTime'>
+    readonly updatedAt: FieldRef<"Animation", 'DateTime'>
+    readonly approved: FieldRef<"Animation", 'Boolean'>
+    readonly description: FieldRef<"Animation", 'String'>
+    readonly ownerId: FieldRef<"Animation", 'String'>
+    readonly stateId: FieldRef<"Animation", 'String'>
+    readonly status: FieldRef<"Animation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Animation findUnique
+   */
+  export type AnimationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter, which Animation to fetch.
+     */
+    where: AnimationWhereUniqueInput
+  }
+
+  /**
+   * Animation findUniqueOrThrow
+   */
+  export type AnimationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter, which Animation to fetch.
+     */
+    where: AnimationWhereUniqueInput
+  }
+
+  /**
+   * Animation findFirst
+   */
+  export type AnimationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter, which Animation to fetch.
+     */
+    where?: AnimationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Animations to fetch.
+     */
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Animations.
+     */
+    cursor?: AnimationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Animations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Animations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Animations.
+     */
+    distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
+  }
+
+  /**
+   * Animation findFirstOrThrow
+   */
+  export type AnimationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter, which Animation to fetch.
+     */
+    where?: AnimationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Animations to fetch.
+     */
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Animations.
+     */
+    cursor?: AnimationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Animations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Animations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Animations.
+     */
+    distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
+  }
+
+  /**
+   * Animation findMany
+   */
+  export type AnimationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter, which Animations to fetch.
+     */
+    where?: AnimationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Animations to fetch.
+     */
+    orderBy?: AnimationOrderByWithRelationInput | AnimationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Animations.
+     */
+    cursor?: AnimationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Animations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Animations.
+     */
+    skip?: number
+    distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
+  }
+
+  /**
+   * Animation create
+   */
+  export type AnimationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Animation.
+     */
+    data: XOR<AnimationCreateInput, AnimationUncheckedCreateInput>
+  }
+
+  /**
+   * Animation createMany
+   */
+  export type AnimationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Animations.
+     */
+    data: AnimationCreateManyInput | AnimationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Animation createManyAndReturn
+   */
+  export type AnimationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Animations.
+     */
+    data: AnimationCreateManyInput | AnimationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Animation update
+   */
+  export type AnimationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Animation.
+     */
+    data: XOR<AnimationUpdateInput, AnimationUncheckedUpdateInput>
+    /**
+     * Choose, which Animation to update.
+     */
+    where: AnimationWhereUniqueInput
+  }
+
+  /**
+   * Animation updateMany
+   */
+  export type AnimationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Animations.
+     */
+    data: XOR<AnimationUpdateManyMutationInput, AnimationUncheckedUpdateManyInput>
+    /**
+     * Filter which Animations to update
+     */
+    where?: AnimationWhereInput
+    /**
+     * Limit how many Animations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Animation updateManyAndReturn
+   */
+  export type AnimationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * The data used to update Animations.
+     */
+    data: XOR<AnimationUpdateManyMutationInput, AnimationUncheckedUpdateManyInput>
+    /**
+     * Filter which Animations to update
+     */
+    where?: AnimationWhereInput
+    /**
+     * Limit how many Animations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Animation upsert
+   */
+  export type AnimationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Animation to update in case it exists.
+     */
+    where: AnimationWhereUniqueInput
+    /**
+     * In case the Animation found by the `where` argument doesn't exist, create a new Animation with this data.
+     */
+    create: XOR<AnimationCreateInput, AnimationUncheckedCreateInput>
+    /**
+     * In case the Animation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnimationUpdateInput, AnimationUncheckedUpdateInput>
+  }
+
+  /**
+   * Animation delete
+   */
+  export type AnimationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+    /**
+     * Filter which Animation to delete.
+     */
+    where: AnimationWhereUniqueInput
+  }
+
+  /**
+   * Animation deleteMany
+   */
+  export type AnimationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Animations to delete
+     */
+    where?: AnimationWhereInput
+    /**
+     * Limit how many Animations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Animation.state
+   */
+  export type Animation$stateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationState
+     */
+    select?: AnimationStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationState
+     */
+    omit?: AnimationStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationStateInclude<ExtArgs> | null
+    where?: AnimationStateWhereInput
+  }
+
+  /**
+   * Animation.AnimationVersions
+   */
+  export type Animation$AnimationVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    where?: AnimationVersionWhereInput
+    orderBy?: AnimationVersionOrderByWithRelationInput | AnimationVersionOrderByWithRelationInput[]
+    cursor?: AnimationVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnimationVersionScalarFieldEnum | AnimationVersionScalarFieldEnum[]
+  }
+
+  /**
+   * Animation without action
+   */
+  export type AnimationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Animation
+     */
+    select?: AnimationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Animation
+     */
+    omit?: AnimationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AnimationVersion
+   */
+
+  export type AggregateAnimationVersion = {
+    _count: AnimationVersionCountAggregateOutputType | null
+    _avg: AnimationVersionAvgAggregateOutputType | null
+    _sum: AnimationVersionSumAggregateOutputType | null
+    _min: AnimationVersionMinAggregateOutputType | null
+    _max: AnimationVersionMaxAggregateOutputType | null
+  }
+
+  export type AnimationVersionAvgAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type AnimationVersionSumAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type AnimationVersionMinAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    animationId: string | null
+  }
+
+  export type AnimationVersionMaxAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    animationId: string | null
+  }
+
+  export type AnimationVersionCountAggregateOutputType = {
+    id: number
+    versionNumber: number
+    label: number
+    muxUploadId: number
+    muxPlaybackId: number
+    thumbnailUrl: number
+    createdAt: number
+    animationId: number
+    _all: number
+  }
+
+
+  export type AnimationVersionAvgAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type AnimationVersionSumAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type AnimationVersionMinAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    animationId?: true
+  }
+
+  export type AnimationVersionMaxAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    animationId?: true
+  }
+
+  export type AnimationVersionCountAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    animationId?: true
+    _all?: true
+  }
+
+  export type AnimationVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnimationVersion to aggregate.
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationVersions to fetch.
+     */
+    orderBy?: AnimationVersionOrderByWithRelationInput | AnimationVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnimationVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnimationVersions
+    **/
+    _count?: true | AnimationVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnimationVersionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnimationVersionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnimationVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnimationVersionMaxAggregateInputType
+  }
+
+  export type GetAnimationVersionAggregateType<T extends AnimationVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnimationVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnimationVersion[P]>
+      : GetScalarType<T[P], AggregateAnimationVersion[P]>
+  }
+
+
+
+
+  export type AnimationVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnimationVersionWhereInput
+    orderBy?: AnimationVersionOrderByWithAggregationInput | AnimationVersionOrderByWithAggregationInput[]
+    by: AnimationVersionScalarFieldEnum[] | AnimationVersionScalarFieldEnum
+    having?: AnimationVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnimationVersionCountAggregateInputType | true
+    _avg?: AnimationVersionAvgAggregateInputType
+    _sum?: AnimationVersionSumAggregateInputType
+    _min?: AnimationVersionMinAggregateInputType
+    _max?: AnimationVersionMaxAggregateInputType
+  }
+
+  export type AnimationVersionGroupByOutputType = {
+    id: string
+    versionNumber: number
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date
+    animationId: string
+    _count: AnimationVersionCountAggregateOutputType | null
+    _avg: AnimationVersionAvgAggregateOutputType | null
+    _sum: AnimationVersionSumAggregateOutputType | null
+    _min: AnimationVersionMinAggregateOutputType | null
+    _max: AnimationVersionMaxAggregateOutputType | null
+  }
+
+  type GetAnimationVersionGroupByPayload<T extends AnimationVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnimationVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnimationVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnimationVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], AnimationVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnimationVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    animationId?: boolean
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["animationVersion"]>
+
+  export type AnimationVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    animationId?: boolean
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["animationVersion"]>
+
+  export type AnimationVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    animationId?: boolean
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["animationVersion"]>
+
+  export type AnimationVersionSelectScalar = {
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    animationId?: boolean
+  }
+
+  export type AnimationVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "versionNumber" | "label" | "muxUploadId" | "muxPlaybackId" | "thumbnailUrl" | "createdAt" | "animationId", ExtArgs["result"]["animationVersion"]>
+  export type AnimationVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }
+  export type AnimationVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }
+  export type AnimationVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    animation?: boolean | AnimationDefaultArgs<ExtArgs>
+  }
+
+  export type $AnimationVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnimationVersion"
+    objects: {
+      animation: Prisma.$AnimationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      versionNumber: number
+      label: string | null
+      muxUploadId: string | null
+      muxPlaybackId: string | null
+      thumbnailUrl: string | null
+      createdAt: Date
+      animationId: string
+    }, ExtArgs["result"]["animationVersion"]>
+    composites: {}
+  }
+
+  type AnimationVersionGetPayload<S extends boolean | null | undefined | AnimationVersionDefaultArgs> = $Result.GetResult<Prisma.$AnimationVersionPayload, S>
+
+  type AnimationVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnimationVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnimationVersionCountAggregateInputType | true
+    }
+
+  export interface AnimationVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnimationVersion'], meta: { name: 'AnimationVersion' } }
+    /**
+     * Find zero or one AnimationVersion that matches the filter.
+     * @param {AnimationVersionFindUniqueArgs} args - Arguments to find a AnimationVersion
+     * @example
+     * // Get one AnimationVersion
+     * const animationVersion = await prisma.animationVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnimationVersionFindUniqueArgs>(args: SelectSubset<T, AnimationVersionFindUniqueArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnimationVersion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnimationVersionFindUniqueOrThrowArgs} args - Arguments to find a AnimationVersion
+     * @example
+     * // Get one AnimationVersion
+     * const animationVersion = await prisma.animationVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnimationVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, AnimationVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnimationVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionFindFirstArgs} args - Arguments to find a AnimationVersion
+     * @example
+     * // Get one AnimationVersion
+     * const animationVersion = await prisma.animationVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnimationVersionFindFirstArgs>(args?: SelectSubset<T, AnimationVersionFindFirstArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnimationVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionFindFirstOrThrowArgs} args - Arguments to find a AnimationVersion
+     * @example
+     * // Get one AnimationVersion
+     * const animationVersion = await prisma.animationVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnimationVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, AnimationVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnimationVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnimationVersions
+     * const animationVersions = await prisma.animationVersion.findMany()
+     * 
+     * // Get first 10 AnimationVersions
+     * const animationVersions = await prisma.animationVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const animationVersionWithIdOnly = await prisma.animationVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnimationVersionFindManyArgs>(args?: SelectSubset<T, AnimationVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnimationVersion.
+     * @param {AnimationVersionCreateArgs} args - Arguments to create a AnimationVersion.
+     * @example
+     * // Create one AnimationVersion
+     * const AnimationVersion = await prisma.animationVersion.create({
+     *   data: {
+     *     // ... data to create a AnimationVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnimationVersionCreateArgs>(args: SelectSubset<T, AnimationVersionCreateArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnimationVersions.
+     * @param {AnimationVersionCreateManyArgs} args - Arguments to create many AnimationVersions.
+     * @example
+     * // Create many AnimationVersions
+     * const animationVersion = await prisma.animationVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnimationVersionCreateManyArgs>(args?: SelectSubset<T, AnimationVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnimationVersions and returns the data saved in the database.
+     * @param {AnimationVersionCreateManyAndReturnArgs} args - Arguments to create many AnimationVersions.
+     * @example
+     * // Create many AnimationVersions
+     * const animationVersion = await prisma.animationVersion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnimationVersions and only return the `id`
+     * const animationVersionWithIdOnly = await prisma.animationVersion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnimationVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, AnimationVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnimationVersion.
+     * @param {AnimationVersionDeleteArgs} args - Arguments to delete one AnimationVersion.
+     * @example
+     * // Delete one AnimationVersion
+     * const AnimationVersion = await prisma.animationVersion.delete({
+     *   where: {
+     *     // ... filter to delete one AnimationVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnimationVersionDeleteArgs>(args: SelectSubset<T, AnimationVersionDeleteArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnimationVersion.
+     * @param {AnimationVersionUpdateArgs} args - Arguments to update one AnimationVersion.
+     * @example
+     * // Update one AnimationVersion
+     * const animationVersion = await prisma.animationVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnimationVersionUpdateArgs>(args: SelectSubset<T, AnimationVersionUpdateArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnimationVersions.
+     * @param {AnimationVersionDeleteManyArgs} args - Arguments to filter AnimationVersions to delete.
+     * @example
+     * // Delete a few AnimationVersions
+     * const { count } = await prisma.animationVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnimationVersionDeleteManyArgs>(args?: SelectSubset<T, AnimationVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnimationVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnimationVersions
+     * const animationVersion = await prisma.animationVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnimationVersionUpdateManyArgs>(args: SelectSubset<T, AnimationVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnimationVersions and returns the data updated in the database.
+     * @param {AnimationVersionUpdateManyAndReturnArgs} args - Arguments to update many AnimationVersions.
+     * @example
+     * // Update many AnimationVersions
+     * const animationVersion = await prisma.animationVersion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnimationVersions and only return the `id`
+     * const animationVersionWithIdOnly = await prisma.animationVersion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnimationVersionUpdateManyAndReturnArgs>(args: SelectSubset<T, AnimationVersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnimationVersion.
+     * @param {AnimationVersionUpsertArgs} args - Arguments to update or create a AnimationVersion.
+     * @example
+     * // Update or create a AnimationVersion
+     * const animationVersion = await prisma.animationVersion.upsert({
+     *   create: {
+     *     // ... data to create a AnimationVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnimationVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnimationVersionUpsertArgs>(args: SelectSubset<T, AnimationVersionUpsertArgs<ExtArgs>>): Prisma__AnimationVersionClient<$Result.GetResult<Prisma.$AnimationVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnimationVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionCountArgs} args - Arguments to filter AnimationVersions to count.
+     * @example
+     * // Count the number of AnimationVersions
+     * const count = await prisma.animationVersion.count({
+     *   where: {
+     *     // ... the filter for the AnimationVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnimationVersionCountArgs>(
+      args?: Subset<T, AnimationVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnimationVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnimationVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnimationVersionAggregateArgs>(args: Subset<T, AnimationVersionAggregateArgs>): Prisma.PrismaPromise<GetAnimationVersionAggregateType<T>>
+
+    /**
+     * Group by AnimationVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnimationVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnimationVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnimationVersionGroupByArgs['orderBy'] }
+        : { orderBy?: AnimationVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnimationVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnimationVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnimationVersion model
+   */
+  readonly fields: AnimationVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnimationVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnimationVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    animation<T extends AnimationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AnimationDefaultArgs<ExtArgs>>): Prisma__AnimationClient<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnimationVersion model
+   */
+  interface AnimationVersionFieldRefs {
+    readonly id: FieldRef<"AnimationVersion", 'String'>
+    readonly versionNumber: FieldRef<"AnimationVersion", 'Int'>
+    readonly label: FieldRef<"AnimationVersion", 'String'>
+    readonly muxUploadId: FieldRef<"AnimationVersion", 'String'>
+    readonly muxPlaybackId: FieldRef<"AnimationVersion", 'String'>
+    readonly thumbnailUrl: FieldRef<"AnimationVersion", 'String'>
+    readonly createdAt: FieldRef<"AnimationVersion", 'DateTime'>
+    readonly animationId: FieldRef<"AnimationVersion", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnimationVersion findUnique
+   */
+  export type AnimationVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationVersion to fetch.
+     */
+    where: AnimationVersionWhereUniqueInput
+  }
+
+  /**
+   * AnimationVersion findUniqueOrThrow
+   */
+  export type AnimationVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationVersion to fetch.
+     */
+    where: AnimationVersionWhereUniqueInput
+  }
+
+  /**
+   * AnimationVersion findFirst
+   */
+  export type AnimationVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationVersion to fetch.
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationVersions to fetch.
+     */
+    orderBy?: AnimationVersionOrderByWithRelationInput | AnimationVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnimationVersions.
+     */
+    cursor?: AnimationVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnimationVersions.
+     */
+    distinct?: AnimationVersionScalarFieldEnum | AnimationVersionScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationVersion findFirstOrThrow
+   */
+  export type AnimationVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationVersion to fetch.
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationVersions to fetch.
+     */
+    orderBy?: AnimationVersionOrderByWithRelationInput | AnimationVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnimationVersions.
+     */
+    cursor?: AnimationVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnimationVersions.
+     */
+    distinct?: AnimationVersionScalarFieldEnum | AnimationVersionScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationVersion findMany
+   */
+  export type AnimationVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which AnimationVersions to fetch.
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnimationVersions to fetch.
+     */
+    orderBy?: AnimationVersionOrderByWithRelationInput | AnimationVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnimationVersions.
+     */
+    cursor?: AnimationVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnimationVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnimationVersions.
+     */
+    skip?: number
+    distinct?: AnimationVersionScalarFieldEnum | AnimationVersionScalarFieldEnum[]
+  }
+
+  /**
+   * AnimationVersion create
+   */
+  export type AnimationVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AnimationVersion.
+     */
+    data: XOR<AnimationVersionCreateInput, AnimationVersionUncheckedCreateInput>
+  }
+
+  /**
+   * AnimationVersion createMany
+   */
+  export type AnimationVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnimationVersions.
+     */
+    data: AnimationVersionCreateManyInput | AnimationVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnimationVersion createManyAndReturn
+   */
+  export type AnimationVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnimationVersions.
+     */
+    data: AnimationVersionCreateManyInput | AnimationVersionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnimationVersion update
+   */
+  export type AnimationVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AnimationVersion.
+     */
+    data: XOR<AnimationVersionUpdateInput, AnimationVersionUncheckedUpdateInput>
+    /**
+     * Choose, which AnimationVersion to update.
+     */
+    where: AnimationVersionWhereUniqueInput
+  }
+
+  /**
+   * AnimationVersion updateMany
+   */
+  export type AnimationVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnimationVersions.
+     */
+    data: XOR<AnimationVersionUpdateManyMutationInput, AnimationVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which AnimationVersions to update
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * Limit how many AnimationVersions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnimationVersion updateManyAndReturn
+   */
+  export type AnimationVersionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * The data used to update AnimationVersions.
+     */
+    data: XOR<AnimationVersionUpdateManyMutationInput, AnimationVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which AnimationVersions to update
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * Limit how many AnimationVersions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AnimationVersion upsert
+   */
+  export type AnimationVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AnimationVersion to update in case it exists.
+     */
+    where: AnimationVersionWhereUniqueInput
+    /**
+     * In case the AnimationVersion found by the `where` argument doesn't exist, create a new AnimationVersion with this data.
+     */
+    create: XOR<AnimationVersionCreateInput, AnimationVersionUncheckedCreateInput>
+    /**
+     * In case the AnimationVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnimationVersionUpdateInput, AnimationVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * AnimationVersion delete
+   */
+  export type AnimationVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+    /**
+     * Filter which AnimationVersion to delete.
+     */
+    where: AnimationVersionWhereUniqueInput
+  }
+
+  /**
+   * AnimationVersion deleteMany
+   */
+  export type AnimationVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnimationVersions to delete
+     */
+    where?: AnimationVersionWhereInput
+    /**
+     * Limit how many AnimationVersions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnimationVersion without action
+   */
+  export type AnimationVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnimationVersion
+     */
+    select?: AnimationVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnimationVersion
+     */
+    omit?: AnimationVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnimationVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -15740,6 +19528,44 @@ export namespace Prisma {
   export type UserProjectScalarFieldEnum = (typeof UserProjectScalarFieldEnum)[keyof typeof UserProjectScalarFieldEnum]
 
 
+  export const AnimationStateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    projectId: 'projectId'
+  };
+
+  export type AnimationStateScalarFieldEnum = (typeof AnimationStateScalarFieldEnum)[keyof typeof AnimationStateScalarFieldEnum]
+
+
+  export const AnimationScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    approved: 'approved',
+    description: 'description',
+    ownerId: 'ownerId',
+    stateId: 'stateId',
+    status: 'status'
+  };
+
+  export type AnimationScalarFieldEnum = (typeof AnimationScalarFieldEnum)[keyof typeof AnimationScalarFieldEnum]
+
+
+  export const AnimationVersionScalarFieldEnum: {
+    id: 'id',
+    versionNumber: 'versionNumber',
+    label: 'label',
+    muxUploadId: 'muxUploadId',
+    muxPlaybackId: 'muxPlaybackId',
+    thumbnailUrl: 'thumbnailUrl',
+    createdAt: 'createdAt',
+    animationId: 'animationId'
+  };
+
+  export type AnimationVersionScalarFieldEnum = (typeof AnimationVersionScalarFieldEnum)[keyof typeof AnimationVersionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -15898,6 +19724,7 @@ export namespace Prisma {
     projectMembers?: UserProjectListRelationFilter
     DesignCategoryOwner?: DesignCategoryListRelationFilter
     DesignOwner?: DesignSubClassListRelationFilter
+    AnimationOwner?: AnimationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15916,6 +19743,7 @@ export namespace Prisma {
     projectMembers?: UserProjectOrderByRelationAggregateInput
     DesignCategoryOwner?: DesignCategoryOrderByRelationAggregateInput
     DesignOwner?: DesignSubClassOrderByRelationAggregateInput
+    AnimationOwner?: AnimationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15937,6 +19765,7 @@ export namespace Prisma {
     projectMembers?: UserProjectListRelationFilter
     DesignCategoryOwner?: DesignCategoryListRelationFilter
     DesignOwner?: DesignSubClassListRelationFilter
+    AnimationOwner?: AnimationListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -16248,6 +20077,7 @@ export namespace Prisma {
     projectMembers?: UserProjectListRelationFilter
     scripts?: ScriptListRelationFilter
     designCategories?: DesignCategoryListRelationFilter
+    animationCategories?: AnimationStateListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -16259,6 +20089,7 @@ export namespace Prisma {
     projectMembers?: UserProjectOrderByRelationAggregateInput
     scripts?: ScriptOrderByRelationAggregateInput
     designCategories?: DesignCategoryOrderByRelationAggregateInput
+    animationCategories?: AnimationStateOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -16273,6 +20104,7 @@ export namespace Prisma {
     projectMembers?: UserProjectListRelationFilter
     scripts?: ScriptListRelationFilter
     designCategories?: DesignCategoryListRelationFilter
+    animationCategories?: AnimationStateListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -16698,6 +20530,207 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"UserProject"> | Date | string
   }
 
+  export type AnimationStateWhereInput = {
+    AND?: AnimationStateWhereInput | AnimationStateWhereInput[]
+    OR?: AnimationStateWhereInput[]
+    NOT?: AnimationStateWhereInput | AnimationStateWhereInput[]
+    id?: StringFilter<"AnimationState"> | string
+    name?: StringFilter<"AnimationState"> | string
+    projectId?: StringNullableFilter<"AnimationState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    animations?: AnimationListRelationFilter
+  }
+
+  export type AnimationStateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    project?: ProjectOrderByWithRelationInput
+    animations?: AnimationOrderByRelationAggregateInput
+  }
+
+  export type AnimationStateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnimationStateWhereInput | AnimationStateWhereInput[]
+    OR?: AnimationStateWhereInput[]
+    NOT?: AnimationStateWhereInput | AnimationStateWhereInput[]
+    name?: StringFilter<"AnimationState"> | string
+    projectId?: StringNullableFilter<"AnimationState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    animations?: AnimationListRelationFilter
+  }, "id">
+
+  export type AnimationStateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    _count?: AnimationStateCountOrderByAggregateInput
+    _max?: AnimationStateMaxOrderByAggregateInput
+    _min?: AnimationStateMinOrderByAggregateInput
+  }
+
+  export type AnimationStateScalarWhereWithAggregatesInput = {
+    AND?: AnimationStateScalarWhereWithAggregatesInput | AnimationStateScalarWhereWithAggregatesInput[]
+    OR?: AnimationStateScalarWhereWithAggregatesInput[]
+    NOT?: AnimationStateScalarWhereWithAggregatesInput | AnimationStateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnimationState"> | string
+    name?: StringWithAggregatesFilter<"AnimationState"> | string
+    projectId?: StringNullableWithAggregatesFilter<"AnimationState"> | string | null
+  }
+
+  export type AnimationWhereInput = {
+    AND?: AnimationWhereInput | AnimationWhereInput[]
+    OR?: AnimationWhereInput[]
+    NOT?: AnimationWhereInput | AnimationWhereInput[]
+    id?: StringFilter<"Animation"> | string
+    title?: StringFilter<"Animation"> | string
+    createdAt?: DateTimeFilter<"Animation"> | Date | string
+    updatedAt?: DateTimeFilter<"Animation"> | Date | string
+    approved?: BoolFilter<"Animation"> | boolean
+    description?: StringNullableFilter<"Animation"> | string | null
+    ownerId?: StringFilter<"Animation"> | string
+    stateId?: StringNullableFilter<"Animation"> | string | null
+    status?: StringFilter<"Animation"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<AnimationStateNullableScalarRelationFilter, AnimationStateWhereInput> | null
+    AnimationVersions?: AnimationVersionListRelationFilter
+  }
+
+  export type AnimationOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    user?: UserOrderByWithRelationInput
+    state?: AnimationStateOrderByWithRelationInput
+    AnimationVersions?: AnimationVersionOrderByRelationAggregateInput
+  }
+
+  export type AnimationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnimationWhereInput | AnimationWhereInput[]
+    OR?: AnimationWhereInput[]
+    NOT?: AnimationWhereInput | AnimationWhereInput[]
+    title?: StringFilter<"Animation"> | string
+    createdAt?: DateTimeFilter<"Animation"> | Date | string
+    updatedAt?: DateTimeFilter<"Animation"> | Date | string
+    approved?: BoolFilter<"Animation"> | boolean
+    description?: StringNullableFilter<"Animation"> | string | null
+    ownerId?: StringFilter<"Animation"> | string
+    stateId?: StringNullableFilter<"Animation"> | string | null
+    status?: StringFilter<"Animation"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<AnimationStateNullableScalarRelationFilter, AnimationStateWhereInput> | null
+    AnimationVersions?: AnimationVersionListRelationFilter
+  }, "id">
+
+  export type AnimationOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    _count?: AnimationCountOrderByAggregateInput
+    _max?: AnimationMaxOrderByAggregateInput
+    _min?: AnimationMinOrderByAggregateInput
+  }
+
+  export type AnimationScalarWhereWithAggregatesInput = {
+    AND?: AnimationScalarWhereWithAggregatesInput | AnimationScalarWhereWithAggregatesInput[]
+    OR?: AnimationScalarWhereWithAggregatesInput[]
+    NOT?: AnimationScalarWhereWithAggregatesInput | AnimationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Animation"> | string
+    title?: StringWithAggregatesFilter<"Animation"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Animation"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Animation"> | Date | string
+    approved?: BoolWithAggregatesFilter<"Animation"> | boolean
+    description?: StringNullableWithAggregatesFilter<"Animation"> | string | null
+    ownerId?: StringWithAggregatesFilter<"Animation"> | string
+    stateId?: StringNullableWithAggregatesFilter<"Animation"> | string | null
+    status?: StringWithAggregatesFilter<"Animation"> | string
+  }
+
+  export type AnimationVersionWhereInput = {
+    AND?: AnimationVersionWhereInput | AnimationVersionWhereInput[]
+    OR?: AnimationVersionWhereInput[]
+    NOT?: AnimationVersionWhereInput | AnimationVersionWhereInput[]
+    id?: StringFilter<"AnimationVersion"> | string
+    versionNumber?: IntFilter<"AnimationVersion"> | number
+    label?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"AnimationVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"AnimationVersion"> | string | null
+    createdAt?: DateTimeFilter<"AnimationVersion"> | Date | string
+    animationId?: StringFilter<"AnimationVersion"> | string
+    animation?: XOR<AnimationScalarRelationFilter, AnimationWhereInput>
+  }
+
+  export type AnimationVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    animationId?: SortOrder
+    animation?: AnimationOrderByWithRelationInput
+  }
+
+  export type AnimationVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnimationVersionWhereInput | AnimationVersionWhereInput[]
+    OR?: AnimationVersionWhereInput[]
+    NOT?: AnimationVersionWhereInput | AnimationVersionWhereInput[]
+    versionNumber?: IntFilter<"AnimationVersion"> | number
+    label?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"AnimationVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"AnimationVersion"> | string | null
+    createdAt?: DateTimeFilter<"AnimationVersion"> | Date | string
+    animationId?: StringFilter<"AnimationVersion"> | string
+    animation?: XOR<AnimationScalarRelationFilter, AnimationWhereInput>
+  }, "id">
+
+  export type AnimationVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    animationId?: SortOrder
+    _count?: AnimationVersionCountOrderByAggregateInput
+    _avg?: AnimationVersionAvgOrderByAggregateInput
+    _max?: AnimationVersionMaxOrderByAggregateInput
+    _min?: AnimationVersionMinOrderByAggregateInput
+    _sum?: AnimationVersionSumOrderByAggregateInput
+  }
+
+  export type AnimationVersionScalarWhereWithAggregatesInput = {
+    AND?: AnimationVersionScalarWhereWithAggregatesInput | AnimationVersionScalarWhereWithAggregatesInput[]
+    OR?: AnimationVersionScalarWhereWithAggregatesInput[]
+    NOT?: AnimationVersionScalarWhereWithAggregatesInput | AnimationVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnimationVersion"> | string
+    versionNumber?: IntWithAggregatesFilter<"AnimationVersion"> | number
+    label?: StringNullableWithAggregatesFilter<"AnimationVersion"> | string | null
+    muxUploadId?: StringNullableWithAggregatesFilter<"AnimationVersion"> | string | null
+    muxPlaybackId?: StringNullableWithAggregatesFilter<"AnimationVersion"> | string | null
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"AnimationVersion"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AnimationVersion"> | Date | string
+    animationId?: StringWithAggregatesFilter<"AnimationVersion"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -16714,6 +20747,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16732,6 +20766,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16750,6 +20785,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16768,6 +20804,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -17096,6 +21133,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -17107,6 +21145,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -17118,6 +21157,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -17129,6 +21169,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -17556,6 +21597,213 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AnimationStateCreateInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutAnimationCategoriesInput
+    animations?: AnimationCreateNestedManyWithoutStateInput
+  }
+
+  export type AnimationStateUncheckedCreateInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+    animations?: AnimationUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type AnimationStateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutAnimationCategoriesNestedInput
+    animations?: AnimationUpdateManyWithoutStateNestedInput
+  }
+
+  export type AnimationStateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    animations?: AnimationUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type AnimationStateCreateManyInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type AnimationStateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationStateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnimationCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutAnimationOwnerInput
+    state?: AnimationStateCreateNestedOneWithoutAnimationsInput
+    AnimationVersions?: AnimationVersionCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationUncheckedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+    AnimationVersions?: AnimationVersionUncheckedCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAnimationOwnerNestedInput
+    state?: AnimationStateUpdateOneWithoutAnimationsNestedInput
+    AnimationVersions?: AnimationVersionUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    AnimationVersions?: AnimationVersionUncheckedUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationCreateManyInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type AnimationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationVersionCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    animation: AnimationCreateNestedOneWithoutAnimationVersionsInput
+  }
+
+  export type AnimationVersionUncheckedCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    animationId: string
+  }
+
+  export type AnimationVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    animation?: AnimationUpdateOneRequiredWithoutAnimationVersionsNestedInput
+  }
+
+  export type AnimationVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    animationId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationVersionCreateManyInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    animationId: string
+  }
+
+  export type AnimationVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnimationVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    animationId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -17650,6 +21898,12 @@ export namespace Prisma {
     none?: DesignSubClassWhereInput
   }
 
+  export type AnimationListRelationFilter = {
+    every?: AnimationWhereInput
+    some?: AnimationWhereInput
+    none?: AnimationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -17680,6 +21934,10 @@ export namespace Prisma {
   }
 
   export type DesignSubClassOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AnimationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18004,6 +22262,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type AnimationStateListRelationFilter = {
+    every?: AnimationStateWhereInput
+    some?: AnimationStateWhereInput
+    none?: AnimationStateWhereInput
+  }
+
+  export type AnimationStateOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ProjectCountOrderByAggregateInput = {
@@ -18331,6 +22599,121 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type AnimationStateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type AnimationStateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type AnimationStateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type AnimationStateNullableScalarRelationFilter = {
+    is?: AnimationStateWhereInput | null
+    isNot?: AnimationStateWhereInput | null
+  }
+
+  export type AnimationVersionListRelationFilter = {
+    every?: AnimationVersionWhereInput
+    some?: AnimationVersionWhereInput
+    none?: AnimationVersionWhereInput
+  }
+
+  export type AnimationVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AnimationCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type AnimationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type AnimationMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type AnimationScalarRelationFilter = {
+    is?: AnimationWhereInput
+    isNot?: AnimationWhereInput
+  }
+
+  export type AnimationVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    animationId?: SortOrder
+  }
+
+  export type AnimationVersionAvgOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type AnimationVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    animationId?: SortOrder
+  }
+
+  export type AnimationVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    animationId?: SortOrder
+  }
+
+  export type AnimationVersionSumOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -18380,6 +22763,13 @@ export namespace Prisma {
     connect?: DesignSubClassWhereUniqueInput | DesignSubClassWhereUniqueInput[]
   }
 
+  export type AnimationCreateNestedManyWithoutUserInput = {
+    create?: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput> | AnimationCreateWithoutUserInput[] | AnimationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutUserInput | AnimationCreateOrConnectWithoutUserInput[]
+    createMany?: AnimationCreateManyUserInputEnvelope
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -18427,6 +22817,13 @@ export namespace Prisma {
     connectOrCreate?: DesignSubClassCreateOrConnectWithoutUserInput | DesignSubClassCreateOrConnectWithoutUserInput[]
     createMany?: DesignSubClassCreateManyUserInputEnvelope
     connect?: DesignSubClassWhereUniqueInput | DesignSubClassWhereUniqueInput[]
+  }
+
+  export type AnimationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput> | AnimationCreateWithoutUserInput[] | AnimationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutUserInput | AnimationCreateOrConnectWithoutUserInput[]
+    createMany?: AnimationCreateManyUserInputEnvelope
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -18543,6 +22940,20 @@ export namespace Prisma {
     deleteMany?: DesignSubClassScalarWhereInput | DesignSubClassScalarWhereInput[]
   }
 
+  export type AnimationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput> | AnimationCreateWithoutUserInput[] | AnimationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutUserInput | AnimationCreateOrConnectWithoutUserInput[]
+    upsert?: AnimationUpsertWithWhereUniqueWithoutUserInput | AnimationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AnimationCreateManyUserInputEnvelope
+    set?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    disconnect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    delete?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    update?: AnimationUpdateWithWhereUniqueWithoutUserInput | AnimationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AnimationUpdateManyWithWhereWithoutUserInput | AnimationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -18641,6 +23052,20 @@ export namespace Prisma {
     deleteMany?: DesignSubClassScalarWhereInput | DesignSubClassScalarWhereInput[]
   }
 
+  export type AnimationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput> | AnimationCreateWithoutUserInput[] | AnimationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutUserInput | AnimationCreateOrConnectWithoutUserInput[]
+    upsert?: AnimationUpsertWithWhereUniqueWithoutUserInput | AnimationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AnimationCreateManyUserInputEnvelope
+    set?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    disconnect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    delete?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    update?: AnimationUpdateWithWhereUniqueWithoutUserInput | AnimationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AnimationUpdateManyWithWhereWithoutUserInput | AnimationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -18724,6 +23149,13 @@ export namespace Prisma {
     connect?: DesignCategoryWhereUniqueInput | DesignCategoryWhereUniqueInput[]
   }
 
+  export type AnimationStateCreateNestedManyWithoutProjectInput = {
+    create?: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput> | AnimationStateCreateWithoutProjectInput[] | AnimationStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutProjectInput | AnimationStateCreateOrConnectWithoutProjectInput[]
+    createMany?: AnimationStateCreateManyProjectInputEnvelope
+    connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+  }
+
   export type UserProjectUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -18743,6 +23175,13 @@ export namespace Prisma {
     connectOrCreate?: DesignCategoryCreateOrConnectWithoutProjectInput | DesignCategoryCreateOrConnectWithoutProjectInput[]
     createMany?: DesignCategoryCreateManyProjectInputEnvelope
     connect?: DesignCategoryWhereUniqueInput | DesignCategoryWhereUniqueInput[]
+  }
+
+  export type AnimationStateUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput> | AnimationStateCreateWithoutProjectInput[] | AnimationStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutProjectInput | AnimationStateCreateOrConnectWithoutProjectInput[]
+    createMany?: AnimationStateCreateManyProjectInputEnvelope
+    connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
   }
 
   export type UserProjectUpdateManyWithoutProjectNestedInput = {
@@ -18787,6 +23226,20 @@ export namespace Prisma {
     deleteMany?: DesignCategoryScalarWhereInput | DesignCategoryScalarWhereInput[]
   }
 
+  export type AnimationStateUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput> | AnimationStateCreateWithoutProjectInput[] | AnimationStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutProjectInput | AnimationStateCreateOrConnectWithoutProjectInput[]
+    upsert?: AnimationStateUpsertWithWhereUniqueWithoutProjectInput | AnimationStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: AnimationStateCreateManyProjectInputEnvelope
+    set?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    disconnect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    delete?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    update?: AnimationStateUpdateWithWhereUniqueWithoutProjectInput | AnimationStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: AnimationStateUpdateManyWithWhereWithoutProjectInput | AnimationStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
+  }
+
   export type UserProjectUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -18827,6 +23280,20 @@ export namespace Prisma {
     update?: DesignCategoryUpdateWithWhereUniqueWithoutProjectInput | DesignCategoryUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: DesignCategoryUpdateManyWithWhereWithoutProjectInput | DesignCategoryUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: DesignCategoryScalarWhereInput | DesignCategoryScalarWhereInput[]
+  }
+
+  export type AnimationStateUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput> | AnimationStateCreateWithoutProjectInput[] | AnimationStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutProjectInput | AnimationStateCreateOrConnectWithoutProjectInput[]
+    upsert?: AnimationStateUpsertWithWhereUniqueWithoutProjectInput | AnimationStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: AnimationStateCreateManyProjectInputEnvelope
+    set?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    disconnect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    delete?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+    update?: AnimationStateUpdateWithWhereUniqueWithoutProjectInput | AnimationStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: AnimationStateUpdateManyWithWhereWithoutProjectInput | AnimationStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutScriptOwnerInput = {
@@ -19103,6 +23570,150 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutProjectMembersInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectMembersInput, UserUpdateWithoutProjectMembersInput>, UserUncheckedUpdateWithoutProjectMembersInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutAnimationCategoriesInput = {
+    create?: XOR<ProjectCreateWithoutAnimationCategoriesInput, ProjectUncheckedCreateWithoutAnimationCategoriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutAnimationCategoriesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type AnimationCreateNestedManyWithoutStateInput = {
+    create?: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput> | AnimationCreateWithoutStateInput[] | AnimationUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutStateInput | AnimationCreateOrConnectWithoutStateInput[]
+    createMany?: AnimationCreateManyStateInputEnvelope
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+  }
+
+  export type AnimationUncheckedCreateNestedManyWithoutStateInput = {
+    create?: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput> | AnimationCreateWithoutStateInput[] | AnimationUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutStateInput | AnimationCreateOrConnectWithoutStateInput[]
+    createMany?: AnimationCreateManyStateInputEnvelope
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateOneWithoutAnimationCategoriesNestedInput = {
+    create?: XOR<ProjectCreateWithoutAnimationCategoriesInput, ProjectUncheckedCreateWithoutAnimationCategoriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutAnimationCategoriesInput
+    upsert?: ProjectUpsertWithoutAnimationCategoriesInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutAnimationCategoriesInput, ProjectUpdateWithoutAnimationCategoriesInput>, ProjectUncheckedUpdateWithoutAnimationCategoriesInput>
+  }
+
+  export type AnimationUpdateManyWithoutStateNestedInput = {
+    create?: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput> | AnimationCreateWithoutStateInput[] | AnimationUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutStateInput | AnimationCreateOrConnectWithoutStateInput[]
+    upsert?: AnimationUpsertWithWhereUniqueWithoutStateInput | AnimationUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: AnimationCreateManyStateInputEnvelope
+    set?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    disconnect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    delete?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    update?: AnimationUpdateWithWhereUniqueWithoutStateInput | AnimationUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: AnimationUpdateManyWithWhereWithoutStateInput | AnimationUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+  }
+
+  export type AnimationUncheckedUpdateManyWithoutStateNestedInput = {
+    create?: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput> | AnimationCreateWithoutStateInput[] | AnimationUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: AnimationCreateOrConnectWithoutStateInput | AnimationCreateOrConnectWithoutStateInput[]
+    upsert?: AnimationUpsertWithWhereUniqueWithoutStateInput | AnimationUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: AnimationCreateManyStateInputEnvelope
+    set?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    disconnect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    delete?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+    update?: AnimationUpdateWithWhereUniqueWithoutStateInput | AnimationUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: AnimationUpdateManyWithWhereWithoutStateInput | AnimationUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutAnimationOwnerInput = {
+    create?: XOR<UserCreateWithoutAnimationOwnerInput, UserUncheckedCreateWithoutAnimationOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAnimationOwnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type AnimationStateCreateNestedOneWithoutAnimationsInput = {
+    create?: XOR<AnimationStateCreateWithoutAnimationsInput, AnimationStateUncheckedCreateWithoutAnimationsInput>
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutAnimationsInput
+    connect?: AnimationStateWhereUniqueInput
+  }
+
+  export type AnimationVersionCreateNestedManyWithoutAnimationInput = {
+    create?: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput> | AnimationVersionCreateWithoutAnimationInput[] | AnimationVersionUncheckedCreateWithoutAnimationInput[]
+    connectOrCreate?: AnimationVersionCreateOrConnectWithoutAnimationInput | AnimationVersionCreateOrConnectWithoutAnimationInput[]
+    createMany?: AnimationVersionCreateManyAnimationInputEnvelope
+    connect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+  }
+
+  export type AnimationVersionUncheckedCreateNestedManyWithoutAnimationInput = {
+    create?: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput> | AnimationVersionCreateWithoutAnimationInput[] | AnimationVersionUncheckedCreateWithoutAnimationInput[]
+    connectOrCreate?: AnimationVersionCreateOrConnectWithoutAnimationInput | AnimationVersionCreateOrConnectWithoutAnimationInput[]
+    createMany?: AnimationVersionCreateManyAnimationInputEnvelope
+    connect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutAnimationOwnerNestedInput = {
+    create?: XOR<UserCreateWithoutAnimationOwnerInput, UserUncheckedCreateWithoutAnimationOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAnimationOwnerInput
+    upsert?: UserUpsertWithoutAnimationOwnerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAnimationOwnerInput, UserUpdateWithoutAnimationOwnerInput>, UserUncheckedUpdateWithoutAnimationOwnerInput>
+  }
+
+  export type AnimationStateUpdateOneWithoutAnimationsNestedInput = {
+    create?: XOR<AnimationStateCreateWithoutAnimationsInput, AnimationStateUncheckedCreateWithoutAnimationsInput>
+    connectOrCreate?: AnimationStateCreateOrConnectWithoutAnimationsInput
+    upsert?: AnimationStateUpsertWithoutAnimationsInput
+    disconnect?: AnimationStateWhereInput | boolean
+    delete?: AnimationStateWhereInput | boolean
+    connect?: AnimationStateWhereUniqueInput
+    update?: XOR<XOR<AnimationStateUpdateToOneWithWhereWithoutAnimationsInput, AnimationStateUpdateWithoutAnimationsInput>, AnimationStateUncheckedUpdateWithoutAnimationsInput>
+  }
+
+  export type AnimationVersionUpdateManyWithoutAnimationNestedInput = {
+    create?: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput> | AnimationVersionCreateWithoutAnimationInput[] | AnimationVersionUncheckedCreateWithoutAnimationInput[]
+    connectOrCreate?: AnimationVersionCreateOrConnectWithoutAnimationInput | AnimationVersionCreateOrConnectWithoutAnimationInput[]
+    upsert?: AnimationVersionUpsertWithWhereUniqueWithoutAnimationInput | AnimationVersionUpsertWithWhereUniqueWithoutAnimationInput[]
+    createMany?: AnimationVersionCreateManyAnimationInputEnvelope
+    set?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    disconnect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    delete?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    connect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    update?: AnimationVersionUpdateWithWhereUniqueWithoutAnimationInput | AnimationVersionUpdateWithWhereUniqueWithoutAnimationInput[]
+    updateMany?: AnimationVersionUpdateManyWithWhereWithoutAnimationInput | AnimationVersionUpdateManyWithWhereWithoutAnimationInput[]
+    deleteMany?: AnimationVersionScalarWhereInput | AnimationVersionScalarWhereInput[]
+  }
+
+  export type AnimationVersionUncheckedUpdateManyWithoutAnimationNestedInput = {
+    create?: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput> | AnimationVersionCreateWithoutAnimationInput[] | AnimationVersionUncheckedCreateWithoutAnimationInput[]
+    connectOrCreate?: AnimationVersionCreateOrConnectWithoutAnimationInput | AnimationVersionCreateOrConnectWithoutAnimationInput[]
+    upsert?: AnimationVersionUpsertWithWhereUniqueWithoutAnimationInput | AnimationVersionUpsertWithWhereUniqueWithoutAnimationInput[]
+    createMany?: AnimationVersionCreateManyAnimationInputEnvelope
+    set?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    disconnect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    delete?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    connect?: AnimationVersionWhereUniqueInput | AnimationVersionWhereUniqueInput[]
+    update?: AnimationVersionUpdateWithWhereUniqueWithoutAnimationInput | AnimationVersionUpdateWithWhereUniqueWithoutAnimationInput[]
+    updateMany?: AnimationVersionUpdateManyWithWhereWithoutAnimationInput | AnimationVersionUpdateManyWithWhereWithoutAnimationInput[]
+    deleteMany?: AnimationVersionScalarWhereInput | AnimationVersionScalarWhereInput[]
+  }
+
+  export type AnimationCreateNestedOneWithoutAnimationVersionsInput = {
+    create?: XOR<AnimationCreateWithoutAnimationVersionsInput, AnimationUncheckedCreateWithoutAnimationVersionsInput>
+    connectOrCreate?: AnimationCreateOrConnectWithoutAnimationVersionsInput
+    connect?: AnimationWhereUniqueInput
+  }
+
+  export type AnimationUpdateOneRequiredWithoutAnimationVersionsNestedInput = {
+    create?: XOR<AnimationCreateWithoutAnimationVersionsInput, AnimationUncheckedCreateWithoutAnimationVersionsInput>
+    connectOrCreate?: AnimationCreateOrConnectWithoutAnimationVersionsInput
+    upsert?: AnimationUpsertWithoutAnimationVersionsInput
+    connect?: AnimationWhereUniqueInput
+    update?: XOR<XOR<AnimationUpdateToOneWithWhereWithoutAnimationVersionsInput, AnimationUpdateWithoutAnimationVersionsInput>, AnimationUncheckedUpdateWithoutAnimationVersionsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -19556,6 +24167,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AnimationCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    state?: AnimationStateCreateNestedOneWithoutAnimationsInput
+    AnimationVersions?: AnimationVersionCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
+    AnimationVersions?: AnimationVersionUncheckedCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationCreateOrConnectWithoutUserInput = {
+    where: AnimationWhereUniqueInput
+    create: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput>
+  }
+
+  export type AnimationCreateManyUserInputEnvelope = {
+    data: AnimationCreateManyUserInput | AnimationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -19763,6 +24408,37 @@ export namespace Prisma {
     categoryId?: StringNullableFilter<"DesignSubClass"> | string | null
   }
 
+  export type AnimationUpsertWithWhereUniqueWithoutUserInput = {
+    where: AnimationWhereUniqueInput
+    update: XOR<AnimationUpdateWithoutUserInput, AnimationUncheckedUpdateWithoutUserInput>
+    create: XOR<AnimationCreateWithoutUserInput, AnimationUncheckedCreateWithoutUserInput>
+  }
+
+  export type AnimationUpdateWithWhereUniqueWithoutUserInput = {
+    where: AnimationWhereUniqueInput
+    data: XOR<AnimationUpdateWithoutUserInput, AnimationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AnimationUpdateManyWithWhereWithoutUserInput = {
+    where: AnimationScalarWhereInput
+    data: XOR<AnimationUpdateManyMutationInput, AnimationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AnimationScalarWhereInput = {
+    AND?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+    OR?: AnimationScalarWhereInput[]
+    NOT?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
+    id?: StringFilter<"Animation"> | string
+    title?: StringFilter<"Animation"> | string
+    createdAt?: DateTimeFilter<"Animation"> | Date | string
+    updatedAt?: DateTimeFilter<"Animation"> | Date | string
+    approved?: BoolFilter<"Animation"> | boolean
+    description?: StringNullableFilter<"Animation"> | string | null
+    ownerId?: StringFilter<"Animation"> | string
+    stateId?: StringNullableFilter<"Animation"> | string | null
+    status?: StringFilter<"Animation"> | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -19778,6 +24454,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -19795,6 +24472,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -19828,6 +24506,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -19845,6 +24524,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -19862,6 +24542,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -19879,6 +24560,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -19912,6 +24594,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -19929,6 +24612,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAuthenticatorInput = {
@@ -19946,6 +24630,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthenticatorInput = {
@@ -19963,6 +24648,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthenticatorInput = {
@@ -19996,6 +24682,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthenticatorInput = {
@@ -20013,6 +24700,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserProjectCreateWithoutProjectInput = {
@@ -20103,6 +24791,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AnimationStateCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    animations?: AnimationCreateNestedManyWithoutStateInput
+  }
+
+  export type AnimationStateUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    animations?: AnimationUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type AnimationStateCreateOrConnectWithoutProjectInput = {
+    where: AnimationStateWhereUniqueInput
+    create: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type AnimationStateCreateManyProjectInputEnvelope = {
+    data: AnimationStateCreateManyProjectInput | AnimationStateCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserProjectUpsertWithWhereUniqueWithoutProjectInput = {
     where: UserProjectWhereUniqueInput
     update: XOR<UserProjectUpdateWithoutProjectInput, UserProjectUncheckedUpdateWithoutProjectInput>
@@ -20151,6 +24861,31 @@ export namespace Prisma {
     data: XOR<DesignCategoryUpdateManyMutationInput, DesignCategoryUncheckedUpdateManyWithoutProjectInput>
   }
 
+  export type AnimationStateUpsertWithWhereUniqueWithoutProjectInput = {
+    where: AnimationStateWhereUniqueInput
+    update: XOR<AnimationStateUpdateWithoutProjectInput, AnimationStateUncheckedUpdateWithoutProjectInput>
+    create: XOR<AnimationStateCreateWithoutProjectInput, AnimationStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type AnimationStateUpdateWithWhereUniqueWithoutProjectInput = {
+    where: AnimationStateWhereUniqueInput
+    data: XOR<AnimationStateUpdateWithoutProjectInput, AnimationStateUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type AnimationStateUpdateManyWithWhereWithoutProjectInput = {
+    where: AnimationStateScalarWhereInput
+    data: XOR<AnimationStateUpdateManyMutationInput, AnimationStateUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type AnimationStateScalarWhereInput = {
+    AND?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
+    OR?: AnimationStateScalarWhereInput[]
+    NOT?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
+    id?: StringFilter<"AnimationState"> | string
+    name?: StringFilter<"AnimationState"> | string
+    projectId?: StringNullableFilter<"AnimationState"> | string | null
+  }
+
   export type UserCreateWithoutScriptOwnerInput = {
     id?: string
     name?: string | null
@@ -20166,6 +24901,7 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutScriptOwnerInput = {
@@ -20183,6 +24919,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutScriptOwnerInput = {
@@ -20198,6 +24935,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutScriptsInput = {
@@ -20208,6 +24946,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutScriptsInput = {
@@ -20265,6 +25004,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScriptOwnerInput = {
@@ -20282,6 +25022,7 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutScriptsInput = {
@@ -20303,6 +25044,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutScriptsInput = {
@@ -20313,6 +25055,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SceneUpsertWithWhereUniqueWithoutScriptInput = {
@@ -20429,6 +25172,7 @@ export namespace Prisma {
     scriptOwner?: ScriptCreateNestedManyWithoutUserInput
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignCategoryOwnerInput = {
@@ -20446,6 +25190,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignCategoryOwnerInput = {
@@ -20461,6 +25206,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     scripts?: ScriptCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutDesignCategoriesInput = {
@@ -20471,6 +25217,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutDesignCategoriesInput = {
@@ -20532,6 +25279,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignCategoryOwnerInput = {
@@ -20549,6 +25297,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutDesignCategoriesInput = {
@@ -20570,6 +25319,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutDesignCategoriesInput = {
@@ -20580,6 +25330,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type DesignSubClassUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -20613,6 +25364,7 @@ export namespace Prisma {
     scriptOwner?: ScriptCreateNestedManyWithoutUserInput
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignOwnerInput = {
@@ -20630,6 +25382,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignOwnerInput = {
@@ -20714,6 +25467,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignOwnerInput = {
@@ -20731,6 +25485,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DesignCategoryUpsertWithoutDesignsInput = {
@@ -20851,6 +25606,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutProjectMembersInput = {
@@ -20861,6 +25617,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutProjectMembersInput = {
@@ -20883,6 +25640,7 @@ export namespace Prisma {
     scriptOwner?: ScriptCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectMembersInput = {
@@ -20900,6 +25658,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectMembersInput = {
@@ -20926,6 +25685,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutProjectMembersInput = {
@@ -20936,6 +25696,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutProjectMembersInput = {
@@ -20964,6 +25725,7 @@ export namespace Prisma {
     scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectMembersInput = {
@@ -20981,6 +25743,369 @@ export namespace Prisma {
     scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProjectCreateWithoutAnimationCategoriesInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutAnimationCategoriesInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutAnimationCategoriesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutAnimationCategoriesInput, ProjectUncheckedCreateWithoutAnimationCategoriesInput>
+  }
+
+  export type AnimationCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutAnimationOwnerInput
+    AnimationVersions?: AnimationVersionCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationUncheckedCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+    AnimationVersions?: AnimationVersionUncheckedCreateNestedManyWithoutAnimationInput
+  }
+
+  export type AnimationCreateOrConnectWithoutStateInput = {
+    where: AnimationWhereUniqueInput
+    create: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput>
+  }
+
+  export type AnimationCreateManyStateInputEnvelope = {
+    data: AnimationCreateManyStateInput | AnimationCreateManyStateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpsertWithoutAnimationCategoriesInput = {
+    update: XOR<ProjectUpdateWithoutAnimationCategoriesInput, ProjectUncheckedUpdateWithoutAnimationCategoriesInput>
+    create: XOR<ProjectCreateWithoutAnimationCategoriesInput, ProjectUncheckedCreateWithoutAnimationCategoriesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutAnimationCategoriesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutAnimationCategoriesInput, ProjectUncheckedUpdateWithoutAnimationCategoriesInput>
+  }
+
+  export type ProjectUpdateWithoutAnimationCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutAnimationCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type AnimationUpsertWithWhereUniqueWithoutStateInput = {
+    where: AnimationWhereUniqueInput
+    update: XOR<AnimationUpdateWithoutStateInput, AnimationUncheckedUpdateWithoutStateInput>
+    create: XOR<AnimationCreateWithoutStateInput, AnimationUncheckedCreateWithoutStateInput>
+  }
+
+  export type AnimationUpdateWithWhereUniqueWithoutStateInput = {
+    where: AnimationWhereUniqueInput
+    data: XOR<AnimationUpdateWithoutStateInput, AnimationUncheckedUpdateWithoutStateInput>
+  }
+
+  export type AnimationUpdateManyWithWhereWithoutStateInput = {
+    where: AnimationScalarWhereInput
+    data: XOR<AnimationUpdateManyMutationInput, AnimationUncheckedUpdateManyWithoutStateInput>
+  }
+
+  export type UserCreateWithoutAnimationOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAnimationOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAnimationOwnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAnimationOwnerInput, UserUncheckedCreateWithoutAnimationOwnerInput>
+  }
+
+  export type AnimationStateCreateWithoutAnimationsInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutAnimationCategoriesInput
+  }
+
+  export type AnimationStateUncheckedCreateWithoutAnimationsInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type AnimationStateCreateOrConnectWithoutAnimationsInput = {
+    where: AnimationStateWhereUniqueInput
+    create: XOR<AnimationStateCreateWithoutAnimationsInput, AnimationStateUncheckedCreateWithoutAnimationsInput>
+  }
+
+  export type AnimationVersionCreateWithoutAnimationInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AnimationVersionUncheckedCreateWithoutAnimationInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AnimationVersionCreateOrConnectWithoutAnimationInput = {
+    where: AnimationVersionWhereUniqueInput
+    create: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput>
+  }
+
+  export type AnimationVersionCreateManyAnimationInputEnvelope = {
+    data: AnimationVersionCreateManyAnimationInput | AnimationVersionCreateManyAnimationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutAnimationOwnerInput = {
+    update: XOR<UserUpdateWithoutAnimationOwnerInput, UserUncheckedUpdateWithoutAnimationOwnerInput>
+    create: XOR<UserCreateWithoutAnimationOwnerInput, UserUncheckedCreateWithoutAnimationOwnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAnimationOwnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAnimationOwnerInput, UserUncheckedUpdateWithoutAnimationOwnerInput>
+  }
+
+  export type UserUpdateWithoutAnimationOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAnimationOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type AnimationStateUpsertWithoutAnimationsInput = {
+    update: XOR<AnimationStateUpdateWithoutAnimationsInput, AnimationStateUncheckedUpdateWithoutAnimationsInput>
+    create: XOR<AnimationStateCreateWithoutAnimationsInput, AnimationStateUncheckedCreateWithoutAnimationsInput>
+    where?: AnimationStateWhereInput
+  }
+
+  export type AnimationStateUpdateToOneWithWhereWithoutAnimationsInput = {
+    where?: AnimationStateWhereInput
+    data: XOR<AnimationStateUpdateWithoutAnimationsInput, AnimationStateUncheckedUpdateWithoutAnimationsInput>
+  }
+
+  export type AnimationStateUpdateWithoutAnimationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutAnimationCategoriesNestedInput
+  }
+
+  export type AnimationStateUncheckedUpdateWithoutAnimationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnimationVersionUpsertWithWhereUniqueWithoutAnimationInput = {
+    where: AnimationVersionWhereUniqueInput
+    update: XOR<AnimationVersionUpdateWithoutAnimationInput, AnimationVersionUncheckedUpdateWithoutAnimationInput>
+    create: XOR<AnimationVersionCreateWithoutAnimationInput, AnimationVersionUncheckedCreateWithoutAnimationInput>
+  }
+
+  export type AnimationVersionUpdateWithWhereUniqueWithoutAnimationInput = {
+    where: AnimationVersionWhereUniqueInput
+    data: XOR<AnimationVersionUpdateWithoutAnimationInput, AnimationVersionUncheckedUpdateWithoutAnimationInput>
+  }
+
+  export type AnimationVersionUpdateManyWithWhereWithoutAnimationInput = {
+    where: AnimationVersionScalarWhereInput
+    data: XOR<AnimationVersionUpdateManyMutationInput, AnimationVersionUncheckedUpdateManyWithoutAnimationInput>
+  }
+
+  export type AnimationVersionScalarWhereInput = {
+    AND?: AnimationVersionScalarWhereInput | AnimationVersionScalarWhereInput[]
+    OR?: AnimationVersionScalarWhereInput[]
+    NOT?: AnimationVersionScalarWhereInput | AnimationVersionScalarWhereInput[]
+    id?: StringFilter<"AnimationVersion"> | string
+    versionNumber?: IntFilter<"AnimationVersion"> | number
+    label?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"AnimationVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"AnimationVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"AnimationVersion"> | string | null
+    createdAt?: DateTimeFilter<"AnimationVersion"> | Date | string
+    animationId?: StringFilter<"AnimationVersion"> | string
+  }
+
+  export type AnimationCreateWithoutAnimationVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutAnimationOwnerInput
+    state?: AnimationStateCreateNestedOneWithoutAnimationsInput
+  }
+
+  export type AnimationUncheckedCreateWithoutAnimationVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type AnimationCreateOrConnectWithoutAnimationVersionsInput = {
+    where: AnimationWhereUniqueInput
+    create: XOR<AnimationCreateWithoutAnimationVersionsInput, AnimationUncheckedCreateWithoutAnimationVersionsInput>
+  }
+
+  export type AnimationUpsertWithoutAnimationVersionsInput = {
+    update: XOR<AnimationUpdateWithoutAnimationVersionsInput, AnimationUncheckedUpdateWithoutAnimationVersionsInput>
+    create: XOR<AnimationCreateWithoutAnimationVersionsInput, AnimationUncheckedCreateWithoutAnimationVersionsInput>
+    where?: AnimationWhereInput
+  }
+
+  export type AnimationUpdateToOneWithWhereWithoutAnimationVersionsInput = {
+    where?: AnimationWhereInput
+    data: XOR<AnimationUpdateWithoutAnimationVersionsInput, AnimationUncheckedUpdateWithoutAnimationVersionsInput>
+  }
+
+  export type AnimationUpdateWithoutAnimationVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAnimationOwnerNestedInput
+    state?: AnimationStateUpdateOneWithoutAnimationsNestedInput
+  }
+
+  export type AnimationUncheckedUpdateWithoutAnimationVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -21048,6 +26173,17 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryId?: string | null
+  }
+
+  export type AnimationCreateManyUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -21257,6 +26393,41 @@ export namespace Prisma {
     categoryId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AnimationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: AnimationStateUpdateOneWithoutAnimationsNestedInput
+    AnimationVersions?: AnimationVersionUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    AnimationVersions?: AnimationVersionUncheckedUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserProjectCreateManyProjectInput = {
     userId: string
     role: string
@@ -21282,6 +26453,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ownerId: string
+  }
+
+  export type AnimationStateCreateManyProjectInput = {
+    id?: string
+    name: string
   }
 
   export type UserProjectUpdateWithoutProjectInput = {
@@ -21367,6 +26543,23 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ownerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationStateUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    animations?: AnimationUpdateManyWithoutStateNestedInput
+  }
+
+  export type AnimationStateUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    animations?: AnimationUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type AnimationStateUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type SceneCreateManyScriptInput = {
@@ -21465,6 +26658,92 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ownerId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationCreateManyStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+  }
+
+  export type AnimationUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutAnimationOwnerNestedInput
+    AnimationVersions?: AnimationVersionUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationUncheckedUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    AnimationVersions?: AnimationVersionUncheckedUpdateManyWithoutAnimationNestedInput
+  }
+
+  export type AnimationUncheckedUpdateManyWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AnimationVersionCreateManyAnimationInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AnimationVersionUpdateWithoutAnimationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnimationVersionUncheckedUpdateWithoutAnimationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnimationVersionUncheckedUpdateManyWithoutAnimationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

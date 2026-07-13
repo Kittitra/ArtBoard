@@ -3,7 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigg
 import React from 'react'
 import { BsCardText, BsUpload } from 'react-icons/bs'
 import { CiLink } from 'react-icons/ci'
-import { FaPhotoVideo, FaTrash } from 'react-icons/fa'
+import { FaFileImage, FaPhotoVideo, FaTrash } from 'react-icons/fa'
 import { GoPencil } from 'react-icons/go'
 import { HiOutlineColorSwatch } from 'react-icons/hi'
 import { IoDocumentTextOutline, IoEllipsisHorizontalOutline } from 'react-icons/io5'
@@ -102,19 +102,19 @@ const Tools = ({ deleteSelected }: Props) => {
             </span>
         </span>
         
-        <div className="w-full border-b-2 border-gray-400"></div>
             <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "draw")}>
               <GoPencil size={iconsSize} />
                 <span className='text-ligth'>
                   Draw
                 </span>
             </span>
-            <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "upload")}>
-              <BsUpload size={iconsSize} />
+            <span className='tool-icons' draggable onDragStart={(e) => onDragStart(e, "image")}>
+              <FaFileImage size={iconsSize} />
                 <span className='text-ligth'>
-                  Upload
+                  Image
                 </span>
             </span>
+        <div className="w-full border-b-2 border-gray-400"></div>
           <span className='tool-icons mb-5' onClick={() => deleteSelected()}>
             <FaTrash size={iconsSize} />
               <span className='text-ligth'>

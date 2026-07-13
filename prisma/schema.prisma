@@ -29,6 +29,7 @@ model User {
   projectMembers UserProject[]
   DesignCategoryOwner DesignCategory[]
   DesignOwner DesignSubClass[]
+  AnimationOwner Animation[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -100,8 +101,9 @@ model Project {
   projectMembers UserProject[]
   scripts      Script[]
   designCategories DesignCategory[]
+  animationCategories AnimationState[]
 }
-
+//script-----------------------------------------------------------------------------------------------------------------------------------
 model Script {
   id          String   @id @default(uuid())
   title       String
@@ -147,7 +149,7 @@ enum ScriptStatus {
   FINAL
   ARCHIVED
 }
-
+//Design-----------------------------------------------------------------------------------------------------------------------------------
 model DesignCategory {
   id          String  @id @default(uuid())
   name        String
@@ -188,7 +190,7 @@ model DesignSubClassVersion {
   DesignSubClass DesignSubClass? @relation(fields: [DesignSubClassId], references: [id], onDelete: SetNull)
 }
 
-//explicit
+//project-----------------------------------------------------------------------------------------------------------------------------------
 model UserProject {
   userId    String  
   projectId String 
@@ -200,4 +202,42 @@ model UserProject {
   user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, projectId])
+}
+//Animation-----------------------------------------------------------------------------------------------------------------------------------
+model AnimationState {
+  id          String  @id @default(uuid())
+  name       String
+
+  projectId String?
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  animations Animation[]
+}
+
+model Animation {
+  id          String  @id @default(uuid())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  approved    Boolean @default(false)
+  description String?
+  ownerId      String
+  stateId String?
+  status  String
+
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  state AnimationState? @relation(fields: [stateId], references: [id], onDelete: SetNull)
+  AnimationVersions AnimationVersion[]
+}
+
+model AnimationVersion {
+  id            String    @id @default(uuid())
+  versionNumber Int       // 1, 2, 3, ...
+  label         String?   // "Version 1", "Draft 2" ฯลฯ
+  muxUploadId   String?
+  muxPlaybackId String?
+  thumbnailUrl  String?
+  createdAt     DateTime  @default(now())
+  animationId   String
+
+  animation Animation @relation(fields: [animationId], references: [id], onDelete: Cascade)
 }

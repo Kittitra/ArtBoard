@@ -1,16 +1,14 @@
 "use client";
 
 import Menu from '@/app/components/Menu'
-import Navbar from '@/app/components/Navbar'
 import Note from '@/app/components/drag/Note';
 import Tools from '@/app/components/Tools'
 import Konva from 'konva';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Group, Layer, Rect, Stage, Text } from 'react-konva'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Layer, Rect, Stage } from 'react-konva'
 import Link from '@/app/components/drag/Link';
-import { LinkItem, NoteItem, BoardItem, ArrowItem, HeaderTextItem, ColorCardItem, DocumentItem, SketchItem } from '@/lib/type';
+import { LinkItem, NoteItem, BoardItem, ArrowItem, HeaderTextItem, ColorCardItem, DocumentItem, SketchItem, VideoItem, CommentItem, AudioItem, GroupItem, DrawItem, ImageItem } from '@/lib/type';
 import Board from '@/app/components/drag/Board';
-import { useDesignStore } from '@/lib/store/designStore';
 import ArrowConnector, { getEdgePoint } from '../../drag/ArrowConnector';
 
 import { useHistory } from "@/hooks/useHistory";
@@ -21,6 +19,21 @@ import DocumentIcon from '../../drag/DocumentIcon';
 import DocumentEditor from '../../drag/DocumentEditor';
 import SketchIcon from '../../drag/SketchIcon';
 import SketchEditor from '../../drag/SketchEditor';
+import VideoIcon from '../../drag/VideoIcon';
+import VideoUploader from '../../drag/VideoUploader';
+import { VideoPlayer } from '../../drag/VideoPlayer';
+import CommentIcon from '../../drag/CommentIcon';
+import CommentPanel from '../../drag/CommentPanel';
+import { useCurrentUser } from '@/hooks/use-current-user';
+import AudioElement from '../../drag/AudioElement';
+import AudioPanel from '../../drag/AudioPanel';
+import { useAudioPlayer } from '@/hooks/useAudioPlayer';
+import GroupElement, { getItemsInsideGroup } from '../../drag/GroupElement';
+import DrawElement from '../../drag/DrawElement';
+import DrawEditor from '../../drag/DrawEditor';
+import ImageElement from '../../drag/ImageElement';
+import ImageUploader from '../../drag/ImageUploader';
+import ImageViewer from '../../drag/ImageViewer';
 
 interface CanvasState {
     notes: NoteItem[]
@@ -30,6 +43,13 @@ interface CanvasState {
     headerTexts: HeaderTextItem[]
     colorCards: ColorCardItem[]
     documents: DocumentItem[]
+    sketches: SketchItem[]
+    videos: VideoItem[]
+    comments: CommentItem[]
+    audios: AudioItem[]
+    groups: GroupItem[]
+    draws: DrawItem[]
+    images: ImageItem[]
 }
 
 const PADDING = 8;
@@ -64,7 +84,21 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     const [documents, setDocuments] = useState<DocumentItem[]>([]);
     const [openDocId, setOpenDocId] = useState<string | null>(null);
     const [sketches, setSketches] = useState<SketchItem[]>([]);
+    const [videos, setVideos] = useState<VideoItem[]>([]);
+    const [comments, setComments] = useState<CommentItem[]>([]);
+    const [audios, setAudios] = useState<AudioItem[]>([]);
+    const [groups, setGroups] = useState<GroupItem[]>([]);
+    const [draws, setDraws] = useState<DrawItem[]>([]);
+    const [images, setImages] = useState<ImageItem[]>([]);
+    const [viewImageId, setViewImageId] = useState<string | null>(null);
 
+    const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+    const [openImageId, setOpenImageId] = useState<string | null>(null);
+    const [selectedDrawId, setSelectedDrawId] = useState<string | null>(null);
+    const [openDrawId, setOpenDrawId] = useState<string | null>(null);
+    const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
+    const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+    const [openVideoId, setOpenVideoId] = useState<string | null>(null);
     const [selectedSketchId, setSelectedSketchId] = useState<string | null>(null);
     const [openSketchId, setOpenSketchId] = useState<string | null>(null);
     const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
@@ -75,8 +109,17 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     const [selectedBoardId, setSelectedBoardId] = useState<string | null>(null);
     const [selectedArrowId, setSelectedArrowId] = useState<string | null>(null);
     const [selectedHeaderTextId, setSelectedHeaderTextId] = useState<string | null>(null);
-
+    const [selectedCommentId, setSelectedCommentId] = useState<string | null>(null);
+    const [openCommentId, setOpenCommentId] = useState<string | null>(null);
+    const [selectedAudioId, setSelectedAudioId] = useState<string | null>(null);
+    const [openAudioId, setOpenAudioId] = useState<string | null>(null);
     const [versionContent, setVersionContent] = useState<any>(null);
+
+    const session = useCurrentUser();
+
+    const audioPlayer = useAudioPlayer();
+
+    // console.log("version", versions);
 
     // ทุกครั้งที่ history state เปลี่ยน sync เข้า local
    const isUndoRedo = useRef(false);
@@ -89,6 +132,13 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         headerTexts: versions[0]?.content?.headerTexts || [],
         colorCards: versions[0]?.content?.colorCards || [],
         documents: versions[0]?.content?.documents || [],
+        sketches: versions[0]?.content?.sketches || [],
+        videos: versions[0]?.content?.videos || [],
+        comments: versions[0]?.content?.comments || [],
+        audios: versions[0]?.content?.audios || [],
+        groups: versions[0]?.content?.groups || [],
+        draws: versions[0]?.content?.draws || [],
+        images: versions[0]?.content?.images || [],
     };
 
     const { state, push, undo, redo, canUndo, canRedo, canUndoRef, canRedoRef } = useHistory<CanvasState>(initialState);
@@ -103,6 +153,13 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                 headerTexts: versions[0].content?.headerTexts || [],
                 colorCards: versions[0].content?.colorCards || [],
                 documents: versions[0].content?.documents || [],
+                sketches: versions[0].content?.sketches || [],
+                videos: versions[0].content?.videos || [],
+                comments: versions[0].content?.comments || [],
+                audios: versions[0].content?.audios || [],
+                groups: versions[0].content?.groups || [],
+                draws: versions[0].content?.draws || [],
+                images: versions[0].content?.images || [],
             };
 
             setNotes(loadedState.notes);
@@ -112,7 +169,13 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             setHeaderTexts(loadedState.headerTexts);
             setColorCards(loadedState.colorCards);
             setDocuments(loadedState.documents);
-
+            setSketches(loadedState.sketches);
+            setGroups(loadedState.groups);
+            setVideos(loadedState.videos);
+            setComments(loadedState.comments);
+            setAudios(loadedState.audios);
+            setDraws(loadedState.draws);
+            setImages(loadedState.images);
             push(loadedState); // ← สำคัญ
         }
     }, [versions[0]?.id]);
@@ -127,6 +190,13 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         setHeaderTexts([...state.headerTexts]);
         setColorCards([...state.colorCards]);
         setDocuments([...state.documents]);
+        setSketches([...state.sketches]);
+        setVideos([...state.videos]);
+        setComments([...state.comments]);
+        setAudios([...state.audios]);
+        setGroups([...state.groups]);
+        setDraws([...state.draws]);
+        setImages([...state.images]);
         isUndoRedo.current = false;
     }, [state]);
 
@@ -181,8 +251,13 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     const updateTextLink = (id: string, text: string) => {
         updateLink(id, { text });
     };
+
     const updateSketch = (id: string, updates: Partial<SketchItem>) => {
         setSketches((prev) => prev.map((s) => s.id === id ? { ...s, ...updates } : s));
+    };
+
+    const updateAudio = (id: string, updates: Partial<AudioItem>) => {
+        setAudios((prev) => prev.map((a) => a.id === id ? { ...a, ...updates } : a));
     };
     
     const stopEdit = (id: string) => {
@@ -219,6 +294,31 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
 
     const updateCard = (id: string, updates: Partial<ColorCardItem>) => {
         setColorCards((prev) => prev.map((c) => c.id === id ? { ...c, ...updates } : c));
+    };
+
+    const updateVideo = (id: string, updates: Partial<VideoItem>) => {
+        setVideos((prev) => prev.map((v) => v.id === id ? { ...v, ...updates } : v));
+    }
+
+    const updateComment = (id: string, updates: Partial<CommentItem>) => {
+        setComments((prev) => prev.map((c) => c.id === id ? { ...c, ...updates } : c));
+    };
+
+    const updateGroup = (id: string, updates: Partial<GroupItem>) => {
+        setGroups((prev) => prev.map((g) => g.id === id ? { ...g, ...updates } : g));
+    };
+
+    const updateDraw = (id: string, updates: Partial<DrawItem>) => {
+        setDraws((prev) => prev.map((d) => d.id === id ? { ...d, ...updates } : d));
+    };
+
+    const updateImage = (id: string, updates: Partial<ImageItem>) => {
+        setImages((prev) => prev.map((i) => i.id === id ? { ...i, ...updates } : i));
+    };
+
+    const deleteComment = (id: string) => {
+        setComments((prev) => prev.filter((c) => c.id !== id));
+        setOpenCommentId(null);
     };
 
     const stopEditLink = async (id: string, url: string) => {
@@ -279,42 +379,10 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         };
     };
     
-    
-        const handleStageClick = (e: any) => {
-            const clickedOnEmpty = e.target === e.target.getStage();
-            if (clickedOnEmpty) {
-                setSelectedArrowId(null);  // ← เพิ่ม
-                setSelectedNoteId(null);
-                setNotes(prev =>
-                    prev.map(note =>
-                        note.isEditing ? { ...note, isEditing: false } : note
-                    )
-                );
-                setSelectedLinkId(null);
-                setLinks(prev =>
-                    prev.map(link =>
-                        link.isEditing ? { ...link, isEditing: false } : link
-                    )
-                );
-                setSelectedBoardId(null);
-                setBoard(prev =>
-                    prev.map(board =>
-                        board.isEditingTitle ? { ...board, isEditingTitle: false } : board
-                    )
-                );
-                setSelectedHeaderTextId(null);
-                setHeaderTexts(prev =>
-                    prev.map(text =>
-                        text.isEditing ? { ...text, isEditing: false } : text
-                    )
-                );
-            }
-        };
-
         const handleSaveVersion = (versionId: string) => {
             const updated = versions.map((v) =>
                 v.id === versionId
-                    ? { ...v, content: { notes, links, board, arrows, headerTexts, colorCards, documents } } // ← อัปเดต content 
+                    ? { ...v, content: { notes, links, board, arrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images } } // ← อัปเดต content 
                     : v
             );
             updateVersionData(updated); // ← ส่งกลับไปหา parent
@@ -324,7 +392,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         const newNote = { ...noteData, id: crypto.randomUUID() };
         const newNotes = [...notes, newNote];
         setNotes(newNotes);
-        pushHistory({ notes: newNotes, links, board, arrows, headerTexts, colorCards, documents });  // ← ส่งครบ
+        pushHistory({ notes: newNotes, links, board, arrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← ส่งครบ
         setSelectedNoteId(newNote.id);
       };
 
@@ -332,7 +400,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         const newLink = { ...linkData, id: crypto.randomUUID() };
         const newLinks = [...links, newLink];
         setLinks(newLinks);
-        pushHistory({ notes, links: newLinks, board, arrows, headerTexts, colorCards, documents });  // ← ส่งครบ
+        pushHistory({ notes, links: newLinks, board, arrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← ส่งครบ
         setSelectedLinkId(newLink.id);
       };
     
@@ -340,7 +408,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         const newBoard = { ...boardData, id: crypto.randomUUID() };
         const newBoards = [...board, newBoard];
         setBoard(newBoards);
-        pushHistory({ notes, links, board: newBoards, arrows, headerTexts, colorCards, documents });  // ← ส่งครบ
+        pushHistory({ notes, links, board: newBoards, arrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← ส่งครบ
         setSelectedBoardId(newBoard.id);
       };
 
@@ -349,7 +417,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         const newHeaderText = { ...textData, id: crypto.randomUUID() };
         const newHeaderTexts = [...headerTexts, newHeaderText];
         setHeaderTexts(newHeaderTexts);
-        pushHistory({ notes, links, board, arrows, headerTexts: newHeaderTexts, colorCards, documents });  // ← ส่งครบ
+        pushHistory({ notes, links, board, arrows, headerTexts: newHeaderTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← ส่งครบ
         setSelectedHeaderTextId(newHeaderText.id);
       };
 
@@ -365,7 +433,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             parentBoardId,
         };
         setColorCards((prev) => [...prev, newCard]);
-        pushHistory({ notes, links, board, arrows, headerTexts, colorCards: [...colorCards, newCard], documents });
+        pushHistory({ notes, links, board, arrows, headerTexts, colorCards: [...colorCards, newCard], documents, sketches, videos, comments, audios, groups, draws, images });
     };
 
     const createDocument = (x: number, y: number) => {
@@ -393,47 +461,121 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         setSketches((prev) => [...prev, newSketch]);
     };
 
-      const startEditBoardTitle = (id: string) => {
-            setBoard((prev) =>
-                prev.map((b) => b.id === id ? { ...b, isEditingTitle: true } : b)
-            );
-            setSelectedBoardId(id);
+    const createVideo = (x: number, y: number) => {
+        const newVideo: VideoItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 200,
+            height: 120,
+            uploadId: null,       // ← เพิ่ม
+            playbackId: null,     // ← เพิ่ม
+            thumbnailUrl: null,   // ← เพิ่ม
+            status: "idle",
+            parentBoardId,        // ← เพิ่ม
         };
+        setVideos((prev) => [...prev, newVideo]);
+        setOpenVideoId(newVideo.id);  // ← เปิด uploader ทันที
+    };
 
-        const stopEditBoardTitle = (id: string) => {
-            setBoard((prev) =>
-                prev.map((b) => b.id === id ? { ...b, isEditingTitle: false } : b)
-            );
+    const createComment = (x: number, y: number) => {
+        const newComment: CommentItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 48,
+            height: 48,
+            author: session?.name || "Anonymous",
+            avatar: session?.image || undefined,
+            text: "",
+            replies: [],
+            resolved: false,
+            createdAt: new Date().toISOString(),
+            parentBoardId,
         };
+        setComments((prev) => [...prev, newComment]);
+        setOpenCommentId(newComment.id);  // ← เปิด panel ทันที
+    };
 
-        const updateBoardTitle = (id: string, title: string) => {
-            setBoard((prev) =>
-                prev.map((b) => b.id === id ? { ...b, title } : b)
-            );
+    const createAudio = (x: number, y: number) => {
+        const newAudio: AudioItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 220,
+            height: 64,
+            url: "",
+            title: "",
+            status: "idle",
+            parentBoardId,
         };
+        setAudios((prev) => [...prev, newAudio]);
+        setOpenAudioId(newAudio.id);
+    };
 
-        const selectDoc = (id: string) => {
-            setSelectedDocId(id);
-            setSelectedNoteId(null);
-            setSelectedLinkId(null);
-            setSelectedBoardId(null);
-            setSelectedArrowId(null);
-            setSelectedCardId(null);
+    const createGroup = (x: number, y: number) => {
+        const newGroup: GroupItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 300,
+            height: 200,
+            title: "Group",
+            isEditingTitle: false,
+            color: "rgba(240,240,255,0.6)",
+            parentBoardId,
         };
+        setGroups((prev) => [...prev, newGroup]);
+        selectGroup(newGroup.id);
+    };
 
-        const selectSketch = (id: string) => {
-            setSelectedSketchId(id);
-            setSelectedNoteId(null);
-            setSelectedLinkId(null);
-            setSelectedBoardId(null);
-            setSelectedArrowId(null);
-            setSelectedCardId(null);
+    const createDraw = (x: number, y: number) => {
+        const newDraw: DrawItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 300,
+            height: 200,
+            strokes: [],
+            parentBoardId,
         };
+        setDraws((prev) => [...prev, newDraw]);
+        setOpenDrawId(newDraw.id);
+    };
 
-        const handleSketchSave = (id: string, dataUrl: string) => {
-            updateSketch(id, { thumbnail: dataUrl });
-            setOpenSketchId(null);
+    const createImage = (x: number, y: number) => {
+        const newImage: ImageItem = {
+            id: crypto.randomUUID(),
+            x, y,
+            width: 200,
+            height: 150,
+            url: null,
+            publicId: null,
+            status: "idle",
+            parentBoardId,
         };
+        setImages((prev) => [...prev, newImage]);
+        setOpenImageId(newImage.id);
+    };
+
+    const startEditBoardTitle = (id: string) => {
+        setBoard((prev) =>
+            prev.map((b) => b.id === id ? { ...b, isEditingTitle: true } : b)
+        );
+        setSelectedBoardId(id);
+    };
+
+    const stopEditBoardTitle = (id: string) => {
+        setBoard((prev) =>
+            prev.map((b) => b.id === id ? { ...b, isEditingTitle: false } : b)
+        );
+    };
+
+    const updateBoardTitle = (id: string, title: string) => {
+        setBoard((prev) =>
+            prev.map((b) => b.id === id ? { ...b, title } : b)
+        );
+    };
+
+    const handleSketchSave = (id: string, dataUrl: string) => {
+        updateSketch(id, { thumbnail: dataUrl });
+        setOpenSketchId(null);
+    };
     
      const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -496,10 +638,11 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                 toX: stagePos.x + 150,
                 toY: stagePos.y,
                 unconnected: true,
+                parentBoardId: parentBoardId,
             };
             const newArrows = [...arrows, newArrow];
             setArrows(newArrows);
-            pushHistory({ notes, links, board, arrows: newArrows, headerTexts, colorCards, documents });  // ← เพิ่ม
+            pushHistory({ notes, links, board, arrows: newArrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← เพิ่ม
         }else if (payload.type === "header") {
             createHeaderText({
                 x: pos.x,
@@ -522,19 +665,75 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             const transform = stage.getAbsoluteTransform().copy().invert();
             const sp = transform.point(pos);
             createSketch(sp.x, sp.y);
+        }else if (payload.type === "video") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createVideo(sp.x, sp.y);
+        }else if (payload.type === "comment") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createComment(sp.x, sp.y);
+        }else if (payload.type === "audio") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createAudio(sp.x, sp.y);
+        }else if (payload.type === "group") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createGroup(sp.x, sp.y);
+        }else if (payload.type === "draw") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createDraw(sp.x, sp.y);
+        }else if (payload.type === "image") {
+            const transform = stage.getAbsoluteTransform().copy().invert();
+            const sp = transform.point(pos);
+            createImage(sp.x, sp.y);
         }
     };
 
+    const clearEditingState = () => {
+        setNotes(prev => prev.map(n => n.isEditing ? { ...n, isEditing: false } : n));
+        setLinks(prev => prev.map(l => l.isEditing ? { ...l, isEditing: false } : l));
+        setBoard(prev => prev.map(b => b.isEditingTitle ? { ...b, isEditingTitle: false } : b));
+        setHeaderTexts(prev => prev.map(t => t.isEditing ? { ...t, isEditing: false } : t));
+        setColorCards(prev => prev.map(c => c.isEditingCaption ? { ...c, isEditingCaption: false } : c));
+    };
+
+    const clearSelection = () => {
+        setSelectedNoteId(null);
+        setSelectedLinkId(null);
+        setSelectedBoardId(null);
+        setSelectedArrowId(null);
+        setSelectedHeaderTextId(null);
+        setSelectedCardId(null);
+        setSelectedDocId(null);
+        setSelectedSketchId(null);
+        setSelectedVideoId(null);
+        setSelectedCommentId(null);
+        setSelectedAudioId(null);
+        setSelectedGroupId(null); 
+        setSelectedDrawId(null);
+        setSelectedImageId(null);  
+    };
+
     const selectNote = (id: string) => {
+        clearSelection();
         setSelectedNoteId(id);
         setNotes((prev) => {
             const selected = prev.find((n) => n.id === id);
             const rest = prev.filter((n) => n.id !== id);
-            return selected ? [...rest, selected] : prev; // ← ย้าย selected ไปท้าย
+            if (!selected) return prev;
+            // ย้าย selected ไปท้าย + clear isEditing ทุกตัว
+            return [
+                ...rest.map((n) => n.isEditing ? { ...n, isEditing: false } : n),
+                { ...selected, isEditing: false },
+            ];
         });
     };
 
     const selectHeaderText = (id: string) => {
+        clearSelection();
         setSelectedHeaderTextId(id);
         setHeaderTexts((prev) => {
             const selected = prev.find((text) => text.id === id);
@@ -544,13 +743,53 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     };
 
     const selectCard = (id: string) => {
+        clearSelection();
         setSelectedCardId(id);
-        setSelectedNoteId(null);
-        setSelectedLinkId(null);
-        setSelectedBoardId(null);
-        setSelectedArrowId(null);
-        setSelectedCardId(null);
-        setSelectedDocId(null);
+    };
+
+    const selectDoc = (id: string) => {
+        clearSelection();
+        setSelectedDocId(id);
+    };
+
+    const selectSketch = (id: string) => {
+        clearSelection();
+        setSelectedSketchId(id);
+    };
+
+    const selectVideo = (id: string) => {
+        clearSelection();
+        setSelectedVideoId(id);
+    };
+
+    const selectComment = (id: string) => {
+        clearSelection();
+        setSelectedCommentId(id);
+    };
+
+    const selectAudio = (id: string) => {
+        clearSelection();
+        setSelectedAudioId(id);
+    };
+
+    const handleSelectArrow = (id: string | null) => {
+        if (id) clearSelection();
+        setSelectedArrowId(id);
+    };
+
+    const selectGroup = (id: string) => {
+        clearSelection();
+        setSelectedGroupId(id);
+    };
+
+    const selectDraw = (id: string) => {
+        clearSelection();
+        setSelectedDrawId(id);
+    };
+
+    const selectImage = (id: string) => {
+        clearSelection();
+        setSelectedImageId(id);
     };
 
     const openColorPicker = (id: string, x: number, y: number) => {
@@ -563,7 +802,14 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         updateCard(colorPickerTargetId, { color });
     };
 
-    
+    const handleStageClick = (e: any) => {
+        const clickedOnEmpty = e.target === e.target.getStage();
+        if (clickedOnEmpty) {
+            clearSelection();
+            clearEditingState();
+        }
+    };
+
     const deleteSelected = () => {
         const newNotes = selectedNoteId ? notes.filter((n) => n.id !== selectedNoteId) : notes;
         const newLinks = selectedLinkId ? links.filter((l) => l.id !== selectedLinkId) : links;
@@ -572,13 +818,28 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         const newHeaderTexts = selectedHeaderTextId ? headerTexts.filter((t) => t.id !== selectedHeaderTextId) : headerTexts;
         const newColorCards = selectedCardId ? colorCards.filter((c) => c.id !== selectedCardId) : colorCards;
         const newDocuments = selectedDocId ? documents.filter((d) => d.id !== selectedDocId) : documents;
-
+        const newSketches = selectedSketchId ? sketches.filter((s) => s.id !== selectedSketchId) : sketches;
+        const newVideos = selectedVideoId ? videos.filter((v) => v.id !== selectedVideoId) : videos;
+        const newComments = selectedCommentId ? comments.filter((c) => c.id !== selectedCommentId) : comments;
+        const newAudios = selectedAudioId ? audios.filter((a) => a.id !== selectedAudioId) : audios;
+        const newGroups = selectedGroupId ? groups.filter((g) => g.id !== selectedGroupId) : groups;
+        const newDraws = selectedDrawId ? draws.filter((d) => d.id !== selectedDrawId) : draws;
+        const newImages = selectedImageId ? images.filter((i) => i.id !== selectedImageId) : images;
+        
         setNotes(newNotes);
         setLinks(newLinks);
         setBoard(newBoard);
         setArrows(newArrows);
         setHeaderTexts(newHeaderTexts);
+        setColorCards(newColorCards);
         setDocuments(newDocuments);
+        setSketches(newSketches);
+        setVideos(newVideos);
+        setComments(newComments);
+        setAudios(newAudios);
+        setGroups(newGroups);
+        setDraws(newDraws);
+        setImages(newImages);
         setSelectedNoteId(null);
         setSelectedLinkId(null);
         setSelectedBoardId(null);
@@ -586,8 +847,16 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         setSelectedHeaderTextId(null);
         setSelectedCardId(null);
         setSelectedDocId(null);
+        setColorPickerTargetId(null);
+        setSelectedSketchId(null);
+        setSelectedVideoId(null);
+        setSelectedCommentId(null);
+        setSelectedAudioId(null);
+        setSelectedGroupId(null);
+        setSelectedDrawId(null);
+        setSelectedImageId(null);
 
-        pushHistory({ notes: newNotes, links: newLinks, board: newBoard, arrows: newArrows, headerTexts: newHeaderTexts, colorCards: newColorCards, documents: newDocuments });  // ← ส่งครบ
+        pushHistory({ notes: newNotes, links: newLinks, board: newBoard, arrows, headerTexts: newHeaderTexts, colorCards: newColorCards, documents: newDocuments, sketches: newSketches, videos: newVideos, comments: newComments, audios: newAudios, groups: newGroups, draws: newDraws, images: newImages });  // ← ส่งครบ
     };
 
     const handleUndoRef = useRef(handleUndo);
@@ -617,7 +886,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     // ← ลด dependency ให้เหลือแค่ที่จำเป็น
-    }, [selectedNoteId, selectedLinkId, selectedBoardId, selectedArrowId, selectedHeaderTextId, selectedCardId, selectedDocId, notes, links, headerTexts, colorCards, documents]);
+    }, [selectedNoteId, selectedLinkId, selectedBoardId, selectedArrowId, selectedHeaderTextId, selectedCardId, selectedDocId, selectedSketchId, selectedVideoId, selectedAudioId, selectedImageId, notes, links, headerTexts, colorCards, documents, sketches, videos, audios, groups, draws, images]);  // ← ครบ
     
 
     useEffect(() => {
@@ -629,9 +898,9 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
         
         return () => clearTimeout(timeout);
 
-    }, [notes, links, board, arrows, headerTexts, colorCards, documents]);
+    }, [notes, links, board, arrows, headerTexts, colorCards, documents, sketches, videos, audios, comments, groups, draws, images]);  // ← ครบ
 
-    const allItems = [...notes, ...links, ...board, ...headerTexts, ...colorCards, ...documents];
+    const allItems = [...notes, ...links, ...board, ...headerTexts, ...colorCards, ...documents, ...sketches, ...videos, ...comments, ...audios, ...groups, ...draws, ...images];
 
     // แก้ onConnectHead ให้ track การลาก
     const onConnectHead = (
@@ -677,7 +946,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
     const handleNoteDragEnd = (id: string, x: number, y: number) => {
         const newNotes = notes.map((n) => n.id === id ? { ...n, x, y } : n);
         setNotes(newNotes);
-        pushHistory({ notes: newNotes, links, board, arrows, headerTexts, colorCards, documents });  // ← ครบ
+        pushHistory({ notes: newNotes, links, board, arrows, headerTexts, colorCards, documents, sketches, videos, comments, audios, groups, draws, images });  // ← ครบ
     };
 
     const [stagePos, setStagePos] = useState({
@@ -880,12 +1149,75 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             return { ...d, x: original.x + dx, y: original.y + dy };
         });
 
+        const newSketches = sketches.map((s) => {
+            if (!selectedIds.includes(s.id)) return s;
+            if (s.id === draggedId) return { ...s, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === s.id);
+            if (!original) return s;
+            return { ...s, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newVideos = videos.map((v) => {
+            if (!selectedIds.includes(v.id)) return v;
+            if (v.id === draggedId) return { ...v, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === v.id);
+            if (!original) return v;
+            return { ...v, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newComments = comments.map((c) => {
+            if (!selectedIds.includes(c.id)) return c;
+            if (c.id === draggedId) return { ...c, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === c.id);
+            if (!original) return c;
+            return { ...c, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newAudios = audios.map((a) => {
+            if (!selectedIds.includes(a.id)) return a;
+            if (a.id === draggedId) return { ...a, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === a.id);
+            if (!original) return a;
+            return { ...a, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newGroups = groups.map((g) => {
+            if (!selectedIds.includes(g.id)) return g;
+            if (g.id === draggedId) return { ...g, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === g.id);
+            if (!original) return g;
+            return { ...g, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newDraws = draws.map((d) => {
+            if (!selectedIds.includes(d.id)) return d;
+            if (d.id === draggedId) return { ...d, x: currentX, y: currentY };
+            const original = dragStartItems.find((i) => i.id === d.id);
+            if (!original) return d;
+            return { ...d, x: original.x + dx, y: original.y + dy };
+        });
+
+        const newImages = images.map((i) => {
+            if (!selectedIds.includes(i.id)) return i;
+            if (i.id === draggedId) return { ...i, x: currentX, y: currentY };
+            const original = dragStartItems.find((item) => item.id === i.id);
+            if (!original) return i;
+            return { ...i, x: original.x + dx, y: original.y + dy };
+        });
+
         setNotes(newNotes);
         setLinks(newLinks);
         setBoard(newBoard);
         setHeaderTexts(newHeaderTexts);
         setColorCards(newColorCards);
         setDocuments(newDocuments);
+        setVideos(newVideos);
+        setSketches(newSketches);
+        setComments(newComments);
+        setAudios(newAudios);
+        setGroups(newGroups);
+        setDraws(newDraws);
+        setImages(newImages);
         triggerUpdate();
     };
 
@@ -937,15 +1269,141 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
             return original ? { ...d, x: original.x + dx, y: original.y + dy } : d;
         });
 
+        const newSketches = sketches.map((s) => {
+            if (!selectedIds.includes(s.id)) return s;
+            const original = dragStartItems.find((i) => i.id === s.id);
+            return original ? { ...s, x: original.x + dx, y: original.y + dy } : s;
+        });
+
+        const newVideos = videos.map((v) => {
+            if (!selectedIds.includes(v.id)) return v;
+            const original = dragStartItems.find((i) => i.id === v.id);
+            return original ? { ...v, x: original.x + dx, y: original.y + dy } : v;
+        });
+
+        const newComments = comments.map((c) => {
+            if (!selectedIds.includes(c.id)) return c;
+            const original = dragStartItems.find((i) => i.id === c.id);
+            return original ? { ...c, x: original.x + dx, y: original.y + dy } : c;
+        });
+
+        const newAudios = audios.map((a) => {
+            if (!selectedIds.includes(a.id)) return a;
+            const original = dragStartItems.find((i) => i.id === a.id);
+            return original ? { ...a, x: original.x + dx, y: original.y + dy } : a;
+        });
+
+        const newGroups = groups.map((g) => {
+            if (!selectedIds.includes(g.id)) return g;
+            const original = dragStartItems.find((i) => i.id === g.id);
+            return original ? { ...g, x: original.x + dx, y: original.y + dy } : g;
+        });
+
+        const newDraws = draws.map((d) => {
+            if (!selectedIds.includes(d.id)) return d;
+            const original = dragStartItems.find((i) => i.id === d.id);
+            return original ? { ...d, x: original.x + dx, y: original.y + dy } : d;
+        });
+
+        const newImages = images.map((i) => {
+            if (!selectedIds.includes(i.id)) return i;
+            const original = dragStartItems.find((item) => item.id === i.id);
+            return original ? { ...i, x: original.x + dx, y: original.y + dy } : i;
+        });
+
         setNotes(newNotes);
         setLinks(newLinks);
         setBoard(newBoard);
         setHeaderTexts(newHeaderTexts);
+        setVideos(newVideos);
         setColorCards(newColorCards);
         setDocuments(newDocuments);
+        setSketches(newSketches);
+        setComments(newComments);
+        setAudios(newAudios);
+        setGroups(newGroups);
+        setDraws(newDraws);
+        setImages(newImages);
         setDragStartPos(null);
         setDragStartItems([]);
-        pushHistory({ notes: newNotes, links: newLinks, board: newBoard, arrows, headerTexts: newHeaderTexts, colorCards: newColorCards, documents: newDocuments });  // ← เพิ่ม arrows และ headerTexts
+        pushHistory({ notes: newNotes, links: newLinks, board: newBoard, arrows, headerTexts: newHeaderTexts, colorCards: newColorCards, documents: newDocuments, sketches: newSketches, videos: newVideos, comments: newComments, audios: newAudios, groups: newGroups, draws: newDraws, images: newImages });  // ← เพิ่ม arrows และ headerTexts
+    };
+
+    const handleGroupItemDragMove = (groupId: string, dx: number, dy: number) => {
+        const group = groups.find((g) => g.id === groupId);
+        if (!group) return;
+
+        const insideIds = getItemsInsideGroup(group, allItems).map((i) => i.id);
+        if (insideIds.length === 0) return;
+
+        setNotes((prev) => prev.map((n) =>
+            insideIds.includes(n.id) ? { ...n, x: n.x + dx, y: n.y + dy } : n
+        ));
+        setLinks((prev) => prev.map((l) =>
+            insideIds.includes(l.id) ? { ...l, x: l.x + dx, y: l.y + dy } : l
+        ));
+        setBoard((prev) => prev.map((b) =>
+            insideIds.includes(b.id) ? { ...b, x: b.x + dx, y: b.y + dy } : b
+        ));
+        setHeaderTexts((prev) => prev.map((t) =>
+            insideIds.includes(t.id) ? { ...t, x: t.x + dx, y: t.y + dy } : t
+        ));
+        setColorCards((prev) => prev.map((c) =>
+            insideIds.includes(c.id) ? { ...c, x: c.x + dx, y: c.y + dy } : c
+        ));
+        setDocuments((prev) => prev.map((d) =>
+            insideIds.includes(d.id) ? { ...d, x: d.x + dx, y: d.y + dy } : d
+        ));
+        setSketches((prev) => prev.map((s) =>
+            insideIds.includes(s.id) ? { ...s, x: s.x + dx, y: s.y + dy } : s
+        ));
+        setVideos((prev) => prev.map((v) =>
+            insideIds.includes(v.id) ? { ...v, x: v.x + dx, y: v.y + dy } : v
+        ));
+        setAudios((prev) => prev.map((a) =>
+            insideIds.includes(a.id) ? { ...a, x: a.x + dx, y: a.y + dy } : a
+        ));
+        setComments((prev) => prev.map((c) =>
+            insideIds.includes(c.id) ? { ...c, x: c.x + dx, y: c.y + dy } : c
+        ));
+        setGroups((prev) => prev.map((g) =>
+            insideIds.includes(g.id) ? { ...g, x: g.x + dx, y: g.y + dy } : g
+        ));
+        setDraws((prev) => prev.map((d) =>
+            insideIds.includes(d.id) ? { ...d, x: d.x + dx, y: d.y + dy } : d
+        ));
+        triggerUpdate();
+    };
+
+    const handleGroupItemDragEnd = (groupId: string, dx: number, dy: number) => {
+        handleGroupItemDragMove(groupId, dx, dy);
+        pushHistory({
+            notes, links, board, arrows, headerTexts,
+            colorCards, documents, sketches, videos, comments, audios, groups, draws, images,
+        });
+    };
+
+    const handleImageUploaded = (url: string, publicId: string, naturalW: number, naturalH: number) => {
+        if (!openImageId) return;
+
+        const maxSize = 300;
+        let width = naturalW;
+        let height = naturalH;
+
+        if (width > maxSize || height > maxSize) {
+            const ratio = Math.min(maxSize / width, maxSize / height);
+            width = width * ratio;
+            height = height * ratio;
+        }
+
+        updateImage(openImageId, {
+            url,
+            publicId,
+            width,
+            height,
+            status: "ready",
+        });
+        setOpenImageId(null);
     };
 
     return (
@@ -978,9 +1436,9 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                 >
                     <Layer>
                         <ArrowConnector 
-                        selectedArrowId={selectedArrowId}
-                        onSelectArrow={setSelectedArrowId}
-                        draggingArrowId={draggingArrowId} allItems={allItems} arrows={arrows} onConnectHead={onConnectHead} onDelete={deleteArrow} draggingArrow={draggingArrow}
+                            selectedArrowId={selectedArrowId}
+                            onSelectArrow={handleSelectArrow}
+                            draggingArrowId={draggingArrowId} allItems={allItems} arrows={arrows} onConnectHead={onConnectHead} onDelete={deleteArrow} draggingArrow={draggingArrow} parentBoardId={parentBoardId}
                          />
                         {/* Selection Box */}
                         {selectionBox && selectionBox.width > 5 && (
@@ -998,6 +1456,23 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                         )}
                         {versions.map((version) => (
                             <React.Fragment key={version.id}>
+                                    <GroupElement
+                                        groups={groups}
+                                        selectedGroupId={selectedGroupId}
+                                        selectedIds={selectedIds}
+                                        parentBoardId={parentBoardId}
+                                        allItems={allItems}
+                                        updateGroup={updateGroup}
+                                        selectGroup={selectGroup}
+                                        setSelectedGroupId={setSelectedGroupId}
+                                        onDragMove={triggerUpdate}
+                                        onDragStart={handleGroupDragStart}
+                                        onDragMove_group={handleGroupDragMove}
+                                        onDragEnd={handleGroupDragEnd}
+                                        onSelect={clearSelection}
+                                        onGroupDragMove={handleGroupItemDragMove}
+                                        onGroupDragEnd={handleGroupItemDragEnd}
+                                    />
                                 <Note 
                                     onDragStart={handleGroupDragStart}
                                     onDragMove_group={handleGroupDragMove}
@@ -1018,7 +1493,7 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                                     onDragMove={triggerUpdate}  
                                     parentBoardId={parentBoardId} 
                                     updateLink={updateLink} 
-                                    links={links} selectedLinkId={selectedLinkId} setSelectedLinkId={setSelectedLinkId}/>
+                                    links={links} selectedLinkId={selectedLinkId} setSelectedLinkId={setSelectedLinkId} onSelect={clearSelection}/>
                                 <Board 
                                     onDragStart={handleGroupDragStart}
                                     onDragMove_group={handleGroupDragMove}
@@ -1031,7 +1506,10 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                                     selectedBoardId={selectedBoardId} 
                                     setSelectedBoardId={setSelectedBoardId} 
                                     startEditBoardTitle={startEditBoardTitle} 
-                                    versionId={version.id}/>
+                                    versionId={version.id}
+                                    onSelect={clearSelection}
+                                />
+                                    
                                 <HeaderText
                                     onDragStart={handleGroupDragStart}
                                     onDragMove_group={handleGroupDragMove}
@@ -1088,10 +1566,128 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                                     onDragEnd={handleGroupDragEnd}
                                     onOpenSketch={setOpenSketchId}
                                 />
+                                <VideoIcon
+                                    videos={videos}
+                                    selectedVideoId={selectedVideoId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateVideo={updateVideo}
+                                    selectVideo={selectVideo}
+                                    setSelectedVideoId={setSelectedVideoId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    onOpenVideo={setOpenVideoId}
+                                    onSelect={clearSelection}
+                                />
+                                <CommentIcon
+                                    comments={comments}
+                                    selectedCommentId={selectedCommentId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateComment={updateComment}
+                                    selectComment={selectComment}
+                                    setSelectedCommentId={setSelectedCommentId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    onOpenComment={setOpenCommentId}
+                                    onSelect={clearSelection}
+                                />
+                                <AudioElement
+                                    audios={audios}
+                                    selectedAudioId={selectedAudioId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateAudio={updateAudio}
+                                    selectAudio={selectAudio}
+                                    setSelectedAudioId={setSelectedAudioId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    onOpenAudio={setOpenAudioId}
+                                    onSelect={clearSelection}
+                                    audioPlayer={audioPlayer}
+                                />
+                                <DrawElement
+                                    draws={draws}
+                                    selectedDrawId={selectedDrawId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateDraw={updateDraw}
+                                    selectDraw={selectDraw}
+                                    setSelectedDrawId={setSelectedDrawId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    onOpenDraw={setOpenDrawId}
+                                    onSelect={clearSelection}
+                                />
+                                <ImageElement
+                                    images={images}
+                                    selectedImageId={selectedImageId}
+                                    selectedIds={selectedIds}
+                                    parentBoardId={parentBoardId}
+                                    updateImage={updateImage}
+                                    selectImage={selectImage}
+                                    setSelectedImageId={setSelectedImageId}
+                                    onDragMove={triggerUpdate}
+                                    onDragStart={handleGroupDragStart}
+                                    onDragMove_group={handleGroupDragMove}
+                                    onDragEnd={handleGroupDragEnd}
+                                    // onOpenImage={setOpenImageId}
+                                    onSelect={clearSelection}
+                                    onViewImage={setViewImageId}
+                                    onOpenImage={(id) => {
+                                        const image = images.find((i) => i.id === id);
+                                        if (image?.status === "ready") {
+                                            setViewImageId(id);    // ← ถ้ามีรูปแล้ว เปิด viewer
+                                        } else {
+                                            setOpenImageId(id);   // ← ถ้าไม่มี เปิด uploader
+                                        }
+                                    }}
+                                />
                             </React.Fragment>
                         ))}
                     </Layer>
                 </Stage>
+
+                {groups.map((g) => {
+                    if (!g.isEditingTitle) return null;
+                    const stage = stageRef.current;
+                    const scaleX = stage?.scaleX() ?? 1;
+                    const posX = stage?.position().x ?? 0;
+                    const posY = stage?.position().y ?? 0;
+
+                    return (
+                        <input
+                            key={g.id}
+                            autoFocus
+                            value={g.title}
+                            onChange={(e) => updateGroup(g.id, { title: e.target.value })}
+                            onBlur={() => updateGroup(g.id, { isEditingTitle: false })}
+                            onKeyDown={(e) => e.key === "Enter" && updateGroup(g.id, { isEditingTitle: false })}
+                            style={{
+                                position: "absolute",
+                                left: posX + g.x * scaleX + 10,
+                                top: posY + g.y * (stage?.scaleY() ?? 1) + 4,
+                                width: (g.width - 20) * scaleX,
+                                height: 18,
+                                background: "transparent",
+                                border: "none",
+                                outline: "none",
+                                fontSize: 12 * scaleX,
+                                fontWeight: 600,
+                                color: "#ffffff",
+                                zIndex: 300,
+                            }}
+                        />
+                    );
+                })}
 
                 {notes.map((note) => note.isEditing && (
                     <textarea
@@ -1215,6 +1811,123 @@ const Design = ({ versions, updateVersionData, parentBoardId }: Props) => {
                         onCancel={() => setOpenSketchId(null)}
                     />
                 )}
+
+                {openVideoId && (() => {
+                    const video = videos.find((v) => v.id === openVideoId);
+                    if (!video) return null;
+
+                    if (video.status === "ready" && video.playbackId) {
+                        return (
+                            <VideoPlayer
+                                playbackId={video.playbackId}
+                                onClose={() => setOpenVideoId(null)}
+                            />
+                        );
+                    }
+
+                    return (
+                        <VideoUploader
+                            onStartUpload={() => updateVideo(openVideoId!, { status: "uploading" })}
+                            onReady={(uploadId, playbackId, thumbnailUrl) => {
+                                updateVideo(openVideoId, {
+                                    uploadId,
+                                    playbackId,
+                                    thumbnailUrl,
+                                    status: "ready",
+                                });
+                                setOpenVideoId(null);
+                            }}
+                            onClose={() => {
+                                const video = videos.find((v) => v.id === openVideoId);
+                                if (video?.status === "idle" || video?.status === "error") {
+                                    setVideos((prev) => prev.filter((v) => v.id !== openVideoId));
+                                }
+                                setOpenVideoId(null);
+                            }}
+                        />
+                    );
+                })()}
+
+                {openCommentId && (() => {
+                    const comment = comments.find((c) => c.id === openCommentId);
+                    if (!comment) return null;
+                    return (
+                        <CommentPanel
+                            comment={comment}
+                            currentUser={{
+                                name: session?.name || "Anonymous",
+                                avatar: session?.image || undefined,
+                            }}
+                            onUpdate={updateComment}
+                            onClose={() => {
+                                // ถ้ายังไม่ได้พิมพ์อะไรเลยให้ลบทิ้ง
+                                if (!comment.text) deleteComment(comment.id);
+                                else setOpenCommentId(null);
+                            }}
+                            onDelete={deleteComment}
+                        />
+                    );
+                })()}
+
+                {openAudioId && (() => {
+                    const audio = audios.find((a) => a.id === openAudioId);
+                    if (!audio) return null;
+                    return (
+                        <AudioPanel
+                            audio={audio}
+                            onUpdate={updateAudio}
+                            onClose={() => {
+                                if (audio.status === "idle") {
+                                    setAudios((prev) => prev.filter((a) => a.id !== openAudioId));
+                                }
+                                setOpenAudioId(null);
+                            }}
+                            audioPlayer={audioPlayer}
+                        />
+                    );
+                })()}
+
+                {openDrawId && (() => {
+                    const draw = draws.find((d) => d.id === openDrawId);
+                    if (!draw) return null;
+                    return (
+                        <DrawEditor
+                            draw={draw}
+                            onUpdate={updateDraw}
+                            onClose={() => setOpenDrawId(null)}
+                        />
+                    );
+                })()}
+
+                {openImageId && (() => {
+                    const image = images.find((i) => i.id === openImageId);
+                    if (!image) return null;
+                    if (image.status === "ready") return null; // ไม่เปิด uploader ถ้ามีรูปแล้ว
+
+                    return (
+                        <ImageUploader
+                            onStartUpload={() => updateImage(openImageId, { status: "uploading" })}
+                            onUploaded={handleImageUploaded}
+                            onClose={() => {
+                                if (image.status === "idle") {
+                                    setImages((prev) => prev.filter((i) => i.id !== openImageId));
+                                }
+                                setOpenImageId(null);
+                            }}
+                        />
+                    );
+                })()}
+
+                {viewImageId && (() => {
+                    const image = images.find((i) => i.id === viewImageId);
+                    if (!image?.url) return null;
+                    return (
+                        <ImageViewer
+                            url={image.url}
+                            onClose={() => setViewImageId(null)}
+                        />
+                    );
+                })()}
 
                 </div>
                 <Menu

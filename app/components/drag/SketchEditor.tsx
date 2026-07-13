@@ -38,19 +38,36 @@ const SketchEditor = ({ sketchId, initialData, onSave, onCancel }: Props) => {
     const [selectedStrokeId, setSelectedStrokeId] = useState<string | null>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
 
+    const bgImageRef = useRef<HTMLImageElement | null>(null);
+
     const W = 700;
     const H = 500;
 
     // โหลด initial data
+    // useEffect(() => {
+    //     if (!initialData || !canvasRef.current) return;
+    //     const canvas = canvasRef.current;
+    //     const ctx = canvas.getContext("2d");
+    //     if (!ctx) return;
+    //     const img = new window.Image();
+    //     img.src = initialData;
+    //     img.onload = () => ctx.drawImage(img, 0, 0);
+    // }, []);
+
     useEffect(() => {
-        if (!initialData || !canvasRef.current) return;
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+        if (!initialData) return;
         const img = new window.Image();
         img.src = initialData;
-        img.onload = () => ctx.drawImage(img, 0, 0);
+        img.onload = () => {
+            bgImageRef.current = img;
+            // redraw ใหม่หลัง image โหลดเสร็จ
+            redraw(strokes);
+        };
     }, []);
+
+
+
+    
 
     // วาดทุก stroke ใหม่
     const redraw = useCallback((strokeList: Stroke[], current: Stroke | null = null) => {
@@ -62,6 +79,11 @@ const SketchEditor = ({ sketchId, initialData, onSave, onCancel }: Props) => {
         ctx.clearRect(0, 0, W, H);
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, W, H);
+
+        // ← ใช้ ref แทน new Image() ทุกครั้ง
+        if (bgImageRef.current) {
+            ctx.drawImage(bgImageRef.current, 0, 0, W, H);
+        }
 
         [...strokeList, ...(current ? [current] : [])].forEach((stroke) => {
             if (stroke.points.length < 2) return;
@@ -140,6 +162,7 @@ const SketchEditor = ({ sketchId, initialData, onSave, onCancel }: Props) => {
     const handleSave = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+        // canvas มี background + strokes อยู่แล้ว export ได้เลย
         const dataUrl = canvas.toDataURL("image/png");
         onSave(sketchId, dataUrl);
     };

@@ -12,19 +12,19 @@ import { useRouter } from 'next/navigation';
 
 
 type BoardProps = {
-  setSelectedBoardId: (id: string | null) => void;
-  board: BoardItem[];
-  selectedBoardId: string | null;
-  updateBoard: (id: string, updates: Partial<BoardItem>) => void;
-  startEditBoardTitle : (id: string) => void;
-  versionId: string;
-  parentBoardId: string | undefined;
+    setSelectedBoardId: (id: string | null) => void;
+    board: BoardItem[];
+    selectedBoardId: string | null;
+    updateBoard: (id: string, updates: Partial<BoardItem>) => void;
+    startEditBoardTitle : (id: string) => void;
+    versionId: string;
+    parentBoardId: string | undefined;
     onDragMove?: () => void;
-  onDragEnd?: (id: string, x: number, y: number) => void;
-  selectedIds?: string[];
-  onDragMove_group?: (id: string, dx: number, dy: number) => void;
-  onDragStart?: (id: string, x: number, y: number) => void;
-  
+    onDragEnd?: (id: string, x: number, y: number) => void;
+    selectedIds?: string[];
+    onDragMove_group?: (id: string, dx: number, dy: number) => void;
+    onDragStart?: (id: string, x: number, y: number) => void;
+    onSelect?: () => void;
 };
 
 const FONT = {
@@ -38,7 +38,7 @@ const PADDING = 8;
 const MIN_SIZE = 100;
 const RESIZE_HANDLE_SIZE = 12;
 
-const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startEditBoardTitle, versionId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group }: BoardProps) => {
+const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startEditBoardTitle, versionId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group, onSelect }: BoardProps) => {
 
     const startEdit = (id: string) => {
       updateBoard(id, { isEditing: false });
@@ -83,8 +83,14 @@ const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startE
                             x={item.x}
                             y={item.y}
                             draggable={!item.isEditing}
-                            onClick={() => startEdit(item.id)}
-                            onTap={() => startEdit(item.id)}
+                            onClick={() => {
+                                onSelect?.();           // ← เรียก clearSelection ก่อน
+                                setSelectedBoardId(item.id);
+                            }}
+                            onTap={() => {
+                                onSelect?.();
+                                setSelectedBoardId(item.id);
+                            }}
                              onDragStart={(e) => {
                                 const { x, y } = e.target.position();
                                 onDragStart?.(item.id, x, y);

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState, useTransition } from 'react'
 import { PiDotsThreeOutlineVerticalFill } from 'react-icons/pi'
 import {
@@ -43,6 +43,8 @@ const Script = () => {
   const [aleart, setAleart] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
 
+  const router = useRouter();
+
   const user = useCurrentUser();
 
   const path = usePathname();
@@ -71,6 +73,12 @@ const Script = () => {
         .then((data) => {
           const newScript = data?.script;
 
+          if(!newScript) {
+            setError(data?.error || "Failed to create script.");
+            handleAleart();
+            return;
+          }
+
           if (newScript) {
             setScript((prev) => [newScript, ...prev]); // 🔥 เพิ่มบนสุด
           }
@@ -78,6 +86,7 @@ const Script = () => {
           setError(data?.error);
           setSuccess(data?.success);
           handleAleart();
+          router.push(`/auth/project/${moviePath}/script/${newScript.id}`);
         })
         .catch(() => {
           setError("Failed to create script.");
@@ -138,7 +147,7 @@ const Script = () => {
             <DialogTrigger>
               <div className='flex flex-col w-60 h-32 justify-center items-center border-2 border-white border-dashed hover:cursor-pointer'>
                 <span className='text-white text-lg'>+</span>
-                <span className='text-white text-lg'>New Draft</span>
+                <span className='text-white text-lg'>New Script</span>
               </div>
             </DialogTrigger>
             <DialogContent>

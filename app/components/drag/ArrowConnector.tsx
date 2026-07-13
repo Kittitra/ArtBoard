@@ -16,6 +16,7 @@ interface Props {
     draggingArrowId: string | null
     selectedArrowId: string | null
     onSelectArrow: (id: string | null) => void
+    parentBoardId?: string
     
 }
 
@@ -51,12 +52,15 @@ export const getEdgePoint = (item: AnyItem, targetX: number, targetY: number) =>
 };
 
 // ArrowConnector.tsx
-const ArrowConnector = ({ arrows, draggingArrowId, onDelete, onConnectHead, allItems, selectedArrowId, onSelectArrow }: Props) => {
+const ArrowConnector = ({ arrows, draggingArrowId, onDelete, onConnectHead, allItems, selectedArrowId, onSelectArrow, parentBoardId }: Props) => {
     // console.log("Rendering ArrowConnector with arrows:", arrows);
+
+    
 
     return (
         <>
             {arrows.map((arrow) => {
+                if (arrow.parentBoardId !== parentBoardId) return null;
                 const isDragging = arrow.id === draggingArrowId;
                 const isSelected = arrow.id === selectedArrowId
 

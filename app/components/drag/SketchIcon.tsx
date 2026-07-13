@@ -1,9 +1,9 @@
-// components/drag/SketchIcon.tsx
 "use client";
 
 import { Group, Rect, Image as KonvaImage, Text } from "react-konva";
 import { SketchItem } from "@/lib/type";
 import { useEffect, useState } from "react";
+import useImage from "use-image";
 
 type Props = {
     sketches: SketchItem[]
@@ -19,6 +19,9 @@ type Props = {
     onDragEnd?: (id: string, x: number, y: number) => void
     onOpenSketch?: (id: string) => void
 }
+
+const MIN_SIZE = 60;
+const RESIZE_HANDLE_SIZE = 10;
 
 const SketchIcon = ({
     sketches, selectedSketchId, selectedIds, parentBoardId,
@@ -98,6 +101,41 @@ const SketchIcon = ({
                                 align="center"
                             />
                         </Group>
+                        {/* Resize Handle — แสดงตอน selected */}
+                        {isSelected && (
+                            <Group
+                                x={sketch.x + sketch.width}
+                                y={sketch.y + sketch.height}
+                                draggable
+                                onDragMove={(e) => {
+                                    const pos = e.target.position();
+                                    const newWidth = Math.max(MIN_SIZE, pos.x - sketch.x);
+                                    const newHeight = Math.max(MIN_SIZE, pos.y - sketch.y);
+
+                                    updateSketch(sketch.id, {
+                                        width: newWidth,
+                                        height: newHeight,
+                                    });
+
+                                    // reset handle position
+                                    e.target.position({
+                                        x: sketch.x + newWidth,
+                                        y: sketch.y + newHeight,
+                                    });
+                                }}
+                            >
+                                <Rect
+                                    x={-RESIZE_HANDLE_SIZE / 2}
+                                    y={-RESIZE_HANDLE_SIZE - 15}
+                                    width={RESIZE_HANDLE_SIZE}
+                                    height={RESIZE_HANDLE_SIZE}
+                                    fill="#gray"
+                                    cornerRadius={10}
+                                    stroke="white"
+                                    strokeWidth={1.5}
+                                />
+                            </Group>
+                        )}
                     </Group>
                 );
             })}
@@ -105,18 +143,24 @@ const SketchIcon = ({
     );
 };
 
-// แยก component สำหรับ load image
-const ThumbnailImage = ({ src, width, height }: { src: string; width: number; height: number }) => {
-    const [image, setImage] = useState<HTMLImageElement | null>(null);
-
-    useEffect(() => {
-        const img = new window.Image();
-        img.src = src;
-        img.onload = () => setImage(img);
-    }, [src]);
-
-    if (!image) return null;
-    return <KonvaImage image={image} width={width} height={height} cornerRadius={6} />;
-};
-
 export default SketchIcon;
+
+// แยก component สำหรับ load image
+const ThumbnailImage = ({ src, width, height }: {
+    src: string;
+    width: number;
+    height: number;
+}) => {
+    const [image, status] = useImage(src);
+
+    if (status !== "loaded" || !image) return null;
+
+    return (
+        <KonvaImage
+            image={image}
+            width={width}
+            height={height}
+            cornerRadius={6}
+        />
+    );
+};

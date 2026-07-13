@@ -69,6 +69,7 @@ const ColorCard = ({
     onDragMove, onDragStart, onDragMove_group, onDragEnd,
     onOpenColorPicker, onEditCaption
 }: Props) => {
+
     return (
         <>
             {cards.map((card) => {

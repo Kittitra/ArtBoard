@@ -1,0 +1,22 @@
+// app/api/mux/upload/route.ts
+import Mux from "@mux/mux-node";
+
+const mux = new Mux({
+    tokenId: process.env.MUX_TOKEN_ID!,
+    tokenSecret: process.env.MUX_TOKEN_SECRET!,
+});
+
+export async function POST() {
+    const upload = await mux.video.uploads.create({
+        cors_origin: "*",
+        new_asset_settings: {
+            playback_policy: ["public"],
+            encoding_tier: "baseline",
+        },
+    });
+
+    return Response.json({
+        uploadId: upload.id,
+        uploadUrl: upload.url,
+    });
+}

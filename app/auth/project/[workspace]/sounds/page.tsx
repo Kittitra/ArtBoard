@@ -1,6 +1,6 @@
 'use client';
 
-import SideBarWorkFlow from '@/app/components/SideBarWorkFlow'
+import SideBarWorkFlow from '@/app/components/SideBarVideo'
 import Animation from '@/app/components/workspace/animation/Animation';
 import Sounds from '@/app/components/workspace/sound/Sounds';
 import { title } from 'process';

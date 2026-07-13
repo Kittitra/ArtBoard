@@ -77,3 +77,55 @@ export const DesignVersionSchema = z.object({
         message: "Owner ID is required"
     })
 })
+
+export const VideoCategorySchema = z.object({
+    name: z.string().min(1, {
+        message: "Category name is required"
+    }),
+    userId: z.string().min(1, {
+        message: "User ID is required"
+    }),
+    projectId: z.string().min(1, {
+        message: "Project ID is required"
+    }),
+    type: z.string().min(1, {
+        message: "Category type is required"
+    })
+    
+})
+
+export const VideoSchema = z.object({
+    title: z.string().min(1, {
+        message: "Video title is required"
+    }),
+    userId: z.string().min(1, {
+        message: "User ID is required"
+    }),
+    categoryId: z.string().min(1, {
+        message: "Category ID is required"
+    }),
+    status: z.string().min(1, {
+        message: "status is required"
+    }),
+    description: z.string().min(1, {
+        message: "description is required"
+    }),  
+})
+
+export const VideoVersionSchema = z.object({
+    label: z.string().min(1, {
+        message: "Version label is required"
+    }),
+    muxUploadId: z.string().min(1, {
+        message: "Mux Upload ID is required"
+    }),
+    muxPlaybackId: z.string().min(1, {
+        message: "Mux Playback ID is required"
+    }),
+    thumbnailUrl: z.string().min(1, {
+        message: "Thumbnail URL is required"
+    }),
+    videoId: z.string().min(1, {
+        message: "Video ID is required"
+    }),
+})

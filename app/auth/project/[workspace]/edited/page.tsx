@@ -1,6 +1,6 @@
 'use client';
 
-import SideBarWorkFlow from '@/app/components/SideBarWorkFlow'
+import SideBarWorkFlow from '@/app/components/SideBarVideo'
 import Animation from '@/app/components/workspace/animation/Animation';
 import { title } from 'process';
 import { useState } from 'react'
