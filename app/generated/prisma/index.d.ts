@@ -88,6 +88,46 @@ export type Animation = $Result.DefaultSelection<Prisma.$AnimationPayload>
  * 
  */
 export type AnimationVersion = $Result.DefaultSelection<Prisma.$AnimationVersionPayload>
+/**
+ * Model FootageState
+ * 
+ */
+export type FootageState = $Result.DefaultSelection<Prisma.$FootageStatePayload>
+/**
+ * Model Footage
+ * 
+ */
+export type Footage = $Result.DefaultSelection<Prisma.$FootagePayload>
+/**
+ * Model FootageVersion
+ * 
+ */
+export type FootageVersion = $Result.DefaultSelection<Prisma.$FootageVersionPayload>
+/**
+ * Model SoundFolder
+ * 
+ */
+export type SoundFolder = $Result.DefaultSelection<Prisma.$SoundFolderPayload>
+/**
+ * Model Sound
+ * 
+ */
+export type Sound = $Result.DefaultSelection<Prisma.$SoundPayload>
+/**
+ * Model SoundVersion
+ * 
+ */
+export type SoundVersion = $Result.DefaultSelection<Prisma.$SoundVersionPayload>
+/**
+ * Model Storyboard
+ * 
+ */
+export type Storyboard = $Result.DefaultSelection<Prisma.$StoryboardPayload>
+/**
+ * Model StoryboardPanel
+ * 
+ */
+export type StoryboardPanel = $Result.DefaultSelection<Prisma.$StoryboardPanelPayload>
 
 /**
  * Enums
@@ -374,6 +414,86 @@ export class PrismaClient<
     * ```
     */
   get animationVersion(): Prisma.AnimationVersionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.footageState`: Exposes CRUD operations for the **FootageState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FootageStates
+    * const footageStates = await prisma.footageState.findMany()
+    * ```
+    */
+  get footageState(): Prisma.FootageStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.footage`: Exposes CRUD operations for the **Footage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Footages
+    * const footages = await prisma.footage.findMany()
+    * ```
+    */
+  get footage(): Prisma.FootageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.footageVersion`: Exposes CRUD operations for the **FootageVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FootageVersions
+    * const footageVersions = await prisma.footageVersion.findMany()
+    * ```
+    */
+  get footageVersion(): Prisma.FootageVersionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.soundFolder`: Exposes CRUD operations for the **SoundFolder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SoundFolders
+    * const soundFolders = await prisma.soundFolder.findMany()
+    * ```
+    */
+  get soundFolder(): Prisma.SoundFolderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sound`: Exposes CRUD operations for the **Sound** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sounds
+    * const sounds = await prisma.sound.findMany()
+    * ```
+    */
+  get sound(): Prisma.SoundDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.soundVersion`: Exposes CRUD operations for the **SoundVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SoundVersions
+    * const soundVersions = await prisma.soundVersion.findMany()
+    * ```
+    */
+  get soundVersion(): Prisma.SoundVersionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.storyboard`: Exposes CRUD operations for the **Storyboard** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Storyboards
+    * const storyboards = await prisma.storyboard.findMany()
+    * ```
+    */
+  get storyboard(): Prisma.StoryboardDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.storyboardPanel`: Exposes CRUD operations for the **StoryboardPanel** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StoryboardPanels
+    * const storyboardPanels = await prisma.storyboardPanel.findMany()
+    * ```
+    */
+  get storyboardPanel(): Prisma.StoryboardPanelDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -822,7 +942,15 @@ export namespace Prisma {
     UserProject: 'UserProject',
     AnimationState: 'AnimationState',
     Animation: 'Animation',
-    AnimationVersion: 'AnimationVersion'
+    AnimationVersion: 'AnimationVersion',
+    FootageState: 'FootageState',
+    Footage: 'Footage',
+    FootageVersion: 'FootageVersion',
+    SoundFolder: 'SoundFolder',
+    Sound: 'Sound',
+    SoundVersion: 'SoundVersion',
+    Storyboard: 'Storyboard',
+    StoryboardPanel: 'StoryboardPanel'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -838,7 +966,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject" | "animationState" | "animation" | "animationVersion"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject" | "animationState" | "animation" | "animationVersion" | "footageState" | "footage" | "footageVersion" | "soundFolder" | "sound" | "soundVersion" | "storyboard" | "storyboardPanel"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1952,6 +2080,598 @@ export namespace Prisma {
           }
         }
       }
+      FootageState: {
+        payload: Prisma.$FootageStatePayload<ExtArgs>
+        fields: Prisma.FootageStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FootageStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FootageStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          findFirst: {
+            args: Prisma.FootageStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FootageStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          findMany: {
+            args: Prisma.FootageStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>[]
+          }
+          create: {
+            args: Prisma.FootageStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          createMany: {
+            args: Prisma.FootageStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FootageStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>[]
+          }
+          delete: {
+            args: Prisma.FootageStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          update: {
+            args: Prisma.FootageStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.FootageStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FootageStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FootageStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.FootageStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageStatePayload>
+          }
+          aggregate: {
+            args: Prisma.FootageStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFootageState>
+          }
+          groupBy: {
+            args: Prisma.FootageStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FootageStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FootageStateCountArgs<ExtArgs>
+            result: $Utils.Optional<FootageStateCountAggregateOutputType> | number
+          }
+        }
+      }
+      Footage: {
+        payload: Prisma.$FootagePayload<ExtArgs>
+        fields: Prisma.FootageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FootageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FootageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          findFirst: {
+            args: Prisma.FootageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FootageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          findMany: {
+            args: Prisma.FootageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>[]
+          }
+          create: {
+            args: Prisma.FootageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          createMany: {
+            args: Prisma.FootageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FootageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>[]
+          }
+          delete: {
+            args: Prisma.FootageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          update: {
+            args: Prisma.FootageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          deleteMany: {
+            args: Prisma.FootageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FootageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FootageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>[]
+          }
+          upsert: {
+            args: Prisma.FootageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootagePayload>
+          }
+          aggregate: {
+            args: Prisma.FootageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFootage>
+          }
+          groupBy: {
+            args: Prisma.FootageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FootageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FootageCountArgs<ExtArgs>
+            result: $Utils.Optional<FootageCountAggregateOutputType> | number
+          }
+        }
+      }
+      FootageVersion: {
+        payload: Prisma.$FootageVersionPayload<ExtArgs>
+        fields: Prisma.FootageVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FootageVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FootageVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.FootageVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FootageVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          findMany: {
+            args: Prisma.FootageVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>[]
+          }
+          create: {
+            args: Prisma.FootageVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          createMany: {
+            args: Prisma.FootageVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FootageVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>[]
+          }
+          delete: {
+            args: Prisma.FootageVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          update: {
+            args: Prisma.FootageVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.FootageVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FootageVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FootageVersionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>[]
+          }
+          upsert: {
+            args: Prisma.FootageVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FootageVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.FootageVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFootageVersion>
+          }
+          groupBy: {
+            args: Prisma.FootageVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FootageVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FootageVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<FootageVersionCountAggregateOutputType> | number
+          }
+        }
+      }
+      SoundFolder: {
+        payload: Prisma.$SoundFolderPayload<ExtArgs>
+        fields: Prisma.SoundFolderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoundFolderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoundFolderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          findFirst: {
+            args: Prisma.SoundFolderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoundFolderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          findMany: {
+            args: Prisma.SoundFolderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>[]
+          }
+          create: {
+            args: Prisma.SoundFolderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          createMany: {
+            args: Prisma.SoundFolderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoundFolderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>[]
+          }
+          delete: {
+            args: Prisma.SoundFolderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          update: {
+            args: Prisma.SoundFolderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          deleteMany: {
+            args: Prisma.SoundFolderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoundFolderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SoundFolderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>[]
+          }
+          upsert: {
+            args: Prisma.SoundFolderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundFolderPayload>
+          }
+          aggregate: {
+            args: Prisma.SoundFolderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoundFolder>
+          }
+          groupBy: {
+            args: Prisma.SoundFolderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoundFolderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoundFolderCountArgs<ExtArgs>
+            result: $Utils.Optional<SoundFolderCountAggregateOutputType> | number
+          }
+        }
+      }
+      Sound: {
+        payload: Prisma.$SoundPayload<ExtArgs>
+        fields: Prisma.SoundFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoundFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoundFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          findFirst: {
+            args: Prisma.SoundFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoundFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          findMany: {
+            args: Prisma.SoundFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>[]
+          }
+          create: {
+            args: Prisma.SoundCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          createMany: {
+            args: Prisma.SoundCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoundCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>[]
+          }
+          delete: {
+            args: Prisma.SoundDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          update: {
+            args: Prisma.SoundUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          deleteMany: {
+            args: Prisma.SoundDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoundUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SoundUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>[]
+          }
+          upsert: {
+            args: Prisma.SoundUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundPayload>
+          }
+          aggregate: {
+            args: Prisma.SoundAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSound>
+          }
+          groupBy: {
+            args: Prisma.SoundGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoundGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoundCountArgs<ExtArgs>
+            result: $Utils.Optional<SoundCountAggregateOutputType> | number
+          }
+        }
+      }
+      SoundVersion: {
+        payload: Prisma.$SoundVersionPayload<ExtArgs>
+        fields: Prisma.SoundVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SoundVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SoundVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.SoundVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SoundVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          findMany: {
+            args: Prisma.SoundVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>[]
+          }
+          create: {
+            args: Prisma.SoundVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          createMany: {
+            args: Prisma.SoundVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SoundVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>[]
+          }
+          delete: {
+            args: Prisma.SoundVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          update: {
+            args: Prisma.SoundVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.SoundVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SoundVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SoundVersionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>[]
+          }
+          upsert: {
+            args: Prisma.SoundVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SoundVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.SoundVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSoundVersion>
+          }
+          groupBy: {
+            args: Prisma.SoundVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SoundVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SoundVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<SoundVersionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Storyboard: {
+        payload: Prisma.$StoryboardPayload<ExtArgs>
+        fields: Prisma.StoryboardFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StoryboardFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StoryboardFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          findFirst: {
+            args: Prisma.StoryboardFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StoryboardFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          findMany: {
+            args: Prisma.StoryboardFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>[]
+          }
+          create: {
+            args: Prisma.StoryboardCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          createMany: {
+            args: Prisma.StoryboardCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StoryboardCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>[]
+          }
+          delete: {
+            args: Prisma.StoryboardDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          update: {
+            args: Prisma.StoryboardUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          deleteMany: {
+            args: Prisma.StoryboardDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StoryboardUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StoryboardUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>[]
+          }
+          upsert: {
+            args: Prisma.StoryboardUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPayload>
+          }
+          aggregate: {
+            args: Prisma.StoryboardAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStoryboard>
+          }
+          groupBy: {
+            args: Prisma.StoryboardGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StoryboardGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StoryboardCountArgs<ExtArgs>
+            result: $Utils.Optional<StoryboardCountAggregateOutputType> | number
+          }
+        }
+      }
+      StoryboardPanel: {
+        payload: Prisma.$StoryboardPanelPayload<ExtArgs>
+        fields: Prisma.StoryboardPanelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StoryboardPanelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StoryboardPanelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          findFirst: {
+            args: Prisma.StoryboardPanelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StoryboardPanelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          findMany: {
+            args: Prisma.StoryboardPanelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+          }
+          create: {
+            args: Prisma.StoryboardPanelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          createMany: {
+            args: Prisma.StoryboardPanelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StoryboardPanelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+          }
+          delete: {
+            args: Prisma.StoryboardPanelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          update: {
+            args: Prisma.StoryboardPanelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          deleteMany: {
+            args: Prisma.StoryboardPanelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StoryboardPanelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StoryboardPanelUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+          }
+          upsert: {
+            args: Prisma.StoryboardPanelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+          }
+          aggregate: {
+            args: Prisma.StoryboardPanelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStoryboardPanel>
+          }
+          groupBy: {
+            args: Prisma.StoryboardPanelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StoryboardPanelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StoryboardPanelCountArgs<ExtArgs>
+            result: $Utils.Optional<StoryboardPanelCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2075,6 +2795,14 @@ export namespace Prisma {
     animationState?: AnimationStateOmit
     animation?: AnimationOmit
     animationVersion?: AnimationVersionOmit
+    footageState?: FootageStateOmit
+    footage?: FootageOmit
+    footageVersion?: FootageVersionOmit
+    soundFolder?: SoundFolderOmit
+    sound?: SoundOmit
+    soundVersion?: SoundVersionOmit
+    storyboard?: StoryboardOmit
+    storyboardPanel?: StoryboardPanelOmit
   }
 
   /* Types for Logging */
@@ -2163,6 +2891,10 @@ export namespace Prisma {
     DesignCategoryOwner: number
     DesignOwner: number
     AnimationOwner: number
+    FootageOwner: number
+    SoundOwner: number
+    soundFolderOwner: number
+    storyboardOwner: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2174,6 +2906,10 @@ export namespace Prisma {
     DesignCategoryOwner?: boolean | UserCountOutputTypeCountDesignCategoryOwnerArgs
     DesignOwner?: boolean | UserCountOutputTypeCountDesignOwnerArgs
     AnimationOwner?: boolean | UserCountOutputTypeCountAnimationOwnerArgs
+    FootageOwner?: boolean | UserCountOutputTypeCountFootageOwnerArgs
+    SoundOwner?: boolean | UserCountOutputTypeCountSoundOwnerArgs
+    soundFolderOwner?: boolean | UserCountOutputTypeCountSoundFolderOwnerArgs
+    storyboardOwner?: boolean | UserCountOutputTypeCountStoryboardOwnerArgs
   }
 
   // Custom InputTypes
@@ -2243,6 +2979,34 @@ export namespace Prisma {
     where?: AnimationWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFootageOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSoundOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSoundFolderOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundFolderWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStoryboardOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardWhereInput
+  }
+
 
   /**
    * Count Type ProjectCountOutputType
@@ -2253,6 +3017,10 @@ export namespace Prisma {
     scripts: number
     designCategories: number
     animationCategories: number
+    footageCategories: number
+    soundFolders: number
+    sounds: number
+    storyboards: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2260,6 +3028,10 @@ export namespace Prisma {
     scripts?: boolean | ProjectCountOutputTypeCountScriptsArgs
     designCategories?: boolean | ProjectCountOutputTypeCountDesignCategoriesArgs
     animationCategories?: boolean | ProjectCountOutputTypeCountAnimationCategoriesArgs
+    footageCategories?: boolean | ProjectCountOutputTypeCountFootageCategoriesArgs
+    soundFolders?: boolean | ProjectCountOutputTypeCountSoundFoldersArgs
+    sounds?: boolean | ProjectCountOutputTypeCountSoundsArgs
+    storyboards?: boolean | ProjectCountOutputTypeCountStoryboardsArgs
   }
 
   // Custom InputTypes
@@ -2299,6 +3071,34 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountAnimationCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AnimationStateWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountFootageCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageStateWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountSoundFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundFolderWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountSoundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountStoryboardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardWhereInput
   }
 
 
@@ -2454,6 +3254,170 @@ export namespace Prisma {
    */
   export type AnimationCountOutputTypeCountAnimationVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AnimationVersionWhereInput
+  }
+
+
+  /**
+   * Count Type FootageStateCountOutputType
+   */
+
+  export type FootageStateCountOutputType = {
+    footage: number
+  }
+
+  export type FootageStateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footage?: boolean | FootageStateCountOutputTypeCountFootageArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FootageStateCountOutputType without action
+   */
+  export type FootageStateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageStateCountOutputType
+     */
+    select?: FootageStateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FootageStateCountOutputType without action
+   */
+  export type FootageStateCountOutputTypeCountFootageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageWhereInput
+  }
+
+
+  /**
+   * Count Type FootageCountOutputType
+   */
+
+  export type FootageCountOutputType = {
+    FootageVersions: number
+  }
+
+  export type FootageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    FootageVersions?: boolean | FootageCountOutputTypeCountFootageVersionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FootageCountOutputType without action
+   */
+  export type FootageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageCountOutputType
+     */
+    select?: FootageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FootageCountOutputType without action
+   */
+  export type FootageCountOutputTypeCountFootageVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageVersionWhereInput
+  }
+
+
+  /**
+   * Count Type SoundFolderCountOutputType
+   */
+
+  export type SoundFolderCountOutputType = {
+    subFolders: number
+    sounds: number
+  }
+
+  export type SoundFolderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subFolders?: boolean | SoundFolderCountOutputTypeCountSubFoldersArgs
+    sounds?: boolean | SoundFolderCountOutputTypeCountSoundsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SoundFolderCountOutputType without action
+   */
+  export type SoundFolderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolderCountOutputType
+     */
+    select?: SoundFolderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SoundFolderCountOutputType without action
+   */
+  export type SoundFolderCountOutputTypeCountSubFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundFolderWhereInput
+  }
+
+  /**
+   * SoundFolderCountOutputType without action
+   */
+  export type SoundFolderCountOutputTypeCountSoundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundWhereInput
+  }
+
+
+  /**
+   * Count Type SoundCountOutputType
+   */
+
+  export type SoundCountOutputType = {
+    soundVersion: number
+  }
+
+  export type SoundCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    soundVersion?: boolean | SoundCountOutputTypeCountSoundVersionArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SoundCountOutputType without action
+   */
+  export type SoundCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundCountOutputType
+     */
+    select?: SoundCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SoundCountOutputType without action
+   */
+  export type SoundCountOutputTypeCountSoundVersionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundVersionWhereInput
+  }
+
+
+  /**
+   * Count Type StoryboardCountOutputType
+   */
+
+  export type StoryboardCountOutputType = {
+    panels: number
+  }
+
+  export type StoryboardCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    panels?: boolean | StoryboardCountOutputTypeCountPanelsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StoryboardCountOutputType without action
+   */
+  export type StoryboardCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardCountOutputType
+     */
+    select?: StoryboardCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StoryboardCountOutputType without action
+   */
+  export type StoryboardCountOutputTypeCountPanelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardPanelWhereInput
   }
 
 
@@ -2657,6 +3621,10 @@ export namespace Prisma {
     DesignCategoryOwner?: boolean | User$DesignCategoryOwnerArgs<ExtArgs>
     DesignOwner?: boolean | User$DesignOwnerArgs<ExtArgs>
     AnimationOwner?: boolean | User$AnimationOwnerArgs<ExtArgs>
+    FootageOwner?: boolean | User$FootageOwnerArgs<ExtArgs>
+    SoundOwner?: boolean | User$SoundOwnerArgs<ExtArgs>
+    soundFolderOwner?: boolean | User$soundFolderOwnerArgs<ExtArgs>
+    storyboardOwner?: boolean | User$storyboardOwnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2703,6 +3671,10 @@ export namespace Prisma {
     DesignCategoryOwner?: boolean | User$DesignCategoryOwnerArgs<ExtArgs>
     DesignOwner?: boolean | User$DesignOwnerArgs<ExtArgs>
     AnimationOwner?: boolean | User$AnimationOwnerArgs<ExtArgs>
+    FootageOwner?: boolean | User$FootageOwnerArgs<ExtArgs>
+    SoundOwner?: boolean | User$SoundOwnerArgs<ExtArgs>
+    soundFolderOwner?: boolean | User$soundFolderOwnerArgs<ExtArgs>
+    storyboardOwner?: boolean | User$storyboardOwnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2719,6 +3691,10 @@ export namespace Prisma {
       DesignCategoryOwner: Prisma.$DesignCategoryPayload<ExtArgs>[]
       DesignOwner: Prisma.$DesignSubClassPayload<ExtArgs>[]
       AnimationOwner: Prisma.$AnimationPayload<ExtArgs>[]
+      FootageOwner: Prisma.$FootagePayload<ExtArgs>[]
+      SoundOwner: Prisma.$SoundPayload<ExtArgs>[]
+      soundFolderOwner: Prisma.$SoundFolderPayload<ExtArgs>[]
+      storyboardOwner: Prisma.$StoryboardPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3131,6 +4107,10 @@ export namespace Prisma {
     DesignCategoryOwner<T extends User$DesignCategoryOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$DesignCategoryOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DesignOwner<T extends User$DesignOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$DesignOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignSubClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     AnimationOwner<T extends User$AnimationOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$AnimationOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    FootageOwner<T extends User$FootageOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$FootageOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    SoundOwner<T extends User$SoundOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$SoundOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    soundFolderOwner<T extends User$soundFolderOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$soundFolderOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storyboardOwner<T extends User$storyboardOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$storyboardOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3745,6 +4725,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AnimationScalarFieldEnum | AnimationScalarFieldEnum[]
+  }
+
+  /**
+   * User.FootageOwner
+   */
+  export type User$FootageOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    where?: FootageWhereInput
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    cursor?: FootageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FootageScalarFieldEnum | FootageScalarFieldEnum[]
+  }
+
+  /**
+   * User.SoundOwner
+   */
+  export type User$SoundOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    where?: SoundWhereInput
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    cursor?: SoundWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * User.soundFolderOwner
+   */
+  export type User$soundFolderOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    where?: SoundFolderWhereInput
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    cursor?: SoundFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * User.storyboardOwner
+   */
+  export type User$storyboardOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    where?: StoryboardWhereInput
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    cursor?: StoryboardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
   }
 
   /**
@@ -8288,6 +9364,10 @@ export namespace Prisma {
     scripts?: boolean | Project$scriptsArgs<ExtArgs>
     designCategories?: boolean | Project$designCategoriesArgs<ExtArgs>
     animationCategories?: boolean | Project$animationCategoriesArgs<ExtArgs>
+    footageCategories?: boolean | Project$footageCategoriesArgs<ExtArgs>
+    soundFolders?: boolean | Project$soundFoldersArgs<ExtArgs>
+    sounds?: boolean | Project$soundsArgs<ExtArgs>
+    storyboards?: boolean | Project$storyboardsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8321,6 +9401,10 @@ export namespace Prisma {
     scripts?: boolean | Project$scriptsArgs<ExtArgs>
     designCategories?: boolean | Project$designCategoriesArgs<ExtArgs>
     animationCategories?: boolean | Project$animationCategoriesArgs<ExtArgs>
+    footageCategories?: boolean | Project$footageCategoriesArgs<ExtArgs>
+    soundFolders?: boolean | Project$soundFoldersArgs<ExtArgs>
+    sounds?: boolean | Project$soundsArgs<ExtArgs>
+    storyboards?: boolean | Project$storyboardsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8333,6 +9417,10 @@ export namespace Prisma {
       scripts: Prisma.$ScriptPayload<ExtArgs>[]
       designCategories: Prisma.$DesignCategoryPayload<ExtArgs>[]
       animationCategories: Prisma.$AnimationStatePayload<ExtArgs>[]
+      footageCategories: Prisma.$FootageStatePayload<ExtArgs>[]
+      soundFolders: Prisma.$SoundFolderPayload<ExtArgs>[]
+      sounds: Prisma.$SoundPayload<ExtArgs>[]
+      storyboards: Prisma.$StoryboardPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8738,6 +9826,10 @@ export namespace Prisma {
     scripts<T extends Project$scriptsArgs<ExtArgs> = {}>(args?: Subset<T, Project$scriptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScriptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     designCategories<T extends Project$designCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$designCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DesignCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     animationCategories<T extends Project$animationCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$animationCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnimationStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    footageCategories<T extends Project$footageCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$footageCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    soundFolders<T extends Project$soundFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Project$soundFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sounds<T extends Project$soundsArgs<ExtArgs> = {}>(args?: Subset<T, Project$soundsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storyboards<T extends Project$storyboardsArgs<ExtArgs> = {}>(args?: Subset<T, Project$storyboardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9253,6 +10345,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AnimationStateScalarFieldEnum | AnimationStateScalarFieldEnum[]
+  }
+
+  /**
+   * Project.footageCategories
+   */
+  export type Project$footageCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    where?: FootageStateWhereInput
+    orderBy?: FootageStateOrderByWithRelationInput | FootageStateOrderByWithRelationInput[]
+    cursor?: FootageStateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FootageStateScalarFieldEnum | FootageStateScalarFieldEnum[]
+  }
+
+  /**
+   * Project.soundFolders
+   */
+  export type Project$soundFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    where?: SoundFolderWhereInput
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    cursor?: SoundFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * Project.sounds
+   */
+  export type Project$soundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    where?: SoundWhereInput
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    cursor?: SoundWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * Project.storyboards
+   */
+  export type Project$storyboardsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    where?: StoryboardWhereInput
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    cursor?: StoryboardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
   }
 
   /**
@@ -19362,6 +20550,9177 @@ export namespace Prisma {
 
 
   /**
+   * Model FootageState
+   */
+
+  export type AggregateFootageState = {
+    _count: FootageStateCountAggregateOutputType | null
+    _min: FootageStateMinAggregateOutputType | null
+    _max: FootageStateMaxAggregateOutputType | null
+  }
+
+  export type FootageStateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type FootageStateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type FootageStateCountAggregateOutputType = {
+    id: number
+    name: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type FootageStateMinAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type FootageStateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type FootageStateCountAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type FootageStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FootageState to aggregate.
+     */
+    where?: FootageStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageStates to fetch.
+     */
+    orderBy?: FootageStateOrderByWithRelationInput | FootageStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FootageStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FootageStates
+    **/
+    _count?: true | FootageStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FootageStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FootageStateMaxAggregateInputType
+  }
+
+  export type GetFootageStateAggregateType<T extends FootageStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateFootageState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFootageState[P]>
+      : GetScalarType<T[P], AggregateFootageState[P]>
+  }
+
+
+
+
+  export type FootageStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageStateWhereInput
+    orderBy?: FootageStateOrderByWithAggregationInput | FootageStateOrderByWithAggregationInput[]
+    by: FootageStateScalarFieldEnum[] | FootageStateScalarFieldEnum
+    having?: FootageStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FootageStateCountAggregateInputType | true
+    _min?: FootageStateMinAggregateInputType
+    _max?: FootageStateMaxAggregateInputType
+  }
+
+  export type FootageStateGroupByOutputType = {
+    id: string
+    name: string
+    projectId: string | null
+    _count: FootageStateCountAggregateOutputType | null
+    _min: FootageStateMinAggregateOutputType | null
+    _max: FootageStateMaxAggregateOutputType | null
+  }
+
+  type GetFootageStateGroupByPayload<T extends FootageStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FootageStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FootageStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FootageStateGroupByOutputType[P]>
+            : GetScalarType<T[P], FootageStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FootageStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+    footage?: boolean | FootageState$footageArgs<ExtArgs>
+    _count?: boolean | FootageStateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footageState"]>
+
+  export type FootageStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["footageState"]>
+
+  export type FootageStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["footageState"]>
+
+  export type FootageStateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+  }
+
+  export type FootageStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "projectId", ExtArgs["result"]["footageState"]>
+  export type FootageStateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+    footage?: boolean | FootageState$footageArgs<ExtArgs>
+    _count?: boolean | FootageStateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FootageStateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+  }
+  export type FootageStateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | FootageState$projectArgs<ExtArgs>
+  }
+
+  export type $FootageStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FootageState"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs> | null
+      footage: Prisma.$FootagePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      projectId: string | null
+    }, ExtArgs["result"]["footageState"]>
+    composites: {}
+  }
+
+  type FootageStateGetPayload<S extends boolean | null | undefined | FootageStateDefaultArgs> = $Result.GetResult<Prisma.$FootageStatePayload, S>
+
+  type FootageStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FootageStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FootageStateCountAggregateInputType | true
+    }
+
+  export interface FootageStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FootageState'], meta: { name: 'FootageState' } }
+    /**
+     * Find zero or one FootageState that matches the filter.
+     * @param {FootageStateFindUniqueArgs} args - Arguments to find a FootageState
+     * @example
+     * // Get one FootageState
+     * const footageState = await prisma.footageState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FootageStateFindUniqueArgs>(args: SelectSubset<T, FootageStateFindUniqueArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FootageState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FootageStateFindUniqueOrThrowArgs} args - Arguments to find a FootageState
+     * @example
+     * // Get one FootageState
+     * const footageState = await prisma.footageState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FootageStateFindUniqueOrThrowArgs>(args: SelectSubset<T, FootageStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FootageState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateFindFirstArgs} args - Arguments to find a FootageState
+     * @example
+     * // Get one FootageState
+     * const footageState = await prisma.footageState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FootageStateFindFirstArgs>(args?: SelectSubset<T, FootageStateFindFirstArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FootageState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateFindFirstOrThrowArgs} args - Arguments to find a FootageState
+     * @example
+     * // Get one FootageState
+     * const footageState = await prisma.footageState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FootageStateFindFirstOrThrowArgs>(args?: SelectSubset<T, FootageStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FootageStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FootageStates
+     * const footageStates = await prisma.footageState.findMany()
+     * 
+     * // Get first 10 FootageStates
+     * const footageStates = await prisma.footageState.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const footageStateWithIdOnly = await prisma.footageState.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FootageStateFindManyArgs>(args?: SelectSubset<T, FootageStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FootageState.
+     * @param {FootageStateCreateArgs} args - Arguments to create a FootageState.
+     * @example
+     * // Create one FootageState
+     * const FootageState = await prisma.footageState.create({
+     *   data: {
+     *     // ... data to create a FootageState
+     *   }
+     * })
+     * 
+     */
+    create<T extends FootageStateCreateArgs>(args: SelectSubset<T, FootageStateCreateArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FootageStates.
+     * @param {FootageStateCreateManyArgs} args - Arguments to create many FootageStates.
+     * @example
+     * // Create many FootageStates
+     * const footageState = await prisma.footageState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FootageStateCreateManyArgs>(args?: SelectSubset<T, FootageStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FootageStates and returns the data saved in the database.
+     * @param {FootageStateCreateManyAndReturnArgs} args - Arguments to create many FootageStates.
+     * @example
+     * // Create many FootageStates
+     * const footageState = await prisma.footageState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FootageStates and only return the `id`
+     * const footageStateWithIdOnly = await prisma.footageState.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FootageStateCreateManyAndReturnArgs>(args?: SelectSubset<T, FootageStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FootageState.
+     * @param {FootageStateDeleteArgs} args - Arguments to delete one FootageState.
+     * @example
+     * // Delete one FootageState
+     * const FootageState = await prisma.footageState.delete({
+     *   where: {
+     *     // ... filter to delete one FootageState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FootageStateDeleteArgs>(args: SelectSubset<T, FootageStateDeleteArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FootageState.
+     * @param {FootageStateUpdateArgs} args - Arguments to update one FootageState.
+     * @example
+     * // Update one FootageState
+     * const footageState = await prisma.footageState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FootageStateUpdateArgs>(args: SelectSubset<T, FootageStateUpdateArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FootageStates.
+     * @param {FootageStateDeleteManyArgs} args - Arguments to filter FootageStates to delete.
+     * @example
+     * // Delete a few FootageStates
+     * const { count } = await prisma.footageState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FootageStateDeleteManyArgs>(args?: SelectSubset<T, FootageStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FootageStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FootageStates
+     * const footageState = await prisma.footageState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FootageStateUpdateManyArgs>(args: SelectSubset<T, FootageStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FootageStates and returns the data updated in the database.
+     * @param {FootageStateUpdateManyAndReturnArgs} args - Arguments to update many FootageStates.
+     * @example
+     * // Update many FootageStates
+     * const footageState = await prisma.footageState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FootageStates and only return the `id`
+     * const footageStateWithIdOnly = await prisma.footageState.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FootageStateUpdateManyAndReturnArgs>(args: SelectSubset<T, FootageStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FootageState.
+     * @param {FootageStateUpsertArgs} args - Arguments to update or create a FootageState.
+     * @example
+     * // Update or create a FootageState
+     * const footageState = await prisma.footageState.upsert({
+     *   create: {
+     *     // ... data to create a FootageState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FootageState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FootageStateUpsertArgs>(args: SelectSubset<T, FootageStateUpsertArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FootageStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateCountArgs} args - Arguments to filter FootageStates to count.
+     * @example
+     * // Count the number of FootageStates
+     * const count = await prisma.footageState.count({
+     *   where: {
+     *     // ... the filter for the FootageStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends FootageStateCountArgs>(
+      args?: Subset<T, FootageStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FootageStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FootageState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FootageStateAggregateArgs>(args: Subset<T, FootageStateAggregateArgs>): Prisma.PrismaPromise<GetFootageStateAggregateType<T>>
+
+    /**
+     * Group by FootageState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FootageStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FootageStateGroupByArgs['orderBy'] }
+        : { orderBy?: FootageStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FootageStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFootageStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FootageState model
+   */
+  readonly fields: FootageStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FootageState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FootageStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends FootageState$projectArgs<ExtArgs> = {}>(args?: Subset<T, FootageState$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    footage<T extends FootageState$footageArgs<ExtArgs> = {}>(args?: Subset<T, FootageState$footageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FootageState model
+   */
+  interface FootageStateFieldRefs {
+    readonly id: FieldRef<"FootageState", 'String'>
+    readonly name: FieldRef<"FootageState", 'String'>
+    readonly projectId: FieldRef<"FootageState", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FootageState findUnique
+   */
+  export type FootageStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageState to fetch.
+     */
+    where: FootageStateWhereUniqueInput
+  }
+
+  /**
+   * FootageState findUniqueOrThrow
+   */
+  export type FootageStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageState to fetch.
+     */
+    where: FootageStateWhereUniqueInput
+  }
+
+  /**
+   * FootageState findFirst
+   */
+  export type FootageStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageState to fetch.
+     */
+    where?: FootageStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageStates to fetch.
+     */
+    orderBy?: FootageStateOrderByWithRelationInput | FootageStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FootageStates.
+     */
+    cursor?: FootageStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FootageStates.
+     */
+    distinct?: FootageStateScalarFieldEnum | FootageStateScalarFieldEnum[]
+  }
+
+  /**
+   * FootageState findFirstOrThrow
+   */
+  export type FootageStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageState to fetch.
+     */
+    where?: FootageStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageStates to fetch.
+     */
+    orderBy?: FootageStateOrderByWithRelationInput | FootageStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FootageStates.
+     */
+    cursor?: FootageStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FootageStates.
+     */
+    distinct?: FootageStateScalarFieldEnum | FootageStateScalarFieldEnum[]
+  }
+
+  /**
+   * FootageState findMany
+   */
+  export type FootageStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageStates to fetch.
+     */
+    where?: FootageStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageStates to fetch.
+     */
+    orderBy?: FootageStateOrderByWithRelationInput | FootageStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FootageStates.
+     */
+    cursor?: FootageStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageStates.
+     */
+    skip?: number
+    distinct?: FootageStateScalarFieldEnum | FootageStateScalarFieldEnum[]
+  }
+
+  /**
+   * FootageState create
+   */
+  export type FootageStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FootageState.
+     */
+    data: XOR<FootageStateCreateInput, FootageStateUncheckedCreateInput>
+  }
+
+  /**
+   * FootageState createMany
+   */
+  export type FootageStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FootageStates.
+     */
+    data: FootageStateCreateManyInput | FootageStateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FootageState createManyAndReturn
+   */
+  export type FootageStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many FootageStates.
+     */
+    data: FootageStateCreateManyInput | FootageStateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FootageState update
+   */
+  export type FootageStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FootageState.
+     */
+    data: XOR<FootageStateUpdateInput, FootageStateUncheckedUpdateInput>
+    /**
+     * Choose, which FootageState to update.
+     */
+    where: FootageStateWhereUniqueInput
+  }
+
+  /**
+   * FootageState updateMany
+   */
+  export type FootageStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FootageStates.
+     */
+    data: XOR<FootageStateUpdateManyMutationInput, FootageStateUncheckedUpdateManyInput>
+    /**
+     * Filter which FootageStates to update
+     */
+    where?: FootageStateWhereInput
+    /**
+     * Limit how many FootageStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FootageState updateManyAndReturn
+   */
+  export type FootageStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * The data used to update FootageStates.
+     */
+    data: XOR<FootageStateUpdateManyMutationInput, FootageStateUncheckedUpdateManyInput>
+    /**
+     * Filter which FootageStates to update
+     */
+    where?: FootageStateWhereInput
+    /**
+     * Limit how many FootageStates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FootageState upsert
+   */
+  export type FootageStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FootageState to update in case it exists.
+     */
+    where: FootageStateWhereUniqueInput
+    /**
+     * In case the FootageState found by the `where` argument doesn't exist, create a new FootageState with this data.
+     */
+    create: XOR<FootageStateCreateInput, FootageStateUncheckedCreateInput>
+    /**
+     * In case the FootageState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FootageStateUpdateInput, FootageStateUncheckedUpdateInput>
+  }
+
+  /**
+   * FootageState delete
+   */
+  export type FootageStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    /**
+     * Filter which FootageState to delete.
+     */
+    where: FootageStateWhereUniqueInput
+  }
+
+  /**
+   * FootageState deleteMany
+   */
+  export type FootageStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FootageStates to delete
+     */
+    where?: FootageStateWhereInput
+    /**
+     * Limit how many FootageStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FootageState.project
+   */
+  export type FootageState$projectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * FootageState.footage
+   */
+  export type FootageState$footageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    where?: FootageWhereInput
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    cursor?: FootageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FootageScalarFieldEnum | FootageScalarFieldEnum[]
+  }
+
+  /**
+   * FootageState without action
+   */
+  export type FootageStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Footage
+   */
+
+  export type AggregateFootage = {
+    _count: FootageCountAggregateOutputType | null
+    _min: FootageMinAggregateOutputType | null
+    _max: FootageMaxAggregateOutputType | null
+  }
+
+  export type FootageMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type FootageMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type FootageCountAggregateOutputType = {
+    id: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    approved: number
+    description: number
+    ownerId: number
+    stateId: number
+    status: number
+    _all: number
+  }
+
+
+  export type FootageMinAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type FootageMaxAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type FootageCountAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+    _all?: true
+  }
+
+  export type FootageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Footage to aggregate.
+     */
+    where?: FootageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Footages to fetch.
+     */
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FootageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Footages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Footages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Footages
+    **/
+    _count?: true | FootageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FootageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FootageMaxAggregateInputType
+  }
+
+  export type GetFootageAggregateType<T extends FootageAggregateArgs> = {
+        [P in keyof T & keyof AggregateFootage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFootage[P]>
+      : GetScalarType<T[P], AggregateFootage[P]>
+  }
+
+
+
+
+  export type FootageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageWhereInput
+    orderBy?: FootageOrderByWithAggregationInput | FootageOrderByWithAggregationInput[]
+    by: FootageScalarFieldEnum[] | FootageScalarFieldEnum
+    having?: FootageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FootageCountAggregateInputType | true
+    _min?: FootageMinAggregateInputType
+    _max?: FootageMaxAggregateInputType
+  }
+
+  export type FootageGroupByOutputType = {
+    id: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    approved: boolean
+    description: string | null
+    ownerId: string
+    stateId: string | null
+    status: string
+    _count: FootageCountAggregateOutputType | null
+    _min: FootageMinAggregateOutputType | null
+    _max: FootageMaxAggregateOutputType | null
+  }
+
+  type GetFootageGroupByPayload<T extends FootageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FootageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FootageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FootageGroupByOutputType[P]>
+            : GetScalarType<T[P], FootageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FootageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+    FootageVersions?: boolean | Footage$FootageVersionsArgs<ExtArgs>
+    _count?: boolean | FootageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footage"]>
+
+  export type FootageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["footage"]>
+
+  export type FootageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["footage"]>
+
+  export type FootageSelectScalar = {
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+  }
+
+  export type FootageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "approved" | "description" | "ownerId" | "stateId" | "status", ExtArgs["result"]["footage"]>
+  export type FootageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+    FootageVersions?: boolean | Footage$FootageVersionsArgs<ExtArgs>
+    _count?: boolean | FootageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FootageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+  }
+  export type FootageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Footage$stateArgs<ExtArgs>
+  }
+
+  export type $FootagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Footage"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      state: Prisma.$FootageStatePayload<ExtArgs> | null
+      FootageVersions: Prisma.$FootageVersionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      approved: boolean
+      description: string | null
+      ownerId: string
+      stateId: string | null
+      status: string
+    }, ExtArgs["result"]["footage"]>
+    composites: {}
+  }
+
+  type FootageGetPayload<S extends boolean | null | undefined | FootageDefaultArgs> = $Result.GetResult<Prisma.$FootagePayload, S>
+
+  type FootageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FootageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FootageCountAggregateInputType | true
+    }
+
+  export interface FootageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Footage'], meta: { name: 'Footage' } }
+    /**
+     * Find zero or one Footage that matches the filter.
+     * @param {FootageFindUniqueArgs} args - Arguments to find a Footage
+     * @example
+     * // Get one Footage
+     * const footage = await prisma.footage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FootageFindUniqueArgs>(args: SelectSubset<T, FootageFindUniqueArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Footage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FootageFindUniqueOrThrowArgs} args - Arguments to find a Footage
+     * @example
+     * // Get one Footage
+     * const footage = await prisma.footage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FootageFindUniqueOrThrowArgs>(args: SelectSubset<T, FootageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Footage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageFindFirstArgs} args - Arguments to find a Footage
+     * @example
+     * // Get one Footage
+     * const footage = await prisma.footage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FootageFindFirstArgs>(args?: SelectSubset<T, FootageFindFirstArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Footage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageFindFirstOrThrowArgs} args - Arguments to find a Footage
+     * @example
+     * // Get one Footage
+     * const footage = await prisma.footage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FootageFindFirstOrThrowArgs>(args?: SelectSubset<T, FootageFindFirstOrThrowArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Footages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Footages
+     * const footages = await prisma.footage.findMany()
+     * 
+     * // Get first 10 Footages
+     * const footages = await prisma.footage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const footageWithIdOnly = await prisma.footage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FootageFindManyArgs>(args?: SelectSubset<T, FootageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Footage.
+     * @param {FootageCreateArgs} args - Arguments to create a Footage.
+     * @example
+     * // Create one Footage
+     * const Footage = await prisma.footage.create({
+     *   data: {
+     *     // ... data to create a Footage
+     *   }
+     * })
+     * 
+     */
+    create<T extends FootageCreateArgs>(args: SelectSubset<T, FootageCreateArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Footages.
+     * @param {FootageCreateManyArgs} args - Arguments to create many Footages.
+     * @example
+     * // Create many Footages
+     * const footage = await prisma.footage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FootageCreateManyArgs>(args?: SelectSubset<T, FootageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Footages and returns the data saved in the database.
+     * @param {FootageCreateManyAndReturnArgs} args - Arguments to create many Footages.
+     * @example
+     * // Create many Footages
+     * const footage = await prisma.footage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Footages and only return the `id`
+     * const footageWithIdOnly = await prisma.footage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FootageCreateManyAndReturnArgs>(args?: SelectSubset<T, FootageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Footage.
+     * @param {FootageDeleteArgs} args - Arguments to delete one Footage.
+     * @example
+     * // Delete one Footage
+     * const Footage = await prisma.footage.delete({
+     *   where: {
+     *     // ... filter to delete one Footage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FootageDeleteArgs>(args: SelectSubset<T, FootageDeleteArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Footage.
+     * @param {FootageUpdateArgs} args - Arguments to update one Footage.
+     * @example
+     * // Update one Footage
+     * const footage = await prisma.footage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FootageUpdateArgs>(args: SelectSubset<T, FootageUpdateArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Footages.
+     * @param {FootageDeleteManyArgs} args - Arguments to filter Footages to delete.
+     * @example
+     * // Delete a few Footages
+     * const { count } = await prisma.footage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FootageDeleteManyArgs>(args?: SelectSubset<T, FootageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Footages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Footages
+     * const footage = await prisma.footage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FootageUpdateManyArgs>(args: SelectSubset<T, FootageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Footages and returns the data updated in the database.
+     * @param {FootageUpdateManyAndReturnArgs} args - Arguments to update many Footages.
+     * @example
+     * // Update many Footages
+     * const footage = await prisma.footage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Footages and only return the `id`
+     * const footageWithIdOnly = await prisma.footage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FootageUpdateManyAndReturnArgs>(args: SelectSubset<T, FootageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Footage.
+     * @param {FootageUpsertArgs} args - Arguments to update or create a Footage.
+     * @example
+     * // Update or create a Footage
+     * const footage = await prisma.footage.upsert({
+     *   create: {
+     *     // ... data to create a Footage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Footage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FootageUpsertArgs>(args: SelectSubset<T, FootageUpsertArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Footages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageCountArgs} args - Arguments to filter Footages to count.
+     * @example
+     * // Count the number of Footages
+     * const count = await prisma.footage.count({
+     *   where: {
+     *     // ... the filter for the Footages we want to count
+     *   }
+     * })
+    **/
+    count<T extends FootageCountArgs>(
+      args?: Subset<T, FootageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FootageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Footage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FootageAggregateArgs>(args: Subset<T, FootageAggregateArgs>): Prisma.PrismaPromise<GetFootageAggregateType<T>>
+
+    /**
+     * Group by Footage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FootageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FootageGroupByArgs['orderBy'] }
+        : { orderBy?: FootageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FootageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFootageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Footage model
+   */
+  readonly fields: FootageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Footage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FootageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    state<T extends Footage$stateArgs<ExtArgs> = {}>(args?: Subset<T, Footage$stateArgs<ExtArgs>>): Prisma__FootageStateClient<$Result.GetResult<Prisma.$FootageStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    FootageVersions<T extends Footage$FootageVersionsArgs<ExtArgs> = {}>(args?: Subset<T, Footage$FootageVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Footage model
+   */
+  interface FootageFieldRefs {
+    readonly id: FieldRef<"Footage", 'String'>
+    readonly title: FieldRef<"Footage", 'String'>
+    readonly createdAt: FieldRef<"Footage", 'DateTime'>
+    readonly updatedAt: FieldRef<"Footage", 'DateTime'>
+    readonly approved: FieldRef<"Footage", 'Boolean'>
+    readonly description: FieldRef<"Footage", 'String'>
+    readonly ownerId: FieldRef<"Footage", 'String'>
+    readonly stateId: FieldRef<"Footage", 'String'>
+    readonly status: FieldRef<"Footage", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Footage findUnique
+   */
+  export type FootageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter, which Footage to fetch.
+     */
+    where: FootageWhereUniqueInput
+  }
+
+  /**
+   * Footage findUniqueOrThrow
+   */
+  export type FootageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter, which Footage to fetch.
+     */
+    where: FootageWhereUniqueInput
+  }
+
+  /**
+   * Footage findFirst
+   */
+  export type FootageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter, which Footage to fetch.
+     */
+    where?: FootageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Footages to fetch.
+     */
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Footages.
+     */
+    cursor?: FootageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Footages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Footages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Footages.
+     */
+    distinct?: FootageScalarFieldEnum | FootageScalarFieldEnum[]
+  }
+
+  /**
+   * Footage findFirstOrThrow
+   */
+  export type FootageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter, which Footage to fetch.
+     */
+    where?: FootageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Footages to fetch.
+     */
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Footages.
+     */
+    cursor?: FootageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Footages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Footages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Footages.
+     */
+    distinct?: FootageScalarFieldEnum | FootageScalarFieldEnum[]
+  }
+
+  /**
+   * Footage findMany
+   */
+  export type FootageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter, which Footages to fetch.
+     */
+    where?: FootageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Footages to fetch.
+     */
+    orderBy?: FootageOrderByWithRelationInput | FootageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Footages.
+     */
+    cursor?: FootageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Footages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Footages.
+     */
+    skip?: number
+    distinct?: FootageScalarFieldEnum | FootageScalarFieldEnum[]
+  }
+
+  /**
+   * Footage create
+   */
+  export type FootageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Footage.
+     */
+    data: XOR<FootageCreateInput, FootageUncheckedCreateInput>
+  }
+
+  /**
+   * Footage createMany
+   */
+  export type FootageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Footages.
+     */
+    data: FootageCreateManyInput | FootageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Footage createManyAndReturn
+   */
+  export type FootageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * The data used to create many Footages.
+     */
+    data: FootageCreateManyInput | FootageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Footage update
+   */
+  export type FootageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Footage.
+     */
+    data: XOR<FootageUpdateInput, FootageUncheckedUpdateInput>
+    /**
+     * Choose, which Footage to update.
+     */
+    where: FootageWhereUniqueInput
+  }
+
+  /**
+   * Footage updateMany
+   */
+  export type FootageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Footages.
+     */
+    data: XOR<FootageUpdateManyMutationInput, FootageUncheckedUpdateManyInput>
+    /**
+     * Filter which Footages to update
+     */
+    where?: FootageWhereInput
+    /**
+     * Limit how many Footages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Footage updateManyAndReturn
+   */
+  export type FootageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * The data used to update Footages.
+     */
+    data: XOR<FootageUpdateManyMutationInput, FootageUncheckedUpdateManyInput>
+    /**
+     * Filter which Footages to update
+     */
+    where?: FootageWhereInput
+    /**
+     * Limit how many Footages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Footage upsert
+   */
+  export type FootageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Footage to update in case it exists.
+     */
+    where: FootageWhereUniqueInput
+    /**
+     * In case the Footage found by the `where` argument doesn't exist, create a new Footage with this data.
+     */
+    create: XOR<FootageCreateInput, FootageUncheckedCreateInput>
+    /**
+     * In case the Footage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FootageUpdateInput, FootageUncheckedUpdateInput>
+  }
+
+  /**
+   * Footage delete
+   */
+  export type FootageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+    /**
+     * Filter which Footage to delete.
+     */
+    where: FootageWhereUniqueInput
+  }
+
+  /**
+   * Footage deleteMany
+   */
+  export type FootageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Footages to delete
+     */
+    where?: FootageWhereInput
+    /**
+     * Limit how many Footages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Footage.state
+   */
+  export type Footage$stateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageState
+     */
+    select?: FootageStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageState
+     */
+    omit?: FootageStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageStateInclude<ExtArgs> | null
+    where?: FootageStateWhereInput
+  }
+
+  /**
+   * Footage.FootageVersions
+   */
+  export type Footage$FootageVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    where?: FootageVersionWhereInput
+    orderBy?: FootageVersionOrderByWithRelationInput | FootageVersionOrderByWithRelationInput[]
+    cursor?: FootageVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FootageVersionScalarFieldEnum | FootageVersionScalarFieldEnum[]
+  }
+
+  /**
+   * Footage without action
+   */
+  export type FootageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Footage
+     */
+    select?: FootageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Footage
+     */
+    omit?: FootageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FootageVersion
+   */
+
+  export type AggregateFootageVersion = {
+    _count: FootageVersionCountAggregateOutputType | null
+    _avg: FootageVersionAvgAggregateOutputType | null
+    _sum: FootageVersionSumAggregateOutputType | null
+    _min: FootageVersionMinAggregateOutputType | null
+    _max: FootageVersionMaxAggregateOutputType | null
+  }
+
+  export type FootageVersionAvgAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type FootageVersionSumAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type FootageVersionMinAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    footageId: string | null
+  }
+
+  export type FootageVersionMaxAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    footageId: string | null
+  }
+
+  export type FootageVersionCountAggregateOutputType = {
+    id: number
+    versionNumber: number
+    label: number
+    muxUploadId: number
+    muxPlaybackId: number
+    thumbnailUrl: number
+    createdAt: number
+    footageId: number
+    _all: number
+  }
+
+
+  export type FootageVersionAvgAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type FootageVersionSumAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type FootageVersionMinAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    footageId?: true
+  }
+
+  export type FootageVersionMaxAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    footageId?: true
+  }
+
+  export type FootageVersionCountAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    footageId?: true
+    _all?: true
+  }
+
+  export type FootageVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FootageVersion to aggregate.
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageVersions to fetch.
+     */
+    orderBy?: FootageVersionOrderByWithRelationInput | FootageVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FootageVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FootageVersions
+    **/
+    _count?: true | FootageVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FootageVersionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FootageVersionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FootageVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FootageVersionMaxAggregateInputType
+  }
+
+  export type GetFootageVersionAggregateType<T extends FootageVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateFootageVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFootageVersion[P]>
+      : GetScalarType<T[P], AggregateFootageVersion[P]>
+  }
+
+
+
+
+  export type FootageVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FootageVersionWhereInput
+    orderBy?: FootageVersionOrderByWithAggregationInput | FootageVersionOrderByWithAggregationInput[]
+    by: FootageVersionScalarFieldEnum[] | FootageVersionScalarFieldEnum
+    having?: FootageVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FootageVersionCountAggregateInputType | true
+    _avg?: FootageVersionAvgAggregateInputType
+    _sum?: FootageVersionSumAggregateInputType
+    _min?: FootageVersionMinAggregateInputType
+    _max?: FootageVersionMaxAggregateInputType
+  }
+
+  export type FootageVersionGroupByOutputType = {
+    id: string
+    versionNumber: number
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date
+    footageId: string
+    _count: FootageVersionCountAggregateOutputType | null
+    _avg: FootageVersionAvgAggregateOutputType | null
+    _sum: FootageVersionSumAggregateOutputType | null
+    _min: FootageVersionMinAggregateOutputType | null
+    _max: FootageVersionMaxAggregateOutputType | null
+  }
+
+  type GetFootageVersionGroupByPayload<T extends FootageVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FootageVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FootageVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FootageVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], FootageVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FootageVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    footageId?: boolean
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footageVersion"]>
+
+  export type FootageVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    footageId?: boolean
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footageVersion"]>
+
+  export type FootageVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    footageId?: boolean
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["footageVersion"]>
+
+  export type FootageVersionSelectScalar = {
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    footageId?: boolean
+  }
+
+  export type FootageVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "versionNumber" | "label" | "muxUploadId" | "muxPlaybackId" | "thumbnailUrl" | "createdAt" | "footageId", ExtArgs["result"]["footageVersion"]>
+  export type FootageVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }
+  export type FootageVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }
+  export type FootageVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    footage?: boolean | FootageDefaultArgs<ExtArgs>
+  }
+
+  export type $FootageVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FootageVersion"
+    objects: {
+      footage: Prisma.$FootagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      versionNumber: number
+      label: string | null
+      muxUploadId: string | null
+      muxPlaybackId: string | null
+      thumbnailUrl: string | null
+      createdAt: Date
+      footageId: string
+    }, ExtArgs["result"]["footageVersion"]>
+    composites: {}
+  }
+
+  type FootageVersionGetPayload<S extends boolean | null | undefined | FootageVersionDefaultArgs> = $Result.GetResult<Prisma.$FootageVersionPayload, S>
+
+  type FootageVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FootageVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FootageVersionCountAggregateInputType | true
+    }
+
+  export interface FootageVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FootageVersion'], meta: { name: 'FootageVersion' } }
+    /**
+     * Find zero or one FootageVersion that matches the filter.
+     * @param {FootageVersionFindUniqueArgs} args - Arguments to find a FootageVersion
+     * @example
+     * // Get one FootageVersion
+     * const footageVersion = await prisma.footageVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FootageVersionFindUniqueArgs>(args: SelectSubset<T, FootageVersionFindUniqueArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FootageVersion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FootageVersionFindUniqueOrThrowArgs} args - Arguments to find a FootageVersion
+     * @example
+     * // Get one FootageVersion
+     * const footageVersion = await prisma.footageVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FootageVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, FootageVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FootageVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionFindFirstArgs} args - Arguments to find a FootageVersion
+     * @example
+     * // Get one FootageVersion
+     * const footageVersion = await prisma.footageVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FootageVersionFindFirstArgs>(args?: SelectSubset<T, FootageVersionFindFirstArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FootageVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionFindFirstOrThrowArgs} args - Arguments to find a FootageVersion
+     * @example
+     * // Get one FootageVersion
+     * const footageVersion = await prisma.footageVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FootageVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, FootageVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FootageVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FootageVersions
+     * const footageVersions = await prisma.footageVersion.findMany()
+     * 
+     * // Get first 10 FootageVersions
+     * const footageVersions = await prisma.footageVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const footageVersionWithIdOnly = await prisma.footageVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FootageVersionFindManyArgs>(args?: SelectSubset<T, FootageVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FootageVersion.
+     * @param {FootageVersionCreateArgs} args - Arguments to create a FootageVersion.
+     * @example
+     * // Create one FootageVersion
+     * const FootageVersion = await prisma.footageVersion.create({
+     *   data: {
+     *     // ... data to create a FootageVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends FootageVersionCreateArgs>(args: SelectSubset<T, FootageVersionCreateArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FootageVersions.
+     * @param {FootageVersionCreateManyArgs} args - Arguments to create many FootageVersions.
+     * @example
+     * // Create many FootageVersions
+     * const footageVersion = await prisma.footageVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FootageVersionCreateManyArgs>(args?: SelectSubset<T, FootageVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FootageVersions and returns the data saved in the database.
+     * @param {FootageVersionCreateManyAndReturnArgs} args - Arguments to create many FootageVersions.
+     * @example
+     * // Create many FootageVersions
+     * const footageVersion = await prisma.footageVersion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FootageVersions and only return the `id`
+     * const footageVersionWithIdOnly = await prisma.footageVersion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FootageVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, FootageVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FootageVersion.
+     * @param {FootageVersionDeleteArgs} args - Arguments to delete one FootageVersion.
+     * @example
+     * // Delete one FootageVersion
+     * const FootageVersion = await prisma.footageVersion.delete({
+     *   where: {
+     *     // ... filter to delete one FootageVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FootageVersionDeleteArgs>(args: SelectSubset<T, FootageVersionDeleteArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FootageVersion.
+     * @param {FootageVersionUpdateArgs} args - Arguments to update one FootageVersion.
+     * @example
+     * // Update one FootageVersion
+     * const footageVersion = await prisma.footageVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FootageVersionUpdateArgs>(args: SelectSubset<T, FootageVersionUpdateArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FootageVersions.
+     * @param {FootageVersionDeleteManyArgs} args - Arguments to filter FootageVersions to delete.
+     * @example
+     * // Delete a few FootageVersions
+     * const { count } = await prisma.footageVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FootageVersionDeleteManyArgs>(args?: SelectSubset<T, FootageVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FootageVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FootageVersions
+     * const footageVersion = await prisma.footageVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FootageVersionUpdateManyArgs>(args: SelectSubset<T, FootageVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FootageVersions and returns the data updated in the database.
+     * @param {FootageVersionUpdateManyAndReturnArgs} args - Arguments to update many FootageVersions.
+     * @example
+     * // Update many FootageVersions
+     * const footageVersion = await prisma.footageVersion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FootageVersions and only return the `id`
+     * const footageVersionWithIdOnly = await prisma.footageVersion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FootageVersionUpdateManyAndReturnArgs>(args: SelectSubset<T, FootageVersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FootageVersion.
+     * @param {FootageVersionUpsertArgs} args - Arguments to update or create a FootageVersion.
+     * @example
+     * // Update or create a FootageVersion
+     * const footageVersion = await prisma.footageVersion.upsert({
+     *   create: {
+     *     // ... data to create a FootageVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FootageVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FootageVersionUpsertArgs>(args: SelectSubset<T, FootageVersionUpsertArgs<ExtArgs>>): Prisma__FootageVersionClient<$Result.GetResult<Prisma.$FootageVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FootageVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionCountArgs} args - Arguments to filter FootageVersions to count.
+     * @example
+     * // Count the number of FootageVersions
+     * const count = await prisma.footageVersion.count({
+     *   where: {
+     *     // ... the filter for the FootageVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends FootageVersionCountArgs>(
+      args?: Subset<T, FootageVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FootageVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FootageVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FootageVersionAggregateArgs>(args: Subset<T, FootageVersionAggregateArgs>): Prisma.PrismaPromise<GetFootageVersionAggregateType<T>>
+
+    /**
+     * Group by FootageVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FootageVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FootageVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FootageVersionGroupByArgs['orderBy'] }
+        : { orderBy?: FootageVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FootageVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFootageVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FootageVersion model
+   */
+  readonly fields: FootageVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FootageVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FootageVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    footage<T extends FootageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FootageDefaultArgs<ExtArgs>>): Prisma__FootageClient<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FootageVersion model
+   */
+  interface FootageVersionFieldRefs {
+    readonly id: FieldRef<"FootageVersion", 'String'>
+    readonly versionNumber: FieldRef<"FootageVersion", 'Int'>
+    readonly label: FieldRef<"FootageVersion", 'String'>
+    readonly muxUploadId: FieldRef<"FootageVersion", 'String'>
+    readonly muxPlaybackId: FieldRef<"FootageVersion", 'String'>
+    readonly thumbnailUrl: FieldRef<"FootageVersion", 'String'>
+    readonly createdAt: FieldRef<"FootageVersion", 'DateTime'>
+    readonly footageId: FieldRef<"FootageVersion", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FootageVersion findUnique
+   */
+  export type FootageVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageVersion to fetch.
+     */
+    where: FootageVersionWhereUniqueInput
+  }
+
+  /**
+   * FootageVersion findUniqueOrThrow
+   */
+  export type FootageVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageVersion to fetch.
+     */
+    where: FootageVersionWhereUniqueInput
+  }
+
+  /**
+   * FootageVersion findFirst
+   */
+  export type FootageVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageVersion to fetch.
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageVersions to fetch.
+     */
+    orderBy?: FootageVersionOrderByWithRelationInput | FootageVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FootageVersions.
+     */
+    cursor?: FootageVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FootageVersions.
+     */
+    distinct?: FootageVersionScalarFieldEnum | FootageVersionScalarFieldEnum[]
+  }
+
+  /**
+   * FootageVersion findFirstOrThrow
+   */
+  export type FootageVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageVersion to fetch.
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageVersions to fetch.
+     */
+    orderBy?: FootageVersionOrderByWithRelationInput | FootageVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FootageVersions.
+     */
+    cursor?: FootageVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FootageVersions.
+     */
+    distinct?: FootageVersionScalarFieldEnum | FootageVersionScalarFieldEnum[]
+  }
+
+  /**
+   * FootageVersion findMany
+   */
+  export type FootageVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which FootageVersions to fetch.
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FootageVersions to fetch.
+     */
+    orderBy?: FootageVersionOrderByWithRelationInput | FootageVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FootageVersions.
+     */
+    cursor?: FootageVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FootageVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FootageVersions.
+     */
+    skip?: number
+    distinct?: FootageVersionScalarFieldEnum | FootageVersionScalarFieldEnum[]
+  }
+
+  /**
+   * FootageVersion create
+   */
+  export type FootageVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FootageVersion.
+     */
+    data: XOR<FootageVersionCreateInput, FootageVersionUncheckedCreateInput>
+  }
+
+  /**
+   * FootageVersion createMany
+   */
+  export type FootageVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FootageVersions.
+     */
+    data: FootageVersionCreateManyInput | FootageVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FootageVersion createManyAndReturn
+   */
+  export type FootageVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * The data used to create many FootageVersions.
+     */
+    data: FootageVersionCreateManyInput | FootageVersionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FootageVersion update
+   */
+  export type FootageVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FootageVersion.
+     */
+    data: XOR<FootageVersionUpdateInput, FootageVersionUncheckedUpdateInput>
+    /**
+     * Choose, which FootageVersion to update.
+     */
+    where: FootageVersionWhereUniqueInput
+  }
+
+  /**
+   * FootageVersion updateMany
+   */
+  export type FootageVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FootageVersions.
+     */
+    data: XOR<FootageVersionUpdateManyMutationInput, FootageVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which FootageVersions to update
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * Limit how many FootageVersions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FootageVersion updateManyAndReturn
+   */
+  export type FootageVersionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * The data used to update FootageVersions.
+     */
+    data: XOR<FootageVersionUpdateManyMutationInput, FootageVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which FootageVersions to update
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * Limit how many FootageVersions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FootageVersion upsert
+   */
+  export type FootageVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FootageVersion to update in case it exists.
+     */
+    where: FootageVersionWhereUniqueInput
+    /**
+     * In case the FootageVersion found by the `where` argument doesn't exist, create a new FootageVersion with this data.
+     */
+    create: XOR<FootageVersionCreateInput, FootageVersionUncheckedCreateInput>
+    /**
+     * In case the FootageVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FootageVersionUpdateInput, FootageVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * FootageVersion delete
+   */
+  export type FootageVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+    /**
+     * Filter which FootageVersion to delete.
+     */
+    where: FootageVersionWhereUniqueInput
+  }
+
+  /**
+   * FootageVersion deleteMany
+   */
+  export type FootageVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FootageVersions to delete
+     */
+    where?: FootageVersionWhereInput
+    /**
+     * Limit how many FootageVersions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FootageVersion without action
+   */
+  export type FootageVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FootageVersion
+     */
+    select?: FootageVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FootageVersion
+     */
+    omit?: FootageVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FootageVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SoundFolder
+   */
+
+  export type AggregateSoundFolder = {
+    _count: SoundFolderCountAggregateOutputType | null
+    _min: SoundFolderMinAggregateOutputType | null
+    _max: SoundFolderMaxAggregateOutputType | null
+  }
+
+  export type SoundFolderMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    ownerId: string | null
+    projectId: string | null
+    parentFolderId: string | null
+  }
+
+  export type SoundFolderMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    ownerId: string | null
+    projectId: string | null
+    parentFolderId: string | null
+  }
+
+  export type SoundFolderCountAggregateOutputType = {
+    id: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    ownerId: number
+    projectId: number
+    parentFolderId: number
+    _all: number
+  }
+
+
+  export type SoundFolderMinAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    parentFolderId?: true
+  }
+
+  export type SoundFolderMaxAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    parentFolderId?: true
+  }
+
+  export type SoundFolderCountAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    parentFolderId?: true
+    _all?: true
+  }
+
+  export type SoundFolderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoundFolder to aggregate.
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundFolders to fetch.
+     */
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoundFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SoundFolders
+    **/
+    _count?: true | SoundFolderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoundFolderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoundFolderMaxAggregateInputType
+  }
+
+  export type GetSoundFolderAggregateType<T extends SoundFolderAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoundFolder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoundFolder[P]>
+      : GetScalarType<T[P], AggregateSoundFolder[P]>
+  }
+
+
+
+
+  export type SoundFolderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundFolderWhereInput
+    orderBy?: SoundFolderOrderByWithAggregationInput | SoundFolderOrderByWithAggregationInput[]
+    by: SoundFolderScalarFieldEnum[] | SoundFolderScalarFieldEnum
+    having?: SoundFolderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoundFolderCountAggregateInputType | true
+    _min?: SoundFolderMinAggregateInputType
+    _max?: SoundFolderMaxAggregateInputType
+  }
+
+  export type SoundFolderGroupByOutputType = {
+    id: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    ownerId: string
+    projectId: string
+    parentFolderId: string | null
+    _count: SoundFolderCountAggregateOutputType | null
+    _min: SoundFolderMinAggregateOutputType | null
+    _max: SoundFolderMaxAggregateOutputType | null
+  }
+
+  type GetSoundFolderGroupByPayload<T extends SoundFolderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoundFolderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoundFolderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoundFolderGroupByOutputType[P]>
+            : GetScalarType<T[P], SoundFolderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoundFolderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    parentFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+    subFolders?: boolean | SoundFolder$subFoldersArgs<ExtArgs>
+    sounds?: boolean | SoundFolder$soundsArgs<ExtArgs>
+    _count?: boolean | SoundFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soundFolder"]>
+
+  export type SoundFolderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    parentFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["soundFolder"]>
+
+  export type SoundFolderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    parentFolderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+  }, ExtArgs["result"]["soundFolder"]>
+
+  export type SoundFolderSelectScalar = {
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    parentFolderId?: boolean
+  }
+
+  export type SoundFolderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "ownerId" | "projectId" | "parentFolderId", ExtArgs["result"]["soundFolder"]>
+  export type SoundFolderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+    subFolders?: boolean | SoundFolder$subFoldersArgs<ExtArgs>
+    sounds?: boolean | SoundFolder$soundsArgs<ExtArgs>
+    _count?: boolean | SoundFolderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SoundFolderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+  }
+  export type SoundFolderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    parentFolder?: boolean | SoundFolder$parentFolderArgs<ExtArgs>
+  }
+
+  export type $SoundFolderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SoundFolder"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+      parentFolder: Prisma.$SoundFolderPayload<ExtArgs> | null
+      subFolders: Prisma.$SoundFolderPayload<ExtArgs>[]
+      sounds: Prisma.$SoundPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+      ownerId: string
+      projectId: string
+      parentFolderId: string | null
+    }, ExtArgs["result"]["soundFolder"]>
+    composites: {}
+  }
+
+  type SoundFolderGetPayload<S extends boolean | null | undefined | SoundFolderDefaultArgs> = $Result.GetResult<Prisma.$SoundFolderPayload, S>
+
+  type SoundFolderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SoundFolderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoundFolderCountAggregateInputType | true
+    }
+
+  export interface SoundFolderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SoundFolder'], meta: { name: 'SoundFolder' } }
+    /**
+     * Find zero or one SoundFolder that matches the filter.
+     * @param {SoundFolderFindUniqueArgs} args - Arguments to find a SoundFolder
+     * @example
+     * // Get one SoundFolder
+     * const soundFolder = await prisma.soundFolder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoundFolderFindUniqueArgs>(args: SelectSubset<T, SoundFolderFindUniqueArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SoundFolder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SoundFolderFindUniqueOrThrowArgs} args - Arguments to find a SoundFolder
+     * @example
+     * // Get one SoundFolder
+     * const soundFolder = await prisma.soundFolder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoundFolderFindUniqueOrThrowArgs>(args: SelectSubset<T, SoundFolderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoundFolder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderFindFirstArgs} args - Arguments to find a SoundFolder
+     * @example
+     * // Get one SoundFolder
+     * const soundFolder = await prisma.soundFolder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoundFolderFindFirstArgs>(args?: SelectSubset<T, SoundFolderFindFirstArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoundFolder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderFindFirstOrThrowArgs} args - Arguments to find a SoundFolder
+     * @example
+     * // Get one SoundFolder
+     * const soundFolder = await prisma.soundFolder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoundFolderFindFirstOrThrowArgs>(args?: SelectSubset<T, SoundFolderFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SoundFolders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SoundFolders
+     * const soundFolders = await prisma.soundFolder.findMany()
+     * 
+     * // Get first 10 SoundFolders
+     * const soundFolders = await prisma.soundFolder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const soundFolderWithIdOnly = await prisma.soundFolder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoundFolderFindManyArgs>(args?: SelectSubset<T, SoundFolderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SoundFolder.
+     * @param {SoundFolderCreateArgs} args - Arguments to create a SoundFolder.
+     * @example
+     * // Create one SoundFolder
+     * const SoundFolder = await prisma.soundFolder.create({
+     *   data: {
+     *     // ... data to create a SoundFolder
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoundFolderCreateArgs>(args: SelectSubset<T, SoundFolderCreateArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SoundFolders.
+     * @param {SoundFolderCreateManyArgs} args - Arguments to create many SoundFolders.
+     * @example
+     * // Create many SoundFolders
+     * const soundFolder = await prisma.soundFolder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoundFolderCreateManyArgs>(args?: SelectSubset<T, SoundFolderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SoundFolders and returns the data saved in the database.
+     * @param {SoundFolderCreateManyAndReturnArgs} args - Arguments to create many SoundFolders.
+     * @example
+     * // Create many SoundFolders
+     * const soundFolder = await prisma.soundFolder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SoundFolders and only return the `id`
+     * const soundFolderWithIdOnly = await prisma.soundFolder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoundFolderCreateManyAndReturnArgs>(args?: SelectSubset<T, SoundFolderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SoundFolder.
+     * @param {SoundFolderDeleteArgs} args - Arguments to delete one SoundFolder.
+     * @example
+     * // Delete one SoundFolder
+     * const SoundFolder = await prisma.soundFolder.delete({
+     *   where: {
+     *     // ... filter to delete one SoundFolder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoundFolderDeleteArgs>(args: SelectSubset<T, SoundFolderDeleteArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SoundFolder.
+     * @param {SoundFolderUpdateArgs} args - Arguments to update one SoundFolder.
+     * @example
+     * // Update one SoundFolder
+     * const soundFolder = await prisma.soundFolder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoundFolderUpdateArgs>(args: SelectSubset<T, SoundFolderUpdateArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SoundFolders.
+     * @param {SoundFolderDeleteManyArgs} args - Arguments to filter SoundFolders to delete.
+     * @example
+     * // Delete a few SoundFolders
+     * const { count } = await prisma.soundFolder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoundFolderDeleteManyArgs>(args?: SelectSubset<T, SoundFolderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoundFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SoundFolders
+     * const soundFolder = await prisma.soundFolder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoundFolderUpdateManyArgs>(args: SelectSubset<T, SoundFolderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoundFolders and returns the data updated in the database.
+     * @param {SoundFolderUpdateManyAndReturnArgs} args - Arguments to update many SoundFolders.
+     * @example
+     * // Update many SoundFolders
+     * const soundFolder = await prisma.soundFolder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SoundFolders and only return the `id`
+     * const soundFolderWithIdOnly = await prisma.soundFolder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SoundFolderUpdateManyAndReturnArgs>(args: SelectSubset<T, SoundFolderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SoundFolder.
+     * @param {SoundFolderUpsertArgs} args - Arguments to update or create a SoundFolder.
+     * @example
+     * // Update or create a SoundFolder
+     * const soundFolder = await prisma.soundFolder.upsert({
+     *   create: {
+     *     // ... data to create a SoundFolder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SoundFolder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoundFolderUpsertArgs>(args: SelectSubset<T, SoundFolderUpsertArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SoundFolders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderCountArgs} args - Arguments to filter SoundFolders to count.
+     * @example
+     * // Count the number of SoundFolders
+     * const count = await prisma.soundFolder.count({
+     *   where: {
+     *     // ... the filter for the SoundFolders we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoundFolderCountArgs>(
+      args?: Subset<T, SoundFolderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoundFolderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SoundFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoundFolderAggregateArgs>(args: Subset<T, SoundFolderAggregateArgs>): Prisma.PrismaPromise<GetSoundFolderAggregateType<T>>
+
+    /**
+     * Group by SoundFolder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFolderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoundFolderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoundFolderGroupByArgs['orderBy'] }
+        : { orderBy?: SoundFolderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoundFolderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoundFolderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SoundFolder model
+   */
+  readonly fields: SoundFolderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SoundFolder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoundFolderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parentFolder<T extends SoundFolder$parentFolderArgs<ExtArgs> = {}>(args?: Subset<T, SoundFolder$parentFolderArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    subFolders<T extends SoundFolder$subFoldersArgs<ExtArgs> = {}>(args?: Subset<T, SoundFolder$subFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sounds<T extends SoundFolder$soundsArgs<ExtArgs> = {}>(args?: Subset<T, SoundFolder$soundsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SoundFolder model
+   */
+  interface SoundFolderFieldRefs {
+    readonly id: FieldRef<"SoundFolder", 'String'>
+    readonly name: FieldRef<"SoundFolder", 'String'>
+    readonly createdAt: FieldRef<"SoundFolder", 'DateTime'>
+    readonly updatedAt: FieldRef<"SoundFolder", 'DateTime'>
+    readonly ownerId: FieldRef<"SoundFolder", 'String'>
+    readonly projectId: FieldRef<"SoundFolder", 'String'>
+    readonly parentFolderId: FieldRef<"SoundFolder", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SoundFolder findUnique
+   */
+  export type SoundFolderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundFolder to fetch.
+     */
+    where: SoundFolderWhereUniqueInput
+  }
+
+  /**
+   * SoundFolder findUniqueOrThrow
+   */
+  export type SoundFolderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundFolder to fetch.
+     */
+    where: SoundFolderWhereUniqueInput
+  }
+
+  /**
+   * SoundFolder findFirst
+   */
+  export type SoundFolderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundFolder to fetch.
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundFolders to fetch.
+     */
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoundFolders.
+     */
+    cursor?: SoundFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoundFolders.
+     */
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * SoundFolder findFirstOrThrow
+   */
+  export type SoundFolderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundFolder to fetch.
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundFolders to fetch.
+     */
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoundFolders.
+     */
+    cursor?: SoundFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundFolders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoundFolders.
+     */
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * SoundFolder findMany
+   */
+  export type SoundFolderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundFolders to fetch.
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundFolders to fetch.
+     */
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SoundFolders.
+     */
+    cursor?: SoundFolderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundFolders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundFolders.
+     */
+    skip?: number
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * SoundFolder create
+   */
+  export type SoundFolderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SoundFolder.
+     */
+    data: XOR<SoundFolderCreateInput, SoundFolderUncheckedCreateInput>
+  }
+
+  /**
+   * SoundFolder createMany
+   */
+  export type SoundFolderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SoundFolders.
+     */
+    data: SoundFolderCreateManyInput | SoundFolderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SoundFolder createManyAndReturn
+   */
+  export type SoundFolderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * The data used to create many SoundFolders.
+     */
+    data: SoundFolderCreateManyInput | SoundFolderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoundFolder update
+   */
+  export type SoundFolderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SoundFolder.
+     */
+    data: XOR<SoundFolderUpdateInput, SoundFolderUncheckedUpdateInput>
+    /**
+     * Choose, which SoundFolder to update.
+     */
+    where: SoundFolderWhereUniqueInput
+  }
+
+  /**
+   * SoundFolder updateMany
+   */
+  export type SoundFolderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SoundFolders.
+     */
+    data: XOR<SoundFolderUpdateManyMutationInput, SoundFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which SoundFolders to update
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * Limit how many SoundFolders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoundFolder updateManyAndReturn
+   */
+  export type SoundFolderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * The data used to update SoundFolders.
+     */
+    data: XOR<SoundFolderUpdateManyMutationInput, SoundFolderUncheckedUpdateManyInput>
+    /**
+     * Filter which SoundFolders to update
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * Limit how many SoundFolders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoundFolder upsert
+   */
+  export type SoundFolderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SoundFolder to update in case it exists.
+     */
+    where: SoundFolderWhereUniqueInput
+    /**
+     * In case the SoundFolder found by the `where` argument doesn't exist, create a new SoundFolder with this data.
+     */
+    create: XOR<SoundFolderCreateInput, SoundFolderUncheckedCreateInput>
+    /**
+     * In case the SoundFolder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoundFolderUpdateInput, SoundFolderUncheckedUpdateInput>
+  }
+
+  /**
+   * SoundFolder delete
+   */
+  export type SoundFolderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    /**
+     * Filter which SoundFolder to delete.
+     */
+    where: SoundFolderWhereUniqueInput
+  }
+
+  /**
+   * SoundFolder deleteMany
+   */
+  export type SoundFolderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoundFolders to delete
+     */
+    where?: SoundFolderWhereInput
+    /**
+     * Limit how many SoundFolders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoundFolder.parentFolder
+   */
+  export type SoundFolder$parentFolderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    where?: SoundFolderWhereInput
+  }
+
+  /**
+   * SoundFolder.subFolders
+   */
+  export type SoundFolder$subFoldersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    where?: SoundFolderWhereInput
+    orderBy?: SoundFolderOrderByWithRelationInput | SoundFolderOrderByWithRelationInput[]
+    cursor?: SoundFolderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundFolderScalarFieldEnum | SoundFolderScalarFieldEnum[]
+  }
+
+  /**
+   * SoundFolder.sounds
+   */
+  export type SoundFolder$soundsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    where?: SoundWhereInput
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    cursor?: SoundWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * SoundFolder without action
+   */
+  export type SoundFolderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Sound
+   */
+
+  export type AggregateSound = {
+    _count: SoundCountAggregateOutputType | null
+    _min: SoundMinAggregateOutputType | null
+    _max: SoundMaxAggregateOutputType | null
+  }
+
+  export type SoundMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    ownerId: string | null
+    projectId: string | null
+    folderId: string | null
+  }
+
+  export type SoundMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    ownerId: string | null
+    projectId: string | null
+    folderId: string | null
+  }
+
+  export type SoundCountAggregateOutputType = {
+    id: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    ownerId: number
+    projectId: number
+    folderId: number
+    _all: number
+  }
+
+
+  export type SoundMinAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    folderId?: true
+  }
+
+  export type SoundMaxAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    folderId?: true
+  }
+
+  export type SoundCountAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    ownerId?: true
+    projectId?: true
+    folderId?: true
+    _all?: true
+  }
+
+  export type SoundAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sound to aggregate.
+     */
+    where?: SoundWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sounds to fetch.
+     */
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoundWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sounds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sounds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sounds
+    **/
+    _count?: true | SoundCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoundMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoundMaxAggregateInputType
+  }
+
+  export type GetSoundAggregateType<T extends SoundAggregateArgs> = {
+        [P in keyof T & keyof AggregateSound]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSound[P]>
+      : GetScalarType<T[P], AggregateSound[P]>
+  }
+
+
+
+
+  export type SoundGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundWhereInput
+    orderBy?: SoundOrderByWithAggregationInput | SoundOrderByWithAggregationInput[]
+    by: SoundScalarFieldEnum[] | SoundScalarFieldEnum
+    having?: SoundScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoundCountAggregateInputType | true
+    _min?: SoundMinAggregateInputType
+    _max?: SoundMaxAggregateInputType
+  }
+
+  export type SoundGroupByOutputType = {
+    id: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    ownerId: string
+    projectId: string
+    folderId: string | null
+    _count: SoundCountAggregateOutputType | null
+    _min: SoundMinAggregateOutputType | null
+    _max: SoundMaxAggregateOutputType | null
+  }
+
+  type GetSoundGroupByPayload<T extends SoundGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoundGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoundGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoundGroupByOutputType[P]>
+            : GetScalarType<T[P], SoundGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoundSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    folderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+    soundVersion?: boolean | Sound$soundVersionArgs<ExtArgs>
+    _count?: boolean | SoundCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sound"]>
+
+  export type SoundSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    folderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+  }, ExtArgs["result"]["sound"]>
+
+  export type SoundSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    folderId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+  }, ExtArgs["result"]["sound"]>
+
+  export type SoundSelectScalar = {
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ownerId?: boolean
+    projectId?: boolean
+    folderId?: boolean
+  }
+
+  export type SoundOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "ownerId" | "projectId" | "folderId", ExtArgs["result"]["sound"]>
+  export type SoundInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+    soundVersion?: boolean | Sound$soundVersionArgs<ExtArgs>
+    _count?: boolean | SoundCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SoundIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+  }
+  export type SoundIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    folder?: boolean | Sound$folderArgs<ExtArgs>
+  }
+
+  export type $SoundPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Sound"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      project: Prisma.$ProjectPayload<ExtArgs>
+      folder: Prisma.$SoundFolderPayload<ExtArgs> | null
+      soundVersion: Prisma.$SoundVersionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      ownerId: string
+      projectId: string
+      folderId: string | null
+    }, ExtArgs["result"]["sound"]>
+    composites: {}
+  }
+
+  type SoundGetPayload<S extends boolean | null | undefined | SoundDefaultArgs> = $Result.GetResult<Prisma.$SoundPayload, S>
+
+  type SoundCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SoundFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoundCountAggregateInputType | true
+    }
+
+  export interface SoundDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Sound'], meta: { name: 'Sound' } }
+    /**
+     * Find zero or one Sound that matches the filter.
+     * @param {SoundFindUniqueArgs} args - Arguments to find a Sound
+     * @example
+     * // Get one Sound
+     * const sound = await prisma.sound.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoundFindUniqueArgs>(args: SelectSubset<T, SoundFindUniqueArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sound that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SoundFindUniqueOrThrowArgs} args - Arguments to find a Sound
+     * @example
+     * // Get one Sound
+     * const sound = await prisma.sound.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoundFindUniqueOrThrowArgs>(args: SelectSubset<T, SoundFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sound that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFindFirstArgs} args - Arguments to find a Sound
+     * @example
+     * // Get one Sound
+     * const sound = await prisma.sound.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoundFindFirstArgs>(args?: SelectSubset<T, SoundFindFirstArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sound that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFindFirstOrThrowArgs} args - Arguments to find a Sound
+     * @example
+     * // Get one Sound
+     * const sound = await prisma.sound.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoundFindFirstOrThrowArgs>(args?: SelectSubset<T, SoundFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sounds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sounds
+     * const sounds = await prisma.sound.findMany()
+     * 
+     * // Get first 10 Sounds
+     * const sounds = await prisma.sound.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const soundWithIdOnly = await prisma.sound.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoundFindManyArgs>(args?: SelectSubset<T, SoundFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sound.
+     * @param {SoundCreateArgs} args - Arguments to create a Sound.
+     * @example
+     * // Create one Sound
+     * const Sound = await prisma.sound.create({
+     *   data: {
+     *     // ... data to create a Sound
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoundCreateArgs>(args: SelectSubset<T, SoundCreateArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sounds.
+     * @param {SoundCreateManyArgs} args - Arguments to create many Sounds.
+     * @example
+     * // Create many Sounds
+     * const sound = await prisma.sound.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoundCreateManyArgs>(args?: SelectSubset<T, SoundCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sounds and returns the data saved in the database.
+     * @param {SoundCreateManyAndReturnArgs} args - Arguments to create many Sounds.
+     * @example
+     * // Create many Sounds
+     * const sound = await prisma.sound.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sounds and only return the `id`
+     * const soundWithIdOnly = await prisma.sound.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoundCreateManyAndReturnArgs>(args?: SelectSubset<T, SoundCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Sound.
+     * @param {SoundDeleteArgs} args - Arguments to delete one Sound.
+     * @example
+     * // Delete one Sound
+     * const Sound = await prisma.sound.delete({
+     *   where: {
+     *     // ... filter to delete one Sound
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoundDeleteArgs>(args: SelectSubset<T, SoundDeleteArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sound.
+     * @param {SoundUpdateArgs} args - Arguments to update one Sound.
+     * @example
+     * // Update one Sound
+     * const sound = await prisma.sound.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoundUpdateArgs>(args: SelectSubset<T, SoundUpdateArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sounds.
+     * @param {SoundDeleteManyArgs} args - Arguments to filter Sounds to delete.
+     * @example
+     * // Delete a few Sounds
+     * const { count } = await prisma.sound.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoundDeleteManyArgs>(args?: SelectSubset<T, SoundDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sounds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sounds
+     * const sound = await prisma.sound.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoundUpdateManyArgs>(args: SelectSubset<T, SoundUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sounds and returns the data updated in the database.
+     * @param {SoundUpdateManyAndReturnArgs} args - Arguments to update many Sounds.
+     * @example
+     * // Update many Sounds
+     * const sound = await prisma.sound.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sounds and only return the `id`
+     * const soundWithIdOnly = await prisma.sound.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SoundUpdateManyAndReturnArgs>(args: SelectSubset<T, SoundUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Sound.
+     * @param {SoundUpsertArgs} args - Arguments to update or create a Sound.
+     * @example
+     * // Update or create a Sound
+     * const sound = await prisma.sound.upsert({
+     *   create: {
+     *     // ... data to create a Sound
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sound we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoundUpsertArgs>(args: SelectSubset<T, SoundUpsertArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sounds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundCountArgs} args - Arguments to filter Sounds to count.
+     * @example
+     * // Count the number of Sounds
+     * const count = await prisma.sound.count({
+     *   where: {
+     *     // ... the filter for the Sounds we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoundCountArgs>(
+      args?: Subset<T, SoundCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoundCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sound.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoundAggregateArgs>(args: Subset<T, SoundAggregateArgs>): Prisma.PrismaPromise<GetSoundAggregateType<T>>
+
+    /**
+     * Group by Sound.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoundGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoundGroupByArgs['orderBy'] }
+        : { orderBy?: SoundGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoundGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoundGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Sound model
+   */
+  readonly fields: SoundFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Sound.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoundClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    folder<T extends Sound$folderArgs<ExtArgs> = {}>(args?: Subset<T, Sound$folderArgs<ExtArgs>>): Prisma__SoundFolderClient<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    soundVersion<T extends Sound$soundVersionArgs<ExtArgs> = {}>(args?: Subset<T, Sound$soundVersionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Sound model
+   */
+  interface SoundFieldRefs {
+    readonly id: FieldRef<"Sound", 'String'>
+    readonly title: FieldRef<"Sound", 'String'>
+    readonly createdAt: FieldRef<"Sound", 'DateTime'>
+    readonly updatedAt: FieldRef<"Sound", 'DateTime'>
+    readonly ownerId: FieldRef<"Sound", 'String'>
+    readonly projectId: FieldRef<"Sound", 'String'>
+    readonly folderId: FieldRef<"Sound", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Sound findUnique
+   */
+  export type SoundFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter, which Sound to fetch.
+     */
+    where: SoundWhereUniqueInput
+  }
+
+  /**
+   * Sound findUniqueOrThrow
+   */
+  export type SoundFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter, which Sound to fetch.
+     */
+    where: SoundWhereUniqueInput
+  }
+
+  /**
+   * Sound findFirst
+   */
+  export type SoundFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter, which Sound to fetch.
+     */
+    where?: SoundWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sounds to fetch.
+     */
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sounds.
+     */
+    cursor?: SoundWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sounds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sounds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sounds.
+     */
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * Sound findFirstOrThrow
+   */
+  export type SoundFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter, which Sound to fetch.
+     */
+    where?: SoundWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sounds to fetch.
+     */
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sounds.
+     */
+    cursor?: SoundWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sounds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sounds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sounds.
+     */
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * Sound findMany
+   */
+  export type SoundFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter, which Sounds to fetch.
+     */
+    where?: SoundWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sounds to fetch.
+     */
+    orderBy?: SoundOrderByWithRelationInput | SoundOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sounds.
+     */
+    cursor?: SoundWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sounds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sounds.
+     */
+    skip?: number
+    distinct?: SoundScalarFieldEnum | SoundScalarFieldEnum[]
+  }
+
+  /**
+   * Sound create
+   */
+  export type SoundCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Sound.
+     */
+    data: XOR<SoundCreateInput, SoundUncheckedCreateInput>
+  }
+
+  /**
+   * Sound createMany
+   */
+  export type SoundCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sounds.
+     */
+    data: SoundCreateManyInput | SoundCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Sound createManyAndReturn
+   */
+  export type SoundCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * The data used to create many Sounds.
+     */
+    data: SoundCreateManyInput | SoundCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Sound update
+   */
+  export type SoundUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Sound.
+     */
+    data: XOR<SoundUpdateInput, SoundUncheckedUpdateInput>
+    /**
+     * Choose, which Sound to update.
+     */
+    where: SoundWhereUniqueInput
+  }
+
+  /**
+   * Sound updateMany
+   */
+  export type SoundUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sounds.
+     */
+    data: XOR<SoundUpdateManyMutationInput, SoundUncheckedUpdateManyInput>
+    /**
+     * Filter which Sounds to update
+     */
+    where?: SoundWhereInput
+    /**
+     * Limit how many Sounds to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Sound updateManyAndReturn
+   */
+  export type SoundUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * The data used to update Sounds.
+     */
+    data: XOR<SoundUpdateManyMutationInput, SoundUncheckedUpdateManyInput>
+    /**
+     * Filter which Sounds to update
+     */
+    where?: SoundWhereInput
+    /**
+     * Limit how many Sounds to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Sound upsert
+   */
+  export type SoundUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Sound to update in case it exists.
+     */
+    where: SoundWhereUniqueInput
+    /**
+     * In case the Sound found by the `where` argument doesn't exist, create a new Sound with this data.
+     */
+    create: XOR<SoundCreateInput, SoundUncheckedCreateInput>
+    /**
+     * In case the Sound was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoundUpdateInput, SoundUncheckedUpdateInput>
+  }
+
+  /**
+   * Sound delete
+   */
+  export type SoundDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+    /**
+     * Filter which Sound to delete.
+     */
+    where: SoundWhereUniqueInput
+  }
+
+  /**
+   * Sound deleteMany
+   */
+  export type SoundDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sounds to delete
+     */
+    where?: SoundWhereInput
+    /**
+     * Limit how many Sounds to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Sound.folder
+   */
+  export type Sound$folderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundFolder
+     */
+    select?: SoundFolderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundFolder
+     */
+    omit?: SoundFolderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundFolderInclude<ExtArgs> | null
+    where?: SoundFolderWhereInput
+  }
+
+  /**
+   * Sound.soundVersion
+   */
+  export type Sound$soundVersionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    where?: SoundVersionWhereInput
+    orderBy?: SoundVersionOrderByWithRelationInput | SoundVersionOrderByWithRelationInput[]
+    cursor?: SoundVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SoundVersionScalarFieldEnum | SoundVersionScalarFieldEnum[]
+  }
+
+  /**
+   * Sound without action
+   */
+  export type SoundDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sound
+     */
+    select?: SoundSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sound
+     */
+    omit?: SoundOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SoundVersion
+   */
+
+  export type AggregateSoundVersion = {
+    _count: SoundVersionCountAggregateOutputType | null
+    _avg: SoundVersionAvgAggregateOutputType | null
+    _sum: SoundVersionSumAggregateOutputType | null
+    _min: SoundVersionMinAggregateOutputType | null
+    _max: SoundVersionMaxAggregateOutputType | null
+  }
+
+  export type SoundVersionAvgAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type SoundVersionSumAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type SoundVersionMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    soundId: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    status: string | null
+    versionNumber: number | null
+  }
+
+  export type SoundVersionMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    soundId: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    status: string | null
+    versionNumber: number | null
+  }
+
+  export type SoundVersionCountAggregateOutputType = {
+    id: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    soundId: number
+    muxUploadId: number
+    muxPlaybackId: number
+    status: number
+    versionNumber: number
+    _all: number
+  }
+
+
+  export type SoundVersionAvgAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type SoundVersionSumAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type SoundVersionMinAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    soundId?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    status?: true
+    versionNumber?: true
+  }
+
+  export type SoundVersionMaxAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    soundId?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    status?: true
+    versionNumber?: true
+  }
+
+  export type SoundVersionCountAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    soundId?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    status?: true
+    versionNumber?: true
+    _all?: true
+  }
+
+  export type SoundVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoundVersion to aggregate.
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundVersions to fetch.
+     */
+    orderBy?: SoundVersionOrderByWithRelationInput | SoundVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SoundVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SoundVersions
+    **/
+    _count?: true | SoundVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SoundVersionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SoundVersionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SoundVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SoundVersionMaxAggregateInputType
+  }
+
+  export type GetSoundVersionAggregateType<T extends SoundVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateSoundVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSoundVersion[P]>
+      : GetScalarType<T[P], AggregateSoundVersion[P]>
+  }
+
+
+
+
+  export type SoundVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SoundVersionWhereInput
+    orderBy?: SoundVersionOrderByWithAggregationInput | SoundVersionOrderByWithAggregationInput[]
+    by: SoundVersionScalarFieldEnum[] | SoundVersionScalarFieldEnum
+    having?: SoundVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SoundVersionCountAggregateInputType | true
+    _avg?: SoundVersionAvgAggregateInputType
+    _sum?: SoundVersionSumAggregateInputType
+    _min?: SoundVersionMinAggregateInputType
+    _max?: SoundVersionMaxAggregateInputType
+  }
+
+  export type SoundVersionGroupByOutputType = {
+    id: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    soundId: string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+    _count: SoundVersionCountAggregateOutputType | null
+    _avg: SoundVersionAvgAggregateOutputType | null
+    _sum: SoundVersionSumAggregateOutputType | null
+    _min: SoundVersionMinAggregateOutputType | null
+    _max: SoundVersionMaxAggregateOutputType | null
+  }
+
+  type GetSoundVersionGroupByPayload<T extends SoundVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SoundVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SoundVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SoundVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], SoundVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SoundVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soundId?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    status?: boolean
+    versionNumber?: boolean
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soundVersion"]>
+
+  export type SoundVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soundId?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    status?: boolean
+    versionNumber?: boolean
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soundVersion"]>
+
+  export type SoundVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soundId?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    status?: boolean
+    versionNumber?: boolean
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["soundVersion"]>
+
+  export type SoundVersionSelectScalar = {
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    soundId?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    status?: boolean
+    versionNumber?: boolean
+  }
+
+  export type SoundVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "soundId" | "muxUploadId" | "muxPlaybackId" | "status" | "versionNumber", ExtArgs["result"]["soundVersion"]>
+  export type SoundVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }
+  export type SoundVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }
+  export type SoundVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sound?: boolean | SoundDefaultArgs<ExtArgs>
+  }
+
+  export type $SoundVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SoundVersion"
+    objects: {
+      sound: Prisma.$SoundPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      soundId: string
+      muxUploadId: string
+      muxPlaybackId: string
+      status: string
+      versionNumber: number
+    }, ExtArgs["result"]["soundVersion"]>
+    composites: {}
+  }
+
+  type SoundVersionGetPayload<S extends boolean | null | undefined | SoundVersionDefaultArgs> = $Result.GetResult<Prisma.$SoundVersionPayload, S>
+
+  type SoundVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SoundVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SoundVersionCountAggregateInputType | true
+    }
+
+  export interface SoundVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SoundVersion'], meta: { name: 'SoundVersion' } }
+    /**
+     * Find zero or one SoundVersion that matches the filter.
+     * @param {SoundVersionFindUniqueArgs} args - Arguments to find a SoundVersion
+     * @example
+     * // Get one SoundVersion
+     * const soundVersion = await prisma.soundVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SoundVersionFindUniqueArgs>(args: SelectSubset<T, SoundVersionFindUniqueArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SoundVersion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SoundVersionFindUniqueOrThrowArgs} args - Arguments to find a SoundVersion
+     * @example
+     * // Get one SoundVersion
+     * const soundVersion = await prisma.soundVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SoundVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, SoundVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoundVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionFindFirstArgs} args - Arguments to find a SoundVersion
+     * @example
+     * // Get one SoundVersion
+     * const soundVersion = await prisma.soundVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SoundVersionFindFirstArgs>(args?: SelectSubset<T, SoundVersionFindFirstArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SoundVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionFindFirstOrThrowArgs} args - Arguments to find a SoundVersion
+     * @example
+     * // Get one SoundVersion
+     * const soundVersion = await prisma.soundVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SoundVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, SoundVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SoundVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SoundVersions
+     * const soundVersions = await prisma.soundVersion.findMany()
+     * 
+     * // Get first 10 SoundVersions
+     * const soundVersions = await prisma.soundVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const soundVersionWithIdOnly = await prisma.soundVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SoundVersionFindManyArgs>(args?: SelectSubset<T, SoundVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SoundVersion.
+     * @param {SoundVersionCreateArgs} args - Arguments to create a SoundVersion.
+     * @example
+     * // Create one SoundVersion
+     * const SoundVersion = await prisma.soundVersion.create({
+     *   data: {
+     *     // ... data to create a SoundVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends SoundVersionCreateArgs>(args: SelectSubset<T, SoundVersionCreateArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SoundVersions.
+     * @param {SoundVersionCreateManyArgs} args - Arguments to create many SoundVersions.
+     * @example
+     * // Create many SoundVersions
+     * const soundVersion = await prisma.soundVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SoundVersionCreateManyArgs>(args?: SelectSubset<T, SoundVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SoundVersions and returns the data saved in the database.
+     * @param {SoundVersionCreateManyAndReturnArgs} args - Arguments to create many SoundVersions.
+     * @example
+     * // Create many SoundVersions
+     * const soundVersion = await prisma.soundVersion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SoundVersions and only return the `id`
+     * const soundVersionWithIdOnly = await prisma.soundVersion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SoundVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, SoundVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SoundVersion.
+     * @param {SoundVersionDeleteArgs} args - Arguments to delete one SoundVersion.
+     * @example
+     * // Delete one SoundVersion
+     * const SoundVersion = await prisma.soundVersion.delete({
+     *   where: {
+     *     // ... filter to delete one SoundVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SoundVersionDeleteArgs>(args: SelectSubset<T, SoundVersionDeleteArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SoundVersion.
+     * @param {SoundVersionUpdateArgs} args - Arguments to update one SoundVersion.
+     * @example
+     * // Update one SoundVersion
+     * const soundVersion = await prisma.soundVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SoundVersionUpdateArgs>(args: SelectSubset<T, SoundVersionUpdateArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SoundVersions.
+     * @param {SoundVersionDeleteManyArgs} args - Arguments to filter SoundVersions to delete.
+     * @example
+     * // Delete a few SoundVersions
+     * const { count } = await prisma.soundVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SoundVersionDeleteManyArgs>(args?: SelectSubset<T, SoundVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoundVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SoundVersions
+     * const soundVersion = await prisma.soundVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SoundVersionUpdateManyArgs>(args: SelectSubset<T, SoundVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SoundVersions and returns the data updated in the database.
+     * @param {SoundVersionUpdateManyAndReturnArgs} args - Arguments to update many SoundVersions.
+     * @example
+     * // Update many SoundVersions
+     * const soundVersion = await prisma.soundVersion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SoundVersions and only return the `id`
+     * const soundVersionWithIdOnly = await prisma.soundVersion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SoundVersionUpdateManyAndReturnArgs>(args: SelectSubset<T, SoundVersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SoundVersion.
+     * @param {SoundVersionUpsertArgs} args - Arguments to update or create a SoundVersion.
+     * @example
+     * // Update or create a SoundVersion
+     * const soundVersion = await prisma.soundVersion.upsert({
+     *   create: {
+     *     // ... data to create a SoundVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SoundVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SoundVersionUpsertArgs>(args: SelectSubset<T, SoundVersionUpsertArgs<ExtArgs>>): Prisma__SoundVersionClient<$Result.GetResult<Prisma.$SoundVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SoundVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionCountArgs} args - Arguments to filter SoundVersions to count.
+     * @example
+     * // Count the number of SoundVersions
+     * const count = await prisma.soundVersion.count({
+     *   where: {
+     *     // ... the filter for the SoundVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends SoundVersionCountArgs>(
+      args?: Subset<T, SoundVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SoundVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SoundVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SoundVersionAggregateArgs>(args: Subset<T, SoundVersionAggregateArgs>): Prisma.PrismaPromise<GetSoundVersionAggregateType<T>>
+
+    /**
+     * Group by SoundVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SoundVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SoundVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SoundVersionGroupByArgs['orderBy'] }
+        : { orderBy?: SoundVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SoundVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSoundVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SoundVersion model
+   */
+  readonly fields: SoundVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SoundVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SoundVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sound<T extends SoundDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SoundDefaultArgs<ExtArgs>>): Prisma__SoundClient<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SoundVersion model
+   */
+  interface SoundVersionFieldRefs {
+    readonly id: FieldRef<"SoundVersion", 'String'>
+    readonly title: FieldRef<"SoundVersion", 'String'>
+    readonly createdAt: FieldRef<"SoundVersion", 'DateTime'>
+    readonly updatedAt: FieldRef<"SoundVersion", 'DateTime'>
+    readonly soundId: FieldRef<"SoundVersion", 'String'>
+    readonly muxUploadId: FieldRef<"SoundVersion", 'String'>
+    readonly muxPlaybackId: FieldRef<"SoundVersion", 'String'>
+    readonly status: FieldRef<"SoundVersion", 'String'>
+    readonly versionNumber: FieldRef<"SoundVersion", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SoundVersion findUnique
+   */
+  export type SoundVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundVersion to fetch.
+     */
+    where: SoundVersionWhereUniqueInput
+  }
+
+  /**
+   * SoundVersion findUniqueOrThrow
+   */
+  export type SoundVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundVersion to fetch.
+     */
+    where: SoundVersionWhereUniqueInput
+  }
+
+  /**
+   * SoundVersion findFirst
+   */
+  export type SoundVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundVersion to fetch.
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundVersions to fetch.
+     */
+    orderBy?: SoundVersionOrderByWithRelationInput | SoundVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoundVersions.
+     */
+    cursor?: SoundVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoundVersions.
+     */
+    distinct?: SoundVersionScalarFieldEnum | SoundVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoundVersion findFirstOrThrow
+   */
+  export type SoundVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundVersion to fetch.
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundVersions to fetch.
+     */
+    orderBy?: SoundVersionOrderByWithRelationInput | SoundVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SoundVersions.
+     */
+    cursor?: SoundVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SoundVersions.
+     */
+    distinct?: SoundVersionScalarFieldEnum | SoundVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoundVersion findMany
+   */
+  export type SoundVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which SoundVersions to fetch.
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SoundVersions to fetch.
+     */
+    orderBy?: SoundVersionOrderByWithRelationInput | SoundVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SoundVersions.
+     */
+    cursor?: SoundVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SoundVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SoundVersions.
+     */
+    skip?: number
+    distinct?: SoundVersionScalarFieldEnum | SoundVersionScalarFieldEnum[]
+  }
+
+  /**
+   * SoundVersion create
+   */
+  export type SoundVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SoundVersion.
+     */
+    data: XOR<SoundVersionCreateInput, SoundVersionUncheckedCreateInput>
+  }
+
+  /**
+   * SoundVersion createMany
+   */
+  export type SoundVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SoundVersions.
+     */
+    data: SoundVersionCreateManyInput | SoundVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SoundVersion createManyAndReturn
+   */
+  export type SoundVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * The data used to create many SoundVersions.
+     */
+    data: SoundVersionCreateManyInput | SoundVersionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoundVersion update
+   */
+  export type SoundVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SoundVersion.
+     */
+    data: XOR<SoundVersionUpdateInput, SoundVersionUncheckedUpdateInput>
+    /**
+     * Choose, which SoundVersion to update.
+     */
+    where: SoundVersionWhereUniqueInput
+  }
+
+  /**
+   * SoundVersion updateMany
+   */
+  export type SoundVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SoundVersions.
+     */
+    data: XOR<SoundVersionUpdateManyMutationInput, SoundVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which SoundVersions to update
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * Limit how many SoundVersions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoundVersion updateManyAndReturn
+   */
+  export type SoundVersionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * The data used to update SoundVersions.
+     */
+    data: XOR<SoundVersionUpdateManyMutationInput, SoundVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which SoundVersions to update
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * Limit how many SoundVersions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SoundVersion upsert
+   */
+  export type SoundVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SoundVersion to update in case it exists.
+     */
+    where: SoundVersionWhereUniqueInput
+    /**
+     * In case the SoundVersion found by the `where` argument doesn't exist, create a new SoundVersion with this data.
+     */
+    create: XOR<SoundVersionCreateInput, SoundVersionUncheckedCreateInput>
+    /**
+     * In case the SoundVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SoundVersionUpdateInput, SoundVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * SoundVersion delete
+   */
+  export type SoundVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+    /**
+     * Filter which SoundVersion to delete.
+     */
+    where: SoundVersionWhereUniqueInput
+  }
+
+  /**
+   * SoundVersion deleteMany
+   */
+  export type SoundVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SoundVersions to delete
+     */
+    where?: SoundVersionWhereInput
+    /**
+     * Limit how many SoundVersions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SoundVersion without action
+   */
+  export type SoundVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SoundVersion
+     */
+    select?: SoundVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SoundVersion
+     */
+    omit?: SoundVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SoundVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Storyboard
+   */
+
+  export type AggregateStoryboard = {
+    _count: StoryboardCountAggregateOutputType | null
+    _min: StoryboardMinAggregateOutputType | null
+    _max: StoryboardMaxAggregateOutputType | null
+  }
+
+  export type StoryboardMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    projectId: string | null
+    ownerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StoryboardMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    projectId: string | null
+    ownerId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StoryboardCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    projectId: number
+    ownerId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StoryboardMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    projectId?: true
+    ownerId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StoryboardMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    projectId?: true
+    ownerId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StoryboardCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    projectId?: true
+    ownerId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StoryboardAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Storyboard to aggregate.
+     */
+    where?: StoryboardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Storyboards to fetch.
+     */
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StoryboardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Storyboards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Storyboards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Storyboards
+    **/
+    _count?: true | StoryboardCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StoryboardMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StoryboardMaxAggregateInputType
+  }
+
+  export type GetStoryboardAggregateType<T extends StoryboardAggregateArgs> = {
+        [P in keyof T & keyof AggregateStoryboard]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStoryboard[P]>
+      : GetScalarType<T[P], AggregateStoryboard[P]>
+  }
+
+
+
+
+  export type StoryboardGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardWhereInput
+    orderBy?: StoryboardOrderByWithAggregationInput | StoryboardOrderByWithAggregationInput[]
+    by: StoryboardScalarFieldEnum[] | StoryboardScalarFieldEnum
+    having?: StoryboardScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StoryboardCountAggregateInputType | true
+    _min?: StoryboardMinAggregateInputType
+    _max?: StoryboardMaxAggregateInputType
+  }
+
+  export type StoryboardGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    projectId: string
+    ownerId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: StoryboardCountAggregateOutputType | null
+    _min: StoryboardMinAggregateOutputType | null
+    _max: StoryboardMaxAggregateOutputType | null
+  }
+
+  type GetStoryboardGroupByPayload<T extends StoryboardGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StoryboardGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StoryboardGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StoryboardGroupByOutputType[P]>
+            : GetScalarType<T[P], StoryboardGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StoryboardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    projectId?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    panels?: boolean | Storyboard$panelsArgs<ExtArgs>
+    _count?: boolean | StoryboardCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboard"]>
+
+  export type StoryboardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    projectId?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboard"]>
+
+  export type StoryboardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    projectId?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboard"]>
+
+  export type StoryboardSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    projectId?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StoryboardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectId" | "ownerId" | "createdAt" | "updatedAt", ExtArgs["result"]["storyboard"]>
+  export type StoryboardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    panels?: boolean | Storyboard$panelsArgs<ExtArgs>
+    _count?: boolean | StoryboardCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type StoryboardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type StoryboardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $StoryboardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Storyboard"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+      panels: Prisma.$StoryboardPanelPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      projectId: string
+      ownerId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["storyboard"]>
+    composites: {}
+  }
+
+  type StoryboardGetPayload<S extends boolean | null | undefined | StoryboardDefaultArgs> = $Result.GetResult<Prisma.$StoryboardPayload, S>
+
+  type StoryboardCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StoryboardFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StoryboardCountAggregateInputType | true
+    }
+
+  export interface StoryboardDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Storyboard'], meta: { name: 'Storyboard' } }
+    /**
+     * Find zero or one Storyboard that matches the filter.
+     * @param {StoryboardFindUniqueArgs} args - Arguments to find a Storyboard
+     * @example
+     * // Get one Storyboard
+     * const storyboard = await prisma.storyboard.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StoryboardFindUniqueArgs>(args: SelectSubset<T, StoryboardFindUniqueArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Storyboard that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StoryboardFindUniqueOrThrowArgs} args - Arguments to find a Storyboard
+     * @example
+     * // Get one Storyboard
+     * const storyboard = await prisma.storyboard.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StoryboardFindUniqueOrThrowArgs>(args: SelectSubset<T, StoryboardFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Storyboard that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardFindFirstArgs} args - Arguments to find a Storyboard
+     * @example
+     * // Get one Storyboard
+     * const storyboard = await prisma.storyboard.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StoryboardFindFirstArgs>(args?: SelectSubset<T, StoryboardFindFirstArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Storyboard that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardFindFirstOrThrowArgs} args - Arguments to find a Storyboard
+     * @example
+     * // Get one Storyboard
+     * const storyboard = await prisma.storyboard.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StoryboardFindFirstOrThrowArgs>(args?: SelectSubset<T, StoryboardFindFirstOrThrowArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Storyboards that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Storyboards
+     * const storyboards = await prisma.storyboard.findMany()
+     * 
+     * // Get first 10 Storyboards
+     * const storyboards = await prisma.storyboard.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const storyboardWithIdOnly = await prisma.storyboard.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StoryboardFindManyArgs>(args?: SelectSubset<T, StoryboardFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Storyboard.
+     * @param {StoryboardCreateArgs} args - Arguments to create a Storyboard.
+     * @example
+     * // Create one Storyboard
+     * const Storyboard = await prisma.storyboard.create({
+     *   data: {
+     *     // ... data to create a Storyboard
+     *   }
+     * })
+     * 
+     */
+    create<T extends StoryboardCreateArgs>(args: SelectSubset<T, StoryboardCreateArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Storyboards.
+     * @param {StoryboardCreateManyArgs} args - Arguments to create many Storyboards.
+     * @example
+     * // Create many Storyboards
+     * const storyboard = await prisma.storyboard.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StoryboardCreateManyArgs>(args?: SelectSubset<T, StoryboardCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Storyboards and returns the data saved in the database.
+     * @param {StoryboardCreateManyAndReturnArgs} args - Arguments to create many Storyboards.
+     * @example
+     * // Create many Storyboards
+     * const storyboard = await prisma.storyboard.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Storyboards and only return the `id`
+     * const storyboardWithIdOnly = await prisma.storyboard.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StoryboardCreateManyAndReturnArgs>(args?: SelectSubset<T, StoryboardCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Storyboard.
+     * @param {StoryboardDeleteArgs} args - Arguments to delete one Storyboard.
+     * @example
+     * // Delete one Storyboard
+     * const Storyboard = await prisma.storyboard.delete({
+     *   where: {
+     *     // ... filter to delete one Storyboard
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StoryboardDeleteArgs>(args: SelectSubset<T, StoryboardDeleteArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Storyboard.
+     * @param {StoryboardUpdateArgs} args - Arguments to update one Storyboard.
+     * @example
+     * // Update one Storyboard
+     * const storyboard = await prisma.storyboard.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StoryboardUpdateArgs>(args: SelectSubset<T, StoryboardUpdateArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Storyboards.
+     * @param {StoryboardDeleteManyArgs} args - Arguments to filter Storyboards to delete.
+     * @example
+     * // Delete a few Storyboards
+     * const { count } = await prisma.storyboard.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StoryboardDeleteManyArgs>(args?: SelectSubset<T, StoryboardDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Storyboards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Storyboards
+     * const storyboard = await prisma.storyboard.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StoryboardUpdateManyArgs>(args: SelectSubset<T, StoryboardUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Storyboards and returns the data updated in the database.
+     * @param {StoryboardUpdateManyAndReturnArgs} args - Arguments to update many Storyboards.
+     * @example
+     * // Update many Storyboards
+     * const storyboard = await prisma.storyboard.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Storyboards and only return the `id`
+     * const storyboardWithIdOnly = await prisma.storyboard.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StoryboardUpdateManyAndReturnArgs>(args: SelectSubset<T, StoryboardUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Storyboard.
+     * @param {StoryboardUpsertArgs} args - Arguments to update or create a Storyboard.
+     * @example
+     * // Update or create a Storyboard
+     * const storyboard = await prisma.storyboard.upsert({
+     *   create: {
+     *     // ... data to create a Storyboard
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Storyboard we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StoryboardUpsertArgs>(args: SelectSubset<T, StoryboardUpsertArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Storyboards.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardCountArgs} args - Arguments to filter Storyboards to count.
+     * @example
+     * // Count the number of Storyboards
+     * const count = await prisma.storyboard.count({
+     *   where: {
+     *     // ... the filter for the Storyboards we want to count
+     *   }
+     * })
+    **/
+    count<T extends StoryboardCountArgs>(
+      args?: Subset<T, StoryboardCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StoryboardCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Storyboard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StoryboardAggregateArgs>(args: Subset<T, StoryboardAggregateArgs>): Prisma.PrismaPromise<GetStoryboardAggregateType<T>>
+
+    /**
+     * Group by Storyboard.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StoryboardGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StoryboardGroupByArgs['orderBy'] }
+        : { orderBy?: StoryboardGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StoryboardGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStoryboardGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Storyboard model
+   */
+  readonly fields: StoryboardFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Storyboard.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StoryboardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    panels<T extends Storyboard$panelsArgs<ExtArgs> = {}>(args?: Subset<T, Storyboard$panelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Storyboard model
+   */
+  interface StoryboardFieldRefs {
+    readonly id: FieldRef<"Storyboard", 'String'>
+    readonly title: FieldRef<"Storyboard", 'String'>
+    readonly description: FieldRef<"Storyboard", 'String'>
+    readonly projectId: FieldRef<"Storyboard", 'String'>
+    readonly ownerId: FieldRef<"Storyboard", 'String'>
+    readonly createdAt: FieldRef<"Storyboard", 'DateTime'>
+    readonly updatedAt: FieldRef<"Storyboard", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Storyboard findUnique
+   */
+  export type StoryboardFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter, which Storyboard to fetch.
+     */
+    where: StoryboardWhereUniqueInput
+  }
+
+  /**
+   * Storyboard findUniqueOrThrow
+   */
+  export type StoryboardFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter, which Storyboard to fetch.
+     */
+    where: StoryboardWhereUniqueInput
+  }
+
+  /**
+   * Storyboard findFirst
+   */
+  export type StoryboardFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter, which Storyboard to fetch.
+     */
+    where?: StoryboardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Storyboards to fetch.
+     */
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Storyboards.
+     */
+    cursor?: StoryboardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Storyboards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Storyboards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Storyboards.
+     */
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
+  }
+
+  /**
+   * Storyboard findFirstOrThrow
+   */
+  export type StoryboardFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter, which Storyboard to fetch.
+     */
+    where?: StoryboardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Storyboards to fetch.
+     */
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Storyboards.
+     */
+    cursor?: StoryboardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Storyboards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Storyboards.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Storyboards.
+     */
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
+  }
+
+  /**
+   * Storyboard findMany
+   */
+  export type StoryboardFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter, which Storyboards to fetch.
+     */
+    where?: StoryboardWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Storyboards to fetch.
+     */
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Storyboards.
+     */
+    cursor?: StoryboardWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Storyboards from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Storyboards.
+     */
+    skip?: number
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
+  }
+
+  /**
+   * Storyboard create
+   */
+  export type StoryboardCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Storyboard.
+     */
+    data: XOR<StoryboardCreateInput, StoryboardUncheckedCreateInput>
+  }
+
+  /**
+   * Storyboard createMany
+   */
+  export type StoryboardCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Storyboards.
+     */
+    data: StoryboardCreateManyInput | StoryboardCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Storyboard createManyAndReturn
+   */
+  export type StoryboardCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * The data used to create many Storyboards.
+     */
+    data: StoryboardCreateManyInput | StoryboardCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Storyboard update
+   */
+  export type StoryboardUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Storyboard.
+     */
+    data: XOR<StoryboardUpdateInput, StoryboardUncheckedUpdateInput>
+    /**
+     * Choose, which Storyboard to update.
+     */
+    where: StoryboardWhereUniqueInput
+  }
+
+  /**
+   * Storyboard updateMany
+   */
+  export type StoryboardUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Storyboards.
+     */
+    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyInput>
+    /**
+     * Filter which Storyboards to update
+     */
+    where?: StoryboardWhereInput
+    /**
+     * Limit how many Storyboards to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Storyboard updateManyAndReturn
+   */
+  export type StoryboardUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * The data used to update Storyboards.
+     */
+    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyInput>
+    /**
+     * Filter which Storyboards to update
+     */
+    where?: StoryboardWhereInput
+    /**
+     * Limit how many Storyboards to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Storyboard upsert
+   */
+  export type StoryboardUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Storyboard to update in case it exists.
+     */
+    where: StoryboardWhereUniqueInput
+    /**
+     * In case the Storyboard found by the `where` argument doesn't exist, create a new Storyboard with this data.
+     */
+    create: XOR<StoryboardCreateInput, StoryboardUncheckedCreateInput>
+    /**
+     * In case the Storyboard was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StoryboardUpdateInput, StoryboardUncheckedUpdateInput>
+  }
+
+  /**
+   * Storyboard delete
+   */
+  export type StoryboardDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    /**
+     * Filter which Storyboard to delete.
+     */
+    where: StoryboardWhereUniqueInput
+  }
+
+  /**
+   * Storyboard deleteMany
+   */
+  export type StoryboardDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Storyboards to delete
+     */
+    where?: StoryboardWhereInput
+    /**
+     * Limit how many Storyboards to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Storyboard.panels
+   */
+  export type Storyboard$panelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    where?: StoryboardPanelWhereInput
+    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    cursor?: StoryboardPanelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+  }
+
+  /**
+   * Storyboard without action
+   */
+  export type StoryboardDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StoryboardPanel
+   */
+
+  export type AggregateStoryboardPanel = {
+    _count: StoryboardPanelCountAggregateOutputType | null
+    _avg: StoryboardPanelAvgAggregateOutputType | null
+    _sum: StoryboardPanelSumAggregateOutputType | null
+    _min: StoryboardPanelMinAggregateOutputType | null
+    _max: StoryboardPanelMaxAggregateOutputType | null
+  }
+
+  export type StoryboardPanelAvgAggregateOutputType = {
+    order: number | null
+    duration: number | null
+  }
+
+  export type StoryboardPanelSumAggregateOutputType = {
+    order: number | null
+    duration: number | null
+  }
+
+  export type StoryboardPanelMinAggregateOutputType = {
+    id: string | null
+    storyboardId: string | null
+    order: number | null
+    imageUrl: string | null
+    shotType: string | null
+    cameraAngle: string | null
+    cameraMove: string | null
+    description: string | null
+    dialogue: string | null
+    duration: number | null
+    linkedSceneId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StoryboardPanelMaxAggregateOutputType = {
+    id: string | null
+    storyboardId: string | null
+    order: number | null
+    imageUrl: string | null
+    shotType: string | null
+    cameraAngle: string | null
+    cameraMove: string | null
+    description: string | null
+    dialogue: string | null
+    duration: number | null
+    linkedSceneId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StoryboardPanelCountAggregateOutputType = {
+    id: number
+    storyboardId: number
+    order: number
+    imageUrl: number
+    shotType: number
+    cameraAngle: number
+    cameraMove: number
+    description: number
+    dialogue: number
+    duration: number
+    linkedSceneId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StoryboardPanelAvgAggregateInputType = {
+    order?: true
+    duration?: true
+  }
+
+  export type StoryboardPanelSumAggregateInputType = {
+    order?: true
+    duration?: true
+  }
+
+  export type StoryboardPanelMinAggregateInputType = {
+    id?: true
+    storyboardId?: true
+    order?: true
+    imageUrl?: true
+    shotType?: true
+    cameraAngle?: true
+    cameraMove?: true
+    description?: true
+    dialogue?: true
+    duration?: true
+    linkedSceneId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StoryboardPanelMaxAggregateInputType = {
+    id?: true
+    storyboardId?: true
+    order?: true
+    imageUrl?: true
+    shotType?: true
+    cameraAngle?: true
+    cameraMove?: true
+    description?: true
+    dialogue?: true
+    duration?: true
+    linkedSceneId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StoryboardPanelCountAggregateInputType = {
+    id?: true
+    storyboardId?: true
+    order?: true
+    imageUrl?: true
+    shotType?: true
+    cameraAngle?: true
+    cameraMove?: true
+    description?: true
+    dialogue?: true
+    duration?: true
+    linkedSceneId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StoryboardPanelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StoryboardPanel to aggregate.
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoryboardPanels to fetch.
+     */
+    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StoryboardPanelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoryboardPanels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoryboardPanels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StoryboardPanels
+    **/
+    _count?: true | StoryboardPanelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StoryboardPanelAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StoryboardPanelSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StoryboardPanelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StoryboardPanelMaxAggregateInputType
+  }
+
+  export type GetStoryboardPanelAggregateType<T extends StoryboardPanelAggregateArgs> = {
+        [P in keyof T & keyof AggregateStoryboardPanel]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStoryboardPanel[P]>
+      : GetScalarType<T[P], AggregateStoryboardPanel[P]>
+  }
+
+
+
+
+  export type StoryboardPanelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardPanelWhereInput
+    orderBy?: StoryboardPanelOrderByWithAggregationInput | StoryboardPanelOrderByWithAggregationInput[]
+    by: StoryboardPanelScalarFieldEnum[] | StoryboardPanelScalarFieldEnum
+    having?: StoryboardPanelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StoryboardPanelCountAggregateInputType | true
+    _avg?: StoryboardPanelAvgAggregateInputType
+    _sum?: StoryboardPanelSumAggregateInputType
+    _min?: StoryboardPanelMinAggregateInputType
+    _max?: StoryboardPanelMaxAggregateInputType
+  }
+
+  export type StoryboardPanelGroupByOutputType = {
+    id: string
+    storyboardId: string
+    order: number
+    imageUrl: string | null
+    shotType: string | null
+    cameraAngle: string | null
+    cameraMove: string | null
+    description: string | null
+    dialogue: string | null
+    duration: number | null
+    linkedSceneId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: StoryboardPanelCountAggregateOutputType | null
+    _avg: StoryboardPanelAvgAggregateOutputType | null
+    _sum: StoryboardPanelSumAggregateOutputType | null
+    _min: StoryboardPanelMinAggregateOutputType | null
+    _max: StoryboardPanelMaxAggregateOutputType | null
+  }
+
+  type GetStoryboardPanelGroupByPayload<T extends StoryboardPanelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StoryboardPanelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StoryboardPanelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StoryboardPanelGroupByOutputType[P]>
+            : GetScalarType<T[P], StoryboardPanelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StoryboardPanelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storyboardId?: boolean
+    order?: boolean
+    imageUrl?: boolean
+    shotType?: boolean
+    cameraAngle?: boolean
+    cameraMove?: boolean
+    description?: boolean
+    dialogue?: boolean
+    duration?: boolean
+    linkedSceneId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboardPanel"]>
+
+  export type StoryboardPanelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storyboardId?: boolean
+    order?: boolean
+    imageUrl?: boolean
+    shotType?: boolean
+    cameraAngle?: boolean
+    cameraMove?: boolean
+    description?: boolean
+    dialogue?: boolean
+    duration?: boolean
+    linkedSceneId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboardPanel"]>
+
+  export type StoryboardPanelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    storyboardId?: boolean
+    order?: boolean
+    imageUrl?: boolean
+    shotType?: boolean
+    cameraAngle?: boolean
+    cameraMove?: boolean
+    description?: boolean
+    dialogue?: boolean
+    duration?: boolean
+    linkedSceneId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["storyboardPanel"]>
+
+  export type StoryboardPanelSelectScalar = {
+    id?: boolean
+    storyboardId?: boolean
+    order?: boolean
+    imageUrl?: boolean
+    shotType?: boolean
+    cameraAngle?: boolean
+    cameraMove?: boolean
+    description?: boolean
+    dialogue?: boolean
+    duration?: boolean
+    linkedSceneId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StoryboardPanelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storyboardId" | "order" | "imageUrl" | "shotType" | "cameraAngle" | "cameraMove" | "description" | "dialogue" | "duration" | "linkedSceneId" | "createdAt" | "updatedAt", ExtArgs["result"]["storyboardPanel"]>
+  export type StoryboardPanelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }
+  export type StoryboardPanelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }
+  export type StoryboardPanelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+  }
+
+  export type $StoryboardPanelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StoryboardPanel"
+    objects: {
+      storyboard: Prisma.$StoryboardPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      storyboardId: string
+      order: number
+      imageUrl: string | null
+      shotType: string | null
+      cameraAngle: string | null
+      cameraMove: string | null
+      description: string | null
+      dialogue: string | null
+      duration: number | null
+      linkedSceneId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["storyboardPanel"]>
+    composites: {}
+  }
+
+  type StoryboardPanelGetPayload<S extends boolean | null | undefined | StoryboardPanelDefaultArgs> = $Result.GetResult<Prisma.$StoryboardPanelPayload, S>
+
+  type StoryboardPanelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StoryboardPanelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StoryboardPanelCountAggregateInputType | true
+    }
+
+  export interface StoryboardPanelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StoryboardPanel'], meta: { name: 'StoryboardPanel' } }
+    /**
+     * Find zero or one StoryboardPanel that matches the filter.
+     * @param {StoryboardPanelFindUniqueArgs} args - Arguments to find a StoryboardPanel
+     * @example
+     * // Get one StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StoryboardPanelFindUniqueArgs>(args: SelectSubset<T, StoryboardPanelFindUniqueArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StoryboardPanel that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StoryboardPanelFindUniqueOrThrowArgs} args - Arguments to find a StoryboardPanel
+     * @example
+     * // Get one StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StoryboardPanelFindUniqueOrThrowArgs>(args: SelectSubset<T, StoryboardPanelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StoryboardPanel that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelFindFirstArgs} args - Arguments to find a StoryboardPanel
+     * @example
+     * // Get one StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StoryboardPanelFindFirstArgs>(args?: SelectSubset<T, StoryboardPanelFindFirstArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StoryboardPanel that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelFindFirstOrThrowArgs} args - Arguments to find a StoryboardPanel
+     * @example
+     * // Get one StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StoryboardPanelFindFirstOrThrowArgs>(args?: SelectSubset<T, StoryboardPanelFindFirstOrThrowArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StoryboardPanels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StoryboardPanels
+     * const storyboardPanels = await prisma.storyboardPanel.findMany()
+     * 
+     * // Get first 10 StoryboardPanels
+     * const storyboardPanels = await prisma.storyboardPanel.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StoryboardPanelFindManyArgs>(args?: SelectSubset<T, StoryboardPanelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StoryboardPanel.
+     * @param {StoryboardPanelCreateArgs} args - Arguments to create a StoryboardPanel.
+     * @example
+     * // Create one StoryboardPanel
+     * const StoryboardPanel = await prisma.storyboardPanel.create({
+     *   data: {
+     *     // ... data to create a StoryboardPanel
+     *   }
+     * })
+     * 
+     */
+    create<T extends StoryboardPanelCreateArgs>(args: SelectSubset<T, StoryboardPanelCreateArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StoryboardPanels.
+     * @param {StoryboardPanelCreateManyArgs} args - Arguments to create many StoryboardPanels.
+     * @example
+     * // Create many StoryboardPanels
+     * const storyboardPanel = await prisma.storyboardPanel.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StoryboardPanelCreateManyArgs>(args?: SelectSubset<T, StoryboardPanelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StoryboardPanels and returns the data saved in the database.
+     * @param {StoryboardPanelCreateManyAndReturnArgs} args - Arguments to create many StoryboardPanels.
+     * @example
+     * // Create many StoryboardPanels
+     * const storyboardPanel = await prisma.storyboardPanel.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StoryboardPanels and only return the `id`
+     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StoryboardPanelCreateManyAndReturnArgs>(args?: SelectSubset<T, StoryboardPanelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StoryboardPanel.
+     * @param {StoryboardPanelDeleteArgs} args - Arguments to delete one StoryboardPanel.
+     * @example
+     * // Delete one StoryboardPanel
+     * const StoryboardPanel = await prisma.storyboardPanel.delete({
+     *   where: {
+     *     // ... filter to delete one StoryboardPanel
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StoryboardPanelDeleteArgs>(args: SelectSubset<T, StoryboardPanelDeleteArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StoryboardPanel.
+     * @param {StoryboardPanelUpdateArgs} args - Arguments to update one StoryboardPanel.
+     * @example
+     * // Update one StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StoryboardPanelUpdateArgs>(args: SelectSubset<T, StoryboardPanelUpdateArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StoryboardPanels.
+     * @param {StoryboardPanelDeleteManyArgs} args - Arguments to filter StoryboardPanels to delete.
+     * @example
+     * // Delete a few StoryboardPanels
+     * const { count } = await prisma.storyboardPanel.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StoryboardPanelDeleteManyArgs>(args?: SelectSubset<T, StoryboardPanelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StoryboardPanels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StoryboardPanels
+     * const storyboardPanel = await prisma.storyboardPanel.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StoryboardPanelUpdateManyArgs>(args: SelectSubset<T, StoryboardPanelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StoryboardPanels and returns the data updated in the database.
+     * @param {StoryboardPanelUpdateManyAndReturnArgs} args - Arguments to update many StoryboardPanels.
+     * @example
+     * // Update many StoryboardPanels
+     * const storyboardPanel = await prisma.storyboardPanel.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StoryboardPanels and only return the `id`
+     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StoryboardPanelUpdateManyAndReturnArgs>(args: SelectSubset<T, StoryboardPanelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StoryboardPanel.
+     * @param {StoryboardPanelUpsertArgs} args - Arguments to update or create a StoryboardPanel.
+     * @example
+     * // Update or create a StoryboardPanel
+     * const storyboardPanel = await prisma.storyboardPanel.upsert({
+     *   create: {
+     *     // ... data to create a StoryboardPanel
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StoryboardPanel we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StoryboardPanelUpsertArgs>(args: SelectSubset<T, StoryboardPanelUpsertArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StoryboardPanels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelCountArgs} args - Arguments to filter StoryboardPanels to count.
+     * @example
+     * // Count the number of StoryboardPanels
+     * const count = await prisma.storyboardPanel.count({
+     *   where: {
+     *     // ... the filter for the StoryboardPanels we want to count
+     *   }
+     * })
+    **/
+    count<T extends StoryboardPanelCountArgs>(
+      args?: Subset<T, StoryboardPanelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StoryboardPanelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StoryboardPanel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StoryboardPanelAggregateArgs>(args: Subset<T, StoryboardPanelAggregateArgs>): Prisma.PrismaPromise<GetStoryboardPanelAggregateType<T>>
+
+    /**
+     * Group by StoryboardPanel.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StoryboardPanelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StoryboardPanelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StoryboardPanelGroupByArgs['orderBy'] }
+        : { orderBy?: StoryboardPanelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StoryboardPanelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStoryboardPanelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StoryboardPanel model
+   */
+  readonly fields: StoryboardPanelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StoryboardPanel.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StoryboardPanelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    storyboard<T extends StoryboardDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoryboardDefaultArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StoryboardPanel model
+   */
+  interface StoryboardPanelFieldRefs {
+    readonly id: FieldRef<"StoryboardPanel", 'String'>
+    readonly storyboardId: FieldRef<"StoryboardPanel", 'String'>
+    readonly order: FieldRef<"StoryboardPanel", 'Int'>
+    readonly imageUrl: FieldRef<"StoryboardPanel", 'String'>
+    readonly shotType: FieldRef<"StoryboardPanel", 'String'>
+    readonly cameraAngle: FieldRef<"StoryboardPanel", 'String'>
+    readonly cameraMove: FieldRef<"StoryboardPanel", 'String'>
+    readonly description: FieldRef<"StoryboardPanel", 'String'>
+    readonly dialogue: FieldRef<"StoryboardPanel", 'String'>
+    readonly duration: FieldRef<"StoryboardPanel", 'Int'>
+    readonly linkedSceneId: FieldRef<"StoryboardPanel", 'String'>
+    readonly createdAt: FieldRef<"StoryboardPanel", 'DateTime'>
+    readonly updatedAt: FieldRef<"StoryboardPanel", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StoryboardPanel findUnique
+   */
+  export type StoryboardPanelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter, which StoryboardPanel to fetch.
+     */
+    where: StoryboardPanelWhereUniqueInput
+  }
+
+  /**
+   * StoryboardPanel findUniqueOrThrow
+   */
+  export type StoryboardPanelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter, which StoryboardPanel to fetch.
+     */
+    where: StoryboardPanelWhereUniqueInput
+  }
+
+  /**
+   * StoryboardPanel findFirst
+   */
+  export type StoryboardPanelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter, which StoryboardPanel to fetch.
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoryboardPanels to fetch.
+     */
+    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StoryboardPanels.
+     */
+    cursor?: StoryboardPanelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoryboardPanels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoryboardPanels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StoryboardPanels.
+     */
+    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+  }
+
+  /**
+   * StoryboardPanel findFirstOrThrow
+   */
+  export type StoryboardPanelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter, which StoryboardPanel to fetch.
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoryboardPanels to fetch.
+     */
+    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StoryboardPanels.
+     */
+    cursor?: StoryboardPanelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoryboardPanels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoryboardPanels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StoryboardPanels.
+     */
+    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+  }
+
+  /**
+   * StoryboardPanel findMany
+   */
+  export type StoryboardPanelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter, which StoryboardPanels to fetch.
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StoryboardPanels to fetch.
+     */
+    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StoryboardPanels.
+     */
+    cursor?: StoryboardPanelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StoryboardPanels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StoryboardPanels.
+     */
+    skip?: number
+    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+  }
+
+  /**
+   * StoryboardPanel create
+   */
+  export type StoryboardPanelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StoryboardPanel.
+     */
+    data: XOR<StoryboardPanelCreateInput, StoryboardPanelUncheckedCreateInput>
+  }
+
+  /**
+   * StoryboardPanel createMany
+   */
+  export type StoryboardPanelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StoryboardPanels.
+     */
+    data: StoryboardPanelCreateManyInput | StoryboardPanelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StoryboardPanel createManyAndReturn
+   */
+  export type StoryboardPanelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * The data used to create many StoryboardPanels.
+     */
+    data: StoryboardPanelCreateManyInput | StoryboardPanelCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StoryboardPanel update
+   */
+  export type StoryboardPanelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StoryboardPanel.
+     */
+    data: XOR<StoryboardPanelUpdateInput, StoryboardPanelUncheckedUpdateInput>
+    /**
+     * Choose, which StoryboardPanel to update.
+     */
+    where: StoryboardPanelWhereUniqueInput
+  }
+
+  /**
+   * StoryboardPanel updateMany
+   */
+  export type StoryboardPanelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StoryboardPanels.
+     */
+    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyInput>
+    /**
+     * Filter which StoryboardPanels to update
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * Limit how many StoryboardPanels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StoryboardPanel updateManyAndReturn
+   */
+  export type StoryboardPanelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * The data used to update StoryboardPanels.
+     */
+    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyInput>
+    /**
+     * Filter which StoryboardPanels to update
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * Limit how many StoryboardPanels to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StoryboardPanel upsert
+   */
+  export type StoryboardPanelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StoryboardPanel to update in case it exists.
+     */
+    where: StoryboardPanelWhereUniqueInput
+    /**
+     * In case the StoryboardPanel found by the `where` argument doesn't exist, create a new StoryboardPanel with this data.
+     */
+    create: XOR<StoryboardPanelCreateInput, StoryboardPanelUncheckedCreateInput>
+    /**
+     * In case the StoryboardPanel was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StoryboardPanelUpdateInput, StoryboardPanelUncheckedUpdateInput>
+  }
+
+  /**
+   * StoryboardPanel delete
+   */
+  export type StoryboardPanelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+    /**
+     * Filter which StoryboardPanel to delete.
+     */
+    where: StoryboardPanelWhereUniqueInput
+  }
+
+  /**
+   * StoryboardPanel deleteMany
+   */
+  export type StoryboardPanelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StoryboardPanels to delete
+     */
+    where?: StoryboardPanelWhereInput
+    /**
+     * Limit how many StoryboardPanels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StoryboardPanel without action
+   */
+  export type StoryboardPanelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StoryboardPanel
+     */
+    select?: StoryboardPanelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StoryboardPanel
+     */
+    omit?: StoryboardPanelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardPanelInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -19566,6 +29925,117 @@ export namespace Prisma {
   export type AnimationVersionScalarFieldEnum = (typeof AnimationVersionScalarFieldEnum)[keyof typeof AnimationVersionScalarFieldEnum]
 
 
+  export const FootageStateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    projectId: 'projectId'
+  };
+
+  export type FootageStateScalarFieldEnum = (typeof FootageStateScalarFieldEnum)[keyof typeof FootageStateScalarFieldEnum]
+
+
+  export const FootageScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    approved: 'approved',
+    description: 'description',
+    ownerId: 'ownerId',
+    stateId: 'stateId',
+    status: 'status'
+  };
+
+  export type FootageScalarFieldEnum = (typeof FootageScalarFieldEnum)[keyof typeof FootageScalarFieldEnum]
+
+
+  export const FootageVersionScalarFieldEnum: {
+    id: 'id',
+    versionNumber: 'versionNumber',
+    label: 'label',
+    muxUploadId: 'muxUploadId',
+    muxPlaybackId: 'muxPlaybackId',
+    thumbnailUrl: 'thumbnailUrl',
+    createdAt: 'createdAt',
+    footageId: 'footageId'
+  };
+
+  export type FootageVersionScalarFieldEnum = (typeof FootageVersionScalarFieldEnum)[keyof typeof FootageVersionScalarFieldEnum]
+
+
+  export const SoundFolderScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    ownerId: 'ownerId',
+    projectId: 'projectId',
+    parentFolderId: 'parentFolderId'
+  };
+
+  export type SoundFolderScalarFieldEnum = (typeof SoundFolderScalarFieldEnum)[keyof typeof SoundFolderScalarFieldEnum]
+
+
+  export const SoundScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    ownerId: 'ownerId',
+    projectId: 'projectId',
+    folderId: 'folderId'
+  };
+
+  export type SoundScalarFieldEnum = (typeof SoundScalarFieldEnum)[keyof typeof SoundScalarFieldEnum]
+
+
+  export const SoundVersionScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    soundId: 'soundId',
+    muxUploadId: 'muxUploadId',
+    muxPlaybackId: 'muxPlaybackId',
+    status: 'status',
+    versionNumber: 'versionNumber'
+  };
+
+  export type SoundVersionScalarFieldEnum = (typeof SoundVersionScalarFieldEnum)[keyof typeof SoundVersionScalarFieldEnum]
+
+
+  export const StoryboardScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    projectId: 'projectId',
+    ownerId: 'ownerId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StoryboardScalarFieldEnum = (typeof StoryboardScalarFieldEnum)[keyof typeof StoryboardScalarFieldEnum]
+
+
+  export const StoryboardPanelScalarFieldEnum: {
+    id: 'id',
+    storyboardId: 'storyboardId',
+    order: 'order',
+    imageUrl: 'imageUrl',
+    shotType: 'shotType',
+    cameraAngle: 'cameraAngle',
+    cameraMove: 'cameraMove',
+    description: 'description',
+    dialogue: 'dialogue',
+    duration: 'duration',
+    linkedSceneId: 'linkedSceneId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StoryboardPanelScalarFieldEnum = (typeof StoryboardPanelScalarFieldEnum)[keyof typeof StoryboardPanelScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -19725,6 +30195,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryListRelationFilter
     DesignOwner?: DesignSubClassListRelationFilter
     AnimationOwner?: AnimationListRelationFilter
+    FootageOwner?: FootageListRelationFilter
+    SoundOwner?: SoundListRelationFilter
+    soundFolderOwner?: SoundFolderListRelationFilter
+    storyboardOwner?: StoryboardListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19744,6 +30218,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryOrderByRelationAggregateInput
     DesignOwner?: DesignSubClassOrderByRelationAggregateInput
     AnimationOwner?: AnimationOrderByRelationAggregateInput
+    FootageOwner?: FootageOrderByRelationAggregateInput
+    SoundOwner?: SoundOrderByRelationAggregateInput
+    soundFolderOwner?: SoundFolderOrderByRelationAggregateInput
+    storyboardOwner?: StoryboardOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19766,6 +30244,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryListRelationFilter
     DesignOwner?: DesignSubClassListRelationFilter
     AnimationOwner?: AnimationListRelationFilter
+    FootageOwner?: FootageListRelationFilter
+    SoundOwner?: SoundListRelationFilter
+    soundFolderOwner?: SoundFolderListRelationFilter
+    storyboardOwner?: StoryboardListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -20078,6 +30560,10 @@ export namespace Prisma {
     scripts?: ScriptListRelationFilter
     designCategories?: DesignCategoryListRelationFilter
     animationCategories?: AnimationStateListRelationFilter
+    footageCategories?: FootageStateListRelationFilter
+    soundFolders?: SoundFolderListRelationFilter
+    sounds?: SoundListRelationFilter
+    storyboards?: StoryboardListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -20090,6 +30576,10 @@ export namespace Prisma {
     scripts?: ScriptOrderByRelationAggregateInput
     designCategories?: DesignCategoryOrderByRelationAggregateInput
     animationCategories?: AnimationStateOrderByRelationAggregateInput
+    footageCategories?: FootageStateOrderByRelationAggregateInput
+    soundFolders?: SoundFolderOrderByRelationAggregateInput
+    sounds?: SoundOrderByRelationAggregateInput
+    storyboards?: StoryboardOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -20105,6 +30595,10 @@ export namespace Prisma {
     scripts?: ScriptListRelationFilter
     designCategories?: DesignCategoryListRelationFilter
     animationCategories?: AnimationStateListRelationFilter
+    footageCategories?: FootageStateListRelationFilter
+    soundFolders?: SoundFolderListRelationFilter
+    sounds?: SoundListRelationFilter
+    storyboards?: StoryboardListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -20731,6 +31225,603 @@ export namespace Prisma {
     animationId?: StringWithAggregatesFilter<"AnimationVersion"> | string
   }
 
+  export type FootageStateWhereInput = {
+    AND?: FootageStateWhereInput | FootageStateWhereInput[]
+    OR?: FootageStateWhereInput[]
+    NOT?: FootageStateWhereInput | FootageStateWhereInput[]
+    id?: StringFilter<"FootageState"> | string
+    name?: StringFilter<"FootageState"> | string
+    projectId?: StringNullableFilter<"FootageState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    footage?: FootageListRelationFilter
+  }
+
+  export type FootageStateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    project?: ProjectOrderByWithRelationInput
+    footage?: FootageOrderByRelationAggregateInput
+  }
+
+  export type FootageStateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FootageStateWhereInput | FootageStateWhereInput[]
+    OR?: FootageStateWhereInput[]
+    NOT?: FootageStateWhereInput | FootageStateWhereInput[]
+    name?: StringFilter<"FootageState"> | string
+    projectId?: StringNullableFilter<"FootageState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    footage?: FootageListRelationFilter
+  }, "id">
+
+  export type FootageStateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    _count?: FootageStateCountOrderByAggregateInput
+    _max?: FootageStateMaxOrderByAggregateInput
+    _min?: FootageStateMinOrderByAggregateInput
+  }
+
+  export type FootageStateScalarWhereWithAggregatesInput = {
+    AND?: FootageStateScalarWhereWithAggregatesInput | FootageStateScalarWhereWithAggregatesInput[]
+    OR?: FootageStateScalarWhereWithAggregatesInput[]
+    NOT?: FootageStateScalarWhereWithAggregatesInput | FootageStateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FootageState"> | string
+    name?: StringWithAggregatesFilter<"FootageState"> | string
+    projectId?: StringNullableWithAggregatesFilter<"FootageState"> | string | null
+  }
+
+  export type FootageWhereInput = {
+    AND?: FootageWhereInput | FootageWhereInput[]
+    OR?: FootageWhereInput[]
+    NOT?: FootageWhereInput | FootageWhereInput[]
+    id?: StringFilter<"Footage"> | string
+    title?: StringFilter<"Footage"> | string
+    createdAt?: DateTimeFilter<"Footage"> | Date | string
+    updatedAt?: DateTimeFilter<"Footage"> | Date | string
+    approved?: BoolFilter<"Footage"> | boolean
+    description?: StringNullableFilter<"Footage"> | string | null
+    ownerId?: StringFilter<"Footage"> | string
+    stateId?: StringNullableFilter<"Footage"> | string | null
+    status?: StringFilter<"Footage"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<FootageStateNullableScalarRelationFilter, FootageStateWhereInput> | null
+    FootageVersions?: FootageVersionListRelationFilter
+  }
+
+  export type FootageOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    user?: UserOrderByWithRelationInput
+    state?: FootageStateOrderByWithRelationInput
+    FootageVersions?: FootageVersionOrderByRelationAggregateInput
+  }
+
+  export type FootageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FootageWhereInput | FootageWhereInput[]
+    OR?: FootageWhereInput[]
+    NOT?: FootageWhereInput | FootageWhereInput[]
+    title?: StringFilter<"Footage"> | string
+    createdAt?: DateTimeFilter<"Footage"> | Date | string
+    updatedAt?: DateTimeFilter<"Footage"> | Date | string
+    approved?: BoolFilter<"Footage"> | boolean
+    description?: StringNullableFilter<"Footage"> | string | null
+    ownerId?: StringFilter<"Footage"> | string
+    stateId?: StringNullableFilter<"Footage"> | string | null
+    status?: StringFilter<"Footage"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<FootageStateNullableScalarRelationFilter, FootageStateWhereInput> | null
+    FootageVersions?: FootageVersionListRelationFilter
+  }, "id">
+
+  export type FootageOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    _count?: FootageCountOrderByAggregateInput
+    _max?: FootageMaxOrderByAggregateInput
+    _min?: FootageMinOrderByAggregateInput
+  }
+
+  export type FootageScalarWhereWithAggregatesInput = {
+    AND?: FootageScalarWhereWithAggregatesInput | FootageScalarWhereWithAggregatesInput[]
+    OR?: FootageScalarWhereWithAggregatesInput[]
+    NOT?: FootageScalarWhereWithAggregatesInput | FootageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Footage"> | string
+    title?: StringWithAggregatesFilter<"Footage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Footage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Footage"> | Date | string
+    approved?: BoolWithAggregatesFilter<"Footage"> | boolean
+    description?: StringNullableWithAggregatesFilter<"Footage"> | string | null
+    ownerId?: StringWithAggregatesFilter<"Footage"> | string
+    stateId?: StringNullableWithAggregatesFilter<"Footage"> | string | null
+    status?: StringWithAggregatesFilter<"Footage"> | string
+  }
+
+  export type FootageVersionWhereInput = {
+    AND?: FootageVersionWhereInput | FootageVersionWhereInput[]
+    OR?: FootageVersionWhereInput[]
+    NOT?: FootageVersionWhereInput | FootageVersionWhereInput[]
+    id?: StringFilter<"FootageVersion"> | string
+    versionNumber?: IntFilter<"FootageVersion"> | number
+    label?: StringNullableFilter<"FootageVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"FootageVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"FootageVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"FootageVersion"> | string | null
+    createdAt?: DateTimeFilter<"FootageVersion"> | Date | string
+    footageId?: StringFilter<"FootageVersion"> | string
+    footage?: XOR<FootageScalarRelationFilter, FootageWhereInput>
+  }
+
+  export type FootageVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    footageId?: SortOrder
+    footage?: FootageOrderByWithRelationInput
+  }
+
+  export type FootageVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FootageVersionWhereInput | FootageVersionWhereInput[]
+    OR?: FootageVersionWhereInput[]
+    NOT?: FootageVersionWhereInput | FootageVersionWhereInput[]
+    versionNumber?: IntFilter<"FootageVersion"> | number
+    label?: StringNullableFilter<"FootageVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"FootageVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"FootageVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"FootageVersion"> | string | null
+    createdAt?: DateTimeFilter<"FootageVersion"> | Date | string
+    footageId?: StringFilter<"FootageVersion"> | string
+    footage?: XOR<FootageScalarRelationFilter, FootageWhereInput>
+  }, "id">
+
+  export type FootageVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    footageId?: SortOrder
+    _count?: FootageVersionCountOrderByAggregateInput
+    _avg?: FootageVersionAvgOrderByAggregateInput
+    _max?: FootageVersionMaxOrderByAggregateInput
+    _min?: FootageVersionMinOrderByAggregateInput
+    _sum?: FootageVersionSumOrderByAggregateInput
+  }
+
+  export type FootageVersionScalarWhereWithAggregatesInput = {
+    AND?: FootageVersionScalarWhereWithAggregatesInput | FootageVersionScalarWhereWithAggregatesInput[]
+    OR?: FootageVersionScalarWhereWithAggregatesInput[]
+    NOT?: FootageVersionScalarWhereWithAggregatesInput | FootageVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FootageVersion"> | string
+    versionNumber?: IntWithAggregatesFilter<"FootageVersion"> | number
+    label?: StringNullableWithAggregatesFilter<"FootageVersion"> | string | null
+    muxUploadId?: StringNullableWithAggregatesFilter<"FootageVersion"> | string | null
+    muxPlaybackId?: StringNullableWithAggregatesFilter<"FootageVersion"> | string | null
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"FootageVersion"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"FootageVersion"> | Date | string
+    footageId?: StringWithAggregatesFilter<"FootageVersion"> | string
+  }
+
+  export type SoundFolderWhereInput = {
+    AND?: SoundFolderWhereInput | SoundFolderWhereInput[]
+    OR?: SoundFolderWhereInput[]
+    NOT?: SoundFolderWhereInput | SoundFolderWhereInput[]
+    id?: StringFilter<"SoundFolder"> | string
+    name?: StringFilter<"SoundFolder"> | string
+    createdAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    ownerId?: StringFilter<"SoundFolder"> | string
+    projectId?: StringFilter<"SoundFolder"> | string
+    parentFolderId?: StringNullableFilter<"SoundFolder"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    parentFolder?: XOR<SoundFolderNullableScalarRelationFilter, SoundFolderWhereInput> | null
+    subFolders?: SoundFolderListRelationFilter
+    sounds?: SoundListRelationFilter
+  }
+
+  export type SoundFolderOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    parentFolderId?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+    parentFolder?: SoundFolderOrderByWithRelationInput
+    subFolders?: SoundFolderOrderByRelationAggregateInput
+    sounds?: SoundOrderByRelationAggregateInput
+  }
+
+  export type SoundFolderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SoundFolderWhereInput | SoundFolderWhereInput[]
+    OR?: SoundFolderWhereInput[]
+    NOT?: SoundFolderWhereInput | SoundFolderWhereInput[]
+    name?: StringFilter<"SoundFolder"> | string
+    createdAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    ownerId?: StringFilter<"SoundFolder"> | string
+    projectId?: StringFilter<"SoundFolder"> | string
+    parentFolderId?: StringNullableFilter<"SoundFolder"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    parentFolder?: XOR<SoundFolderNullableScalarRelationFilter, SoundFolderWhereInput> | null
+    subFolders?: SoundFolderListRelationFilter
+    sounds?: SoundListRelationFilter
+  }, "id">
+
+  export type SoundFolderOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    parentFolderId?: SortOrderInput | SortOrder
+    _count?: SoundFolderCountOrderByAggregateInput
+    _max?: SoundFolderMaxOrderByAggregateInput
+    _min?: SoundFolderMinOrderByAggregateInput
+  }
+
+  export type SoundFolderScalarWhereWithAggregatesInput = {
+    AND?: SoundFolderScalarWhereWithAggregatesInput | SoundFolderScalarWhereWithAggregatesInput[]
+    OR?: SoundFolderScalarWhereWithAggregatesInput[]
+    NOT?: SoundFolderScalarWhereWithAggregatesInput | SoundFolderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SoundFolder"> | string
+    name?: StringWithAggregatesFilter<"SoundFolder"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SoundFolder"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SoundFolder"> | Date | string
+    ownerId?: StringWithAggregatesFilter<"SoundFolder"> | string
+    projectId?: StringWithAggregatesFilter<"SoundFolder"> | string
+    parentFolderId?: StringNullableWithAggregatesFilter<"SoundFolder"> | string | null
+  }
+
+  export type SoundWhereInput = {
+    AND?: SoundWhereInput | SoundWhereInput[]
+    OR?: SoundWhereInput[]
+    NOT?: SoundWhereInput | SoundWhereInput[]
+    id?: StringFilter<"Sound"> | string
+    title?: StringFilter<"Sound"> | string
+    createdAt?: DateTimeFilter<"Sound"> | Date | string
+    updatedAt?: DateTimeFilter<"Sound"> | Date | string
+    ownerId?: StringFilter<"Sound"> | string
+    projectId?: StringFilter<"Sound"> | string
+    folderId?: StringNullableFilter<"Sound"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    folder?: XOR<SoundFolderNullableScalarRelationFilter, SoundFolderWhereInput> | null
+    soundVersion?: SoundVersionListRelationFilter
+  }
+
+  export type SoundOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    folderId?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
+    folder?: SoundFolderOrderByWithRelationInput
+    soundVersion?: SoundVersionOrderByRelationAggregateInput
+  }
+
+  export type SoundWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SoundWhereInput | SoundWhereInput[]
+    OR?: SoundWhereInput[]
+    NOT?: SoundWhereInput | SoundWhereInput[]
+    title?: StringFilter<"Sound"> | string
+    createdAt?: DateTimeFilter<"Sound"> | Date | string
+    updatedAt?: DateTimeFilter<"Sound"> | Date | string
+    ownerId?: StringFilter<"Sound"> | string
+    projectId?: StringFilter<"Sound"> | string
+    folderId?: StringNullableFilter<"Sound"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    folder?: XOR<SoundFolderNullableScalarRelationFilter, SoundFolderWhereInput> | null
+    soundVersion?: SoundVersionListRelationFilter
+  }, "id">
+
+  export type SoundOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    folderId?: SortOrderInput | SortOrder
+    _count?: SoundCountOrderByAggregateInput
+    _max?: SoundMaxOrderByAggregateInput
+    _min?: SoundMinOrderByAggregateInput
+  }
+
+  export type SoundScalarWhereWithAggregatesInput = {
+    AND?: SoundScalarWhereWithAggregatesInput | SoundScalarWhereWithAggregatesInput[]
+    OR?: SoundScalarWhereWithAggregatesInput[]
+    NOT?: SoundScalarWhereWithAggregatesInput | SoundScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Sound"> | string
+    title?: StringWithAggregatesFilter<"Sound"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Sound"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Sound"> | Date | string
+    ownerId?: StringWithAggregatesFilter<"Sound"> | string
+    projectId?: StringWithAggregatesFilter<"Sound"> | string
+    folderId?: StringNullableWithAggregatesFilter<"Sound"> | string | null
+  }
+
+  export type SoundVersionWhereInput = {
+    AND?: SoundVersionWhereInput | SoundVersionWhereInput[]
+    OR?: SoundVersionWhereInput[]
+    NOT?: SoundVersionWhereInput | SoundVersionWhereInput[]
+    id?: StringFilter<"SoundVersion"> | string
+    title?: StringFilter<"SoundVersion"> | string
+    createdAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    soundId?: StringFilter<"SoundVersion"> | string
+    muxUploadId?: StringFilter<"SoundVersion"> | string
+    muxPlaybackId?: StringFilter<"SoundVersion"> | string
+    status?: StringFilter<"SoundVersion"> | string
+    versionNumber?: IntFilter<"SoundVersion"> | number
+    sound?: XOR<SoundScalarRelationFilter, SoundWhereInput>
+  }
+
+  export type SoundVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soundId?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    status?: SortOrder
+    versionNumber?: SortOrder
+    sound?: SoundOrderByWithRelationInput
+  }
+
+  export type SoundVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SoundVersionWhereInput | SoundVersionWhereInput[]
+    OR?: SoundVersionWhereInput[]
+    NOT?: SoundVersionWhereInput | SoundVersionWhereInput[]
+    title?: StringFilter<"SoundVersion"> | string
+    createdAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    soundId?: StringFilter<"SoundVersion"> | string
+    muxUploadId?: StringFilter<"SoundVersion"> | string
+    muxPlaybackId?: StringFilter<"SoundVersion"> | string
+    status?: StringFilter<"SoundVersion"> | string
+    versionNumber?: IntFilter<"SoundVersion"> | number
+    sound?: XOR<SoundScalarRelationFilter, SoundWhereInput>
+  }, "id">
+
+  export type SoundVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soundId?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    status?: SortOrder
+    versionNumber?: SortOrder
+    _count?: SoundVersionCountOrderByAggregateInput
+    _avg?: SoundVersionAvgOrderByAggregateInput
+    _max?: SoundVersionMaxOrderByAggregateInput
+    _min?: SoundVersionMinOrderByAggregateInput
+    _sum?: SoundVersionSumOrderByAggregateInput
+  }
+
+  export type SoundVersionScalarWhereWithAggregatesInput = {
+    AND?: SoundVersionScalarWhereWithAggregatesInput | SoundVersionScalarWhereWithAggregatesInput[]
+    OR?: SoundVersionScalarWhereWithAggregatesInput[]
+    NOT?: SoundVersionScalarWhereWithAggregatesInput | SoundVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SoundVersion"> | string
+    title?: StringWithAggregatesFilter<"SoundVersion"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"SoundVersion"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SoundVersion"> | Date | string
+    soundId?: StringWithAggregatesFilter<"SoundVersion"> | string
+    muxUploadId?: StringWithAggregatesFilter<"SoundVersion"> | string
+    muxPlaybackId?: StringWithAggregatesFilter<"SoundVersion"> | string
+    status?: StringWithAggregatesFilter<"SoundVersion"> | string
+    versionNumber?: IntWithAggregatesFilter<"SoundVersion"> | number
+  }
+
+  export type StoryboardWhereInput = {
+    AND?: StoryboardWhereInput | StoryboardWhereInput[]
+    OR?: StoryboardWhereInput[]
+    NOT?: StoryboardWhereInput | StoryboardWhereInput[]
+    id?: StringFilter<"Storyboard"> | string
+    title?: StringFilter<"Storyboard"> | string
+    description?: StringNullableFilter<"Storyboard"> | string | null
+    projectId?: StringFilter<"Storyboard"> | string
+    ownerId?: StringFilter<"Storyboard"> | string
+    createdAt?: DateTimeFilter<"Storyboard"> | Date | string
+    updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    panels?: StoryboardPanelListRelationFilter
+  }
+
+  export type StoryboardOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    projectId?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    panels?: StoryboardPanelOrderByRelationAggregateInput
+  }
+
+  export type StoryboardWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StoryboardWhereInput | StoryboardWhereInput[]
+    OR?: StoryboardWhereInput[]
+    NOT?: StoryboardWhereInput | StoryboardWhereInput[]
+    title?: StringFilter<"Storyboard"> | string
+    description?: StringNullableFilter<"Storyboard"> | string | null
+    projectId?: StringFilter<"Storyboard"> | string
+    ownerId?: StringFilter<"Storyboard"> | string
+    createdAt?: DateTimeFilter<"Storyboard"> | Date | string
+    updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    panels?: StoryboardPanelListRelationFilter
+  }, "id">
+
+  export type StoryboardOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    projectId?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StoryboardCountOrderByAggregateInput
+    _max?: StoryboardMaxOrderByAggregateInput
+    _min?: StoryboardMinOrderByAggregateInput
+  }
+
+  export type StoryboardScalarWhereWithAggregatesInput = {
+    AND?: StoryboardScalarWhereWithAggregatesInput | StoryboardScalarWhereWithAggregatesInput[]
+    OR?: StoryboardScalarWhereWithAggregatesInput[]
+    NOT?: StoryboardScalarWhereWithAggregatesInput | StoryboardScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Storyboard"> | string
+    title?: StringWithAggregatesFilter<"Storyboard"> | string
+    description?: StringNullableWithAggregatesFilter<"Storyboard"> | string | null
+    projectId?: StringWithAggregatesFilter<"Storyboard"> | string
+    ownerId?: StringWithAggregatesFilter<"Storyboard"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Storyboard"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Storyboard"> | Date | string
+  }
+
+  export type StoryboardPanelWhereInput = {
+    AND?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
+    OR?: StoryboardPanelWhereInput[]
+    NOT?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
+    id?: StringFilter<"StoryboardPanel"> | string
+    storyboardId?: StringFilter<"StoryboardPanel"> | string
+    order?: IntFilter<"StoryboardPanel"> | number
+    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
+    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
+    description?: StringNullableFilter<"StoryboardPanel"> | string | null
+    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
+    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
+    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
+    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    storyboard?: XOR<StoryboardScalarRelationFilter, StoryboardWhereInput>
+  }
+
+  export type StoryboardPanelOrderByWithRelationInput = {
+    id?: SortOrder
+    storyboardId?: SortOrder
+    order?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    shotType?: SortOrderInput | SortOrder
+    cameraAngle?: SortOrderInput | SortOrder
+    cameraMove?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    dialogue?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    linkedSceneId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    storyboard?: StoryboardOrderByWithRelationInput
+  }
+
+  export type StoryboardPanelWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
+    OR?: StoryboardPanelWhereInput[]
+    NOT?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
+    storyboardId?: StringFilter<"StoryboardPanel"> | string
+    order?: IntFilter<"StoryboardPanel"> | number
+    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
+    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
+    description?: StringNullableFilter<"StoryboardPanel"> | string | null
+    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
+    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
+    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
+    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    storyboard?: XOR<StoryboardScalarRelationFilter, StoryboardWhereInput>
+  }, "id">
+
+  export type StoryboardPanelOrderByWithAggregationInput = {
+    id?: SortOrder
+    storyboardId?: SortOrder
+    order?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    shotType?: SortOrderInput | SortOrder
+    cameraAngle?: SortOrderInput | SortOrder
+    cameraMove?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    dialogue?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    linkedSceneId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StoryboardPanelCountOrderByAggregateInput
+    _avg?: StoryboardPanelAvgOrderByAggregateInput
+    _max?: StoryboardPanelMaxOrderByAggregateInput
+    _min?: StoryboardPanelMinOrderByAggregateInput
+    _sum?: StoryboardPanelSumOrderByAggregateInput
+  }
+
+  export type StoryboardPanelScalarWhereWithAggregatesInput = {
+    AND?: StoryboardPanelScalarWhereWithAggregatesInput | StoryboardPanelScalarWhereWithAggregatesInput[]
+    OR?: StoryboardPanelScalarWhereWithAggregatesInput[]
+    NOT?: StoryboardPanelScalarWhereWithAggregatesInput | StoryboardPanelScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"StoryboardPanel"> | string
+    storyboardId?: StringWithAggregatesFilter<"StoryboardPanel"> | string
+    order?: IntWithAggregatesFilter<"StoryboardPanel"> | number
+    imageUrl?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    shotType?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    cameraAngle?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    cameraMove?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    description?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    dialogue?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    duration?: IntNullableWithAggregatesFilter<"StoryboardPanel"> | number | null
+    linkedSceneId?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"StoryboardPanel"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"StoryboardPanel"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -20748,6 +31839,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20767,6 +31862,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20786,6 +31885,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20805,6 +31908,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -21134,6 +32241,10 @@ export namespace Prisma {
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -21146,6 +32257,10 @@ export namespace Prisma {
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -21158,6 +32273,10 @@ export namespace Prisma {
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -21170,6 +32289,10 @@ export namespace Prisma {
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -21804,6 +32927,625 @@ export namespace Prisma {
     animationId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type FootageStateCreateInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutFootageCategoriesInput
+    footage?: FootageCreateNestedManyWithoutStateInput
+  }
+
+  export type FootageStateUncheckedCreateInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+    footage?: FootageUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type FootageStateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutFootageCategoriesNestedInput
+    footage?: FootageUpdateManyWithoutStateNestedInput
+  }
+
+  export type FootageStateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    footage?: FootageUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type FootageStateCreateManyInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type FootageStateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageStateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FootageCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutFootageOwnerInput
+    state?: FootageStateCreateNestedOneWithoutFootageInput
+    FootageVersions?: FootageVersionCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageUncheckedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+    FootageVersions?: FootageVersionUncheckedCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutFootageOwnerNestedInput
+    state?: FootageStateUpdateOneWithoutFootageNestedInput
+    FootageVersions?: FootageVersionUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    FootageVersions?: FootageVersionUncheckedUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageCreateManyInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type FootageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageVersionCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    footage: FootageCreateNestedOneWithoutFootageVersionsInput
+  }
+
+  export type FootageVersionUncheckedCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    footageId: string
+  }
+
+  export type FootageVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    footage?: FootageUpdateOneRequiredWithoutFootageVersionsNestedInput
+  }
+
+  export type FootageVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    footageId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageVersionCreateManyInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    footageId: string
+  }
+
+  export type FootageVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FootageVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    footageId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SoundFolderCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundFolderOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundFoldersInput
+    parentFolder?: SoundFolderCreateNestedOneWithoutSubFoldersInput
+    subFolders?: SoundFolderCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    parentFolderId?: string | null
+    subFolders?: SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput
+    parentFolder?: SoundFolderUpdateOneWithoutSubFoldersNestedInput
+    subFolders?: SoundFolderUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    subFolders?: SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderCreateManyInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    parentFolderId?: string | null
+  }
+
+  export type SoundFolderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoundFolderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SoundCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundsInput
+    folder?: SoundFolderCreateNestedOneWithoutSoundsInput
+    soundVersion?: SoundVersionCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundUncheckedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    folderId?: string | null
+    soundVersion?: SoundVersionUncheckedCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundsNestedInput
+    folder?: SoundFolderUpdateOneWithoutSoundsNestedInput
+    soundVersion?: SoundVersionUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+    soundVersion?: SoundVersionUncheckedUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundCreateManyInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    folderId?: string | null
+  }
+
+  export type SoundUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoundUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SoundVersionCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+    sound: SoundCreateNestedOneWithoutSoundVersionInput
+  }
+
+  export type SoundVersionUncheckedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soundId: string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+  }
+
+  export type SoundVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    sound?: SoundUpdateOneRequiredWithoutSoundVersionNestedInput
+  }
+
+  export type SoundVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soundId?: StringFieldUpdateOperationsInput | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SoundVersionCreateManyInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    soundId: string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+  }
+
+  export type SoundVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SoundVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    soundId?: StringFieldUpdateOperationsInput | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StoryboardCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutStoryboardsInput
+    user: UserCreateNestedOneWithoutStoryboardOwnerInput
+    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    projectId: string
+    ownerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
+    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
+    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    projectId: string
+    ownerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardPanelCreateInput = {
+    id?: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    storyboard: StoryboardCreateNestedOneWithoutPanelsInput
+  }
+
+  export type StoryboardPanelUncheckedCreateInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardPanelUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storyboard?: StoryboardUpdateOneRequiredWithoutPanelsNestedInput
+  }
+
+  export type StoryboardPanelUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardPanelCreateManyInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardPanelUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardPanelUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21904,6 +33646,30 @@ export namespace Prisma {
     none?: AnimationWhereInput
   }
 
+  export type FootageListRelationFilter = {
+    every?: FootageWhereInput
+    some?: FootageWhereInput
+    none?: FootageWhereInput
+  }
+
+  export type SoundListRelationFilter = {
+    every?: SoundWhereInput
+    some?: SoundWhereInput
+    none?: SoundWhereInput
+  }
+
+  export type SoundFolderListRelationFilter = {
+    every?: SoundFolderWhereInput
+    some?: SoundFolderWhereInput
+    none?: SoundFolderWhereInput
+  }
+
+  export type StoryboardListRelationFilter = {
+    every?: StoryboardWhereInput
+    some?: StoryboardWhereInput
+    none?: StoryboardWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -21938,6 +33704,22 @@ export namespace Prisma {
   }
 
   export type AnimationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FootageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoundOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoundFolderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StoryboardOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22270,7 +34052,17 @@ export namespace Prisma {
     none?: AnimationStateWhereInput
   }
 
+  export type FootageStateListRelationFilter = {
+    every?: FootageStateWhereInput
+    some?: FootageStateWhereInput
+    none?: FootageStateWhereInput
+  }
+
   export type AnimationStateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FootageStateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22714,6 +34506,348 @@ export namespace Prisma {
     versionNumber?: SortOrder
   }
 
+  export type FootageStateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type FootageStateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type FootageStateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type FootageStateNullableScalarRelationFilter = {
+    is?: FootageStateWhereInput | null
+    isNot?: FootageStateWhereInput | null
+  }
+
+  export type FootageVersionListRelationFilter = {
+    every?: FootageVersionWhereInput
+    some?: FootageVersionWhereInput
+    none?: FootageVersionWhereInput
+  }
+
+  export type FootageVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FootageCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type FootageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type FootageMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type FootageScalarRelationFilter = {
+    is?: FootageWhereInput
+    isNot?: FootageWhereInput
+  }
+
+  export type FootageVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    footageId?: SortOrder
+  }
+
+  export type FootageVersionAvgOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type FootageVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    footageId?: SortOrder
+  }
+
+  export type FootageVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    footageId?: SortOrder
+  }
+
+  export type FootageVersionSumOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type SoundFolderNullableScalarRelationFilter = {
+    is?: SoundFolderWhereInput | null
+    isNot?: SoundFolderWhereInput | null
+  }
+
+  export type SoundFolderCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    parentFolderId?: SortOrder
+  }
+
+  export type SoundFolderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    parentFolderId?: SortOrder
+  }
+
+  export type SoundFolderMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    parentFolderId?: SortOrder
+  }
+
+  export type SoundVersionListRelationFilter = {
+    every?: SoundVersionWhereInput
+    some?: SoundVersionWhereInput
+    none?: SoundVersionWhereInput
+  }
+
+  export type SoundVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SoundCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type SoundMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type SoundMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ownerId?: SortOrder
+    projectId?: SortOrder
+    folderId?: SortOrder
+  }
+
+  export type SoundScalarRelationFilter = {
+    is?: SoundWhereInput
+    isNot?: SoundWhereInput
+  }
+
+  export type SoundVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soundId?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    status?: SortOrder
+    versionNumber?: SortOrder
+  }
+
+  export type SoundVersionAvgOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type SoundVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soundId?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    status?: SortOrder
+    versionNumber?: SortOrder
+  }
+
+  export type SoundVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    soundId?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    status?: SortOrder
+    versionNumber?: SortOrder
+  }
+
+  export type SoundVersionSumOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type StoryboardPanelListRelationFilter = {
+    every?: StoryboardPanelWhereInput
+    some?: StoryboardPanelWhereInput
+    none?: StoryboardPanelWhereInput
+  }
+
+  export type StoryboardPanelOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StoryboardCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    projectId?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    projectId?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    projectId?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardScalarRelationFilter = {
+    is?: StoryboardWhereInput
+    isNot?: StoryboardWhereInput
+  }
+
+  export type StoryboardPanelCountOrderByAggregateInput = {
+    id?: SortOrder
+    storyboardId?: SortOrder
+    order?: SortOrder
+    imageUrl?: SortOrder
+    shotType?: SortOrder
+    cameraAngle?: SortOrder
+    cameraMove?: SortOrder
+    description?: SortOrder
+    dialogue?: SortOrder
+    duration?: SortOrder
+    linkedSceneId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardPanelAvgOrderByAggregateInput = {
+    order?: SortOrder
+    duration?: SortOrder
+  }
+
+  export type StoryboardPanelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    storyboardId?: SortOrder
+    order?: SortOrder
+    imageUrl?: SortOrder
+    shotType?: SortOrder
+    cameraAngle?: SortOrder
+    cameraMove?: SortOrder
+    description?: SortOrder
+    dialogue?: SortOrder
+    duration?: SortOrder
+    linkedSceneId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardPanelMinOrderByAggregateInput = {
+    id?: SortOrder
+    storyboardId?: SortOrder
+    order?: SortOrder
+    imageUrl?: SortOrder
+    shotType?: SortOrder
+    cameraAngle?: SortOrder
+    cameraMove?: SortOrder
+    description?: SortOrder
+    dialogue?: SortOrder
+    duration?: SortOrder
+    linkedSceneId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StoryboardPanelSumOrderByAggregateInput = {
+    order?: SortOrder
+    duration?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -22770,6 +34904,34 @@ export namespace Prisma {
     connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
   }
 
+  export type FootageCreateNestedManyWithoutUserInput = {
+    create?: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput> | FootageCreateWithoutUserInput[] | FootageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutUserInput | FootageCreateOrConnectWithoutUserInput[]
+    createMany?: FootageCreateManyUserInputEnvelope
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+  }
+
+  export type SoundCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput> | SoundCreateWithoutUserInput[] | SoundUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutUserInput | SoundCreateOrConnectWithoutUserInput[]
+    createMany?: SoundCreateManyUserInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type SoundFolderCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput> | SoundFolderCreateWithoutUserInput[] | SoundFolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutUserInput | SoundFolderCreateOrConnectWithoutUserInput[]
+    createMany?: SoundFolderCreateManyUserInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type StoryboardCreateNestedManyWithoutUserInput = {
+    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
+    createMany?: StoryboardCreateManyUserInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -22824,6 +34986,34 @@ export namespace Prisma {
     connectOrCreate?: AnimationCreateOrConnectWithoutUserInput | AnimationCreateOrConnectWithoutUserInput[]
     createMany?: AnimationCreateManyUserInputEnvelope
     connect?: AnimationWhereUniqueInput | AnimationWhereUniqueInput[]
+  }
+
+  export type FootageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput> | FootageCreateWithoutUserInput[] | FootageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutUserInput | FootageCreateOrConnectWithoutUserInput[]
+    createMany?: FootageCreateManyUserInputEnvelope
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+  }
+
+  export type SoundUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput> | SoundCreateWithoutUserInput[] | SoundUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutUserInput | SoundCreateOrConnectWithoutUserInput[]
+    createMany?: SoundCreateManyUserInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type SoundFolderUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput> | SoundFolderCreateWithoutUserInput[] | SoundFolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutUserInput | SoundFolderCreateOrConnectWithoutUserInput[]
+    createMany?: SoundFolderCreateManyUserInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type StoryboardUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
+    createMany?: StoryboardCreateManyUserInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -22954,6 +35144,62 @@ export namespace Prisma {
     deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
   }
 
+  export type FootageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput> | FootageCreateWithoutUserInput[] | FootageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutUserInput | FootageCreateOrConnectWithoutUserInput[]
+    upsert?: FootageUpsertWithWhereUniqueWithoutUserInput | FootageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FootageCreateManyUserInputEnvelope
+    set?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    disconnect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    delete?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    update?: FootageUpdateWithWhereUniqueWithoutUserInput | FootageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FootageUpdateManyWithWhereWithoutUserInput | FootageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FootageScalarWhereInput | FootageScalarWhereInput[]
+  }
+
+  export type SoundUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput> | SoundCreateWithoutUserInput[] | SoundUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutUserInput | SoundCreateOrConnectWithoutUserInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutUserInput | SoundUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoundCreateManyUserInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutUserInput | SoundUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutUserInput | SoundUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type SoundFolderUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput> | SoundFolderCreateWithoutUserInput[] | SoundFolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutUserInput | SoundFolderCreateOrConnectWithoutUserInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutUserInput | SoundFolderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoundFolderCreateManyUserInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutUserInput | SoundFolderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutUserInput | SoundFolderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type StoryboardUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutUserInput | StoryboardUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StoryboardCreateManyUserInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutUserInput | StoryboardUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutUserInput | StoryboardUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -23066,6 +35312,62 @@ export namespace Prisma {
     deleteMany?: AnimationScalarWhereInput | AnimationScalarWhereInput[]
   }
 
+  export type FootageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput> | FootageCreateWithoutUserInput[] | FootageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutUserInput | FootageCreateOrConnectWithoutUserInput[]
+    upsert?: FootageUpsertWithWhereUniqueWithoutUserInput | FootageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FootageCreateManyUserInputEnvelope
+    set?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    disconnect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    delete?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    update?: FootageUpdateWithWhereUniqueWithoutUserInput | FootageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FootageUpdateManyWithWhereWithoutUserInput | FootageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FootageScalarWhereInput | FootageScalarWhereInput[]
+  }
+
+  export type SoundUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput> | SoundCreateWithoutUserInput[] | SoundUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutUserInput | SoundCreateOrConnectWithoutUserInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutUserInput | SoundUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoundCreateManyUserInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutUserInput | SoundUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutUserInput | SoundUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput> | SoundFolderCreateWithoutUserInput[] | SoundFolderUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutUserInput | SoundFolderCreateOrConnectWithoutUserInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutUserInput | SoundFolderUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SoundFolderCreateManyUserInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutUserInput | SoundFolderUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutUserInput | SoundFolderUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type StoryboardUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutUserInput | StoryboardUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StoryboardCreateManyUserInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutUserInput | StoryboardUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutUserInput | StoryboardUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -23156,6 +35458,34 @@ export namespace Prisma {
     connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
   }
 
+  export type FootageStateCreateNestedManyWithoutProjectInput = {
+    create?: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput> | FootageStateCreateWithoutProjectInput[] | FootageStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FootageStateCreateOrConnectWithoutProjectInput | FootageStateCreateOrConnectWithoutProjectInput[]
+    createMany?: FootageStateCreateManyProjectInputEnvelope
+    connect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+  }
+
+  export type SoundFolderCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput> | SoundFolderCreateWithoutProjectInput[] | SoundFolderUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutProjectInput | SoundFolderCreateOrConnectWithoutProjectInput[]
+    createMany?: SoundFolderCreateManyProjectInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type SoundCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput> | SoundCreateWithoutProjectInput[] | SoundUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutProjectInput | SoundCreateOrConnectWithoutProjectInput[]
+    createMany?: SoundCreateManyProjectInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type StoryboardCreateNestedManyWithoutProjectInput = {
+    create?: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput> | StoryboardCreateWithoutProjectInput[] | StoryboardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutProjectInput | StoryboardCreateOrConnectWithoutProjectInput[]
+    createMany?: StoryboardCreateManyProjectInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  }
+
   export type UserProjectUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -23182,6 +35512,34 @@ export namespace Prisma {
     connectOrCreate?: AnimationStateCreateOrConnectWithoutProjectInput | AnimationStateCreateOrConnectWithoutProjectInput[]
     createMany?: AnimationStateCreateManyProjectInputEnvelope
     connect?: AnimationStateWhereUniqueInput | AnimationStateWhereUniqueInput[]
+  }
+
+  export type FootageStateUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput> | FootageStateCreateWithoutProjectInput[] | FootageStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FootageStateCreateOrConnectWithoutProjectInput | FootageStateCreateOrConnectWithoutProjectInput[]
+    createMany?: FootageStateCreateManyProjectInputEnvelope
+    connect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+  }
+
+  export type SoundFolderUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput> | SoundFolderCreateWithoutProjectInput[] | SoundFolderUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutProjectInput | SoundFolderCreateOrConnectWithoutProjectInput[]
+    createMany?: SoundFolderCreateManyProjectInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type SoundUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput> | SoundCreateWithoutProjectInput[] | SoundUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutProjectInput | SoundCreateOrConnectWithoutProjectInput[]
+    createMany?: SoundCreateManyProjectInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type StoryboardUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput> | StoryboardCreateWithoutProjectInput[] | StoryboardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutProjectInput | StoryboardCreateOrConnectWithoutProjectInput[]
+    createMany?: StoryboardCreateManyProjectInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
   }
 
   export type UserProjectUpdateManyWithoutProjectNestedInput = {
@@ -23240,6 +35598,62 @@ export namespace Prisma {
     deleteMany?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
   }
 
+  export type FootageStateUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput> | FootageStateCreateWithoutProjectInput[] | FootageStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FootageStateCreateOrConnectWithoutProjectInput | FootageStateCreateOrConnectWithoutProjectInput[]
+    upsert?: FootageStateUpsertWithWhereUniqueWithoutProjectInput | FootageStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: FootageStateCreateManyProjectInputEnvelope
+    set?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    disconnect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    delete?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    connect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    update?: FootageStateUpdateWithWhereUniqueWithoutProjectInput | FootageStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: FootageStateUpdateManyWithWhereWithoutProjectInput | FootageStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: FootageStateScalarWhereInput | FootageStateScalarWhereInput[]
+  }
+
+  export type SoundFolderUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput> | SoundFolderCreateWithoutProjectInput[] | SoundFolderUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutProjectInput | SoundFolderCreateOrConnectWithoutProjectInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutProjectInput | SoundFolderUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SoundFolderCreateManyProjectInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutProjectInput | SoundFolderUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutProjectInput | SoundFolderUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type SoundUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput> | SoundCreateWithoutProjectInput[] | SoundUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutProjectInput | SoundCreateOrConnectWithoutProjectInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutProjectInput | SoundUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SoundCreateManyProjectInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutProjectInput | SoundUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutProjectInput | SoundUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type StoryboardUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput> | StoryboardCreateWithoutProjectInput[] | StoryboardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutProjectInput | StoryboardCreateOrConnectWithoutProjectInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutProjectInput | StoryboardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: StoryboardCreateManyProjectInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutProjectInput | StoryboardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutProjectInput | StoryboardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  }
+
   export type UserProjectUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -23294,6 +35708,62 @@ export namespace Prisma {
     update?: AnimationStateUpdateWithWhereUniqueWithoutProjectInput | AnimationStateUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: AnimationStateUpdateManyWithWhereWithoutProjectInput | AnimationStateUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: AnimationStateScalarWhereInput | AnimationStateScalarWhereInput[]
+  }
+
+  export type FootageStateUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput> | FootageStateCreateWithoutProjectInput[] | FootageStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FootageStateCreateOrConnectWithoutProjectInput | FootageStateCreateOrConnectWithoutProjectInput[]
+    upsert?: FootageStateUpsertWithWhereUniqueWithoutProjectInput | FootageStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: FootageStateCreateManyProjectInputEnvelope
+    set?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    disconnect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    delete?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    connect?: FootageStateWhereUniqueInput | FootageStateWhereUniqueInput[]
+    update?: FootageStateUpdateWithWhereUniqueWithoutProjectInput | FootageStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: FootageStateUpdateManyWithWhereWithoutProjectInput | FootageStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: FootageStateScalarWhereInput | FootageStateScalarWhereInput[]
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput> | SoundFolderCreateWithoutProjectInput[] | SoundFolderUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutProjectInput | SoundFolderCreateOrConnectWithoutProjectInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutProjectInput | SoundFolderUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SoundFolderCreateManyProjectInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutProjectInput | SoundFolderUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutProjectInput | SoundFolderUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type SoundUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput> | SoundCreateWithoutProjectInput[] | SoundUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutProjectInput | SoundCreateOrConnectWithoutProjectInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutProjectInput | SoundUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: SoundCreateManyProjectInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutProjectInput | SoundUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutProjectInput | SoundUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type StoryboardUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput> | StoryboardCreateWithoutProjectInput[] | StoryboardUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutProjectInput | StoryboardCreateOrConnectWithoutProjectInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutProjectInput | StoryboardUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: StoryboardCreateManyProjectInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutProjectInput | StoryboardUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutProjectInput | StoryboardUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutScriptOwnerInput = {
@@ -23714,6 +36184,462 @@ export namespace Prisma {
     upsert?: AnimationUpsertWithoutAnimationVersionsInput
     connect?: AnimationWhereUniqueInput
     update?: XOR<XOR<AnimationUpdateToOneWithWhereWithoutAnimationVersionsInput, AnimationUpdateWithoutAnimationVersionsInput>, AnimationUncheckedUpdateWithoutAnimationVersionsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutFootageCategoriesInput = {
+    create?: XOR<ProjectCreateWithoutFootageCategoriesInput, ProjectUncheckedCreateWithoutFootageCategoriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFootageCategoriesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type FootageCreateNestedManyWithoutStateInput = {
+    create?: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput> | FootageCreateWithoutStateInput[] | FootageUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutStateInput | FootageCreateOrConnectWithoutStateInput[]
+    createMany?: FootageCreateManyStateInputEnvelope
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+  }
+
+  export type FootageUncheckedCreateNestedManyWithoutStateInput = {
+    create?: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput> | FootageCreateWithoutStateInput[] | FootageUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutStateInput | FootageCreateOrConnectWithoutStateInput[]
+    createMany?: FootageCreateManyStateInputEnvelope
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateOneWithoutFootageCategoriesNestedInput = {
+    create?: XOR<ProjectCreateWithoutFootageCategoriesInput, ProjectUncheckedCreateWithoutFootageCategoriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFootageCategoriesInput
+    upsert?: ProjectUpsertWithoutFootageCategoriesInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutFootageCategoriesInput, ProjectUpdateWithoutFootageCategoriesInput>, ProjectUncheckedUpdateWithoutFootageCategoriesInput>
+  }
+
+  export type FootageUpdateManyWithoutStateNestedInput = {
+    create?: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput> | FootageCreateWithoutStateInput[] | FootageUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutStateInput | FootageCreateOrConnectWithoutStateInput[]
+    upsert?: FootageUpsertWithWhereUniqueWithoutStateInput | FootageUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: FootageCreateManyStateInputEnvelope
+    set?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    disconnect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    delete?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    update?: FootageUpdateWithWhereUniqueWithoutStateInput | FootageUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: FootageUpdateManyWithWhereWithoutStateInput | FootageUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: FootageScalarWhereInput | FootageScalarWhereInput[]
+  }
+
+  export type FootageUncheckedUpdateManyWithoutStateNestedInput = {
+    create?: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput> | FootageCreateWithoutStateInput[] | FootageUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: FootageCreateOrConnectWithoutStateInput | FootageCreateOrConnectWithoutStateInput[]
+    upsert?: FootageUpsertWithWhereUniqueWithoutStateInput | FootageUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: FootageCreateManyStateInputEnvelope
+    set?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    disconnect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    delete?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    connect?: FootageWhereUniqueInput | FootageWhereUniqueInput[]
+    update?: FootageUpdateWithWhereUniqueWithoutStateInput | FootageUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: FootageUpdateManyWithWhereWithoutStateInput | FootageUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: FootageScalarWhereInput | FootageScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutFootageOwnerInput = {
+    create?: XOR<UserCreateWithoutFootageOwnerInput, UserUncheckedCreateWithoutFootageOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFootageOwnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FootageStateCreateNestedOneWithoutFootageInput = {
+    create?: XOR<FootageStateCreateWithoutFootageInput, FootageStateUncheckedCreateWithoutFootageInput>
+    connectOrCreate?: FootageStateCreateOrConnectWithoutFootageInput
+    connect?: FootageStateWhereUniqueInput
+  }
+
+  export type FootageVersionCreateNestedManyWithoutFootageInput = {
+    create?: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput> | FootageVersionCreateWithoutFootageInput[] | FootageVersionUncheckedCreateWithoutFootageInput[]
+    connectOrCreate?: FootageVersionCreateOrConnectWithoutFootageInput | FootageVersionCreateOrConnectWithoutFootageInput[]
+    createMany?: FootageVersionCreateManyFootageInputEnvelope
+    connect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+  }
+
+  export type FootageVersionUncheckedCreateNestedManyWithoutFootageInput = {
+    create?: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput> | FootageVersionCreateWithoutFootageInput[] | FootageVersionUncheckedCreateWithoutFootageInput[]
+    connectOrCreate?: FootageVersionCreateOrConnectWithoutFootageInput | FootageVersionCreateOrConnectWithoutFootageInput[]
+    createMany?: FootageVersionCreateManyFootageInputEnvelope
+    connect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutFootageOwnerNestedInput = {
+    create?: XOR<UserCreateWithoutFootageOwnerInput, UserUncheckedCreateWithoutFootageOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFootageOwnerInput
+    upsert?: UserUpsertWithoutFootageOwnerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFootageOwnerInput, UserUpdateWithoutFootageOwnerInput>, UserUncheckedUpdateWithoutFootageOwnerInput>
+  }
+
+  export type FootageStateUpdateOneWithoutFootageNestedInput = {
+    create?: XOR<FootageStateCreateWithoutFootageInput, FootageStateUncheckedCreateWithoutFootageInput>
+    connectOrCreate?: FootageStateCreateOrConnectWithoutFootageInput
+    upsert?: FootageStateUpsertWithoutFootageInput
+    disconnect?: FootageStateWhereInput | boolean
+    delete?: FootageStateWhereInput | boolean
+    connect?: FootageStateWhereUniqueInput
+    update?: XOR<XOR<FootageStateUpdateToOneWithWhereWithoutFootageInput, FootageStateUpdateWithoutFootageInput>, FootageStateUncheckedUpdateWithoutFootageInput>
+  }
+
+  export type FootageVersionUpdateManyWithoutFootageNestedInput = {
+    create?: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput> | FootageVersionCreateWithoutFootageInput[] | FootageVersionUncheckedCreateWithoutFootageInput[]
+    connectOrCreate?: FootageVersionCreateOrConnectWithoutFootageInput | FootageVersionCreateOrConnectWithoutFootageInput[]
+    upsert?: FootageVersionUpsertWithWhereUniqueWithoutFootageInput | FootageVersionUpsertWithWhereUniqueWithoutFootageInput[]
+    createMany?: FootageVersionCreateManyFootageInputEnvelope
+    set?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    disconnect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    delete?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    connect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    update?: FootageVersionUpdateWithWhereUniqueWithoutFootageInput | FootageVersionUpdateWithWhereUniqueWithoutFootageInput[]
+    updateMany?: FootageVersionUpdateManyWithWhereWithoutFootageInput | FootageVersionUpdateManyWithWhereWithoutFootageInput[]
+    deleteMany?: FootageVersionScalarWhereInput | FootageVersionScalarWhereInput[]
+  }
+
+  export type FootageVersionUncheckedUpdateManyWithoutFootageNestedInput = {
+    create?: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput> | FootageVersionCreateWithoutFootageInput[] | FootageVersionUncheckedCreateWithoutFootageInput[]
+    connectOrCreate?: FootageVersionCreateOrConnectWithoutFootageInput | FootageVersionCreateOrConnectWithoutFootageInput[]
+    upsert?: FootageVersionUpsertWithWhereUniqueWithoutFootageInput | FootageVersionUpsertWithWhereUniqueWithoutFootageInput[]
+    createMany?: FootageVersionCreateManyFootageInputEnvelope
+    set?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    disconnect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    delete?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    connect?: FootageVersionWhereUniqueInput | FootageVersionWhereUniqueInput[]
+    update?: FootageVersionUpdateWithWhereUniqueWithoutFootageInput | FootageVersionUpdateWithWhereUniqueWithoutFootageInput[]
+    updateMany?: FootageVersionUpdateManyWithWhereWithoutFootageInput | FootageVersionUpdateManyWithWhereWithoutFootageInput[]
+    deleteMany?: FootageVersionScalarWhereInput | FootageVersionScalarWhereInput[]
+  }
+
+  export type FootageCreateNestedOneWithoutFootageVersionsInput = {
+    create?: XOR<FootageCreateWithoutFootageVersionsInput, FootageUncheckedCreateWithoutFootageVersionsInput>
+    connectOrCreate?: FootageCreateOrConnectWithoutFootageVersionsInput
+    connect?: FootageWhereUniqueInput
+  }
+
+  export type FootageUpdateOneRequiredWithoutFootageVersionsNestedInput = {
+    create?: XOR<FootageCreateWithoutFootageVersionsInput, FootageUncheckedCreateWithoutFootageVersionsInput>
+    connectOrCreate?: FootageCreateOrConnectWithoutFootageVersionsInput
+    upsert?: FootageUpsertWithoutFootageVersionsInput
+    connect?: FootageWhereUniqueInput
+    update?: XOR<XOR<FootageUpdateToOneWithWhereWithoutFootageVersionsInput, FootageUpdateWithoutFootageVersionsInput>, FootageUncheckedUpdateWithoutFootageVersionsInput>
+  }
+
+  export type UserCreateNestedOneWithoutSoundFolderOwnerInput = {
+    create?: XOR<UserCreateWithoutSoundFolderOwnerInput, UserUncheckedCreateWithoutSoundFolderOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSoundFolderOwnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutSoundFoldersInput = {
+    create?: XOR<ProjectCreateWithoutSoundFoldersInput, ProjectUncheckedCreateWithoutSoundFoldersInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSoundFoldersInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type SoundFolderCreateNestedOneWithoutSubFoldersInput = {
+    create?: XOR<SoundFolderCreateWithoutSubFoldersInput, SoundFolderUncheckedCreateWithoutSubFoldersInput>
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutSubFoldersInput
+    connect?: SoundFolderWhereUniqueInput
+  }
+
+  export type SoundFolderCreateNestedManyWithoutParentFolderInput = {
+    create?: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput> | SoundFolderCreateWithoutParentFolderInput[] | SoundFolderUncheckedCreateWithoutParentFolderInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutParentFolderInput | SoundFolderCreateOrConnectWithoutParentFolderInput[]
+    createMany?: SoundFolderCreateManyParentFolderInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type SoundCreateNestedManyWithoutFolderInput = {
+    create?: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput> | SoundCreateWithoutFolderInput[] | SoundUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutFolderInput | SoundCreateOrConnectWithoutFolderInput[]
+    createMany?: SoundCreateManyFolderInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput = {
+    create?: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput> | SoundFolderCreateWithoutParentFolderInput[] | SoundFolderUncheckedCreateWithoutParentFolderInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutParentFolderInput | SoundFolderCreateOrConnectWithoutParentFolderInput[]
+    createMany?: SoundFolderCreateManyParentFolderInputEnvelope
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+  }
+
+  export type SoundUncheckedCreateNestedManyWithoutFolderInput = {
+    create?: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput> | SoundCreateWithoutFolderInput[] | SoundUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutFolderInput | SoundCreateOrConnectWithoutFolderInput[]
+    createMany?: SoundCreateManyFolderInputEnvelope
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput = {
+    create?: XOR<UserCreateWithoutSoundFolderOwnerInput, UserUncheckedCreateWithoutSoundFolderOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSoundFolderOwnerInput
+    upsert?: UserUpsertWithoutSoundFolderOwnerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSoundFolderOwnerInput, UserUpdateWithoutSoundFolderOwnerInput>, UserUncheckedUpdateWithoutSoundFolderOwnerInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput = {
+    create?: XOR<ProjectCreateWithoutSoundFoldersInput, ProjectUncheckedCreateWithoutSoundFoldersInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSoundFoldersInput
+    upsert?: ProjectUpsertWithoutSoundFoldersInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutSoundFoldersInput, ProjectUpdateWithoutSoundFoldersInput>, ProjectUncheckedUpdateWithoutSoundFoldersInput>
+  }
+
+  export type SoundFolderUpdateOneWithoutSubFoldersNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutSubFoldersInput, SoundFolderUncheckedCreateWithoutSubFoldersInput>
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutSubFoldersInput
+    upsert?: SoundFolderUpsertWithoutSubFoldersInput
+    disconnect?: SoundFolderWhereInput | boolean
+    delete?: SoundFolderWhereInput | boolean
+    connect?: SoundFolderWhereUniqueInput
+    update?: XOR<XOR<SoundFolderUpdateToOneWithWhereWithoutSubFoldersInput, SoundFolderUpdateWithoutSubFoldersInput>, SoundFolderUncheckedUpdateWithoutSubFoldersInput>
+  }
+
+  export type SoundFolderUpdateManyWithoutParentFolderNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput> | SoundFolderCreateWithoutParentFolderInput[] | SoundFolderUncheckedCreateWithoutParentFolderInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutParentFolderInput | SoundFolderCreateOrConnectWithoutParentFolderInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutParentFolderInput | SoundFolderUpsertWithWhereUniqueWithoutParentFolderInput[]
+    createMany?: SoundFolderCreateManyParentFolderInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutParentFolderInput | SoundFolderUpdateWithWhereUniqueWithoutParentFolderInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutParentFolderInput | SoundFolderUpdateManyWithWhereWithoutParentFolderInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type SoundUpdateManyWithoutFolderNestedInput = {
+    create?: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput> | SoundCreateWithoutFolderInput[] | SoundUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutFolderInput | SoundCreateOrConnectWithoutFolderInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutFolderInput | SoundUpsertWithWhereUniqueWithoutFolderInput[]
+    createMany?: SoundCreateManyFolderInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutFolderInput | SoundUpdateWithWhereUniqueWithoutFolderInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutFolderInput | SoundUpdateManyWithWhereWithoutFolderInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput> | SoundFolderCreateWithoutParentFolderInput[] | SoundFolderUncheckedCreateWithoutParentFolderInput[]
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutParentFolderInput | SoundFolderCreateOrConnectWithoutParentFolderInput[]
+    upsert?: SoundFolderUpsertWithWhereUniqueWithoutParentFolderInput | SoundFolderUpsertWithWhereUniqueWithoutParentFolderInput[]
+    createMany?: SoundFolderCreateManyParentFolderInputEnvelope
+    set?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    disconnect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    delete?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
+    update?: SoundFolderUpdateWithWhereUniqueWithoutParentFolderInput | SoundFolderUpdateWithWhereUniqueWithoutParentFolderInput[]
+    updateMany?: SoundFolderUpdateManyWithWhereWithoutParentFolderInput | SoundFolderUpdateManyWithWhereWithoutParentFolderInput[]
+    deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+  }
+
+  export type SoundUncheckedUpdateManyWithoutFolderNestedInput = {
+    create?: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput> | SoundCreateWithoutFolderInput[] | SoundUncheckedCreateWithoutFolderInput[]
+    connectOrCreate?: SoundCreateOrConnectWithoutFolderInput | SoundCreateOrConnectWithoutFolderInput[]
+    upsert?: SoundUpsertWithWhereUniqueWithoutFolderInput | SoundUpsertWithWhereUniqueWithoutFolderInput[]
+    createMany?: SoundCreateManyFolderInputEnvelope
+    set?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    disconnect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    delete?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    connect?: SoundWhereUniqueInput | SoundWhereUniqueInput[]
+    update?: SoundUpdateWithWhereUniqueWithoutFolderInput | SoundUpdateWithWhereUniqueWithoutFolderInput[]
+    updateMany?: SoundUpdateManyWithWhereWithoutFolderInput | SoundUpdateManyWithWhereWithoutFolderInput[]
+    deleteMany?: SoundScalarWhereInput | SoundScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSoundOwnerInput = {
+    create?: XOR<UserCreateWithoutSoundOwnerInput, UserUncheckedCreateWithoutSoundOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSoundOwnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectCreateNestedOneWithoutSoundsInput = {
+    create?: XOR<ProjectCreateWithoutSoundsInput, ProjectUncheckedCreateWithoutSoundsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSoundsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type SoundFolderCreateNestedOneWithoutSoundsInput = {
+    create?: XOR<SoundFolderCreateWithoutSoundsInput, SoundFolderUncheckedCreateWithoutSoundsInput>
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutSoundsInput
+    connect?: SoundFolderWhereUniqueInput
+  }
+
+  export type SoundVersionCreateNestedManyWithoutSoundInput = {
+    create?: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput> | SoundVersionCreateWithoutSoundInput[] | SoundVersionUncheckedCreateWithoutSoundInput[]
+    connectOrCreate?: SoundVersionCreateOrConnectWithoutSoundInput | SoundVersionCreateOrConnectWithoutSoundInput[]
+    createMany?: SoundVersionCreateManySoundInputEnvelope
+    connect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+  }
+
+  export type SoundVersionUncheckedCreateNestedManyWithoutSoundInput = {
+    create?: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput> | SoundVersionCreateWithoutSoundInput[] | SoundVersionUncheckedCreateWithoutSoundInput[]
+    connectOrCreate?: SoundVersionCreateOrConnectWithoutSoundInput | SoundVersionCreateOrConnectWithoutSoundInput[]
+    createMany?: SoundVersionCreateManySoundInputEnvelope
+    connect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutSoundOwnerNestedInput = {
+    create?: XOR<UserCreateWithoutSoundOwnerInput, UserUncheckedCreateWithoutSoundOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSoundOwnerInput
+    upsert?: UserUpsertWithoutSoundOwnerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSoundOwnerInput, UserUpdateWithoutSoundOwnerInput>, UserUncheckedUpdateWithoutSoundOwnerInput>
+  }
+
+  export type ProjectUpdateOneRequiredWithoutSoundsNestedInput = {
+    create?: XOR<ProjectCreateWithoutSoundsInput, ProjectUncheckedCreateWithoutSoundsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutSoundsInput
+    upsert?: ProjectUpsertWithoutSoundsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutSoundsInput, ProjectUpdateWithoutSoundsInput>, ProjectUncheckedUpdateWithoutSoundsInput>
+  }
+
+  export type SoundFolderUpdateOneWithoutSoundsNestedInput = {
+    create?: XOR<SoundFolderCreateWithoutSoundsInput, SoundFolderUncheckedCreateWithoutSoundsInput>
+    connectOrCreate?: SoundFolderCreateOrConnectWithoutSoundsInput
+    upsert?: SoundFolderUpsertWithoutSoundsInput
+    disconnect?: SoundFolderWhereInput | boolean
+    delete?: SoundFolderWhereInput | boolean
+    connect?: SoundFolderWhereUniqueInput
+    update?: XOR<XOR<SoundFolderUpdateToOneWithWhereWithoutSoundsInput, SoundFolderUpdateWithoutSoundsInput>, SoundFolderUncheckedUpdateWithoutSoundsInput>
+  }
+
+  export type SoundVersionUpdateManyWithoutSoundNestedInput = {
+    create?: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput> | SoundVersionCreateWithoutSoundInput[] | SoundVersionUncheckedCreateWithoutSoundInput[]
+    connectOrCreate?: SoundVersionCreateOrConnectWithoutSoundInput | SoundVersionCreateOrConnectWithoutSoundInput[]
+    upsert?: SoundVersionUpsertWithWhereUniqueWithoutSoundInput | SoundVersionUpsertWithWhereUniqueWithoutSoundInput[]
+    createMany?: SoundVersionCreateManySoundInputEnvelope
+    set?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    disconnect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    delete?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    connect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    update?: SoundVersionUpdateWithWhereUniqueWithoutSoundInput | SoundVersionUpdateWithWhereUniqueWithoutSoundInput[]
+    updateMany?: SoundVersionUpdateManyWithWhereWithoutSoundInput | SoundVersionUpdateManyWithWhereWithoutSoundInput[]
+    deleteMany?: SoundVersionScalarWhereInput | SoundVersionScalarWhereInput[]
+  }
+
+  export type SoundVersionUncheckedUpdateManyWithoutSoundNestedInput = {
+    create?: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput> | SoundVersionCreateWithoutSoundInput[] | SoundVersionUncheckedCreateWithoutSoundInput[]
+    connectOrCreate?: SoundVersionCreateOrConnectWithoutSoundInput | SoundVersionCreateOrConnectWithoutSoundInput[]
+    upsert?: SoundVersionUpsertWithWhereUniqueWithoutSoundInput | SoundVersionUpsertWithWhereUniqueWithoutSoundInput[]
+    createMany?: SoundVersionCreateManySoundInputEnvelope
+    set?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    disconnect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    delete?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    connect?: SoundVersionWhereUniqueInput | SoundVersionWhereUniqueInput[]
+    update?: SoundVersionUpdateWithWhereUniqueWithoutSoundInput | SoundVersionUpdateWithWhereUniqueWithoutSoundInput[]
+    updateMany?: SoundVersionUpdateManyWithWhereWithoutSoundInput | SoundVersionUpdateManyWithWhereWithoutSoundInput[]
+    deleteMany?: SoundVersionScalarWhereInput | SoundVersionScalarWhereInput[]
+  }
+
+  export type SoundCreateNestedOneWithoutSoundVersionInput = {
+    create?: XOR<SoundCreateWithoutSoundVersionInput, SoundUncheckedCreateWithoutSoundVersionInput>
+    connectOrCreate?: SoundCreateOrConnectWithoutSoundVersionInput
+    connect?: SoundWhereUniqueInput
+  }
+
+  export type SoundUpdateOneRequiredWithoutSoundVersionNestedInput = {
+    create?: XOR<SoundCreateWithoutSoundVersionInput, SoundUncheckedCreateWithoutSoundVersionInput>
+    connectOrCreate?: SoundCreateOrConnectWithoutSoundVersionInput
+    upsert?: SoundUpsertWithoutSoundVersionInput
+    connect?: SoundWhereUniqueInput
+    update?: XOR<XOR<SoundUpdateToOneWithWhereWithoutSoundVersionInput, SoundUpdateWithoutSoundVersionInput>, SoundUncheckedUpdateWithoutSoundVersionInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutStoryboardsInput = {
+    create?: XOR<ProjectCreateWithoutStoryboardsInput, ProjectUncheckedCreateWithoutStoryboardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutStoryboardsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutStoryboardOwnerInput = {
+    create?: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStoryboardOwnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type StoryboardPanelCreateNestedManyWithoutStoryboardInput = {
+    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
+    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
+    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+  }
+
+  export type StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput = {
+    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
+    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
+    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateOneRequiredWithoutStoryboardsNestedInput = {
+    create?: XOR<ProjectCreateWithoutStoryboardsInput, ProjectUncheckedCreateWithoutStoryboardsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutStoryboardsInput
+    upsert?: ProjectUpsertWithoutStoryboardsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutStoryboardsInput, ProjectUpdateWithoutStoryboardsInput>, ProjectUncheckedUpdateWithoutStoryboardsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput = {
+    create?: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStoryboardOwnerInput
+    upsert?: UserUpsertWithoutStoryboardOwnerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStoryboardOwnerInput, UserUpdateWithoutStoryboardOwnerInput>, UserUncheckedUpdateWithoutStoryboardOwnerInput>
+  }
+
+  export type StoryboardPanelUpdateManyWithoutStoryboardNestedInput = {
+    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
+    upsert?: StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput[]
+    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
+    set?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    disconnect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    delete?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    update?: StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput[]
+    updateMany?: StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput | StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput[]
+    deleteMany?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+  }
+
+  export type StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput = {
+    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
+    upsert?: StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput[]
+    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
+    set?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    disconnect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    delete?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+    update?: StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput[]
+    updateMany?: StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput | StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput[]
+    deleteMany?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+  }
+
+  export type StoryboardCreateNestedOneWithoutPanelsInput = {
+    create?: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+    connectOrCreate?: StoryboardCreateOrConnectWithoutPanelsInput
+    connect?: StoryboardWhereUniqueInput
+  }
+
+  export type StoryboardUpdateOneRequiredWithoutPanelsNestedInput = {
+    create?: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+    connectOrCreate?: StoryboardCreateOrConnectWithoutPanelsInput
+    upsert?: StoryboardUpsertWithoutPanelsInput
+    connect?: StoryboardWhereUniqueInput
+    update?: XOR<XOR<StoryboardUpdateToOneWithWhereWithoutPanelsInput, StoryboardUpdateWithoutPanelsInput>, StoryboardUncheckedUpdateWithoutPanelsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -24201,6 +37127,132 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FootageCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    state?: FootageStateCreateNestedOneWithoutFootageInput
+    FootageVersions?: FootageVersionCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
+    FootageVersions?: FootageVersionUncheckedCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageCreateOrConnectWithoutUserInput = {
+    where: FootageWhereUniqueInput
+    create: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput>
+  }
+
+  export type FootageCreateManyUserInputEnvelope = {
+    data: FootageCreateManyUserInput | FootageCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoundCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutSoundsInput
+    folder?: SoundFolderCreateNestedOneWithoutSoundsInput
+    soundVersion?: SoundVersionCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+    folderId?: string | null
+    soundVersion?: SoundVersionUncheckedCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundCreateOrConnectWithoutUserInput = {
+    where: SoundWhereUniqueInput
+    create: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput>
+  }
+
+  export type SoundCreateManyUserInputEnvelope = {
+    data: SoundCreateManyUserInput | SoundCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoundFolderCreateWithoutUserInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutSoundFoldersInput
+    parentFolder?: SoundFolderCreateNestedOneWithoutSubFoldersInput
+    subFolders?: SoundFolderCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+    parentFolderId?: string | null
+    subFolders?: SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderCreateOrConnectWithoutUserInput = {
+    where: SoundFolderWhereUniqueInput
+    create: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput>
+  }
+
+  export type SoundFolderCreateManyUserInputEnvelope = {
+    data: SoundFolderCreateManyUserInput | SoundFolderCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StoryboardCreateWithoutUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutStoryboardsInput
+    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    projectId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardCreateOrConnectWithoutUserInput = {
+    where: StoryboardWhereUniqueInput
+    create: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput>
+  }
+
+  export type StoryboardCreateManyUserInputEnvelope = {
+    data: StoryboardCreateManyUserInput | StoryboardCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -24439,6 +37491,124 @@ export namespace Prisma {
     status?: StringFilter<"Animation"> | string
   }
 
+  export type FootageUpsertWithWhereUniqueWithoutUserInput = {
+    where: FootageWhereUniqueInput
+    update: XOR<FootageUpdateWithoutUserInput, FootageUncheckedUpdateWithoutUserInput>
+    create: XOR<FootageCreateWithoutUserInput, FootageUncheckedCreateWithoutUserInput>
+  }
+
+  export type FootageUpdateWithWhereUniqueWithoutUserInput = {
+    where: FootageWhereUniqueInput
+    data: XOR<FootageUpdateWithoutUserInput, FootageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FootageUpdateManyWithWhereWithoutUserInput = {
+    where: FootageScalarWhereInput
+    data: XOR<FootageUpdateManyMutationInput, FootageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FootageScalarWhereInput = {
+    AND?: FootageScalarWhereInput | FootageScalarWhereInput[]
+    OR?: FootageScalarWhereInput[]
+    NOT?: FootageScalarWhereInput | FootageScalarWhereInput[]
+    id?: StringFilter<"Footage"> | string
+    title?: StringFilter<"Footage"> | string
+    createdAt?: DateTimeFilter<"Footage"> | Date | string
+    updatedAt?: DateTimeFilter<"Footage"> | Date | string
+    approved?: BoolFilter<"Footage"> | boolean
+    description?: StringNullableFilter<"Footage"> | string | null
+    ownerId?: StringFilter<"Footage"> | string
+    stateId?: StringNullableFilter<"Footage"> | string | null
+    status?: StringFilter<"Footage"> | string
+  }
+
+  export type SoundUpsertWithWhereUniqueWithoutUserInput = {
+    where: SoundWhereUniqueInput
+    update: XOR<SoundUpdateWithoutUserInput, SoundUncheckedUpdateWithoutUserInput>
+    create: XOR<SoundCreateWithoutUserInput, SoundUncheckedCreateWithoutUserInput>
+  }
+
+  export type SoundUpdateWithWhereUniqueWithoutUserInput = {
+    where: SoundWhereUniqueInput
+    data: XOR<SoundUpdateWithoutUserInput, SoundUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SoundUpdateManyWithWhereWithoutUserInput = {
+    where: SoundScalarWhereInput
+    data: XOR<SoundUpdateManyMutationInput, SoundUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SoundScalarWhereInput = {
+    AND?: SoundScalarWhereInput | SoundScalarWhereInput[]
+    OR?: SoundScalarWhereInput[]
+    NOT?: SoundScalarWhereInput | SoundScalarWhereInput[]
+    id?: StringFilter<"Sound"> | string
+    title?: StringFilter<"Sound"> | string
+    createdAt?: DateTimeFilter<"Sound"> | Date | string
+    updatedAt?: DateTimeFilter<"Sound"> | Date | string
+    ownerId?: StringFilter<"Sound"> | string
+    projectId?: StringFilter<"Sound"> | string
+    folderId?: StringNullableFilter<"Sound"> | string | null
+  }
+
+  export type SoundFolderUpsertWithWhereUniqueWithoutUserInput = {
+    where: SoundFolderWhereUniqueInput
+    update: XOR<SoundFolderUpdateWithoutUserInput, SoundFolderUncheckedUpdateWithoutUserInput>
+    create: XOR<SoundFolderCreateWithoutUserInput, SoundFolderUncheckedCreateWithoutUserInput>
+  }
+
+  export type SoundFolderUpdateWithWhereUniqueWithoutUserInput = {
+    where: SoundFolderWhereUniqueInput
+    data: XOR<SoundFolderUpdateWithoutUserInput, SoundFolderUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SoundFolderUpdateManyWithWhereWithoutUserInput = {
+    where: SoundFolderScalarWhereInput
+    data: XOR<SoundFolderUpdateManyMutationInput, SoundFolderUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SoundFolderScalarWhereInput = {
+    AND?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+    OR?: SoundFolderScalarWhereInput[]
+    NOT?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
+    id?: StringFilter<"SoundFolder"> | string
+    name?: StringFilter<"SoundFolder"> | string
+    createdAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundFolder"> | Date | string
+    ownerId?: StringFilter<"SoundFolder"> | string
+    projectId?: StringFilter<"SoundFolder"> | string
+    parentFolderId?: StringNullableFilter<"SoundFolder"> | string | null
+  }
+
+  export type StoryboardUpsertWithWhereUniqueWithoutUserInput = {
+    where: StoryboardWhereUniqueInput
+    update: XOR<StoryboardUpdateWithoutUserInput, StoryboardUncheckedUpdateWithoutUserInput>
+    create: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput>
+  }
+
+  export type StoryboardUpdateWithWhereUniqueWithoutUserInput = {
+    where: StoryboardWhereUniqueInput
+    data: XOR<StoryboardUpdateWithoutUserInput, StoryboardUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StoryboardUpdateManyWithWhereWithoutUserInput = {
+    where: StoryboardScalarWhereInput
+    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type StoryboardScalarWhereInput = {
+    AND?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+    OR?: StoryboardScalarWhereInput[]
+    NOT?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+    id?: StringFilter<"Storyboard"> | string
+    title?: StringFilter<"Storyboard"> | string
+    description?: StringNullableFilter<"Storyboard"> | string | null
+    projectId?: StringFilter<"Storyboard"> | string
+    ownerId?: StringFilter<"Storyboard"> | string
+    createdAt?: DateTimeFilter<"Storyboard"> | Date | string
+    updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -24455,6 +37625,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -24473,6 +37647,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -24507,6 +37685,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -24525,6 +37707,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -24543,6 +37729,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -24561,6 +37751,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -24595,6 +37789,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -24613,6 +37811,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAuthenticatorInput = {
@@ -24631,6 +37833,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthenticatorInput = {
@@ -24649,6 +37855,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthenticatorInput = {
@@ -24683,6 +37893,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthenticatorInput = {
@@ -24701,6 +37915,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserProjectCreateWithoutProjectInput = {
@@ -24813,6 +38031,120 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FootageStateCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    footage?: FootageCreateNestedManyWithoutStateInput
+  }
+
+  export type FootageStateUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    footage?: FootageUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type FootageStateCreateOrConnectWithoutProjectInput = {
+    where: FootageStateWhereUniqueInput
+    create: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type FootageStateCreateManyProjectInputEnvelope = {
+    data: FootageStateCreateManyProjectInput | FootageStateCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoundFolderCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundFolderOwnerInput
+    parentFolder?: SoundFolderCreateNestedOneWithoutSubFoldersInput
+    subFolders?: SoundFolderCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    parentFolderId?: string | null
+    subFolders?: SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderCreateOrConnectWithoutProjectInput = {
+    where: SoundFolderWhereUniqueInput
+    create: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SoundFolderCreateManyProjectInputEnvelope = {
+    data: SoundFolderCreateManyProjectInput | SoundFolderCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoundCreateWithoutProjectInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundOwnerInput
+    folder?: SoundFolderCreateNestedOneWithoutSoundsInput
+    soundVersion?: SoundVersionCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundUncheckedCreateWithoutProjectInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    folderId?: string | null
+    soundVersion?: SoundVersionUncheckedCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundCreateOrConnectWithoutProjectInput = {
+    where: SoundWhereUniqueInput
+    create: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SoundCreateManyProjectInputEnvelope = {
+    data: SoundCreateManyProjectInput | SoundCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StoryboardCreateWithoutProjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutStoryboardOwnerInput
+    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardUncheckedCreateWithoutProjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    ownerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardCreateOrConnectWithoutProjectInput = {
+    where: StoryboardWhereUniqueInput
+    create: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type StoryboardCreateManyProjectInputEnvelope = {
+    data: StoryboardCreateManyProjectInput | StoryboardCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserProjectUpsertWithWhereUniqueWithoutProjectInput = {
     where: UserProjectWhereUniqueInput
     update: XOR<UserProjectUpdateWithoutProjectInput, UserProjectUncheckedUpdateWithoutProjectInput>
@@ -24886,6 +38218,79 @@ export namespace Prisma {
     projectId?: StringNullableFilter<"AnimationState"> | string | null
   }
 
+  export type FootageStateUpsertWithWhereUniqueWithoutProjectInput = {
+    where: FootageStateWhereUniqueInput
+    update: XOR<FootageStateUpdateWithoutProjectInput, FootageStateUncheckedUpdateWithoutProjectInput>
+    create: XOR<FootageStateCreateWithoutProjectInput, FootageStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type FootageStateUpdateWithWhereUniqueWithoutProjectInput = {
+    where: FootageStateWhereUniqueInput
+    data: XOR<FootageStateUpdateWithoutProjectInput, FootageStateUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type FootageStateUpdateManyWithWhereWithoutProjectInput = {
+    where: FootageStateScalarWhereInput
+    data: XOR<FootageStateUpdateManyMutationInput, FootageStateUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type FootageStateScalarWhereInput = {
+    AND?: FootageStateScalarWhereInput | FootageStateScalarWhereInput[]
+    OR?: FootageStateScalarWhereInput[]
+    NOT?: FootageStateScalarWhereInput | FootageStateScalarWhereInput[]
+    id?: StringFilter<"FootageState"> | string
+    name?: StringFilter<"FootageState"> | string
+    projectId?: StringNullableFilter<"FootageState"> | string | null
+  }
+
+  export type SoundFolderUpsertWithWhereUniqueWithoutProjectInput = {
+    where: SoundFolderWhereUniqueInput
+    update: XOR<SoundFolderUpdateWithoutProjectInput, SoundFolderUncheckedUpdateWithoutProjectInput>
+    create: XOR<SoundFolderCreateWithoutProjectInput, SoundFolderUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SoundFolderUpdateWithWhereUniqueWithoutProjectInput = {
+    where: SoundFolderWhereUniqueInput
+    data: XOR<SoundFolderUpdateWithoutProjectInput, SoundFolderUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type SoundFolderUpdateManyWithWhereWithoutProjectInput = {
+    where: SoundFolderScalarWhereInput
+    data: XOR<SoundFolderUpdateManyMutationInput, SoundFolderUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type SoundUpsertWithWhereUniqueWithoutProjectInput = {
+    where: SoundWhereUniqueInput
+    update: XOR<SoundUpdateWithoutProjectInput, SoundUncheckedUpdateWithoutProjectInput>
+    create: XOR<SoundCreateWithoutProjectInput, SoundUncheckedCreateWithoutProjectInput>
+  }
+
+  export type SoundUpdateWithWhereUniqueWithoutProjectInput = {
+    where: SoundWhereUniqueInput
+    data: XOR<SoundUpdateWithoutProjectInput, SoundUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type SoundUpdateManyWithWhereWithoutProjectInput = {
+    where: SoundScalarWhereInput
+    data: XOR<SoundUpdateManyMutationInput, SoundUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type StoryboardUpsertWithWhereUniqueWithoutProjectInput = {
+    where: StoryboardWhereUniqueInput
+    update: XOR<StoryboardUpdateWithoutProjectInput, StoryboardUncheckedUpdateWithoutProjectInput>
+    create: XOR<StoryboardCreateWithoutProjectInput, StoryboardUncheckedCreateWithoutProjectInput>
+  }
+
+  export type StoryboardUpdateWithWhereUniqueWithoutProjectInput = {
+    where: StoryboardWhereUniqueInput
+    data: XOR<StoryboardUpdateWithoutProjectInput, StoryboardUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type StoryboardUpdateManyWithWhereWithoutProjectInput = {
+    where: StoryboardScalarWhereInput
+    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyWithoutProjectInput>
+  }
+
   export type UserCreateWithoutScriptOwnerInput = {
     id?: string
     name?: string | null
@@ -24902,6 +38307,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutScriptOwnerInput = {
@@ -24920,6 +38329,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutScriptOwnerInput = {
@@ -24936,6 +38349,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutScriptsInput = {
@@ -24947,6 +38364,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutScriptsInput = {
@@ -25005,6 +38426,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScriptOwnerInput = {
@@ -25023,6 +38448,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutScriptsInput = {
@@ -25045,6 +38474,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutScriptsInput = {
@@ -25056,6 +38489,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SceneUpsertWithWhereUniqueWithoutScriptInput = {
@@ -25173,6 +38610,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignCategoryOwnerInput = {
@@ -25191,6 +38632,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignCategoryOwnerInput = {
@@ -25207,6 +38652,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutDesignCategoriesInput = {
@@ -25218,6 +38667,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutDesignCategoriesInput = {
@@ -25280,6 +38733,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignCategoryOwnerInput = {
@@ -25298,6 +38755,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutDesignCategoriesInput = {
@@ -25320,6 +38781,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutDesignCategoriesInput = {
@@ -25331,6 +38796,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type DesignSubClassUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -25365,6 +38834,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignOwnerInput = {
@@ -25383,6 +38856,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignOwnerInput = {
@@ -25468,6 +38945,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignOwnerInput = {
@@ -25486,6 +38967,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DesignCategoryUpsertWithoutDesignsInput = {
@@ -25607,6 +39092,10 @@ export namespace Prisma {
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutProjectMembersInput = {
@@ -25618,6 +39107,10 @@ export namespace Prisma {
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
     animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutProjectMembersInput = {
@@ -25641,6 +39134,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectMembersInput = {
@@ -25659,6 +39156,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectMembersInput = {
@@ -25686,6 +39187,10 @@ export namespace Prisma {
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutProjectMembersInput = {
@@ -25697,6 +39202,10 @@ export namespace Prisma {
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
     animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutProjectMembersInput = {
@@ -25726,6 +39235,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectMembersInput = {
@@ -25744,6 +39257,10 @@ export namespace Prisma {
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutAnimationCategoriesInput = {
@@ -25755,6 +39272,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
     scripts?: ScriptCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutAnimationCategoriesInput = {
@@ -25766,6 +39287,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
     scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
     designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutAnimationCategoriesInput = {
@@ -25827,6 +39352,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutAnimationCategoriesInput = {
@@ -25838,6 +39367,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
     scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
     designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type AnimationUpsertWithWhereUniqueWithoutStateInput = {
@@ -25872,6 +39405,10 @@ export namespace Prisma {
     projectMembers?: UserProjectCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnimationOwnerInput = {
@@ -25890,6 +39427,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
     DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
     DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnimationOwnerInput = {
@@ -25971,6 +39512,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnimationOwnerInput = {
@@ -25989,6 +39534,10 @@ export namespace Prisma {
     projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
     DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
     DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AnimationStateUpsertWithoutAnimationsInput = {
@@ -26108,6 +39657,1404 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
   }
 
+  export type ProjectCreateWithoutFootageCategoriesInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutFootageCategoriesInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutFootageCategoriesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutFootageCategoriesInput, ProjectUncheckedCreateWithoutFootageCategoriesInput>
+  }
+
+  export type FootageCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutFootageOwnerInput
+    FootageVersions?: FootageVersionCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageUncheckedCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+    FootageVersions?: FootageVersionUncheckedCreateNestedManyWithoutFootageInput
+  }
+
+  export type FootageCreateOrConnectWithoutStateInput = {
+    where: FootageWhereUniqueInput
+    create: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput>
+  }
+
+  export type FootageCreateManyStateInputEnvelope = {
+    data: FootageCreateManyStateInput | FootageCreateManyStateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpsertWithoutFootageCategoriesInput = {
+    update: XOR<ProjectUpdateWithoutFootageCategoriesInput, ProjectUncheckedUpdateWithoutFootageCategoriesInput>
+    create: XOR<ProjectCreateWithoutFootageCategoriesInput, ProjectUncheckedCreateWithoutFootageCategoriesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutFootageCategoriesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutFootageCategoriesInput, ProjectUncheckedUpdateWithoutFootageCategoriesInput>
+  }
+
+  export type ProjectUpdateWithoutFootageCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutFootageCategoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type FootageUpsertWithWhereUniqueWithoutStateInput = {
+    where: FootageWhereUniqueInput
+    update: XOR<FootageUpdateWithoutStateInput, FootageUncheckedUpdateWithoutStateInput>
+    create: XOR<FootageCreateWithoutStateInput, FootageUncheckedCreateWithoutStateInput>
+  }
+
+  export type FootageUpdateWithWhereUniqueWithoutStateInput = {
+    where: FootageWhereUniqueInput
+    data: XOR<FootageUpdateWithoutStateInput, FootageUncheckedUpdateWithoutStateInput>
+  }
+
+  export type FootageUpdateManyWithWhereWithoutStateInput = {
+    where: FootageScalarWhereInput
+    data: XOR<FootageUpdateManyMutationInput, FootageUncheckedUpdateManyWithoutStateInput>
+  }
+
+  export type UserCreateWithoutFootageOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFootageOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFootageOwnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFootageOwnerInput, UserUncheckedCreateWithoutFootageOwnerInput>
+  }
+
+  export type FootageStateCreateWithoutFootageInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutFootageCategoriesInput
+  }
+
+  export type FootageStateUncheckedCreateWithoutFootageInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type FootageStateCreateOrConnectWithoutFootageInput = {
+    where: FootageStateWhereUniqueInput
+    create: XOR<FootageStateCreateWithoutFootageInput, FootageStateUncheckedCreateWithoutFootageInput>
+  }
+
+  export type FootageVersionCreateWithoutFootageInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FootageVersionUncheckedCreateWithoutFootageInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FootageVersionCreateOrConnectWithoutFootageInput = {
+    where: FootageVersionWhereUniqueInput
+    create: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput>
+  }
+
+  export type FootageVersionCreateManyFootageInputEnvelope = {
+    data: FootageVersionCreateManyFootageInput | FootageVersionCreateManyFootageInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutFootageOwnerInput = {
+    update: XOR<UserUpdateWithoutFootageOwnerInput, UserUncheckedUpdateWithoutFootageOwnerInput>
+    create: XOR<UserCreateWithoutFootageOwnerInput, UserUncheckedCreateWithoutFootageOwnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFootageOwnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFootageOwnerInput, UserUncheckedUpdateWithoutFootageOwnerInput>
+  }
+
+  export type UserUpdateWithoutFootageOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFootageOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type FootageStateUpsertWithoutFootageInput = {
+    update: XOR<FootageStateUpdateWithoutFootageInput, FootageStateUncheckedUpdateWithoutFootageInput>
+    create: XOR<FootageStateCreateWithoutFootageInput, FootageStateUncheckedCreateWithoutFootageInput>
+    where?: FootageStateWhereInput
+  }
+
+  export type FootageStateUpdateToOneWithWhereWithoutFootageInput = {
+    where?: FootageStateWhereInput
+    data: XOR<FootageStateUpdateWithoutFootageInput, FootageStateUncheckedUpdateWithoutFootageInput>
+  }
+
+  export type FootageStateUpdateWithoutFootageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutFootageCategoriesNestedInput
+  }
+
+  export type FootageStateUncheckedUpdateWithoutFootageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FootageVersionUpsertWithWhereUniqueWithoutFootageInput = {
+    where: FootageVersionWhereUniqueInput
+    update: XOR<FootageVersionUpdateWithoutFootageInput, FootageVersionUncheckedUpdateWithoutFootageInput>
+    create: XOR<FootageVersionCreateWithoutFootageInput, FootageVersionUncheckedCreateWithoutFootageInput>
+  }
+
+  export type FootageVersionUpdateWithWhereUniqueWithoutFootageInput = {
+    where: FootageVersionWhereUniqueInput
+    data: XOR<FootageVersionUpdateWithoutFootageInput, FootageVersionUncheckedUpdateWithoutFootageInput>
+  }
+
+  export type FootageVersionUpdateManyWithWhereWithoutFootageInput = {
+    where: FootageVersionScalarWhereInput
+    data: XOR<FootageVersionUpdateManyMutationInput, FootageVersionUncheckedUpdateManyWithoutFootageInput>
+  }
+
+  export type FootageVersionScalarWhereInput = {
+    AND?: FootageVersionScalarWhereInput | FootageVersionScalarWhereInput[]
+    OR?: FootageVersionScalarWhereInput[]
+    NOT?: FootageVersionScalarWhereInput | FootageVersionScalarWhereInput[]
+    id?: StringFilter<"FootageVersion"> | string
+    versionNumber?: IntFilter<"FootageVersion"> | number
+    label?: StringNullableFilter<"FootageVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"FootageVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"FootageVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"FootageVersion"> | string | null
+    createdAt?: DateTimeFilter<"FootageVersion"> | Date | string
+    footageId?: StringFilter<"FootageVersion"> | string
+  }
+
+  export type FootageCreateWithoutFootageVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutFootageOwnerInput
+    state?: FootageStateCreateNestedOneWithoutFootageInput
+  }
+
+  export type FootageUncheckedCreateWithoutFootageVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type FootageCreateOrConnectWithoutFootageVersionsInput = {
+    where: FootageWhereUniqueInput
+    create: XOR<FootageCreateWithoutFootageVersionsInput, FootageUncheckedCreateWithoutFootageVersionsInput>
+  }
+
+  export type FootageUpsertWithoutFootageVersionsInput = {
+    update: XOR<FootageUpdateWithoutFootageVersionsInput, FootageUncheckedUpdateWithoutFootageVersionsInput>
+    create: XOR<FootageCreateWithoutFootageVersionsInput, FootageUncheckedCreateWithoutFootageVersionsInput>
+    where?: FootageWhereInput
+  }
+
+  export type FootageUpdateToOneWithWhereWithoutFootageVersionsInput = {
+    where?: FootageWhereInput
+    data: XOR<FootageUpdateWithoutFootageVersionsInput, FootageUncheckedUpdateWithoutFootageVersionsInput>
+  }
+
+  export type FootageUpdateWithoutFootageVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutFootageOwnerNestedInput
+    state?: FootageStateUpdateOneWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateWithoutFootageVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserCreateWithoutSoundFolderOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSoundFolderOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSoundFolderOwnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSoundFolderOwnerInput, UserUncheckedCreateWithoutSoundFolderOwnerInput>
+  }
+
+  export type ProjectCreateWithoutSoundFoldersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutSoundFoldersInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutSoundFoldersInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutSoundFoldersInput, ProjectUncheckedCreateWithoutSoundFoldersInput>
+  }
+
+  export type SoundFolderCreateWithoutSubFoldersInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundFolderOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundFoldersInput
+    parentFolder?: SoundFolderCreateNestedOneWithoutSubFoldersInput
+    sounds?: SoundCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateWithoutSubFoldersInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    parentFolderId?: string | null
+    sounds?: SoundUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderCreateOrConnectWithoutSubFoldersInput = {
+    where: SoundFolderWhereUniqueInput
+    create: XOR<SoundFolderCreateWithoutSubFoldersInput, SoundFolderUncheckedCreateWithoutSubFoldersInput>
+  }
+
+  export type SoundFolderCreateWithoutParentFolderInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundFolderOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundFoldersInput
+    subFolders?: SoundFolderCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateWithoutParentFolderInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    subFolders?: SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutFolderInput
+  }
+
+  export type SoundFolderCreateOrConnectWithoutParentFolderInput = {
+    where: SoundFolderWhereUniqueInput
+    create: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput>
+  }
+
+  export type SoundFolderCreateManyParentFolderInputEnvelope = {
+    data: SoundFolderCreateManyParentFolderInput | SoundFolderCreateManyParentFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SoundCreateWithoutFolderInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundsInput
+    soundVersion?: SoundVersionCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundUncheckedCreateWithoutFolderInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    soundVersion?: SoundVersionUncheckedCreateNestedManyWithoutSoundInput
+  }
+
+  export type SoundCreateOrConnectWithoutFolderInput = {
+    where: SoundWhereUniqueInput
+    create: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput>
+  }
+
+  export type SoundCreateManyFolderInputEnvelope = {
+    data: SoundCreateManyFolderInput | SoundCreateManyFolderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutSoundFolderOwnerInput = {
+    update: XOR<UserUpdateWithoutSoundFolderOwnerInput, UserUncheckedUpdateWithoutSoundFolderOwnerInput>
+    create: XOR<UserCreateWithoutSoundFolderOwnerInput, UserUncheckedCreateWithoutSoundFolderOwnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSoundFolderOwnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSoundFolderOwnerInput, UserUncheckedUpdateWithoutSoundFolderOwnerInput>
+  }
+
+  export type UserUpdateWithoutSoundFolderOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSoundFolderOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProjectUpsertWithoutSoundFoldersInput = {
+    update: XOR<ProjectUpdateWithoutSoundFoldersInput, ProjectUncheckedUpdateWithoutSoundFoldersInput>
+    create: XOR<ProjectCreateWithoutSoundFoldersInput, ProjectUncheckedCreateWithoutSoundFoldersInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutSoundFoldersInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutSoundFoldersInput, ProjectUncheckedUpdateWithoutSoundFoldersInput>
+  }
+
+  export type ProjectUpdateWithoutSoundFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutSoundFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type SoundFolderUpsertWithoutSubFoldersInput = {
+    update: XOR<SoundFolderUpdateWithoutSubFoldersInput, SoundFolderUncheckedUpdateWithoutSubFoldersInput>
+    create: XOR<SoundFolderCreateWithoutSubFoldersInput, SoundFolderUncheckedCreateWithoutSubFoldersInput>
+    where?: SoundFolderWhereInput
+  }
+
+  export type SoundFolderUpdateToOneWithWhereWithoutSubFoldersInput = {
+    where?: SoundFolderWhereInput
+    data: XOR<SoundFolderUpdateWithoutSubFoldersInput, SoundFolderUncheckedUpdateWithoutSubFoldersInput>
+  }
+
+  export type SoundFolderUpdateWithoutSubFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput
+    parentFolder?: SoundFolderUpdateOneWithoutSubFoldersNestedInput
+    sounds?: SoundUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateWithoutSubFoldersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    sounds?: SoundUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUpsertWithWhereUniqueWithoutParentFolderInput = {
+    where: SoundFolderWhereUniqueInput
+    update: XOR<SoundFolderUpdateWithoutParentFolderInput, SoundFolderUncheckedUpdateWithoutParentFolderInput>
+    create: XOR<SoundFolderCreateWithoutParentFolderInput, SoundFolderUncheckedCreateWithoutParentFolderInput>
+  }
+
+  export type SoundFolderUpdateWithWhereUniqueWithoutParentFolderInput = {
+    where: SoundFolderWhereUniqueInput
+    data: XOR<SoundFolderUpdateWithoutParentFolderInput, SoundFolderUncheckedUpdateWithoutParentFolderInput>
+  }
+
+  export type SoundFolderUpdateManyWithWhereWithoutParentFolderInput = {
+    where: SoundFolderScalarWhereInput
+    data: XOR<SoundFolderUpdateManyMutationInput, SoundFolderUncheckedUpdateManyWithoutParentFolderInput>
+  }
+
+  export type SoundUpsertWithWhereUniqueWithoutFolderInput = {
+    where: SoundWhereUniqueInput
+    update: XOR<SoundUpdateWithoutFolderInput, SoundUncheckedUpdateWithoutFolderInput>
+    create: XOR<SoundCreateWithoutFolderInput, SoundUncheckedCreateWithoutFolderInput>
+  }
+
+  export type SoundUpdateWithWhereUniqueWithoutFolderInput = {
+    where: SoundWhereUniqueInput
+    data: XOR<SoundUpdateWithoutFolderInput, SoundUncheckedUpdateWithoutFolderInput>
+  }
+
+  export type SoundUpdateManyWithWhereWithoutFolderInput = {
+    where: SoundScalarWhereInput
+    data: XOR<SoundUpdateManyMutationInput, SoundUncheckedUpdateManyWithoutFolderInput>
+  }
+
+  export type UserCreateWithoutSoundOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutSoundOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutSoundOwnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSoundOwnerInput, UserUncheckedCreateWithoutSoundOwnerInput>
+  }
+
+  export type ProjectCreateWithoutSoundsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutSoundsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutSoundsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutSoundsInput, ProjectUncheckedCreateWithoutSoundsInput>
+  }
+
+  export type SoundFolderCreateWithoutSoundsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundFolderOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundFoldersInput
+    parentFolder?: SoundFolderCreateNestedOneWithoutSubFoldersInput
+    subFolders?: SoundFolderCreateNestedManyWithoutParentFolderInput
+  }
+
+  export type SoundFolderUncheckedCreateWithoutSoundsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    parentFolderId?: string | null
+    subFolders?: SoundFolderUncheckedCreateNestedManyWithoutParentFolderInput
+  }
+
+  export type SoundFolderCreateOrConnectWithoutSoundsInput = {
+    where: SoundFolderWhereUniqueInput
+    create: XOR<SoundFolderCreateWithoutSoundsInput, SoundFolderUncheckedCreateWithoutSoundsInput>
+  }
+
+  export type SoundVersionCreateWithoutSoundInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+  }
+
+  export type SoundVersionUncheckedCreateWithoutSoundInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+  }
+
+  export type SoundVersionCreateOrConnectWithoutSoundInput = {
+    where: SoundVersionWhereUniqueInput
+    create: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput>
+  }
+
+  export type SoundVersionCreateManySoundInputEnvelope = {
+    data: SoundVersionCreateManySoundInput | SoundVersionCreateManySoundInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutSoundOwnerInput = {
+    update: XOR<UserUpdateWithoutSoundOwnerInput, UserUncheckedUpdateWithoutSoundOwnerInput>
+    create: XOR<UserCreateWithoutSoundOwnerInput, UserUncheckedCreateWithoutSoundOwnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSoundOwnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSoundOwnerInput, UserUncheckedUpdateWithoutSoundOwnerInput>
+  }
+
+  export type UserUpdateWithoutSoundOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSoundOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProjectUpsertWithoutSoundsInput = {
+    update: XOR<ProjectUpdateWithoutSoundsInput, ProjectUncheckedUpdateWithoutSoundsInput>
+    create: XOR<ProjectCreateWithoutSoundsInput, ProjectUncheckedCreateWithoutSoundsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutSoundsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutSoundsInput, ProjectUncheckedUpdateWithoutSoundsInput>
+  }
+
+  export type ProjectUpdateWithoutSoundsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutSoundsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type SoundFolderUpsertWithoutSoundsInput = {
+    update: XOR<SoundFolderUpdateWithoutSoundsInput, SoundFolderUncheckedUpdateWithoutSoundsInput>
+    create: XOR<SoundFolderCreateWithoutSoundsInput, SoundFolderUncheckedCreateWithoutSoundsInput>
+    where?: SoundFolderWhereInput
+  }
+
+  export type SoundFolderUpdateToOneWithWhereWithoutSoundsInput = {
+    where?: SoundFolderWhereInput
+    data: XOR<SoundFolderUpdateWithoutSoundsInput, SoundFolderUncheckedUpdateWithoutSoundsInput>
+  }
+
+  export type SoundFolderUpdateWithoutSoundsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput
+    parentFolder?: SoundFolderUpdateOneWithoutSubFoldersNestedInput
+    subFolders?: SoundFolderUpdateManyWithoutParentFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateWithoutSoundsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    subFolders?: SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput
+  }
+
+  export type SoundVersionUpsertWithWhereUniqueWithoutSoundInput = {
+    where: SoundVersionWhereUniqueInput
+    update: XOR<SoundVersionUpdateWithoutSoundInput, SoundVersionUncheckedUpdateWithoutSoundInput>
+    create: XOR<SoundVersionCreateWithoutSoundInput, SoundVersionUncheckedCreateWithoutSoundInput>
+  }
+
+  export type SoundVersionUpdateWithWhereUniqueWithoutSoundInput = {
+    where: SoundVersionWhereUniqueInput
+    data: XOR<SoundVersionUpdateWithoutSoundInput, SoundVersionUncheckedUpdateWithoutSoundInput>
+  }
+
+  export type SoundVersionUpdateManyWithWhereWithoutSoundInput = {
+    where: SoundVersionScalarWhereInput
+    data: XOR<SoundVersionUpdateManyMutationInput, SoundVersionUncheckedUpdateManyWithoutSoundInput>
+  }
+
+  export type SoundVersionScalarWhereInput = {
+    AND?: SoundVersionScalarWhereInput | SoundVersionScalarWhereInput[]
+    OR?: SoundVersionScalarWhereInput[]
+    NOT?: SoundVersionScalarWhereInput | SoundVersionScalarWhereInput[]
+    id?: StringFilter<"SoundVersion"> | string
+    title?: StringFilter<"SoundVersion"> | string
+    createdAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    updatedAt?: DateTimeFilter<"SoundVersion"> | Date | string
+    soundId?: StringFilter<"SoundVersion"> | string
+    muxUploadId?: StringFilter<"SoundVersion"> | string
+    muxPlaybackId?: StringFilter<"SoundVersion"> | string
+    status?: StringFilter<"SoundVersion"> | string
+    versionNumber?: IntFilter<"SoundVersion"> | number
+  }
+
+  export type SoundCreateWithoutSoundVersionInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutSoundOwnerInput
+    project: ProjectCreateNestedOneWithoutSoundsInput
+    folder?: SoundFolderCreateNestedOneWithoutSoundsInput
+  }
+
+  export type SoundUncheckedCreateWithoutSoundVersionInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+    folderId?: string | null
+  }
+
+  export type SoundCreateOrConnectWithoutSoundVersionInput = {
+    where: SoundWhereUniqueInput
+    create: XOR<SoundCreateWithoutSoundVersionInput, SoundUncheckedCreateWithoutSoundVersionInput>
+  }
+
+  export type SoundUpsertWithoutSoundVersionInput = {
+    update: XOR<SoundUpdateWithoutSoundVersionInput, SoundUncheckedUpdateWithoutSoundVersionInput>
+    create: XOR<SoundCreateWithoutSoundVersionInput, SoundUncheckedCreateWithoutSoundVersionInput>
+    where?: SoundWhereInput
+  }
+
+  export type SoundUpdateToOneWithWhereWithoutSoundVersionInput = {
+    where?: SoundWhereInput
+    data: XOR<SoundUpdateWithoutSoundVersionInput, SoundUncheckedUpdateWithoutSoundVersionInput>
+  }
+
+  export type SoundUpdateWithoutSoundVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundsNestedInput
+    folder?: SoundFolderUpdateOneWithoutSoundsNestedInput
+  }
+
+  export type SoundUncheckedUpdateWithoutSoundVersionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProjectCreateWithoutStoryboardsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutStoryboardsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutStoryboardsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutStoryboardsInput, ProjectUncheckedCreateWithoutStoryboardsInput>
+  }
+
+  export type UserCreateWithoutStoryboardOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutStoryboardOwnerInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutStoryboardOwnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
+  }
+
+  export type StoryboardPanelCreateWithoutStoryboardInput = {
+    id?: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardPanelUncheckedCreateWithoutStoryboardInput = {
+    id?: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardPanelCreateOrConnectWithoutStoryboardInput = {
+    where: StoryboardPanelWhereUniqueInput
+    create: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput>
+  }
+
+  export type StoryboardPanelCreateManyStoryboardInputEnvelope = {
+    data: StoryboardPanelCreateManyStoryboardInput | StoryboardPanelCreateManyStoryboardInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpsertWithoutStoryboardsInput = {
+    update: XOR<ProjectUpdateWithoutStoryboardsInput, ProjectUncheckedUpdateWithoutStoryboardsInput>
+    create: XOR<ProjectCreateWithoutStoryboardsInput, ProjectUncheckedCreateWithoutStoryboardsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutStoryboardsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutStoryboardsInput, ProjectUncheckedUpdateWithoutStoryboardsInput>
+  }
+
+  export type ProjectUpdateWithoutStoryboardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutStoryboardsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type UserUpsertWithoutStoryboardOwnerInput = {
+    update: XOR<UserUpdateWithoutStoryboardOwnerInput, UserUncheckedUpdateWithoutStoryboardOwnerInput>
+    create: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStoryboardOwnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStoryboardOwnerInput, UserUncheckedUpdateWithoutStoryboardOwnerInput>
+  }
+
+  export type UserUpdateWithoutStoryboardOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStoryboardOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput = {
+    where: StoryboardPanelWhereUniqueInput
+    update: XOR<StoryboardPanelUpdateWithoutStoryboardInput, StoryboardPanelUncheckedUpdateWithoutStoryboardInput>
+    create: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput>
+  }
+
+  export type StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput = {
+    where: StoryboardPanelWhereUniqueInput
+    data: XOR<StoryboardPanelUpdateWithoutStoryboardInput, StoryboardPanelUncheckedUpdateWithoutStoryboardInput>
+  }
+
+  export type StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput = {
+    where: StoryboardPanelScalarWhereInput
+    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyWithoutStoryboardInput>
+  }
+
+  export type StoryboardPanelScalarWhereInput = {
+    AND?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+    OR?: StoryboardPanelScalarWhereInput[]
+    NOT?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+    id?: StringFilter<"StoryboardPanel"> | string
+    storyboardId?: StringFilter<"StoryboardPanel"> | string
+    order?: IntFilter<"StoryboardPanel"> | number
+    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
+    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
+    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
+    description?: StringNullableFilter<"StoryboardPanel"> | string | null
+    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
+    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
+    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
+    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+  }
+
+  export type StoryboardCreateWithoutPanelsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutStoryboardsInput
+    user: UserCreateNestedOneWithoutStoryboardOwnerInput
+  }
+
+  export type StoryboardUncheckedCreateWithoutPanelsInput = {
+    id?: string
+    title: string
+    description?: string | null
+    projectId: string
+    ownerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardCreateOrConnectWithoutPanelsInput = {
+    where: StoryboardWhereUniqueInput
+    create: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+  }
+
+  export type StoryboardUpsertWithoutPanelsInput = {
+    update: XOR<StoryboardUpdateWithoutPanelsInput, StoryboardUncheckedUpdateWithoutPanelsInput>
+    create: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+    where?: StoryboardWhereInput
+  }
+
+  export type StoryboardUpdateToOneWithWhereWithoutPanelsInput = {
+    where?: StoryboardWhereInput
+    data: XOR<StoryboardUpdateWithoutPanelsInput, StoryboardUncheckedUpdateWithoutPanelsInput>
+  }
+
+  export type StoryboardUpdateWithoutPanelsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
+    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateWithoutPanelsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AccountCreateManyUserInput = {
     type: string
     provider: string
@@ -26184,6 +41131,44 @@ export namespace Prisma {
     description?: string | null
     stateId?: string | null
     status: string
+  }
+
+  export type FootageCreateManyUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
+  }
+
+  export type SoundCreateManyUserInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+    folderId?: string | null
+  }
+
+  export type SoundFolderCreateManyUserInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+    parentFolderId?: string | null
+  }
+
+  export type StoryboardCreateManyUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    projectId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -26428,6 +41413,130 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
   }
 
+  export type FootageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: FootageStateUpdateOneWithoutFootageNestedInput
+    FootageVersions?: FootageVersionUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    FootageVersions?: FootageVersionUncheckedUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SoundUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutSoundsNestedInput
+    folder?: SoundFolderUpdateOneWithoutSoundsNestedInput
+    soundVersion?: SoundVersionUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+    soundVersion?: SoundVersionUncheckedUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SoundFolderUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput
+    parentFolder?: SoundFolderUpdateOneWithoutSubFoldersNestedInput
+    subFolders?: SoundFolderUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    subFolders?: SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StoryboardUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
+    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserProjectCreateManyProjectInput = {
     userId: string
     role: string
@@ -26458,6 +41567,38 @@ export namespace Prisma {
   export type AnimationStateCreateManyProjectInput = {
     id?: string
     name: string
+  }
+
+  export type FootageStateCreateManyProjectInput = {
+    id?: string
+    name: string
+  }
+
+  export type SoundFolderCreateManyProjectInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    parentFolderId?: string | null
+  }
+
+  export type SoundCreateManyProjectInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    folderId?: string | null
+  }
+
+  export type StoryboardCreateManyProjectInput = {
+    id?: string
+    title: string
+    description?: string | null
+    ownerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserProjectUpdateWithoutProjectInput = {
@@ -26560,6 +41701,112 @@ export namespace Prisma {
   export type AnimationStateUncheckedUpdateManyWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageStateUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    footage?: FootageUpdateManyWithoutStateNestedInput
+  }
+
+  export type FootageStateUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    footage?: FootageUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type FootageStateUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SoundFolderUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput
+    parentFolder?: SoundFolderUpdateOneWithoutSubFoldersNestedInput
+    subFolders?: SoundFolderUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+    subFolders?: SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SoundUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundOwnerNestedInput
+    folder?: SoundFolderUpdateOneWithoutSoundsNestedInput
+    soundVersion?: SoundVersionUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+    soundVersion?: SoundVersionUncheckedUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    folderId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StoryboardUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
+    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SceneCreateManyScriptInput = {
@@ -26744,6 +41991,274 @@ export namespace Prisma {
     muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FootageCreateManyStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+  }
+
+  export type FootageUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutFootageOwnerNestedInput
+    FootageVersions?: FootageVersionUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    FootageVersions?: FootageVersionUncheckedUpdateManyWithoutFootageNestedInput
+  }
+
+  export type FootageUncheckedUpdateManyWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FootageVersionCreateManyFootageInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FootageVersionUpdateWithoutFootageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FootageVersionUncheckedUpdateWithoutFootageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FootageVersionUncheckedUpdateManyWithoutFootageInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SoundFolderCreateManyParentFolderInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+  }
+
+  export type SoundCreateManyFolderInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ownerId: string
+    projectId: string
+  }
+
+  export type SoundFolderUpdateWithoutParentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundFolderOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundFoldersNestedInput
+    subFolders?: SoundFolderUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateWithoutParentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    subFolders?: SoundFolderUncheckedUpdateManyWithoutParentFolderNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutFolderNestedInput
+  }
+
+  export type SoundFolderUncheckedUpdateManyWithoutParentFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SoundUpdateWithoutFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutSoundOwnerNestedInput
+    project?: ProjectUpdateOneRequiredWithoutSoundsNestedInput
+    soundVersion?: SoundVersionUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateWithoutFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    soundVersion?: SoundVersionUncheckedUpdateManyWithoutSoundNestedInput
+  }
+
+  export type SoundUncheckedUpdateManyWithoutFolderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SoundVersionCreateManySoundInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    muxUploadId: string
+    muxPlaybackId: string
+    status: string
+    versionNumber: number
+  }
+
+  export type SoundVersionUpdateWithoutSoundInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SoundVersionUncheckedUpdateWithoutSoundInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SoundVersionUncheckedUpdateManyWithoutSoundInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    muxUploadId?: StringFieldUpdateOperationsInput | string
+    muxPlaybackId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type StoryboardPanelCreateManyStoryboardInput = {
+    id?: string
+    order: number
+    imageUrl?: string | null
+    shotType?: string | null
+    cameraAngle?: string | null
+    cameraMove?: string | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StoryboardPanelUpdateWithoutStoryboardInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardPanelUncheckedUpdateWithoutStoryboardInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StoryboardPanelUncheckedUpdateManyWithoutStoryboardInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
+    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

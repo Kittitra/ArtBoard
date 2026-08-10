@@ -15,95 +15,12 @@ interface AnimationState {
 }
 
 const page = () => {
-    const arr = [
-        {
-            title: "in-between",
-        },
-        {
-            title : "blocking",
-        },
-        {
-            title: "coloring",
-        },
-    ]
-    const [selected, setSelected] = useState(arr[0].title);
 
-    const data = [
-        {
-            title: "in-between",
-            data: [
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-            ]
-         },
-        {
-            title: "blocking",
-            data: [
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-            ]
-        },
-        {
-            title: "coloring",
-            data: [
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-                {
-                    image: "/images/Elsa-nightGrow.jpeg",
-                    aprrove: null,
-                    date: "2025/11/12",
-                    sendBy: "James",
-                    name: "Task Name",
-                    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    status: "in-progress",
-                },
-            ]
-        }
-    ];
-
+    const [animationCategories, setAnimationCategories] = useState<AnimationState[]>([]);
+    const [selected, setSelected] = useState(animationCategories[0]?.name || "");
     const [newCategoryName, setNewCategoryName] = useState("");
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
-    const [animationCategories, setAnimationCategories] = useState<AnimationState[]>([]);
     const [aleart, setAleart] = useState(false);
     const [loading, setLoading] = useState(true);
     

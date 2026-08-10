@@ -129,3 +129,16 @@ export const VideoVersionSchema = z.object({
         message: "Video ID is required"
     }),
 })
+
+export const SoundFolderSchema = z.object({
+    name: z.string().min(1, {
+        message: "Folder name is required"
+    }),
+    projectId: z.string().min(1, {
+        message: "Project ID is required"
+    }),
+    folderId: z.string().optional(),
+    ownerId: z.string().min(1, {
+        message: "Owner ID is required"
+    })
+})

@@ -57,6 +57,7 @@ const SideBarVideo = ({
     const path = usePathname();
 
     const projectPath = path.split("/")[3];
+    const pathType = path.split("/")[4];
     const categoryPath = path.split("/")[5];
 
     const handleClick = (id: string) => {
@@ -133,7 +134,7 @@ const SideBarVideo = ({
                                     <span
                                         className="px-3 truncate flex-1 min-w-0 hover:cursor-pointer"
                                         onClick={() => handleClick(item.id)}>
-                                            <Link href={`http://localhost:3000/auth/project/${projectPath}/animation/${item.id}`} className="w-full h-full flex items-center">
+                                            <Link href={`/auth/project/${projectPath}/${pathType}/${item.id}`} className="w-full h-full flex items-center">
                                                 {item.name}
                                             </Link>
                                     </span>

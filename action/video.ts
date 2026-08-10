@@ -26,9 +26,16 @@ export const createNewVideoCategory = async (values: z.infer<typeof VideoCategor
             return {error: "animation category already exists!"};
         }
     }else if(type === "footage") {
+        const existingCategory = await db.footageState.findFirst({
+            where: {
+                name,
+                projectId
+            }
+        });
 
-    }else{
-
+        if (existingCategory) {
+            return {error: "footage category already exists!"};
+        }
     }
 
     if(type === "animation") {
@@ -42,9 +49,14 @@ export const createNewVideoCategory = async (values: z.infer<typeof VideoCategor
 
         return {success: "Create Animation Category Success", animationCategory: newAnimationCategory};
     }else if(type === "footage") {
+        const newFootageCategory = await db.footageState.create({
+            data: {
+                name,
+                projectId,
+            }
+        });
 
-    }else{
-
+        return {success: "Create Footage Category Success", footageCategory: newFootageCategory};
     }
 };
 
@@ -70,7 +82,16 @@ export const createNewVideo = async (values: z.infer<typeof VideoSchema>, type: 
             return {error: "animation category already exists!"};
         }
     } else if (type === "footage") {
-        return { error: "footage type not implemented yet" };
+        const existingCategory = await db.footage.findFirst({
+            where: {
+                title,
+                stateId: categoryId
+            }
+        });
+
+        if (existingCategory) {
+            return {error: "footage category already exists!"};
+        }
     } else {
         return { error: "invalid type!" };
     }
@@ -88,14 +109,22 @@ export const createNewVideo = async (values: z.infer<typeof VideoSchema>, type: 
 
         return {success: "Create Animation Category Success", animation: newVideo};
     }else if(type === "footage") {
+        const newVideo = await db.footage.create({
+            data: {
+                title,
+                stateId: categoryId,
+                ownerId: userId,
+                status,
+                description
+            }
+        });
 
-    }else{
-
+        return {success: "Create Footage Category Success", footage: newVideo};
     }
 
 };
 
-export const createNewVideoVersion = async (values: z.infer<typeof VideoVersionSchema>, type: string) => {
+export const createNewAnimationVersion = async (values: z.infer<typeof VideoVersionSchema>, type: string) => {
     const validateFields = VideoVersionSchema.safeParse(values);
 
     if (!validateFields.success) {
@@ -121,6 +150,43 @@ export const createNewVideoVersion = async (values: z.infer<typeof VideoVersionS
                 muxPlaybackId,
                 thumbnailUrl,
                 animationId: videoId,
+                versionNumber: existingVersions.length + 1,
+            }
+        });
+
+        return { success: "Create Video Version Success", videoVersion: newVideoVersion };
+    }
+
+    return { error: "invalid type!" };
+};
+
+
+export const createNewFootageVersion = async (values: z.infer<typeof VideoVersionSchema>, type: string) => {
+    const validateFields = VideoVersionSchema.safeParse(values);
+
+    if (!validateFields.success) {
+        return { error: "invalid field!" };
+    }
+
+    const { label, muxUploadId, muxPlaybackId, thumbnailUrl, videoId } = validateFields.data;
+
+    if(type === "footage") {
+         const existingVersions = await db.footageVersion.findMany({
+            where: { footageId: videoId }
+        });
+
+        const labelTaken = existingVersions.some((item) => item.label === label);
+        if (labelTaken) {
+            return { error: "footage version label already in use!" };
+        }
+
+        const newVideoVersion = await db.footageVersion.create({
+            data: {
+                label,
+                muxUploadId,
+                muxPlaybackId,
+                thumbnailUrl,
+                footageId: videoId,
                 versionNumber: existingVersions.length + 1,
             }
         });

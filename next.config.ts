@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   //   }
   //   return config
   // },
+   serverExternalPackages: [
+    "fluent-ffmpeg",
+    "@ffmpeg-installer/ffmpeg",
+  ],
 };
+
 
 export default nextConfig;

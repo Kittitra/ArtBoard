@@ -4,21 +4,23 @@ import { createNewVideo, createNewVideoCategory } from '@/action/video';
 import SideBarVideo from '@/app/components/SideBarVideo';
 import Animation from '@/app/components/workspace/animation/Animation';
 import AnimationViewer from '@/app/components/workspace/animation/AnimationViewer';
-import { AnimationVersion } from '@/app/generated/prisma';
+import FootageViewer from '@/app/components/workspace/footage/FootageViewer';
+import { AnimationVersion, FootageVersion } from '@/app/generated/prisma';
 import { getUserById } from '@/data/user';
 import { useCurrentUser } from '@/hooks/use-current-user';
 import { getAnimationById, getAnimationByStateId, getAnimationCategoriesByProjectId, getAnimationVersionsByAnimationId } from '@/lib/api/Animation';
+import { getFootageById, getFootageCategoriesByProjectId, getFootageVersionsByFootageId } from '@/lib/api/Footage';
 import { getUserByUserId } from '@/lib/api/User';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react'
 
-interface AnimationState {
+interface FootageState {
     id:string
     name: string
     projectId: string | null
 }
 
-interface AnimationProps {
+interface FootageProps {
     id: string
     title: string
     content: any
@@ -43,9 +45,9 @@ const page = () => {
     const [newCategoryName, setNewCategoryName] = useState("");
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
-    const [animation, setAnimation] = useState<AnimationProps>()
-    const [animationVersions, setAnimationVersions] = useState<AnimationVersion[]>([]);
-    const [animationCategories, setAnimationCategories] = useState<AnimationState[]>([]);
+    const [footage, setFootage] = useState<FootageProps>()
+    const [footageVersions, setFootageVersions] = useState<FootageVersion[]>([]);
+    const [footageCategories, setFootageCategories] = useState<FootageState[]>([]);
     const [aleart, setAleart] = useState(false);
     const [loading, setLoading] = useState(true);
     const [users, setUsers] = useState<any>(null)
@@ -84,14 +86,14 @@ const page = () => {
                 const newCategoryAnimation = data?.animationCategory;
     
                 if (newCategoryAnimation) {
-                    setAnimationCategories((prev) => [newCategoryAnimation, ...prev]); // 🔥 เพิ่มบนสุด
+                    setFootageCategories((prev) => [newCategoryAnimation, ...prev]); // 🔥 เพิ่มบนสุด
                 }
     
                 setError(data?.error);
                 setSuccess(data?.success);
             })
             .catch(() => {
-                setError("Failed to create animation category.");
+                setError("Failed to create footage category.");
             })
             .finally(() => {
                 setNewCategoryName("");
@@ -109,31 +111,31 @@ const page = () => {
     };
 
     useEffect(() => {
-        getAnimationCategoriesByProjectId(projectPath)
+        getFootageCategoriesByProjectId(projectPath)
         .then((categories) => {
-            //   console.log("Animation Categories:", categories);
-            setAnimationCategories(categories);
-            // console.log("Animation Categories:", categories); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
+            //   console.log("Footage Categories:", categories);
+            setFootageCategories(categories);
+            // console.log("Footage Categories:", categories); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
         })
         .catch((error) => {
-            console.error("Failed to fetch animation categories:", error);
+            console.error("Failed to fetch footage categories:", error);
         }).finally(() => {
             setLoading(false);
         })
     }, [projectPath]);
 
     useEffect(() => {
-        getAnimationVersionsByAnimationId(VersionPath)
-        .then((animation) => {
-            setAnimationVersions(animation);
+        getFootageVersionsByFootageId(VersionPath)
+        .then((footage) => {
+            setFootageVersions(footage);
         })
         .catch((error) => {
-            console.error("Failed to fetch animation versions:", error);
+            console.error("Failed to fetch footage versions:", error);
         }).finally(() => {
             setLoading(false);
         })
 
-        console.log("Animation Versions:", animationVersions); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
+        console.log("Footage Versions:", footageVersions); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
     }, [MoviePath]);
 
      useEffect(() => {
@@ -145,7 +147,7 @@ const page = () => {
             setUsers(users);
         })
         .catch((error) => {
-            console.error("Failed to fetch animation:", error);
+            console.error("Failed to fetch footage:", error);
         }).finally(() => {
             setLoading(false);
         })
@@ -155,17 +157,17 @@ const page = () => {
     
 
     useEffect(() => {
-        getAnimationById(VersionPath)
-        .then((animation) => {
-            setAnimation(animation);
+        getFootageById(VersionPath)
+        .then((footage) => {
+            setFootage(footage);
         })
         .catch((error) => {
-            console.error("Failed to fetch animation:", error);
+            console.error("Failed to fetch footage:", error);
         }).finally(() => {
             setLoading(false);
         })
 
-        console.log("Animation:", animation); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
+        console.log("Footage:", footage); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
     }, [VersionPath]);
 
 
@@ -175,16 +177,16 @@ const page = () => {
                 setNewCategoryName={setNewCategoryName}
                 handleCreateNewVideoCategory={handleCreateNewVideoCategory}
                 onSelect={(title) => setSelected(title)}
-                data={animationCategories}
+                data={footageCategories}
                 loading={loading}
             />
-                {users && animation &&  (
-                    <AnimationViewer
-                        versions={animationVersions}
+                {users && footage &&  (
+                    <FootageViewer
+                        versions={footageVersions}
                         comments={[]}
                         moviePath={VersionPath}
                         user={users}
-                        animationTitle={animation.title}
+                        animationTitle={footage.title}
                         loading={loading}
                     />
                 )}

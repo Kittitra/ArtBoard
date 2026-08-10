@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Paperclip, ChevronDown, Plus } from "lucide-react";
-import { AnimationVersion, User } from "@/app/generated/prisma";
+import { Paperclip, ChevronDown, Plus, Scissors } from "lucide-react";
+import { AnimationVersion, FootageVersion, User } from "@/app/generated/prisma";
 import VideoUploader from "../../drag/VideoUploader";
-import { createNewAnimationVersion } from "@/action/video";
+import { createNewAnimationVersion, createNewFootageVersion } from "@/action/video";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import MuxPlayer from "@mux/mux-player-react";
+import { ensureMp4Rendition } from "@/action/ensure-mp4-rendittion";
+import VideoEditModal from "./VideoEditModel";
 
 interface Comment {
   id: string;
@@ -18,17 +20,17 @@ interface Comment {
 }
 
 interface Props {
-  versions: AnimationVersion[];
+  versions: FootageVersion[];
   comments: Comment[];
-  moviePath: string; // animationId
+  moviePath: string; // footageId
   user: User;
-  animationTitle: string; // เพิ่ม prop สำหรับชื่อของ animation
+  animationTitle: string; // เพิ่ม prop สำหรับชื่อของ footage
   loading?: boolean; // เพิ่ม prop สำหรับสถานะการโหลด
 }
 
 
-const AnimationViewer = ({ versions: initialVersions, comments, moviePath, animationTitle, loading }: Props) => {
-  const [versions, setVersions] = useState<AnimationVersion[]>(initialVersions);
+const FootageViewer = ({ versions: initialVersions, comments, moviePath, animationTitle, loading }: Props) => {
+  const [versions, setVersions] = useState<FootageVersion[]>(initialVersions);
   const [selectedVersionId, setSelectedVersionId] = useState(initialVersions[0]?.id ?? "");
   const [versionDropdownOpen, setVersionDropdownOpen] = useState(false);
 
@@ -39,12 +41,15 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
   const [commentText, setCommentText] = useState("");
   const [attachment, setAttachment] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isPreparingEdit, setIsPreparingEdit] = useState(false);
+  const [mp4Filename, setMp4Filename] = useState("capped-1080p.mp4");
 
-  const selectedVersion = versions.find((v) => v.id === selectedVersionId && v.animationId === moviePath) ?? null;
+  // Edit (trim/speed) flow
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const version = versions.filter((v) => v.animationId === moviePath);
+  const selectedVersion = versions.find((v) => v.id === selectedVersionId && v.footageId === moviePath) ?? null;
 
-  console.log("version:", version);
+  const version = versions.filter((v) => v.footageId === moviePath);
 
   // --- Add Version handlers ---
   const handleOpenForm = () => {
@@ -71,7 +76,7 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
     playbackId: string,
     thumbnailUrl: string
   ) => {
-    const result = await createNewAnimationVersion(
+    const result = await createNewFootageVersion(
       {
         label: versionLabel,
         muxUploadId: uploadId,
@@ -79,7 +84,7 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
         thumbnailUrl,
         videoId: moviePath,
       },
-      "animation"
+      "footage"
     );
 
     if (result?.error) {
@@ -96,10 +101,36 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
     setStep("idle");
   };
 
+  // --- Edit (trim/speed) handler ---
+  const handleEditSaved = (newVersion: FootageVersion) => {
+    setVersions((prev) => [...prev, newVersion]);
+    setSelectedVersionId(newVersion.id);
+    setIsEditOpen(false);
+  };
+
   const handleSend = () => {
     if (!commentText.trim()) return;
     setCommentText("");
     setAttachment(null);
+  };
+
+  const handleOpenEdit = async () => {
+    if (!selectedVersion?.muxPlaybackId) return;
+    setIsPreparingEdit(true);
+
+    const result = await ensureMp4Rendition(selectedVersion.muxPlaybackId);
+
+    setIsPreparingEdit(false);
+
+    if (result?.error) {
+      alert(result.error); // เปลี่ยนเป็น toast/error UI ตามที่ใช้ในโปรเจกต์
+      return;
+    }
+
+    if (result?.filename) {
+      setMp4Filename(result.filename);
+      setIsEditOpen(true);
+    }
   };
 
   useEffect(() => {
@@ -136,7 +167,19 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
         </div>
 
         <div className="flex flex-col gap-1 mt-1">
-          <h1 className="text-2xl font-semibold text-white">{animationTitle}</h1>
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-semibold text-white">{animationTitle}</h1>
+            {selectedVersion?.muxPlaybackId && (
+              <button
+                onClick={handleOpenEdit}
+                disabled={isPreparingEdit}
+                className="flex items-center gap-1.5 text-sm text-gray-300 hover:text-white bg-[#3a3a3a] hover:bg-[#444] px-3 py-1.5 rounded-md transition-colors"
+              >
+                <Scissors size={14} />
+                {isPreparingEdit ? "Preparing..." : "Edit"}
+              </button>
+            )}
+          </div>
           <p className="text-sm text-gray-400">
             Upload Date{" "}
             <span className="text-gray-300">
@@ -289,8 +332,20 @@ const AnimationViewer = ({ versions: initialVersions, comments, moviePath, anima
           onClose={() => setStep("form")}
         />
       )}
+
+      {/* Edit modal: trim + speed */}
+      {isEditOpen && selectedVersion?.muxPlaybackId && (
+        <VideoEditModal
+          videoId={moviePath}
+          sourcePlaybackId={selectedVersion.muxPlaybackId}
+          mp4Filename={mp4Filename}
+          defaultLabel={selectedVersion.label ?? undefined}
+          onClose={() => setIsEditOpen(false)}
+          onSaved={handleEditSaved}
+        />
+      )}
     </div>
   );
 };
 
-export default AnimationViewer;
+export default FootageViewer;

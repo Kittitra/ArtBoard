@@ -266,6 +266,93 @@ exports.Prisma.AnimationVersionScalarFieldEnum = {
   animationId: 'animationId'
 };
 
+exports.Prisma.FootageStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.FootageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.FootageVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  footageId: 'footageId'
+};
+
+exports.Prisma.SoundFolderScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId',
+  parentFolderId: 'parentFolderId'
+};
+
+exports.Prisma.SoundScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId',
+  folderId: 'folderId'
+};
+
+exports.Prisma.SoundVersionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  soundId: 'soundId',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  status: 'status',
+  versionNumber: 'versionNumber'
+};
+
+exports.Prisma.StoryboardScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  projectId: 'projectId',
+  ownerId: 'ownerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StoryboardPanelScalarFieldEnum = {
+  id: 'id',
+  storyboardId: 'storyboardId',
+  order: 'order',
+  imageUrl: 'imageUrl',
+  shotType: 'shotType',
+  cameraAngle: 'cameraAngle',
+  cameraMove: 'cameraMove',
+  description: 'description',
+  dialogue: 'dialogue',
+  duration: 'duration',
+  linkedSceneId: 'linkedSceneId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -312,7 +399,15 @@ exports.Prisma.ModelName = {
   UserProject: 'UserProject',
   AnimationState: 'AnimationState',
   Animation: 'Animation',
-  AnimationVersion: 'AnimationVersion'
+  AnimationVersion: 'AnimationVersion',
+  FootageState: 'FootageState',
+  Footage: 'Footage',
+  FootageVersion: 'FootageVersion',
+  SoundFolder: 'SoundFolder',
+  Sound: 'Sound',
+  SoundVersion: 'SoundVersion',
+  Storyboard: 'Storyboard',
+  StoryboardPanel: 'StoryboardPanel'
 };
 
 /**
