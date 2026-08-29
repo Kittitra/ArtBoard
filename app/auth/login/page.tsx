@@ -47,7 +47,7 @@ const page = (props: Props) => {
         //   setSuccess(data?.success);
           if (data?.success) {
             setSuccess("Login successful!");
-            router.push("/auth/home"); // redirect manual
+            router.push("/auth/project"); // redirect manual
           }
         })
         .catch((_error) => {
@@ -57,11 +57,11 @@ const page = (props: Props) => {
   }
 
   return (
-    <div className='flex flex-row w-full h-screen'>
-        <div className='flex flex-col w-2/3 px-75 py-32 overflow-y-auto'>
+    <div className='flex flex-row w-full h-screen overflow-y-hidden'>
+        <div className='flex flex-col w-2/3 px-30 py-10 overflow-y-auto'>
             <Card className="w-full border-none shadow-none gap-10">
                 <CardHeader>
-                    <CardTitle className='text-4xl'>Get Started</CardTitle>
+                    <CardTitle className='text-4xl'>Login</CardTitle>
                 </CardHeader>
                 <CardContent className='flex flex-col gap-10'>
 
@@ -74,7 +74,7 @@ const page = (props: Props) => {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                    <Input className="w-[30rem] h-[3rem]"
+                                    <Input className="w-full h-[3rem]"
                                     {...field}
                                     disabled={isPending}
                                     type="email"
@@ -92,7 +92,7 @@ const page = (props: Props) => {
                                 <FormItem className="pb-5">
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                    <Input className="w-[30rem] h-[3rem]"
+                                    <Input className="w-full h-[3rem]"
                                     {...field}
                                     disabled={isPending}
                                     type="password"

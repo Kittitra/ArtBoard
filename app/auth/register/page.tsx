@@ -50,10 +50,10 @@ const page = (props: Props) => {
 
   return (
     <div className='flex flex-row w-full h-screen'>
-        <div className='flex flex-col w-2/3 px-75 py-32 overflow-y-hidden'>
+        <div className='flex flex-col w-2/3 px-50 pt-10 overflow-y-hidden'>
             <Card className="w-full border-none shadow-none gap-10">
                 <CardHeader>
-                    <CardTitle className='text-4xl'>Get Started</CardTitle>
+                    <CardTitle className='text-4xl'>Register</CardTitle>
                 </CardHeader>
                 <CardContent className='flex flex-col gap-10'>
 
@@ -66,7 +66,7 @@ const page = (props: Props) => {
                                 <FormItem>
                                     <FormLabel>Name</FormLabel>
                                     <FormControl>
-                                    <Input className="w-[30rem] h-[3rem]"
+                                    <Input className="w-full h-[3rem]"
                                     {...field}
                                     disabled={isPending}
                                     placeholder="james Lee" />
@@ -83,7 +83,7 @@ const page = (props: Props) => {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                    <Input className="w-[30rem] h-[3rem]"
+                                    <Input className="w-full h-[3rem]"
                                     {...field}
                                     disabled={isPending}
                                     type="email"
@@ -101,7 +101,7 @@ const page = (props: Props) => {
                                 <FormItem className="pb-5">
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                    <Input className="w-[30rem] h-[3rem]"
+                                    <Input className="w-full h-[3rem]"
                                     {...field}
                                     disabled={isPending}
                                     type="password"
@@ -115,19 +115,21 @@ const page = (props: Props) => {
                             <FormError message={error} />
                             <Button className="w-full bg-[#581730] text-xl p-5 hover:bg-[#76153C]"
                                 disabled={isPending}
-                                type="submit" >Login</Button>
+                                type="submit" >Register</Button>
                         </form>
                     </Form> 
 
                 </CardContent>
+
                 <CardFooter className="flex flex-col gap-2 w-full ">
-                    <div className="flex items-center w-full my-6">
+                    <div className="flex items-center w-full">
                         <div className="flex-1 border-t border-gray-300"></div>
                         <span className="px-4 text-sm text-gray-500">or</span>
                         <div className="flex-1 border-t border-gray-300"></div>
                     </div>
                 </CardFooter>
-                <CardFooter className='flex flex-col gap-10'>
+
+                <CardFooter className='flex flex-col gap-5'>
                     <form action={async () => {
                             // "use server"
                             await signIn("google", {

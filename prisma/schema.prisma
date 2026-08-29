@@ -24,10 +24,21 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
- 
+
+  scriptOwner Script[]
+  projectMembers UserProject[]
+  DesignCategoryOwner DesignCategory[]
+  DesignOwner DesignSubClass[]
+  AnimationOwner Animation[]
+  FootageOwner Footage[]
+  SoundOwner Sound[]
+  soundFolderOwner SoundFolder[]
+  storyboardOwner Storyboard[]
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
  
 model Account {
   userId            String
@@ -82,4 +93,291 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
   @@id([userId, credentialID])
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  projectMembers UserProject[]
+  scripts      Script[]
+  designCategories DesignCategory[]
+  animationCategories AnimationState[]
+  footageCategories FootageState[]
+  soundFolders SoundFolder[]
+  sounds Sound[]
+  storyboards Storyboard[]
+}
+//script-----------------------------------------------------------------------------------------------------------------------------------
+model Script {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  author      String?  // ชื่อผู้เขียนบน cover page
+
+  // เก็บ Tiptap JSON ทั้งหมดเป็น Json
+  content     Json     @default("{}")
+
+  // metadata
+  status      ScriptStatus @default(DRAFT)
+  version     Int          @default(1)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  scenes      Scene[]
+
+  @@index([ownerId])
+}
+
+// แยก Scene ออกมาเพื่อ query ได้ง่าย
+model Scene {
+  id          String  @id @default(uuid())
+  sceneNumber Int
+  heading     String  // "INT. COFFEE SHOP - DAY"
+  pageStart   Int?    // หน้าที่เริ่ม
+
+  scriptId    String
+  script      Script  @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+
+  @@index([scriptId])
+}
+
+enum ScriptStatus {
+  DRAFT
+  IN_REVIEW
+  FINAL
+  ARCHIVED
+}
+//Design-----------------------------------------------------------------------------------------------------------------------------------
+model DesignCategory {
+  id          String  @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  designs DesignSubClass[]
+}
+
+model DesignSubClass {
+  id          String  @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  categoryId String?
+  category DesignCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  versions    DesignSubClassVersion[]
+}
+
+model DesignSubClassVersion {
+  id          String  @id @default(uuid())
+  name        String
+  content     Json     @default("{}") // เก็บข้อมูลการออกแบบทั้งหมดเป็น Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ownerId      String
+
+  DesignSubClassId String?
+  DesignSubClass DesignSubClass? @relation(fields: [DesignSubClassId], references: [id], onDelete: SetNull)
+}
+
+//project-----------------------------------------------------------------------------------------------------------------------------------
+model UserProject {
+  userId    String  
+  projectId String 
+
+  role    String  // "owner", "editor
+  createdAt   DateTime @default(now())
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
+}
+//Animation-----------------------------------------------------------------------------------------------------------------------------------
+model AnimationState {
+  id          String  @id @default(uuid())
+  name       String
+
+  projectId String?
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  animations Animation[]
+}
+
+model Animation {
+  id          String  @id @default(uuid())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  approved    Boolean @default(false)
+  description String?
+  ownerId      String
+  stateId String?
+  status  String
+
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  state AnimationState? @relation(fields: [stateId], references: [id], onDelete: SetNull)
+  AnimationVersions AnimationVersion[]
+}
+
+model AnimationVersion {
+  id            String    @id @default(uuid())
+  versionNumber Int       // 1, 2, 3, ...
+  label         String?   // "Version 1", "Draft 2" ฯลฯ
+  muxUploadId   String?
+  muxPlaybackId String?
+  thumbnailUrl  String?
+  createdAt     DateTime  @default(now())
+  animationId   String
+
+  animation Animation @relation(fields: [animationId], references: [id], onDelete: Cascade)
+}
+//Footage-----------------------------------------------------------------------------------------------------------------------------------
+model FootageState {
+  id          String  @id @default(uuid())
+  name       String
+
+  projectId String?
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  footage Footage[]
+}
+
+model Footage {
+  id          String  @id @default(uuid())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  approved    Boolean @default(false)
+  description String?
+  ownerId      String
+  stateId String?
+  status  String
+
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  state FootageState? @relation(fields: [stateId], references: [id], onDelete: SetNull)
+  FootageVersions FootageVersion[]
+}
+
+model FootageVersion {
+  id            String    @id @default(uuid())
+  versionNumber Int       // 1, 2, 3, ...
+  label         String?   // "Version 1", "Draft 2" ฯลฯ
+  muxUploadId   String?
+  muxPlaybackId String?
+  thumbnailUrl  String?
+  createdAt     DateTime  @default(now())
+  footageId   String
+
+  footage Footage @relation(fields: [footageId], references: [id], onDelete: Cascade)
+}
+
+//Sound-----------------------------------------------------------------------------------------------------------------------------------
+model SoundFolder {
+  id          String  @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  parentFolderId String?
+  parentFolder SoundFolder? @relation("SoundFolderToSubFolders", fields: [parentFolderId], references: [id], onDelete: SetNull)
+  subFolders SoundFolder[] @relation("SoundFolderToSubFolders")
+
+  sounds Sound[]
+}
+
+model Sound {
+  id          String  @id @default(uuid())
+  title        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ownerId      String
+  user        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  projectId String
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  folderId String?
+  folder SoundFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
+
+  soundVersion SoundVersion[]
+}
+
+model SoundVersion {
+  id          String  @id @default(uuid())
+  title        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  soundId      String
+  muxUploadId String
+  muxPlaybackId String
+  status String
+
+  versionNumber Int
+
+  sound Sound @relation(fields: [soundId], references: [id], onDelete: Cascade)
+}
+/////////////////////////////////////////////////////////////////////////////////////// Stortboard
+
+model Storyboard {
+  id          String            @id @default(cuid())
+  title       String
+  description String?
+  projectId   String
+  project     Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  ownerId      String
+  owner        User              @relation(fields: [ownerId], references: [id])
+  panels      StoryboardPanel[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([projectId])
+}
+
+model StoryboardPanel {
+  id            String     @id @default(cuid())
+  storyboardId  String
+  storyboard    Storyboard @relation(fields: [storyboardId], references: [id], onDelete: Cascade)
+  
+  order         Int        // ลำดับภาพ ใช้เรียง drag-and-drop reorder
+  imageUrl      String?    // ภาพร่าง (Cloudinary เหมือน image อื่นๆ ในระบบคุณ)
+  
+  shotType      String?    // เช่น "Wide", "Close-up", "Medium"
+  cameraAngle   String?    // เช่น "Eye-level", "High angle", "Low angle"
+  cameraMove    String?    // เช่น "Pan", "Zoom", "Static"
+  
+  description   String?    // สิ่งที่เกิดขึ้นในช็อตนี้ (action)
+  dialogue      String?    // บทพูด/เสียงประกอบ
+  duration      Int?       // ระยะเวลาโดยประมาณ (วินาที)
+  
+  linkedSceneId String?    // เชื่อมกับ scene ใน screenplay editor (ถ้ามี)
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([storyboardId, order])
 }
