@@ -104,6 +104,21 @@ export type Footage = $Result.DefaultSelection<Prisma.$FootagePayload>
  */
 export type FootageVersion = $Result.DefaultSelection<Prisma.$FootageVersionPayload>
 /**
+ * Model EditedState
+ * 
+ */
+export type EditedState = $Result.DefaultSelection<Prisma.$EditedStatePayload>
+/**
+ * Model Edited
+ * 
+ */
+export type Edited = $Result.DefaultSelection<Prisma.$EditedPayload>
+/**
+ * Model EditedVersion
+ * 
+ */
+export type EditedVersion = $Result.DefaultSelection<Prisma.$EditedVersionPayload>
+/**
  * Model SoundFolder
  * 
  */
@@ -124,10 +139,15 @@ export type SoundVersion = $Result.DefaultSelection<Prisma.$SoundVersionPayload>
  */
 export type Storyboard = $Result.DefaultSelection<Prisma.$StoryboardPayload>
 /**
- * Model StoryboardPanel
+ * Model Shot
  * 
  */
-export type StoryboardPanel = $Result.DefaultSelection<Prisma.$StoryboardPanelPayload>
+export type Shot = $Result.DefaultSelection<Prisma.$ShotPayload>
+/**
+ * Model Frame
+ * 
+ */
+export type Frame = $Result.DefaultSelection<Prisma.$FramePayload>
 
 /**
  * Enums
@@ -142,11 +162,43 @@ export namespace $Enums {
 
 export type ScriptStatus = (typeof ScriptStatus)[keyof typeof ScriptStatus]
 
+
+export const ShotType: {
+  WIDE: 'WIDE',
+  MEDIUM: 'MEDIUM',
+  CLOSE_UP: 'CLOSE_UP',
+  EXTREME_CLOSE_UP: 'EXTREME_CLOSE_UP',
+  OVER_THE_SHOULDER: 'OVER_THE_SHOULDER',
+  POV: 'POV'
+};
+
+export type ShotType = (typeof ShotType)[keyof typeof ShotType]
+
+
+export const CameraMovement: {
+  STATIC: 'STATIC',
+  PAN: 'PAN',
+  TILT: 'TILT',
+  DOLLY: 'DOLLY',
+  TRACKING: 'TRACKING',
+  HANDHELD: 'HANDHELD'
+};
+
+export type CameraMovement = (typeof CameraMovement)[keyof typeof CameraMovement]
+
 }
 
 export type ScriptStatus = $Enums.ScriptStatus
 
 export const ScriptStatus: typeof $Enums.ScriptStatus
+
+export type ShotType = $Enums.ShotType
+
+export const ShotType: typeof $Enums.ShotType
+
+export type CameraMovement = $Enums.CameraMovement
+
+export const CameraMovement: typeof $Enums.CameraMovement
 
 /**
  * ##  Prisma Client ʲˢ
@@ -446,6 +498,36 @@ export class PrismaClient<
   get footageVersion(): Prisma.FootageVersionDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.editedState`: Exposes CRUD operations for the **EditedState** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EditedStates
+    * const editedStates = await prisma.editedState.findMany()
+    * ```
+    */
+  get editedState(): Prisma.EditedStateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.edited`: Exposes CRUD operations for the **Edited** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Editeds
+    * const editeds = await prisma.edited.findMany()
+    * ```
+    */
+  get edited(): Prisma.EditedDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.editedVersion`: Exposes CRUD operations for the **EditedVersion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EditedVersions
+    * const editedVersions = await prisma.editedVersion.findMany()
+    * ```
+    */
+  get editedVersion(): Prisma.EditedVersionDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.soundFolder`: Exposes CRUD operations for the **SoundFolder** model.
     * Example usage:
     * ```ts
@@ -486,14 +568,24 @@ export class PrismaClient<
   get storyboard(): Prisma.StoryboardDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.storyboardPanel`: Exposes CRUD operations for the **StoryboardPanel** model.
+   * `prisma.shot`: Exposes CRUD operations for the **Shot** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more StoryboardPanels
-    * const storyboardPanels = await prisma.storyboardPanel.findMany()
+    * // Fetch zero or more Shots
+    * const shots = await prisma.shot.findMany()
     * ```
     */
-  get storyboardPanel(): Prisma.StoryboardPanelDelegate<ExtArgs, ClientOptions>;
+  get shot(): Prisma.ShotDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.frame`: Exposes CRUD operations for the **Frame** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Frames
+    * const frames = await prisma.frame.findMany()
+    * ```
+    */
+  get frame(): Prisma.FrameDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -946,11 +1038,15 @@ export namespace Prisma {
     FootageState: 'FootageState',
     Footage: 'Footage',
     FootageVersion: 'FootageVersion',
+    EditedState: 'EditedState',
+    Edited: 'Edited',
+    EditedVersion: 'EditedVersion',
     SoundFolder: 'SoundFolder',
     Sound: 'Sound',
     SoundVersion: 'SoundVersion',
     Storyboard: 'Storyboard',
-    StoryboardPanel: 'StoryboardPanel'
+    Shot: 'Shot',
+    Frame: 'Frame'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -966,7 +1062,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject" | "animationState" | "animation" | "animationVersion" | "footageState" | "footage" | "footageVersion" | "soundFolder" | "sound" | "soundVersion" | "storyboard" | "storyboardPanel"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "authenticator" | "project" | "script" | "scene" | "designCategory" | "designSubClass" | "designSubClassVersion" | "userProject" | "animationState" | "animation" | "animationVersion" | "footageState" | "footage" | "footageVersion" | "editedState" | "edited" | "editedVersion" | "soundFolder" | "sound" | "soundVersion" | "storyboard" | "shot" | "frame"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2302,6 +2398,228 @@ export namespace Prisma {
           }
         }
       }
+      EditedState: {
+        payload: Prisma.$EditedStatePayload<ExtArgs>
+        fields: Prisma.EditedStateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EditedStateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EditedStateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          findFirst: {
+            args: Prisma.EditedStateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EditedStateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          findMany: {
+            args: Prisma.EditedStateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>[]
+          }
+          create: {
+            args: Prisma.EditedStateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          createMany: {
+            args: Prisma.EditedStateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EditedStateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>[]
+          }
+          delete: {
+            args: Prisma.EditedStateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          update: {
+            args: Prisma.EditedStateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          deleteMany: {
+            args: Prisma.EditedStateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EditedStateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EditedStateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>[]
+          }
+          upsert: {
+            args: Prisma.EditedStateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedStatePayload>
+          }
+          aggregate: {
+            args: Prisma.EditedStateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEditedState>
+          }
+          groupBy: {
+            args: Prisma.EditedStateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EditedStateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EditedStateCountArgs<ExtArgs>
+            result: $Utils.Optional<EditedStateCountAggregateOutputType> | number
+          }
+        }
+      }
+      Edited: {
+        payload: Prisma.$EditedPayload<ExtArgs>
+        fields: Prisma.EditedFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EditedFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EditedFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          findFirst: {
+            args: Prisma.EditedFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EditedFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          findMany: {
+            args: Prisma.EditedFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>[]
+          }
+          create: {
+            args: Prisma.EditedCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          createMany: {
+            args: Prisma.EditedCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EditedCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>[]
+          }
+          delete: {
+            args: Prisma.EditedDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          update: {
+            args: Prisma.EditedUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          deleteMany: {
+            args: Prisma.EditedDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EditedUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EditedUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>[]
+          }
+          upsert: {
+            args: Prisma.EditedUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedPayload>
+          }
+          aggregate: {
+            args: Prisma.EditedAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEdited>
+          }
+          groupBy: {
+            args: Prisma.EditedGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EditedGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EditedCountArgs<ExtArgs>
+            result: $Utils.Optional<EditedCountAggregateOutputType> | number
+          }
+        }
+      }
+      EditedVersion: {
+        payload: Prisma.$EditedVersionPayload<ExtArgs>
+        fields: Prisma.EditedVersionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EditedVersionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EditedVersionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          findFirst: {
+            args: Prisma.EditedVersionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EditedVersionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          findMany: {
+            args: Prisma.EditedVersionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>[]
+          }
+          create: {
+            args: Prisma.EditedVersionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          createMany: {
+            args: Prisma.EditedVersionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EditedVersionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>[]
+          }
+          delete: {
+            args: Prisma.EditedVersionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          update: {
+            args: Prisma.EditedVersionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          deleteMany: {
+            args: Prisma.EditedVersionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EditedVersionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EditedVersionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>[]
+          }
+          upsert: {
+            args: Prisma.EditedVersionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EditedVersionPayload>
+          }
+          aggregate: {
+            args: Prisma.EditedVersionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEditedVersion>
+          }
+          groupBy: {
+            args: Prisma.EditedVersionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EditedVersionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EditedVersionCountArgs<ExtArgs>
+            result: $Utils.Optional<EditedVersionCountAggregateOutputType> | number
+          }
+        }
+      }
       SoundFolder: {
         payload: Prisma.$SoundFolderPayload<ExtArgs>
         fields: Prisma.SoundFolderFieldRefs
@@ -2598,77 +2916,151 @@ export namespace Prisma {
           }
         }
       }
-      StoryboardPanel: {
-        payload: Prisma.$StoryboardPanelPayload<ExtArgs>
-        fields: Prisma.StoryboardPanelFieldRefs
+      Shot: {
+        payload: Prisma.$ShotPayload<ExtArgs>
+        fields: Prisma.ShotFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.StoryboardPanelFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload> | null
+            args: Prisma.ShotFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.StoryboardPanelFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           findFirst: {
-            args: Prisma.StoryboardPanelFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload> | null
+            args: Prisma.ShotFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.StoryboardPanelFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           findMany: {
-            args: Prisma.StoryboardPanelFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+            args: Prisma.ShotFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>[]
           }
           create: {
-            args: Prisma.StoryboardPanelCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           createMany: {
-            args: Prisma.StoryboardPanelCreateManyArgs<ExtArgs>
+            args: Prisma.ShotCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.StoryboardPanelCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+            args: Prisma.ShotCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>[]
           }
           delete: {
-            args: Prisma.StoryboardPanelDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           update: {
-            args: Prisma.StoryboardPanelUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           deleteMany: {
-            args: Prisma.StoryboardPanelDeleteManyArgs<ExtArgs>
+            args: Prisma.ShotDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.StoryboardPanelUpdateManyArgs<ExtArgs>
+            args: Prisma.ShotUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.StoryboardPanelUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>[]
+            args: Prisma.ShotUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>[]
           }
           upsert: {
-            args: Prisma.StoryboardPanelUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryboardPanelPayload>
+            args: Prisma.ShotUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ShotPayload>
           }
           aggregate: {
-            args: Prisma.StoryboardPanelAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateStoryboardPanel>
+            args: Prisma.ShotAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateShot>
           }
           groupBy: {
-            args: Prisma.StoryboardPanelGroupByArgs<ExtArgs>
-            result: $Utils.Optional<StoryboardPanelGroupByOutputType>[]
+            args: Prisma.ShotGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ShotGroupByOutputType>[]
           }
           count: {
-            args: Prisma.StoryboardPanelCountArgs<ExtArgs>
-            result: $Utils.Optional<StoryboardPanelCountAggregateOutputType> | number
+            args: Prisma.ShotCountArgs<ExtArgs>
+            result: $Utils.Optional<ShotCountAggregateOutputType> | number
+          }
+        }
+      }
+      Frame: {
+        payload: Prisma.$FramePayload<ExtArgs>
+        fields: Prisma.FrameFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FrameFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FrameFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          findFirst: {
+            args: Prisma.FrameFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FrameFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          findMany: {
+            args: Prisma.FrameFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>[]
+          }
+          create: {
+            args: Prisma.FrameCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          createMany: {
+            args: Prisma.FrameCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FrameCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>[]
+          }
+          delete: {
+            args: Prisma.FrameDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          update: {
+            args: Prisma.FrameUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          deleteMany: {
+            args: Prisma.FrameDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FrameUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FrameUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>[]
+          }
+          upsert: {
+            args: Prisma.FrameUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FramePayload>
+          }
+          aggregate: {
+            args: Prisma.FrameAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFrame>
+          }
+          groupBy: {
+            args: Prisma.FrameGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FrameGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FrameCountArgs<ExtArgs>
+            result: $Utils.Optional<FrameCountAggregateOutputType> | number
           }
         }
       }
@@ -2798,11 +3190,15 @@ export namespace Prisma {
     footageState?: FootageStateOmit
     footage?: FootageOmit
     footageVersion?: FootageVersionOmit
+    editedState?: EditedStateOmit
+    edited?: EditedOmit
+    editedVersion?: EditedVersionOmit
     soundFolder?: SoundFolderOmit
     sound?: SoundOmit
     soundVersion?: SoundVersionOmit
     storyboard?: StoryboardOmit
-    storyboardPanel?: StoryboardPanelOmit
+    shot?: ShotOmit
+    frame?: FrameOmit
   }
 
   /* Types for Logging */
@@ -2894,7 +3290,7 @@ export namespace Prisma {
     FootageOwner: number
     SoundOwner: number
     soundFolderOwner: number
-    storyboardOwner: number
+    edited: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2909,7 +3305,7 @@ export namespace Prisma {
     FootageOwner?: boolean | UserCountOutputTypeCountFootageOwnerArgs
     SoundOwner?: boolean | UserCountOutputTypeCountSoundOwnerArgs
     soundFolderOwner?: boolean | UserCountOutputTypeCountSoundFolderOwnerArgs
-    storyboardOwner?: boolean | UserCountOutputTypeCountStoryboardOwnerArgs
+    edited?: boolean | UserCountOutputTypeCountEditedArgs
   }
 
   // Custom InputTypes
@@ -3003,8 +3399,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountStoryboardOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryboardWhereInput
+  export type UserCountOutputTypeCountEditedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedWhereInput
   }
 
 
@@ -3021,6 +3417,7 @@ export namespace Prisma {
     soundFolders: number
     sounds: number
     storyboards: number
+    edited: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3032,6 +3429,7 @@ export namespace Prisma {
     soundFolders?: boolean | ProjectCountOutputTypeCountSoundFoldersArgs
     sounds?: boolean | ProjectCountOutputTypeCountSoundsArgs
     storyboards?: boolean | ProjectCountOutputTypeCountStoryboardsArgs
+    edited?: boolean | ProjectCountOutputTypeCountEditedArgs
   }
 
   // Custom InputTypes
@@ -3101,6 +3499,13 @@ export namespace Prisma {
     where?: StoryboardWhereInput
   }
 
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountEditedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedStateWhereInput
+  }
+
 
   /**
    * Count Type ScriptCountOutputType
@@ -3108,10 +3513,12 @@ export namespace Prisma {
 
   export type ScriptCountOutputType = {
     scenes: number
+    storyborad: number
   }
 
   export type ScriptCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     scenes?: boolean | ScriptCountOutputTypeCountScenesArgs
+    storyborad?: boolean | ScriptCountOutputTypeCountStoryboradArgs
   }
 
   // Custom InputTypes
@@ -3130,6 +3537,44 @@ export namespace Prisma {
    */
   export type ScriptCountOutputTypeCountScenesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SceneWhereInput
+  }
+
+  /**
+   * ScriptCountOutputType without action
+   */
+  export type ScriptCountOutputTypeCountStoryboradArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StoryboardWhereInput
+  }
+
+
+  /**
+   * Count Type SceneCountOutputType
+   */
+
+  export type SceneCountOutputType = {
+    shot: number
+  }
+
+  export type SceneCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shot?: boolean | SceneCountOutputTypeCountShotArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SceneCountOutputType without action
+   */
+  export type SceneCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SceneCountOutputType
+     */
+    select?: SceneCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SceneCountOutputType without action
+   */
+  export type SceneCountOutputTypeCountShotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShotWhereInput
   }
 
 
@@ -3320,6 +3765,68 @@ export namespace Prisma {
 
 
   /**
+   * Count Type EditedStateCountOutputType
+   */
+
+  export type EditedStateCountOutputType = {
+    edited: number
+  }
+
+  export type EditedStateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    edited?: boolean | EditedStateCountOutputTypeCountEditedArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EditedStateCountOutputType without action
+   */
+  export type EditedStateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedStateCountOutputType
+     */
+    select?: EditedStateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EditedStateCountOutputType without action
+   */
+  export type EditedStateCountOutputTypeCountEditedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedWhereInput
+  }
+
+
+  /**
+   * Count Type EditedCountOutputType
+   */
+
+  export type EditedCountOutputType = {
+    EditedVersions: number
+  }
+
+  export type EditedCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    EditedVersions?: boolean | EditedCountOutputTypeCountEditedVersionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EditedCountOutputType without action
+   */
+  export type EditedCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedCountOutputType
+     */
+    select?: EditedCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EditedCountOutputType without action
+   */
+  export type EditedCountOutputTypeCountEditedVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedVersionWhereInput
+  }
+
+
+  /**
    * Count Type SoundFolderCountOutputType
    */
 
@@ -3395,11 +3902,11 @@ export namespace Prisma {
    */
 
   export type StoryboardCountOutputType = {
-    panels: number
+    shots: number
   }
 
   export type StoryboardCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    panels?: boolean | StoryboardCountOutputTypeCountPanelsArgs
+    shots?: boolean | StoryboardCountOutputTypeCountShotsArgs
   }
 
   // Custom InputTypes
@@ -3416,8 +3923,8 @@ export namespace Prisma {
   /**
    * StoryboardCountOutputType without action
    */
-  export type StoryboardCountOutputTypeCountPanelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryboardPanelWhereInput
+  export type StoryboardCountOutputTypeCountShotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShotWhereInput
   }
 
 
@@ -3624,7 +4131,7 @@ export namespace Prisma {
     FootageOwner?: boolean | User$FootageOwnerArgs<ExtArgs>
     SoundOwner?: boolean | User$SoundOwnerArgs<ExtArgs>
     soundFolderOwner?: boolean | User$soundFolderOwnerArgs<ExtArgs>
-    storyboardOwner?: boolean | User$storyboardOwnerArgs<ExtArgs>
+    edited?: boolean | User$editedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3674,7 +4181,7 @@ export namespace Prisma {
     FootageOwner?: boolean | User$FootageOwnerArgs<ExtArgs>
     SoundOwner?: boolean | User$SoundOwnerArgs<ExtArgs>
     soundFolderOwner?: boolean | User$soundFolderOwnerArgs<ExtArgs>
-    storyboardOwner?: boolean | User$storyboardOwnerArgs<ExtArgs>
+    edited?: boolean | User$editedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3694,7 +4201,7 @@ export namespace Prisma {
       FootageOwner: Prisma.$FootagePayload<ExtArgs>[]
       SoundOwner: Prisma.$SoundPayload<ExtArgs>[]
       soundFolderOwner: Prisma.$SoundFolderPayload<ExtArgs>[]
-      storyboardOwner: Prisma.$StoryboardPayload<ExtArgs>[]
+      edited: Prisma.$EditedPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4110,7 +4617,7 @@ export namespace Prisma {
     FootageOwner<T extends User$FootageOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$FootageOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FootagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SoundOwner<T extends User$SoundOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$SoundOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     soundFolderOwner<T extends User$soundFolderOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$soundFolderOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    storyboardOwner<T extends User$storyboardOwnerArgs<ExtArgs> = {}>(args?: Subset<T, User$storyboardOwnerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    edited<T extends User$editedArgs<ExtArgs> = {}>(args?: Subset<T, User$editedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4800,27 +5307,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.storyboardOwner
+   * User.edited
    */
-  export type User$storyboardOwnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$editedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Storyboard
+     * Select specific fields to fetch from the Edited
      */
-    select?: StoryboardSelect<ExtArgs> | null
+    select?: EditedSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Storyboard
+     * Omit specific fields from the Edited
      */
-    omit?: StoryboardOmit<ExtArgs> | null
+    omit?: EditedOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardInclude<ExtArgs> | null
-    where?: StoryboardWhereInput
-    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
-    cursor?: StoryboardWhereUniqueInput
+    include?: EditedInclude<ExtArgs> | null
+    where?: EditedWhereInput
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    cursor?: EditedWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
+    distinct?: EditedScalarFieldEnum | EditedScalarFieldEnum[]
   }
 
   /**
@@ -9368,6 +9875,7 @@ export namespace Prisma {
     soundFolders?: boolean | Project$soundFoldersArgs<ExtArgs>
     sounds?: boolean | Project$soundsArgs<ExtArgs>
     storyboards?: boolean | Project$storyboardsArgs<ExtArgs>
+    edited?: boolean | Project$editedArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -9405,6 +9913,7 @@ export namespace Prisma {
     soundFolders?: boolean | Project$soundFoldersArgs<ExtArgs>
     sounds?: boolean | Project$soundsArgs<ExtArgs>
     storyboards?: boolean | Project$storyboardsArgs<ExtArgs>
+    edited?: boolean | Project$editedArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9421,6 +9930,7 @@ export namespace Prisma {
       soundFolders: Prisma.$SoundFolderPayload<ExtArgs>[]
       sounds: Prisma.$SoundPayload<ExtArgs>[]
       storyboards: Prisma.$StoryboardPayload<ExtArgs>[]
+      edited: Prisma.$EditedStatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9830,6 +10340,7 @@ export namespace Prisma {
     soundFolders<T extends Project$soundFoldersArgs<ExtArgs> = {}>(args?: Subset<T, Project$soundFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sounds<T extends Project$soundsArgs<ExtArgs> = {}>(args?: Subset<T, Project$soundsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     storyboards<T extends Project$storyboardsArgs<ExtArgs> = {}>(args?: Subset<T, Project$storyboardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    edited<T extends Project$editedArgs<ExtArgs> = {}>(args?: Subset<T, Project$editedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10444,6 +10955,30 @@ export namespace Prisma {
   }
 
   /**
+   * Project.edited
+   */
+  export type Project$editedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    where?: EditedStateWhereInput
+    orderBy?: EditedStateOrderByWithRelationInput | EditedStateOrderByWithRelationInput[]
+    cursor?: EditedStateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EditedStateScalarFieldEnum | EditedStateScalarFieldEnum[]
+  }
+
+  /**
    * Project without action
    */
   export type ProjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10707,6 +11242,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | Script$projectArgs<ExtArgs>
     scenes?: boolean | Script$scenesArgs<ExtArgs>
+    storyborad?: boolean | Script$storyboradArgs<ExtArgs>
     _count?: boolean | ScriptCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["script"]>
 
@@ -10761,6 +11297,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     project?: boolean | Script$projectArgs<ExtArgs>
     scenes?: boolean | Script$scenesArgs<ExtArgs>
+    storyborad?: boolean | Script$storyboradArgs<ExtArgs>
     _count?: boolean | ScriptCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ScriptIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10778,6 +11315,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       project: Prisma.$ProjectPayload<ExtArgs> | null
       scenes: Prisma.$ScenePayload<ExtArgs>[]
+      storyborad: Prisma.$StoryboardPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11188,6 +11726,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     project<T extends Script$projectArgs<ExtArgs> = {}>(args?: Subset<T, Script$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     scenes<T extends Script$scenesArgs<ExtArgs> = {}>(args?: Subset<T, Script$scenesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScenePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storyborad<T extends Script$storyboradArgs<ExtArgs> = {}>(args?: Subset<T, Script$storyboradArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11667,6 +12206,30 @@ export namespace Prisma {
   }
 
   /**
+   * Script.storyborad
+   */
+  export type Script$storyboradArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Storyboard
+     */
+    select?: StoryboardSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Storyboard
+     */
+    omit?: StoryboardOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StoryboardInclude<ExtArgs> | null
+    where?: StoryboardWhereInput
+    orderBy?: StoryboardOrderByWithRelationInput | StoryboardOrderByWithRelationInput[]
+    cursor?: StoryboardWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StoryboardScalarFieldEnum | StoryboardScalarFieldEnum[]
+  }
+
+  /**
    * Script without action
    */
   export type ScriptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11888,6 +12451,8 @@ export namespace Prisma {
     pageStart?: boolean
     scriptId?: boolean
     script?: boolean | ScriptDefaultArgs<ExtArgs>
+    shot?: boolean | Scene$shotArgs<ExtArgs>
+    _count?: boolean | SceneCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["scene"]>
 
   export type SceneSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11919,6 +12484,8 @@ export namespace Prisma {
   export type SceneOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sceneNumber" | "heading" | "pageStart" | "scriptId", ExtArgs["result"]["scene"]>
   export type SceneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     script?: boolean | ScriptDefaultArgs<ExtArgs>
+    shot?: boolean | Scene$shotArgs<ExtArgs>
+    _count?: boolean | SceneCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SceneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     script?: boolean | ScriptDefaultArgs<ExtArgs>
@@ -11931,6 +12498,7 @@ export namespace Prisma {
     name: "Scene"
     objects: {
       script: Prisma.$ScriptPayload<ExtArgs>
+      shot: Prisma.$ShotPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12333,6 +12901,7 @@ export namespace Prisma {
   export interface Prisma__SceneClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     script<T extends ScriptDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ScriptDefaultArgs<ExtArgs>>): Prisma__ScriptClient<$Result.GetResult<Prisma.$ScriptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    shot<T extends Scene$shotArgs<ExtArgs> = {}>(args?: Subset<T, Scene$shotArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12760,6 +13329,30 @@ export namespace Prisma {
      * Limit how many Scenes to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Scene.shot
+   */
+  export type Scene$shotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Shot
+     */
+    select?: ShotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Shot
+     */
+    omit?: ShotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShotInclude<ExtArgs> | null
+    where?: ShotWhereInput
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
+    cursor?: ShotWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShotScalarFieldEnum | ShotScalarFieldEnum[]
   }
 
   /**
@@ -23929,6 +24522,3385 @@ export namespace Prisma {
 
 
   /**
+   * Model EditedState
+   */
+
+  export type AggregateEditedState = {
+    _count: EditedStateCountAggregateOutputType | null
+    _min: EditedStateMinAggregateOutputType | null
+    _max: EditedStateMaxAggregateOutputType | null
+  }
+
+  export type EditedStateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type EditedStateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    projectId: string | null
+  }
+
+  export type EditedStateCountAggregateOutputType = {
+    id: number
+    name: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type EditedStateMinAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type EditedStateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+  }
+
+  export type EditedStateCountAggregateInputType = {
+    id?: true
+    name?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type EditedStateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EditedState to aggregate.
+     */
+    where?: EditedStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedStates to fetch.
+     */
+    orderBy?: EditedStateOrderByWithRelationInput | EditedStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EditedStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EditedStates
+    **/
+    _count?: true | EditedStateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EditedStateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EditedStateMaxAggregateInputType
+  }
+
+  export type GetEditedStateAggregateType<T extends EditedStateAggregateArgs> = {
+        [P in keyof T & keyof AggregateEditedState]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEditedState[P]>
+      : GetScalarType<T[P], AggregateEditedState[P]>
+  }
+
+
+
+
+  export type EditedStateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedStateWhereInput
+    orderBy?: EditedStateOrderByWithAggregationInput | EditedStateOrderByWithAggregationInput[]
+    by: EditedStateScalarFieldEnum[] | EditedStateScalarFieldEnum
+    having?: EditedStateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EditedStateCountAggregateInputType | true
+    _min?: EditedStateMinAggregateInputType
+    _max?: EditedStateMaxAggregateInputType
+  }
+
+  export type EditedStateGroupByOutputType = {
+    id: string
+    name: string
+    projectId: string | null
+    _count: EditedStateCountAggregateOutputType | null
+    _min: EditedStateMinAggregateOutputType | null
+    _max: EditedStateMaxAggregateOutputType | null
+  }
+
+  type GetEditedStateGroupByPayload<T extends EditedStateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EditedStateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EditedStateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EditedStateGroupByOutputType[P]>
+            : GetScalarType<T[P], EditedStateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EditedStateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+    edited?: boolean | EditedState$editedArgs<ExtArgs>
+    _count?: boolean | EditedStateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["editedState"]>
+
+  export type EditedStateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["editedState"]>
+
+  export type EditedStateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+  }, ExtArgs["result"]["editedState"]>
+
+  export type EditedStateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    projectId?: boolean
+  }
+
+  export type EditedStateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "projectId", ExtArgs["result"]["editedState"]>
+  export type EditedStateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+    edited?: boolean | EditedState$editedArgs<ExtArgs>
+    _count?: boolean | EditedStateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EditedStateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+  }
+  export type EditedStateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | EditedState$projectArgs<ExtArgs>
+  }
+
+  export type $EditedStatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EditedState"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs> | null
+      edited: Prisma.$EditedPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      projectId: string | null
+    }, ExtArgs["result"]["editedState"]>
+    composites: {}
+  }
+
+  type EditedStateGetPayload<S extends boolean | null | undefined | EditedStateDefaultArgs> = $Result.GetResult<Prisma.$EditedStatePayload, S>
+
+  type EditedStateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EditedStateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EditedStateCountAggregateInputType | true
+    }
+
+  export interface EditedStateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EditedState'], meta: { name: 'EditedState' } }
+    /**
+     * Find zero or one EditedState that matches the filter.
+     * @param {EditedStateFindUniqueArgs} args - Arguments to find a EditedState
+     * @example
+     * // Get one EditedState
+     * const editedState = await prisma.editedState.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EditedStateFindUniqueArgs>(args: SelectSubset<T, EditedStateFindUniqueArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EditedState that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EditedStateFindUniqueOrThrowArgs} args - Arguments to find a EditedState
+     * @example
+     * // Get one EditedState
+     * const editedState = await prisma.editedState.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EditedStateFindUniqueOrThrowArgs>(args: SelectSubset<T, EditedStateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EditedState that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateFindFirstArgs} args - Arguments to find a EditedState
+     * @example
+     * // Get one EditedState
+     * const editedState = await prisma.editedState.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EditedStateFindFirstArgs>(args?: SelectSubset<T, EditedStateFindFirstArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EditedState that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateFindFirstOrThrowArgs} args - Arguments to find a EditedState
+     * @example
+     * // Get one EditedState
+     * const editedState = await prisma.editedState.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EditedStateFindFirstOrThrowArgs>(args?: SelectSubset<T, EditedStateFindFirstOrThrowArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EditedStates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EditedStates
+     * const editedStates = await prisma.editedState.findMany()
+     * 
+     * // Get first 10 EditedStates
+     * const editedStates = await prisma.editedState.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const editedStateWithIdOnly = await prisma.editedState.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EditedStateFindManyArgs>(args?: SelectSubset<T, EditedStateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EditedState.
+     * @param {EditedStateCreateArgs} args - Arguments to create a EditedState.
+     * @example
+     * // Create one EditedState
+     * const EditedState = await prisma.editedState.create({
+     *   data: {
+     *     // ... data to create a EditedState
+     *   }
+     * })
+     * 
+     */
+    create<T extends EditedStateCreateArgs>(args: SelectSubset<T, EditedStateCreateArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EditedStates.
+     * @param {EditedStateCreateManyArgs} args - Arguments to create many EditedStates.
+     * @example
+     * // Create many EditedStates
+     * const editedState = await prisma.editedState.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EditedStateCreateManyArgs>(args?: SelectSubset<T, EditedStateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EditedStates and returns the data saved in the database.
+     * @param {EditedStateCreateManyAndReturnArgs} args - Arguments to create many EditedStates.
+     * @example
+     * // Create many EditedStates
+     * const editedState = await prisma.editedState.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EditedStates and only return the `id`
+     * const editedStateWithIdOnly = await prisma.editedState.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EditedStateCreateManyAndReturnArgs>(args?: SelectSubset<T, EditedStateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EditedState.
+     * @param {EditedStateDeleteArgs} args - Arguments to delete one EditedState.
+     * @example
+     * // Delete one EditedState
+     * const EditedState = await prisma.editedState.delete({
+     *   where: {
+     *     // ... filter to delete one EditedState
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EditedStateDeleteArgs>(args: SelectSubset<T, EditedStateDeleteArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EditedState.
+     * @param {EditedStateUpdateArgs} args - Arguments to update one EditedState.
+     * @example
+     * // Update one EditedState
+     * const editedState = await prisma.editedState.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EditedStateUpdateArgs>(args: SelectSubset<T, EditedStateUpdateArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EditedStates.
+     * @param {EditedStateDeleteManyArgs} args - Arguments to filter EditedStates to delete.
+     * @example
+     * // Delete a few EditedStates
+     * const { count } = await prisma.editedState.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EditedStateDeleteManyArgs>(args?: SelectSubset<T, EditedStateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EditedStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EditedStates
+     * const editedState = await prisma.editedState.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EditedStateUpdateManyArgs>(args: SelectSubset<T, EditedStateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EditedStates and returns the data updated in the database.
+     * @param {EditedStateUpdateManyAndReturnArgs} args - Arguments to update many EditedStates.
+     * @example
+     * // Update many EditedStates
+     * const editedState = await prisma.editedState.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EditedStates and only return the `id`
+     * const editedStateWithIdOnly = await prisma.editedState.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EditedStateUpdateManyAndReturnArgs>(args: SelectSubset<T, EditedStateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EditedState.
+     * @param {EditedStateUpsertArgs} args - Arguments to update or create a EditedState.
+     * @example
+     * // Update or create a EditedState
+     * const editedState = await prisma.editedState.upsert({
+     *   create: {
+     *     // ... data to create a EditedState
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EditedState we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EditedStateUpsertArgs>(args: SelectSubset<T, EditedStateUpsertArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EditedStates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateCountArgs} args - Arguments to filter EditedStates to count.
+     * @example
+     * // Count the number of EditedStates
+     * const count = await prisma.editedState.count({
+     *   where: {
+     *     // ... the filter for the EditedStates we want to count
+     *   }
+     * })
+    **/
+    count<T extends EditedStateCountArgs>(
+      args?: Subset<T, EditedStateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EditedStateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EditedState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EditedStateAggregateArgs>(args: Subset<T, EditedStateAggregateArgs>): Prisma.PrismaPromise<GetEditedStateAggregateType<T>>
+
+    /**
+     * Group by EditedState.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedStateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EditedStateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EditedStateGroupByArgs['orderBy'] }
+        : { orderBy?: EditedStateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EditedStateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEditedStateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EditedState model
+   */
+  readonly fields: EditedStateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EditedState.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EditedStateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends EditedState$projectArgs<ExtArgs> = {}>(args?: Subset<T, EditedState$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    edited<T extends EditedState$editedArgs<ExtArgs> = {}>(args?: Subset<T, EditedState$editedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EditedState model
+   */
+  interface EditedStateFieldRefs {
+    readonly id: FieldRef<"EditedState", 'String'>
+    readonly name: FieldRef<"EditedState", 'String'>
+    readonly projectId: FieldRef<"EditedState", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EditedState findUnique
+   */
+  export type EditedStateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedState to fetch.
+     */
+    where: EditedStateWhereUniqueInput
+  }
+
+  /**
+   * EditedState findUniqueOrThrow
+   */
+  export type EditedStateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedState to fetch.
+     */
+    where: EditedStateWhereUniqueInput
+  }
+
+  /**
+   * EditedState findFirst
+   */
+  export type EditedStateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedState to fetch.
+     */
+    where?: EditedStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedStates to fetch.
+     */
+    orderBy?: EditedStateOrderByWithRelationInput | EditedStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EditedStates.
+     */
+    cursor?: EditedStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EditedStates.
+     */
+    distinct?: EditedStateScalarFieldEnum | EditedStateScalarFieldEnum[]
+  }
+
+  /**
+   * EditedState findFirstOrThrow
+   */
+  export type EditedStateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedState to fetch.
+     */
+    where?: EditedStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedStates to fetch.
+     */
+    orderBy?: EditedStateOrderByWithRelationInput | EditedStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EditedStates.
+     */
+    cursor?: EditedStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedStates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EditedStates.
+     */
+    distinct?: EditedStateScalarFieldEnum | EditedStateScalarFieldEnum[]
+  }
+
+  /**
+   * EditedState findMany
+   */
+  export type EditedStateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedStates to fetch.
+     */
+    where?: EditedStateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedStates to fetch.
+     */
+    orderBy?: EditedStateOrderByWithRelationInput | EditedStateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EditedStates.
+     */
+    cursor?: EditedStateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedStates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedStates.
+     */
+    skip?: number
+    distinct?: EditedStateScalarFieldEnum | EditedStateScalarFieldEnum[]
+  }
+
+  /**
+   * EditedState create
+   */
+  export type EditedStateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EditedState.
+     */
+    data: XOR<EditedStateCreateInput, EditedStateUncheckedCreateInput>
+  }
+
+  /**
+   * EditedState createMany
+   */
+  export type EditedStateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EditedStates.
+     */
+    data: EditedStateCreateManyInput | EditedStateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EditedState createManyAndReturn
+   */
+  export type EditedStateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * The data used to create many EditedStates.
+     */
+    data: EditedStateCreateManyInput | EditedStateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EditedState update
+   */
+  export type EditedStateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EditedState.
+     */
+    data: XOR<EditedStateUpdateInput, EditedStateUncheckedUpdateInput>
+    /**
+     * Choose, which EditedState to update.
+     */
+    where: EditedStateWhereUniqueInput
+  }
+
+  /**
+   * EditedState updateMany
+   */
+  export type EditedStateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EditedStates.
+     */
+    data: XOR<EditedStateUpdateManyMutationInput, EditedStateUncheckedUpdateManyInput>
+    /**
+     * Filter which EditedStates to update
+     */
+    where?: EditedStateWhereInput
+    /**
+     * Limit how many EditedStates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EditedState updateManyAndReturn
+   */
+  export type EditedStateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * The data used to update EditedStates.
+     */
+    data: XOR<EditedStateUpdateManyMutationInput, EditedStateUncheckedUpdateManyInput>
+    /**
+     * Filter which EditedStates to update
+     */
+    where?: EditedStateWhereInput
+    /**
+     * Limit how many EditedStates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EditedState upsert
+   */
+  export type EditedStateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EditedState to update in case it exists.
+     */
+    where: EditedStateWhereUniqueInput
+    /**
+     * In case the EditedState found by the `where` argument doesn't exist, create a new EditedState with this data.
+     */
+    create: XOR<EditedStateCreateInput, EditedStateUncheckedCreateInput>
+    /**
+     * In case the EditedState was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EditedStateUpdateInput, EditedStateUncheckedUpdateInput>
+  }
+
+  /**
+   * EditedState delete
+   */
+  export type EditedStateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    /**
+     * Filter which EditedState to delete.
+     */
+    where: EditedStateWhereUniqueInput
+  }
+
+  /**
+   * EditedState deleteMany
+   */
+  export type EditedStateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EditedStates to delete
+     */
+    where?: EditedStateWhereInput
+    /**
+     * Limit how many EditedStates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EditedState.project
+   */
+  export type EditedState$projectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * EditedState.edited
+   */
+  export type EditedState$editedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    where?: EditedWhereInput
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    cursor?: EditedWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EditedScalarFieldEnum | EditedScalarFieldEnum[]
+  }
+
+  /**
+   * EditedState without action
+   */
+  export type EditedStateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Edited
+   */
+
+  export type AggregateEdited = {
+    _count: EditedCountAggregateOutputType | null
+    _min: EditedMinAggregateOutputType | null
+    _max: EditedMaxAggregateOutputType | null
+  }
+
+  export type EditedMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type EditedMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approved: boolean | null
+    description: string | null
+    ownerId: string | null
+    stateId: string | null
+    status: string | null
+  }
+
+  export type EditedCountAggregateOutputType = {
+    id: number
+    title: number
+    createdAt: number
+    updatedAt: number
+    approved: number
+    description: number
+    ownerId: number
+    stateId: number
+    status: number
+    _all: number
+  }
+
+
+  export type EditedMinAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type EditedMaxAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+  }
+
+  export type EditedCountAggregateInputType = {
+    id?: true
+    title?: true
+    createdAt?: true
+    updatedAt?: true
+    approved?: true
+    description?: true
+    ownerId?: true
+    stateId?: true
+    status?: true
+    _all?: true
+  }
+
+  export type EditedAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Edited to aggregate.
+     */
+    where?: EditedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Editeds to fetch.
+     */
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EditedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Editeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Editeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Editeds
+    **/
+    _count?: true | EditedCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EditedMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EditedMaxAggregateInputType
+  }
+
+  export type GetEditedAggregateType<T extends EditedAggregateArgs> = {
+        [P in keyof T & keyof AggregateEdited]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEdited[P]>
+      : GetScalarType<T[P], AggregateEdited[P]>
+  }
+
+
+
+
+  export type EditedGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedWhereInput
+    orderBy?: EditedOrderByWithAggregationInput | EditedOrderByWithAggregationInput[]
+    by: EditedScalarFieldEnum[] | EditedScalarFieldEnum
+    having?: EditedScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EditedCountAggregateInputType | true
+    _min?: EditedMinAggregateInputType
+    _max?: EditedMaxAggregateInputType
+  }
+
+  export type EditedGroupByOutputType = {
+    id: string
+    title: string
+    createdAt: Date
+    updatedAt: Date
+    approved: boolean
+    description: string | null
+    ownerId: string
+    stateId: string | null
+    status: string
+    _count: EditedCountAggregateOutputType | null
+    _min: EditedMinAggregateOutputType | null
+    _max: EditedMaxAggregateOutputType | null
+  }
+
+  type GetEditedGroupByPayload<T extends EditedGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EditedGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EditedGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EditedGroupByOutputType[P]>
+            : GetScalarType<T[P], EditedGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EditedSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+    EditedVersions?: boolean | Edited$EditedVersionsArgs<ExtArgs>
+    _count?: boolean | EditedCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["edited"]>
+
+  export type EditedSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["edited"]>
+
+  export type EditedSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+  }, ExtArgs["result"]["edited"]>
+
+  export type EditedSelectScalar = {
+    id?: boolean
+    title?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approved?: boolean
+    description?: boolean
+    ownerId?: boolean
+    stateId?: boolean
+    status?: boolean
+  }
+
+  export type EditedOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "approved" | "description" | "ownerId" | "stateId" | "status", ExtArgs["result"]["edited"]>
+  export type EditedInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+    EditedVersions?: boolean | Edited$EditedVersionsArgs<ExtArgs>
+    _count?: boolean | EditedCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EditedIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+  }
+  export type EditedIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    state?: boolean | Edited$stateArgs<ExtArgs>
+  }
+
+  export type $EditedPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Edited"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      state: Prisma.$EditedStatePayload<ExtArgs> | null
+      EditedVersions: Prisma.$EditedVersionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      approved: boolean
+      description: string | null
+      ownerId: string
+      stateId: string | null
+      status: string
+    }, ExtArgs["result"]["edited"]>
+    composites: {}
+  }
+
+  type EditedGetPayload<S extends boolean | null | undefined | EditedDefaultArgs> = $Result.GetResult<Prisma.$EditedPayload, S>
+
+  type EditedCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EditedFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EditedCountAggregateInputType | true
+    }
+
+  export interface EditedDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Edited'], meta: { name: 'Edited' } }
+    /**
+     * Find zero or one Edited that matches the filter.
+     * @param {EditedFindUniqueArgs} args - Arguments to find a Edited
+     * @example
+     * // Get one Edited
+     * const edited = await prisma.edited.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EditedFindUniqueArgs>(args: SelectSubset<T, EditedFindUniqueArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Edited that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EditedFindUniqueOrThrowArgs} args - Arguments to find a Edited
+     * @example
+     * // Get one Edited
+     * const edited = await prisma.edited.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EditedFindUniqueOrThrowArgs>(args: SelectSubset<T, EditedFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Edited that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedFindFirstArgs} args - Arguments to find a Edited
+     * @example
+     * // Get one Edited
+     * const edited = await prisma.edited.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EditedFindFirstArgs>(args?: SelectSubset<T, EditedFindFirstArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Edited that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedFindFirstOrThrowArgs} args - Arguments to find a Edited
+     * @example
+     * // Get one Edited
+     * const edited = await prisma.edited.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EditedFindFirstOrThrowArgs>(args?: SelectSubset<T, EditedFindFirstOrThrowArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Editeds that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Editeds
+     * const editeds = await prisma.edited.findMany()
+     * 
+     * // Get first 10 Editeds
+     * const editeds = await prisma.edited.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const editedWithIdOnly = await prisma.edited.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EditedFindManyArgs>(args?: SelectSubset<T, EditedFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Edited.
+     * @param {EditedCreateArgs} args - Arguments to create a Edited.
+     * @example
+     * // Create one Edited
+     * const Edited = await prisma.edited.create({
+     *   data: {
+     *     // ... data to create a Edited
+     *   }
+     * })
+     * 
+     */
+    create<T extends EditedCreateArgs>(args: SelectSubset<T, EditedCreateArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Editeds.
+     * @param {EditedCreateManyArgs} args - Arguments to create many Editeds.
+     * @example
+     * // Create many Editeds
+     * const edited = await prisma.edited.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EditedCreateManyArgs>(args?: SelectSubset<T, EditedCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Editeds and returns the data saved in the database.
+     * @param {EditedCreateManyAndReturnArgs} args - Arguments to create many Editeds.
+     * @example
+     * // Create many Editeds
+     * const edited = await prisma.edited.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Editeds and only return the `id`
+     * const editedWithIdOnly = await prisma.edited.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EditedCreateManyAndReturnArgs>(args?: SelectSubset<T, EditedCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Edited.
+     * @param {EditedDeleteArgs} args - Arguments to delete one Edited.
+     * @example
+     * // Delete one Edited
+     * const Edited = await prisma.edited.delete({
+     *   where: {
+     *     // ... filter to delete one Edited
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EditedDeleteArgs>(args: SelectSubset<T, EditedDeleteArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Edited.
+     * @param {EditedUpdateArgs} args - Arguments to update one Edited.
+     * @example
+     * // Update one Edited
+     * const edited = await prisma.edited.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EditedUpdateArgs>(args: SelectSubset<T, EditedUpdateArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Editeds.
+     * @param {EditedDeleteManyArgs} args - Arguments to filter Editeds to delete.
+     * @example
+     * // Delete a few Editeds
+     * const { count } = await prisma.edited.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EditedDeleteManyArgs>(args?: SelectSubset<T, EditedDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Editeds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Editeds
+     * const edited = await prisma.edited.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EditedUpdateManyArgs>(args: SelectSubset<T, EditedUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Editeds and returns the data updated in the database.
+     * @param {EditedUpdateManyAndReturnArgs} args - Arguments to update many Editeds.
+     * @example
+     * // Update many Editeds
+     * const edited = await prisma.edited.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Editeds and only return the `id`
+     * const editedWithIdOnly = await prisma.edited.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EditedUpdateManyAndReturnArgs>(args: SelectSubset<T, EditedUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Edited.
+     * @param {EditedUpsertArgs} args - Arguments to update or create a Edited.
+     * @example
+     * // Update or create a Edited
+     * const edited = await prisma.edited.upsert({
+     *   create: {
+     *     // ... data to create a Edited
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Edited we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EditedUpsertArgs>(args: SelectSubset<T, EditedUpsertArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Editeds.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedCountArgs} args - Arguments to filter Editeds to count.
+     * @example
+     * // Count the number of Editeds
+     * const count = await prisma.edited.count({
+     *   where: {
+     *     // ... the filter for the Editeds we want to count
+     *   }
+     * })
+    **/
+    count<T extends EditedCountArgs>(
+      args?: Subset<T, EditedCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EditedCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Edited.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EditedAggregateArgs>(args: Subset<T, EditedAggregateArgs>): Prisma.PrismaPromise<GetEditedAggregateType<T>>
+
+    /**
+     * Group by Edited.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EditedGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EditedGroupByArgs['orderBy'] }
+        : { orderBy?: EditedGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EditedGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEditedGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Edited model
+   */
+  readonly fields: EditedFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Edited.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EditedClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    state<T extends Edited$stateArgs<ExtArgs> = {}>(args?: Subset<T, Edited$stateArgs<ExtArgs>>): Prisma__EditedStateClient<$Result.GetResult<Prisma.$EditedStatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    EditedVersions<T extends Edited$EditedVersionsArgs<ExtArgs> = {}>(args?: Subset<T, Edited$EditedVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Edited model
+   */
+  interface EditedFieldRefs {
+    readonly id: FieldRef<"Edited", 'String'>
+    readonly title: FieldRef<"Edited", 'String'>
+    readonly createdAt: FieldRef<"Edited", 'DateTime'>
+    readonly updatedAt: FieldRef<"Edited", 'DateTime'>
+    readonly approved: FieldRef<"Edited", 'Boolean'>
+    readonly description: FieldRef<"Edited", 'String'>
+    readonly ownerId: FieldRef<"Edited", 'String'>
+    readonly stateId: FieldRef<"Edited", 'String'>
+    readonly status: FieldRef<"Edited", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Edited findUnique
+   */
+  export type EditedFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter, which Edited to fetch.
+     */
+    where: EditedWhereUniqueInput
+  }
+
+  /**
+   * Edited findUniqueOrThrow
+   */
+  export type EditedFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter, which Edited to fetch.
+     */
+    where: EditedWhereUniqueInput
+  }
+
+  /**
+   * Edited findFirst
+   */
+  export type EditedFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter, which Edited to fetch.
+     */
+    where?: EditedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Editeds to fetch.
+     */
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Editeds.
+     */
+    cursor?: EditedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Editeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Editeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Editeds.
+     */
+    distinct?: EditedScalarFieldEnum | EditedScalarFieldEnum[]
+  }
+
+  /**
+   * Edited findFirstOrThrow
+   */
+  export type EditedFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter, which Edited to fetch.
+     */
+    where?: EditedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Editeds to fetch.
+     */
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Editeds.
+     */
+    cursor?: EditedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Editeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Editeds.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Editeds.
+     */
+    distinct?: EditedScalarFieldEnum | EditedScalarFieldEnum[]
+  }
+
+  /**
+   * Edited findMany
+   */
+  export type EditedFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter, which Editeds to fetch.
+     */
+    where?: EditedWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Editeds to fetch.
+     */
+    orderBy?: EditedOrderByWithRelationInput | EditedOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Editeds.
+     */
+    cursor?: EditedWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Editeds from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Editeds.
+     */
+    skip?: number
+    distinct?: EditedScalarFieldEnum | EditedScalarFieldEnum[]
+  }
+
+  /**
+   * Edited create
+   */
+  export type EditedCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Edited.
+     */
+    data: XOR<EditedCreateInput, EditedUncheckedCreateInput>
+  }
+
+  /**
+   * Edited createMany
+   */
+  export type EditedCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Editeds.
+     */
+    data: EditedCreateManyInput | EditedCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Edited createManyAndReturn
+   */
+  export type EditedCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * The data used to create many Editeds.
+     */
+    data: EditedCreateManyInput | EditedCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Edited update
+   */
+  export type EditedUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Edited.
+     */
+    data: XOR<EditedUpdateInput, EditedUncheckedUpdateInput>
+    /**
+     * Choose, which Edited to update.
+     */
+    where: EditedWhereUniqueInput
+  }
+
+  /**
+   * Edited updateMany
+   */
+  export type EditedUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Editeds.
+     */
+    data: XOR<EditedUpdateManyMutationInput, EditedUncheckedUpdateManyInput>
+    /**
+     * Filter which Editeds to update
+     */
+    where?: EditedWhereInput
+    /**
+     * Limit how many Editeds to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Edited updateManyAndReturn
+   */
+  export type EditedUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * The data used to update Editeds.
+     */
+    data: XOR<EditedUpdateManyMutationInput, EditedUncheckedUpdateManyInput>
+    /**
+     * Filter which Editeds to update
+     */
+    where?: EditedWhereInput
+    /**
+     * Limit how many Editeds to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Edited upsert
+   */
+  export type EditedUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Edited to update in case it exists.
+     */
+    where: EditedWhereUniqueInput
+    /**
+     * In case the Edited found by the `where` argument doesn't exist, create a new Edited with this data.
+     */
+    create: XOR<EditedCreateInput, EditedUncheckedCreateInput>
+    /**
+     * In case the Edited was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EditedUpdateInput, EditedUncheckedUpdateInput>
+  }
+
+  /**
+   * Edited delete
+   */
+  export type EditedDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+    /**
+     * Filter which Edited to delete.
+     */
+    where: EditedWhereUniqueInput
+  }
+
+  /**
+   * Edited deleteMany
+   */
+  export type EditedDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Editeds to delete
+     */
+    where?: EditedWhereInput
+    /**
+     * Limit how many Editeds to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Edited.state
+   */
+  export type Edited$stateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedState
+     */
+    select?: EditedStateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedState
+     */
+    omit?: EditedStateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedStateInclude<ExtArgs> | null
+    where?: EditedStateWhereInput
+  }
+
+  /**
+   * Edited.EditedVersions
+   */
+  export type Edited$EditedVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    where?: EditedVersionWhereInput
+    orderBy?: EditedVersionOrderByWithRelationInput | EditedVersionOrderByWithRelationInput[]
+    cursor?: EditedVersionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EditedVersionScalarFieldEnum | EditedVersionScalarFieldEnum[]
+  }
+
+  /**
+   * Edited without action
+   */
+  export type EditedDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Edited
+     */
+    select?: EditedSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Edited
+     */
+    omit?: EditedOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EditedVersion
+   */
+
+  export type AggregateEditedVersion = {
+    _count: EditedVersionCountAggregateOutputType | null
+    _avg: EditedVersionAvgAggregateOutputType | null
+    _sum: EditedVersionSumAggregateOutputType | null
+    _min: EditedVersionMinAggregateOutputType | null
+    _max: EditedVersionMaxAggregateOutputType | null
+  }
+
+  export type EditedVersionAvgAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type EditedVersionSumAggregateOutputType = {
+    versionNumber: number | null
+  }
+
+  export type EditedVersionMinAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    editedId: string | null
+  }
+
+  export type EditedVersionMaxAggregateOutputType = {
+    id: string | null
+    versionNumber: number | null
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    editedId: string | null
+  }
+
+  export type EditedVersionCountAggregateOutputType = {
+    id: number
+    versionNumber: number
+    label: number
+    muxUploadId: number
+    muxPlaybackId: number
+    thumbnailUrl: number
+    createdAt: number
+    editedId: number
+    _all: number
+  }
+
+
+  export type EditedVersionAvgAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type EditedVersionSumAggregateInputType = {
+    versionNumber?: true
+  }
+
+  export type EditedVersionMinAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    editedId?: true
+  }
+
+  export type EditedVersionMaxAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    editedId?: true
+  }
+
+  export type EditedVersionCountAggregateInputType = {
+    id?: true
+    versionNumber?: true
+    label?: true
+    muxUploadId?: true
+    muxPlaybackId?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    editedId?: true
+    _all?: true
+  }
+
+  export type EditedVersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EditedVersion to aggregate.
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedVersions to fetch.
+     */
+    orderBy?: EditedVersionOrderByWithRelationInput | EditedVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EditedVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EditedVersions
+    **/
+    _count?: true | EditedVersionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EditedVersionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EditedVersionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EditedVersionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EditedVersionMaxAggregateInputType
+  }
+
+  export type GetEditedVersionAggregateType<T extends EditedVersionAggregateArgs> = {
+        [P in keyof T & keyof AggregateEditedVersion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEditedVersion[P]>
+      : GetScalarType<T[P], AggregateEditedVersion[P]>
+  }
+
+
+
+
+  export type EditedVersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EditedVersionWhereInput
+    orderBy?: EditedVersionOrderByWithAggregationInput | EditedVersionOrderByWithAggregationInput[]
+    by: EditedVersionScalarFieldEnum[] | EditedVersionScalarFieldEnum
+    having?: EditedVersionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EditedVersionCountAggregateInputType | true
+    _avg?: EditedVersionAvgAggregateInputType
+    _sum?: EditedVersionSumAggregateInputType
+    _min?: EditedVersionMinAggregateInputType
+    _max?: EditedVersionMaxAggregateInputType
+  }
+
+  export type EditedVersionGroupByOutputType = {
+    id: string
+    versionNumber: number
+    label: string | null
+    muxUploadId: string | null
+    muxPlaybackId: string | null
+    thumbnailUrl: string | null
+    createdAt: Date
+    editedId: string
+    _count: EditedVersionCountAggregateOutputType | null
+    _avg: EditedVersionAvgAggregateOutputType | null
+    _sum: EditedVersionSumAggregateOutputType | null
+    _min: EditedVersionMinAggregateOutputType | null
+    _max: EditedVersionMaxAggregateOutputType | null
+  }
+
+  type GetEditedVersionGroupByPayload<T extends EditedVersionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EditedVersionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EditedVersionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EditedVersionGroupByOutputType[P]>
+            : GetScalarType<T[P], EditedVersionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EditedVersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    editedId?: boolean
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["editedVersion"]>
+
+  export type EditedVersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    editedId?: boolean
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["editedVersion"]>
+
+  export type EditedVersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    editedId?: boolean
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["editedVersion"]>
+
+  export type EditedVersionSelectScalar = {
+    id?: boolean
+    versionNumber?: boolean
+    label?: boolean
+    muxUploadId?: boolean
+    muxPlaybackId?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    editedId?: boolean
+  }
+
+  export type EditedVersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "versionNumber" | "label" | "muxUploadId" | "muxPlaybackId" | "thumbnailUrl" | "createdAt" | "editedId", ExtArgs["result"]["editedVersion"]>
+  export type EditedVersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }
+  export type EditedVersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }
+  export type EditedVersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    edited?: boolean | EditedDefaultArgs<ExtArgs>
+  }
+
+  export type $EditedVersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EditedVersion"
+    objects: {
+      edited: Prisma.$EditedPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      versionNumber: number
+      label: string | null
+      muxUploadId: string | null
+      muxPlaybackId: string | null
+      thumbnailUrl: string | null
+      createdAt: Date
+      editedId: string
+    }, ExtArgs["result"]["editedVersion"]>
+    composites: {}
+  }
+
+  type EditedVersionGetPayload<S extends boolean | null | undefined | EditedVersionDefaultArgs> = $Result.GetResult<Prisma.$EditedVersionPayload, S>
+
+  type EditedVersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EditedVersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EditedVersionCountAggregateInputType | true
+    }
+
+  export interface EditedVersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EditedVersion'], meta: { name: 'EditedVersion' } }
+    /**
+     * Find zero or one EditedVersion that matches the filter.
+     * @param {EditedVersionFindUniqueArgs} args - Arguments to find a EditedVersion
+     * @example
+     * // Get one EditedVersion
+     * const editedVersion = await prisma.editedVersion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EditedVersionFindUniqueArgs>(args: SelectSubset<T, EditedVersionFindUniqueArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EditedVersion that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EditedVersionFindUniqueOrThrowArgs} args - Arguments to find a EditedVersion
+     * @example
+     * // Get one EditedVersion
+     * const editedVersion = await prisma.editedVersion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EditedVersionFindUniqueOrThrowArgs>(args: SelectSubset<T, EditedVersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EditedVersion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionFindFirstArgs} args - Arguments to find a EditedVersion
+     * @example
+     * // Get one EditedVersion
+     * const editedVersion = await prisma.editedVersion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EditedVersionFindFirstArgs>(args?: SelectSubset<T, EditedVersionFindFirstArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EditedVersion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionFindFirstOrThrowArgs} args - Arguments to find a EditedVersion
+     * @example
+     * // Get one EditedVersion
+     * const editedVersion = await prisma.editedVersion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EditedVersionFindFirstOrThrowArgs>(args?: SelectSubset<T, EditedVersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EditedVersions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EditedVersions
+     * const editedVersions = await prisma.editedVersion.findMany()
+     * 
+     * // Get first 10 EditedVersions
+     * const editedVersions = await prisma.editedVersion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const editedVersionWithIdOnly = await prisma.editedVersion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EditedVersionFindManyArgs>(args?: SelectSubset<T, EditedVersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EditedVersion.
+     * @param {EditedVersionCreateArgs} args - Arguments to create a EditedVersion.
+     * @example
+     * // Create one EditedVersion
+     * const EditedVersion = await prisma.editedVersion.create({
+     *   data: {
+     *     // ... data to create a EditedVersion
+     *   }
+     * })
+     * 
+     */
+    create<T extends EditedVersionCreateArgs>(args: SelectSubset<T, EditedVersionCreateArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EditedVersions.
+     * @param {EditedVersionCreateManyArgs} args - Arguments to create many EditedVersions.
+     * @example
+     * // Create many EditedVersions
+     * const editedVersion = await prisma.editedVersion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EditedVersionCreateManyArgs>(args?: SelectSubset<T, EditedVersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EditedVersions and returns the data saved in the database.
+     * @param {EditedVersionCreateManyAndReturnArgs} args - Arguments to create many EditedVersions.
+     * @example
+     * // Create many EditedVersions
+     * const editedVersion = await prisma.editedVersion.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EditedVersions and only return the `id`
+     * const editedVersionWithIdOnly = await prisma.editedVersion.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EditedVersionCreateManyAndReturnArgs>(args?: SelectSubset<T, EditedVersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EditedVersion.
+     * @param {EditedVersionDeleteArgs} args - Arguments to delete one EditedVersion.
+     * @example
+     * // Delete one EditedVersion
+     * const EditedVersion = await prisma.editedVersion.delete({
+     *   where: {
+     *     // ... filter to delete one EditedVersion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EditedVersionDeleteArgs>(args: SelectSubset<T, EditedVersionDeleteArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EditedVersion.
+     * @param {EditedVersionUpdateArgs} args - Arguments to update one EditedVersion.
+     * @example
+     * // Update one EditedVersion
+     * const editedVersion = await prisma.editedVersion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EditedVersionUpdateArgs>(args: SelectSubset<T, EditedVersionUpdateArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EditedVersions.
+     * @param {EditedVersionDeleteManyArgs} args - Arguments to filter EditedVersions to delete.
+     * @example
+     * // Delete a few EditedVersions
+     * const { count } = await prisma.editedVersion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EditedVersionDeleteManyArgs>(args?: SelectSubset<T, EditedVersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EditedVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EditedVersions
+     * const editedVersion = await prisma.editedVersion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EditedVersionUpdateManyArgs>(args: SelectSubset<T, EditedVersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EditedVersions and returns the data updated in the database.
+     * @param {EditedVersionUpdateManyAndReturnArgs} args - Arguments to update many EditedVersions.
+     * @example
+     * // Update many EditedVersions
+     * const editedVersion = await prisma.editedVersion.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EditedVersions and only return the `id`
+     * const editedVersionWithIdOnly = await prisma.editedVersion.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EditedVersionUpdateManyAndReturnArgs>(args: SelectSubset<T, EditedVersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EditedVersion.
+     * @param {EditedVersionUpsertArgs} args - Arguments to update or create a EditedVersion.
+     * @example
+     * // Update or create a EditedVersion
+     * const editedVersion = await prisma.editedVersion.upsert({
+     *   create: {
+     *     // ... data to create a EditedVersion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EditedVersion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EditedVersionUpsertArgs>(args: SelectSubset<T, EditedVersionUpsertArgs<ExtArgs>>): Prisma__EditedVersionClient<$Result.GetResult<Prisma.$EditedVersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EditedVersions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionCountArgs} args - Arguments to filter EditedVersions to count.
+     * @example
+     * // Count the number of EditedVersions
+     * const count = await prisma.editedVersion.count({
+     *   where: {
+     *     // ... the filter for the EditedVersions we want to count
+     *   }
+     * })
+    **/
+    count<T extends EditedVersionCountArgs>(
+      args?: Subset<T, EditedVersionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EditedVersionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EditedVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EditedVersionAggregateArgs>(args: Subset<T, EditedVersionAggregateArgs>): Prisma.PrismaPromise<GetEditedVersionAggregateType<T>>
+
+    /**
+     * Group by EditedVersion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EditedVersionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EditedVersionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EditedVersionGroupByArgs['orderBy'] }
+        : { orderBy?: EditedVersionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EditedVersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEditedVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EditedVersion model
+   */
+  readonly fields: EditedVersionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EditedVersion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EditedVersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    edited<T extends EditedDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EditedDefaultArgs<ExtArgs>>): Prisma__EditedClient<$Result.GetResult<Prisma.$EditedPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EditedVersion model
+   */
+  interface EditedVersionFieldRefs {
+    readonly id: FieldRef<"EditedVersion", 'String'>
+    readonly versionNumber: FieldRef<"EditedVersion", 'Int'>
+    readonly label: FieldRef<"EditedVersion", 'String'>
+    readonly muxUploadId: FieldRef<"EditedVersion", 'String'>
+    readonly muxPlaybackId: FieldRef<"EditedVersion", 'String'>
+    readonly thumbnailUrl: FieldRef<"EditedVersion", 'String'>
+    readonly createdAt: FieldRef<"EditedVersion", 'DateTime'>
+    readonly editedId: FieldRef<"EditedVersion", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EditedVersion findUnique
+   */
+  export type EditedVersionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedVersion to fetch.
+     */
+    where: EditedVersionWhereUniqueInput
+  }
+
+  /**
+   * EditedVersion findUniqueOrThrow
+   */
+  export type EditedVersionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedVersion to fetch.
+     */
+    where: EditedVersionWhereUniqueInput
+  }
+
+  /**
+   * EditedVersion findFirst
+   */
+  export type EditedVersionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedVersion to fetch.
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedVersions to fetch.
+     */
+    orderBy?: EditedVersionOrderByWithRelationInput | EditedVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EditedVersions.
+     */
+    cursor?: EditedVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EditedVersions.
+     */
+    distinct?: EditedVersionScalarFieldEnum | EditedVersionScalarFieldEnum[]
+  }
+
+  /**
+   * EditedVersion findFirstOrThrow
+   */
+  export type EditedVersionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedVersion to fetch.
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedVersions to fetch.
+     */
+    orderBy?: EditedVersionOrderByWithRelationInput | EditedVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EditedVersions.
+     */
+    cursor?: EditedVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedVersions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EditedVersions.
+     */
+    distinct?: EditedVersionScalarFieldEnum | EditedVersionScalarFieldEnum[]
+  }
+
+  /**
+   * EditedVersion findMany
+   */
+  export type EditedVersionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter, which EditedVersions to fetch.
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EditedVersions to fetch.
+     */
+    orderBy?: EditedVersionOrderByWithRelationInput | EditedVersionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EditedVersions.
+     */
+    cursor?: EditedVersionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EditedVersions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EditedVersions.
+     */
+    skip?: number
+    distinct?: EditedVersionScalarFieldEnum | EditedVersionScalarFieldEnum[]
+  }
+
+  /**
+   * EditedVersion create
+   */
+  export type EditedVersionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EditedVersion.
+     */
+    data: XOR<EditedVersionCreateInput, EditedVersionUncheckedCreateInput>
+  }
+
+  /**
+   * EditedVersion createMany
+   */
+  export type EditedVersionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EditedVersions.
+     */
+    data: EditedVersionCreateManyInput | EditedVersionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EditedVersion createManyAndReturn
+   */
+  export type EditedVersionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * The data used to create many EditedVersions.
+     */
+    data: EditedVersionCreateManyInput | EditedVersionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EditedVersion update
+   */
+  export type EditedVersionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EditedVersion.
+     */
+    data: XOR<EditedVersionUpdateInput, EditedVersionUncheckedUpdateInput>
+    /**
+     * Choose, which EditedVersion to update.
+     */
+    where: EditedVersionWhereUniqueInput
+  }
+
+  /**
+   * EditedVersion updateMany
+   */
+  export type EditedVersionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EditedVersions.
+     */
+    data: XOR<EditedVersionUpdateManyMutationInput, EditedVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which EditedVersions to update
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * Limit how many EditedVersions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EditedVersion updateManyAndReturn
+   */
+  export type EditedVersionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * The data used to update EditedVersions.
+     */
+    data: XOR<EditedVersionUpdateManyMutationInput, EditedVersionUncheckedUpdateManyInput>
+    /**
+     * Filter which EditedVersions to update
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * Limit how many EditedVersions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EditedVersion upsert
+   */
+  export type EditedVersionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EditedVersion to update in case it exists.
+     */
+    where: EditedVersionWhereUniqueInput
+    /**
+     * In case the EditedVersion found by the `where` argument doesn't exist, create a new EditedVersion with this data.
+     */
+    create: XOR<EditedVersionCreateInput, EditedVersionUncheckedCreateInput>
+    /**
+     * In case the EditedVersion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EditedVersionUpdateInput, EditedVersionUncheckedUpdateInput>
+  }
+
+  /**
+   * EditedVersion delete
+   */
+  export type EditedVersionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+    /**
+     * Filter which EditedVersion to delete.
+     */
+    where: EditedVersionWhereUniqueInput
+  }
+
+  /**
+   * EditedVersion deleteMany
+   */
+  export type EditedVersionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EditedVersions to delete
+     */
+    where?: EditedVersionWhereInput
+    /**
+     * Limit how many EditedVersions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EditedVersion without action
+   */
+  export type EditedVersionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EditedVersion
+     */
+    select?: EditedVersionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EditedVersion
+     */
+    omit?: EditedVersionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EditedVersionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model SoundFolder
    */
 
@@ -27411,9 +31383,8 @@ export namespace Prisma {
   export type StoryboardMinAggregateOutputType = {
     id: string | null
     title: string | null
-    description: string | null
     projectId: string | null
-    ownerId: string | null
+    scriptId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -27421,9 +31392,8 @@ export namespace Prisma {
   export type StoryboardMaxAggregateOutputType = {
     id: string | null
     title: string | null
-    description: string | null
     projectId: string | null
-    ownerId: string | null
+    scriptId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -27431,9 +31401,8 @@ export namespace Prisma {
   export type StoryboardCountAggregateOutputType = {
     id: number
     title: number
-    description: number
     projectId: number
-    ownerId: number
+    scriptId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -27443,9 +31412,8 @@ export namespace Prisma {
   export type StoryboardMinAggregateInputType = {
     id?: true
     title?: true
-    description?: true
     projectId?: true
-    ownerId?: true
+    scriptId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -27453,9 +31421,8 @@ export namespace Prisma {
   export type StoryboardMaxAggregateInputType = {
     id?: true
     title?: true
-    description?: true
     projectId?: true
-    ownerId?: true
+    scriptId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -27463,9 +31430,8 @@ export namespace Prisma {
   export type StoryboardCountAggregateInputType = {
     id?: true
     title?: true
-    description?: true
     projectId?: true
-    ownerId?: true
+    scriptId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -27546,9 +31512,8 @@ export namespace Prisma {
   export type StoryboardGroupByOutputType = {
     id: string
     title: string
-    description: string | null
     projectId: string
-    ownerId: string
+    scriptId: string | null
     createdAt: Date
     updatedAt: Date
     _count: StoryboardCountAggregateOutputType | null
@@ -27573,80 +31538,75 @@ export namespace Prisma {
   export type StoryboardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    description?: boolean
     projectId?: boolean
-    ownerId?: boolean
+    scriptId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    panels?: boolean | Storyboard$panelsArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
+    shots?: boolean | Storyboard$shotsArgs<ExtArgs>
     _count?: boolean | StoryboardCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["storyboard"]>
 
   export type StoryboardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    description?: boolean
     projectId?: boolean
-    ownerId?: boolean
+    scriptId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
   }, ExtArgs["result"]["storyboard"]>
 
   export type StoryboardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    description?: boolean
     projectId?: boolean
-    ownerId?: boolean
+    scriptId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
   }, ExtArgs["result"]["storyboard"]>
 
   export type StoryboardSelectScalar = {
     id?: boolean
     title?: boolean
-    description?: boolean
     projectId?: boolean
-    ownerId?: boolean
+    scriptId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type StoryboardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "projectId" | "ownerId" | "createdAt" | "updatedAt", ExtArgs["result"]["storyboard"]>
+  export type StoryboardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "projectId" | "scriptId" | "createdAt" | "updatedAt", ExtArgs["result"]["storyboard"]>
   export type StoryboardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    panels?: boolean | Storyboard$panelsArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
+    shots?: boolean | Storyboard$shotsArgs<ExtArgs>
     _count?: boolean | StoryboardCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StoryboardIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
   }
   export type StoryboardIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    script?: boolean | Storyboard$scriptArgs<ExtArgs>
   }
 
   export type $StoryboardPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Storyboard"
     objects: {
       project: Prisma.$ProjectPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-      panels: Prisma.$StoryboardPanelPayload<ExtArgs>[]
+      script: Prisma.$ScriptPayload<ExtArgs> | null
+      shots: Prisma.$ShotPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
-      description: string | null
       projectId: string
-      ownerId: string
+      scriptId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["storyboard"]>
@@ -28044,8 +32004,8 @@ export namespace Prisma {
   export interface Prisma__StoryboardClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    panels<T extends Storyboard$panelsArgs<ExtArgs> = {}>(args?: Subset<T, Storyboard$panelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    script<T extends Storyboard$scriptArgs<ExtArgs> = {}>(args?: Subset<T, Storyboard$scriptArgs<ExtArgs>>): Prisma__ScriptClient<$Result.GetResult<Prisma.$ScriptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    shots<T extends Storyboard$shotsArgs<ExtArgs> = {}>(args?: Subset<T, Storyboard$shotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -28077,9 +32037,8 @@ export namespace Prisma {
   interface StoryboardFieldRefs {
     readonly id: FieldRef<"Storyboard", 'String'>
     readonly title: FieldRef<"Storyboard", 'String'>
-    readonly description: FieldRef<"Storyboard", 'String'>
     readonly projectId: FieldRef<"Storyboard", 'String'>
-    readonly ownerId: FieldRef<"Storyboard", 'String'>
+    readonly scriptId: FieldRef<"Storyboard", 'String'>
     readonly createdAt: FieldRef<"Storyboard", 'DateTime'>
     readonly updatedAt: FieldRef<"Storyboard", 'DateTime'>
   }
@@ -28478,27 +32437,46 @@ export namespace Prisma {
   }
 
   /**
-   * Storyboard.panels
+   * Storyboard.script
    */
-  export type Storyboard$panelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Storyboard$scriptArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Script
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ScriptSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Script
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ScriptOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
-    where?: StoryboardPanelWhereInput
-    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
-    cursor?: StoryboardPanelWhereUniqueInput
+    include?: ScriptInclude<ExtArgs> | null
+    where?: ScriptWhereInput
+  }
+
+  /**
+   * Storyboard.shots
+   */
+  export type Storyboard$shotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Shot
+     */
+    select?: ShotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Shot
+     */
+    omit?: ShotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShotInclude<ExtArgs> | null
+    where?: ShotWhereInput
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
+    cursor?: ShotWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+    distinct?: ShotScalarFieldEnum | ShotScalarFieldEnum[]
   }
 
   /**
@@ -28521,484 +32499,470 @@ export namespace Prisma {
 
 
   /**
-   * Model StoryboardPanel
+   * Model Shot
    */
 
-  export type AggregateStoryboardPanel = {
-    _count: StoryboardPanelCountAggregateOutputType | null
-    _avg: StoryboardPanelAvgAggregateOutputType | null
-    _sum: StoryboardPanelSumAggregateOutputType | null
-    _min: StoryboardPanelMinAggregateOutputType | null
-    _max: StoryboardPanelMaxAggregateOutputType | null
+  export type AggregateShot = {
+    _count: ShotCountAggregateOutputType | null
+    _avg: ShotAvgAggregateOutputType | null
+    _sum: ShotSumAggregateOutputType | null
+    _min: ShotMinAggregateOutputType | null
+    _max: ShotMaxAggregateOutputType | null
   }
 
-  export type StoryboardPanelAvgAggregateOutputType = {
+  export type ShotAvgAggregateOutputType = {
     order: number | null
     duration: number | null
   }
 
-  export type StoryboardPanelSumAggregateOutputType = {
+  export type ShotSumAggregateOutputType = {
     order: number | null
     duration: number | null
   }
 
-  export type StoryboardPanelMinAggregateOutputType = {
+  export type ShotMinAggregateOutputType = {
     id: string | null
     storyboardId: string | null
     order: number | null
-    imageUrl: string | null
-    shotType: string | null
-    cameraAngle: string | null
-    cameraMove: string | null
+    sceneId: string | null
+    shotType: $Enums.ShotType | null
+    cameraMovement: $Enums.CameraMovement | null
     description: string | null
     dialogue: string | null
     duration: number | null
-    linkedSceneId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type StoryboardPanelMaxAggregateOutputType = {
+  export type ShotMaxAggregateOutputType = {
     id: string | null
     storyboardId: string | null
     order: number | null
-    imageUrl: string | null
-    shotType: string | null
-    cameraAngle: string | null
-    cameraMove: string | null
+    sceneId: string | null
+    shotType: $Enums.ShotType | null
+    cameraMovement: $Enums.CameraMovement | null
     description: string | null
     dialogue: string | null
     duration: number | null
-    linkedSceneId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type StoryboardPanelCountAggregateOutputType = {
+  export type ShotCountAggregateOutputType = {
     id: number
     storyboardId: number
     order: number
-    imageUrl: number
+    sceneId: number
     shotType: number
-    cameraAngle: number
-    cameraMove: number
+    cameraMovement: number
     description: number
     dialogue: number
     duration: number
-    linkedSceneId: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type StoryboardPanelAvgAggregateInputType = {
+  export type ShotAvgAggregateInputType = {
     order?: true
     duration?: true
   }
 
-  export type StoryboardPanelSumAggregateInputType = {
+  export type ShotSumAggregateInputType = {
     order?: true
     duration?: true
   }
 
-  export type StoryboardPanelMinAggregateInputType = {
+  export type ShotMinAggregateInputType = {
     id?: true
     storyboardId?: true
     order?: true
-    imageUrl?: true
+    sceneId?: true
     shotType?: true
-    cameraAngle?: true
-    cameraMove?: true
+    cameraMovement?: true
     description?: true
     dialogue?: true
     duration?: true
-    linkedSceneId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type StoryboardPanelMaxAggregateInputType = {
+  export type ShotMaxAggregateInputType = {
     id?: true
     storyboardId?: true
     order?: true
-    imageUrl?: true
+    sceneId?: true
     shotType?: true
-    cameraAngle?: true
-    cameraMove?: true
+    cameraMovement?: true
     description?: true
     dialogue?: true
     duration?: true
-    linkedSceneId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type StoryboardPanelCountAggregateInputType = {
+  export type ShotCountAggregateInputType = {
     id?: true
     storyboardId?: true
     order?: true
-    imageUrl?: true
+    sceneId?: true
     shotType?: true
-    cameraAngle?: true
-    cameraMove?: true
+    cameraMovement?: true
     description?: true
     dialogue?: true
     duration?: true
-    linkedSceneId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type StoryboardPanelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which StoryboardPanel to aggregate.
+     * Filter which Shot to aggregate.
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of StoryboardPanels to fetch.
+     * Determine the order of Shots to fetch.
      */
-    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: StoryboardPanelWhereUniqueInput
+    cursor?: ShotWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` StoryboardPanels from the position of the cursor.
+     * Take `±n` Shots from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` StoryboardPanels.
+     * Skip the first `n` Shots.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned StoryboardPanels
+     * Count returned Shots
     **/
-    _count?: true | StoryboardPanelCountAggregateInputType
+    _count?: true | ShotCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: StoryboardPanelAvgAggregateInputType
+    _avg?: ShotAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: StoryboardPanelSumAggregateInputType
+    _sum?: ShotSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: StoryboardPanelMinAggregateInputType
+    _min?: ShotMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: StoryboardPanelMaxAggregateInputType
+    _max?: ShotMaxAggregateInputType
   }
 
-  export type GetStoryboardPanelAggregateType<T extends StoryboardPanelAggregateArgs> = {
-        [P in keyof T & keyof AggregateStoryboardPanel]: P extends '_count' | 'count'
+  export type GetShotAggregateType<T extends ShotAggregateArgs> = {
+        [P in keyof T & keyof AggregateShot]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateStoryboardPanel[P]>
-      : GetScalarType<T[P], AggregateStoryboardPanel[P]>
+        : GetScalarType<T[P], AggregateShot[P]>
+      : GetScalarType<T[P], AggregateShot[P]>
   }
 
 
 
 
-  export type StoryboardPanelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryboardPanelWhereInput
-    orderBy?: StoryboardPanelOrderByWithAggregationInput | StoryboardPanelOrderByWithAggregationInput[]
-    by: StoryboardPanelScalarFieldEnum[] | StoryboardPanelScalarFieldEnum
-    having?: StoryboardPanelScalarWhereWithAggregatesInput
+  export type ShotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShotWhereInput
+    orderBy?: ShotOrderByWithAggregationInput | ShotOrderByWithAggregationInput[]
+    by: ShotScalarFieldEnum[] | ShotScalarFieldEnum
+    having?: ShotScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: StoryboardPanelCountAggregateInputType | true
-    _avg?: StoryboardPanelAvgAggregateInputType
-    _sum?: StoryboardPanelSumAggregateInputType
-    _min?: StoryboardPanelMinAggregateInputType
-    _max?: StoryboardPanelMaxAggregateInputType
+    _count?: ShotCountAggregateInputType | true
+    _avg?: ShotAvgAggregateInputType
+    _sum?: ShotSumAggregateInputType
+    _min?: ShotMinAggregateInputType
+    _max?: ShotMaxAggregateInputType
   }
 
-  export type StoryboardPanelGroupByOutputType = {
+  export type ShotGroupByOutputType = {
     id: string
     storyboardId: string
     order: number
-    imageUrl: string | null
-    shotType: string | null
-    cameraAngle: string | null
-    cameraMove: string | null
+    sceneId: string | null
+    shotType: $Enums.ShotType | null
+    cameraMovement: $Enums.CameraMovement | null
     description: string | null
     dialogue: string | null
     duration: number | null
-    linkedSceneId: string | null
     createdAt: Date
     updatedAt: Date
-    _count: StoryboardPanelCountAggregateOutputType | null
-    _avg: StoryboardPanelAvgAggregateOutputType | null
-    _sum: StoryboardPanelSumAggregateOutputType | null
-    _min: StoryboardPanelMinAggregateOutputType | null
-    _max: StoryboardPanelMaxAggregateOutputType | null
+    _count: ShotCountAggregateOutputType | null
+    _avg: ShotAvgAggregateOutputType | null
+    _sum: ShotSumAggregateOutputType | null
+    _min: ShotMinAggregateOutputType | null
+    _max: ShotMaxAggregateOutputType | null
   }
 
-  type GetStoryboardPanelGroupByPayload<T extends StoryboardPanelGroupByArgs> = Prisma.PrismaPromise<
+  type GetShotGroupByPayload<T extends ShotGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<StoryboardPanelGroupByOutputType, T['by']> &
+      PickEnumerable<ShotGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof StoryboardPanelGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ShotGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], StoryboardPanelGroupByOutputType[P]>
-            : GetScalarType<T[P], StoryboardPanelGroupByOutputType[P]>
+              : GetScalarType<T[P], ShotGroupByOutputType[P]>
+            : GetScalarType<T[P], ShotGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type StoryboardPanelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ShotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     storyboardId?: boolean
     order?: boolean
-    imageUrl?: boolean
+    sceneId?: boolean
     shotType?: boolean
-    cameraAngle?: boolean
-    cameraMove?: boolean
+    cameraMovement?: boolean
     description?: boolean
     dialogue?: boolean
     duration?: boolean
-    linkedSceneId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["storyboardPanel"]>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
+    frame?: boolean | Shot$frameArgs<ExtArgs>
+  }, ExtArgs["result"]["shot"]>
 
-  export type StoryboardPanelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ShotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     storyboardId?: boolean
     order?: boolean
-    imageUrl?: boolean
+    sceneId?: boolean
     shotType?: boolean
-    cameraAngle?: boolean
-    cameraMove?: boolean
+    cameraMovement?: boolean
     description?: boolean
     dialogue?: boolean
     duration?: boolean
-    linkedSceneId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["storyboardPanel"]>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
+  }, ExtArgs["result"]["shot"]>
 
-  export type StoryboardPanelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ShotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     storyboardId?: boolean
     order?: boolean
-    imageUrl?: boolean
+    sceneId?: boolean
     shotType?: boolean
-    cameraAngle?: boolean
-    cameraMove?: boolean
+    cameraMovement?: boolean
     description?: boolean
     dialogue?: boolean
     duration?: boolean
-    linkedSceneId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["storyboardPanel"]>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
+  }, ExtArgs["result"]["shot"]>
 
-  export type StoryboardPanelSelectScalar = {
+  export type ShotSelectScalar = {
     id?: boolean
     storyboardId?: boolean
     order?: boolean
-    imageUrl?: boolean
+    sceneId?: boolean
     shotType?: boolean
-    cameraAngle?: boolean
-    cameraMove?: boolean
+    cameraMovement?: boolean
     description?: boolean
     dialogue?: boolean
     duration?: boolean
-    linkedSceneId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type StoryboardPanelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storyboardId" | "order" | "imageUrl" | "shotType" | "cameraAngle" | "cameraMove" | "description" | "dialogue" | "duration" | "linkedSceneId" | "createdAt" | "updatedAt", ExtArgs["result"]["storyboardPanel"]>
-  export type StoryboardPanelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "storyboardId" | "order" | "sceneId" | "shotType" | "cameraMovement" | "description" | "dialogue" | "duration" | "createdAt" | "updatedAt", ExtArgs["result"]["shot"]>
+  export type ShotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
+    frame?: boolean | Shot$frameArgs<ExtArgs>
   }
-  export type StoryboardPanelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
   }
-  export type StoryboardPanelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     storyboard?: boolean | StoryboardDefaultArgs<ExtArgs>
+    scene?: boolean | Shot$sceneArgs<ExtArgs>
   }
 
-  export type $StoryboardPanelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "StoryboardPanel"
+  export type $ShotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Shot"
     objects: {
       storyboard: Prisma.$StoryboardPayload<ExtArgs>
+      scene: Prisma.$ScenePayload<ExtArgs> | null
+      frame: Prisma.$FramePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       storyboardId: string
       order: number
-      imageUrl: string | null
-      shotType: string | null
-      cameraAngle: string | null
-      cameraMove: string | null
+      sceneId: string | null
+      shotType: $Enums.ShotType | null
+      cameraMovement: $Enums.CameraMovement | null
       description: string | null
       dialogue: string | null
       duration: number | null
-      linkedSceneId: string | null
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["storyboardPanel"]>
+    }, ExtArgs["result"]["shot"]>
     composites: {}
   }
 
-  type StoryboardPanelGetPayload<S extends boolean | null | undefined | StoryboardPanelDefaultArgs> = $Result.GetResult<Prisma.$StoryboardPanelPayload, S>
+  type ShotGetPayload<S extends boolean | null | undefined | ShotDefaultArgs> = $Result.GetResult<Prisma.$ShotPayload, S>
 
-  type StoryboardPanelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<StoryboardPanelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: StoryboardPanelCountAggregateInputType | true
+  type ShotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ShotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ShotCountAggregateInputType | true
     }
 
-  export interface StoryboardPanelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StoryboardPanel'], meta: { name: 'StoryboardPanel' } }
+  export interface ShotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Shot'], meta: { name: 'Shot' } }
     /**
-     * Find zero or one StoryboardPanel that matches the filter.
-     * @param {StoryboardPanelFindUniqueArgs} args - Arguments to find a StoryboardPanel
+     * Find zero or one Shot that matches the filter.
+     * @param {ShotFindUniqueArgs} args - Arguments to find a Shot
      * @example
-     * // Get one StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.findUnique({
+     * // Get one Shot
+     * const shot = await prisma.shot.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends StoryboardPanelFindUniqueArgs>(args: SelectSubset<T, StoryboardPanelFindUniqueArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ShotFindUniqueArgs>(args: SelectSubset<T, ShotFindUniqueArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one StoryboardPanel that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Shot that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {StoryboardPanelFindUniqueOrThrowArgs} args - Arguments to find a StoryboardPanel
+     * @param {ShotFindUniqueOrThrowArgs} args - Arguments to find a Shot
      * @example
-     * // Get one StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.findUniqueOrThrow({
+     * // Get one Shot
+     * const shot = await prisma.shot.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends StoryboardPanelFindUniqueOrThrowArgs>(args: SelectSubset<T, StoryboardPanelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ShotFindUniqueOrThrowArgs>(args: SelectSubset<T, ShotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first StoryboardPanel that matches the filter.
+     * Find the first Shot that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelFindFirstArgs} args - Arguments to find a StoryboardPanel
+     * @param {ShotFindFirstArgs} args - Arguments to find a Shot
      * @example
-     * // Get one StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.findFirst({
+     * // Get one Shot
+     * const shot = await prisma.shot.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends StoryboardPanelFindFirstArgs>(args?: SelectSubset<T, StoryboardPanelFindFirstArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ShotFindFirstArgs>(args?: SelectSubset<T, ShotFindFirstArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first StoryboardPanel that matches the filter or
+     * Find the first Shot that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelFindFirstOrThrowArgs} args - Arguments to find a StoryboardPanel
+     * @param {ShotFindFirstOrThrowArgs} args - Arguments to find a Shot
      * @example
-     * // Get one StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.findFirstOrThrow({
+     * // Get one Shot
+     * const shot = await prisma.shot.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends StoryboardPanelFindFirstOrThrowArgs>(args?: SelectSubset<T, StoryboardPanelFindFirstOrThrowArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ShotFindFirstOrThrowArgs>(args?: SelectSubset<T, ShotFindFirstOrThrowArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more StoryboardPanels that matches the filter.
+     * Find zero or more Shots that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ShotFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all StoryboardPanels
-     * const storyboardPanels = await prisma.storyboardPanel.findMany()
+     * // Get all Shots
+     * const shots = await prisma.shot.findMany()
      * 
-     * // Get first 10 StoryboardPanels
-     * const storyboardPanels = await prisma.storyboardPanel.findMany({ take: 10 })
+     * // Get first 10 Shots
+     * const shots = await prisma.shot.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.findMany({ select: { id: true } })
+     * const shotWithIdOnly = await prisma.shot.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends StoryboardPanelFindManyArgs>(args?: SelectSubset<T, StoryboardPanelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ShotFindManyArgs>(args?: SelectSubset<T, ShotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a StoryboardPanel.
-     * @param {StoryboardPanelCreateArgs} args - Arguments to create a StoryboardPanel.
+     * Create a Shot.
+     * @param {ShotCreateArgs} args - Arguments to create a Shot.
      * @example
-     * // Create one StoryboardPanel
-     * const StoryboardPanel = await prisma.storyboardPanel.create({
+     * // Create one Shot
+     * const Shot = await prisma.shot.create({
      *   data: {
-     *     // ... data to create a StoryboardPanel
+     *     // ... data to create a Shot
      *   }
      * })
      * 
      */
-    create<T extends StoryboardPanelCreateArgs>(args: SelectSubset<T, StoryboardPanelCreateArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ShotCreateArgs>(args: SelectSubset<T, ShotCreateArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many StoryboardPanels.
-     * @param {StoryboardPanelCreateManyArgs} args - Arguments to create many StoryboardPanels.
+     * Create many Shots.
+     * @param {ShotCreateManyArgs} args - Arguments to create many Shots.
      * @example
-     * // Create many StoryboardPanels
-     * const storyboardPanel = await prisma.storyboardPanel.createMany({
+     * // Create many Shots
+     * const shot = await prisma.shot.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends StoryboardPanelCreateManyArgs>(args?: SelectSubset<T, StoryboardPanelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ShotCreateManyArgs>(args?: SelectSubset<T, ShotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many StoryboardPanels and returns the data saved in the database.
-     * @param {StoryboardPanelCreateManyAndReturnArgs} args - Arguments to create many StoryboardPanels.
+     * Create many Shots and returns the data saved in the database.
+     * @param {ShotCreateManyAndReturnArgs} args - Arguments to create many Shots.
      * @example
-     * // Create many StoryboardPanels
-     * const storyboardPanel = await prisma.storyboardPanel.createManyAndReturn({
+     * // Create many Shots
+     * const shot = await prisma.shot.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many StoryboardPanels and only return the `id`
-     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.createManyAndReturn({
+     * // Create many Shots and only return the `id`
+     * const shotWithIdOnly = await prisma.shot.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -29008,28 +32972,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends StoryboardPanelCreateManyAndReturnArgs>(args?: SelectSubset<T, StoryboardPanelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ShotCreateManyAndReturnArgs>(args?: SelectSubset<T, ShotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a StoryboardPanel.
-     * @param {StoryboardPanelDeleteArgs} args - Arguments to delete one StoryboardPanel.
+     * Delete a Shot.
+     * @param {ShotDeleteArgs} args - Arguments to delete one Shot.
      * @example
-     * // Delete one StoryboardPanel
-     * const StoryboardPanel = await prisma.storyboardPanel.delete({
+     * // Delete one Shot
+     * const Shot = await prisma.shot.delete({
      *   where: {
-     *     // ... filter to delete one StoryboardPanel
+     *     // ... filter to delete one Shot
      *   }
      * })
      * 
      */
-    delete<T extends StoryboardPanelDeleteArgs>(args: SelectSubset<T, StoryboardPanelDeleteArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ShotDeleteArgs>(args: SelectSubset<T, ShotDeleteArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one StoryboardPanel.
-     * @param {StoryboardPanelUpdateArgs} args - Arguments to update one StoryboardPanel.
+     * Update one Shot.
+     * @param {ShotUpdateArgs} args - Arguments to update one Shot.
      * @example
-     * // Update one StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.update({
+     * // Update one Shot
+     * const shot = await prisma.shot.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -29039,30 +33003,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends StoryboardPanelUpdateArgs>(args: SelectSubset<T, StoryboardPanelUpdateArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ShotUpdateArgs>(args: SelectSubset<T, ShotUpdateArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more StoryboardPanels.
-     * @param {StoryboardPanelDeleteManyArgs} args - Arguments to filter StoryboardPanels to delete.
+     * Delete zero or more Shots.
+     * @param {ShotDeleteManyArgs} args - Arguments to filter Shots to delete.
      * @example
-     * // Delete a few StoryboardPanels
-     * const { count } = await prisma.storyboardPanel.deleteMany({
+     * // Delete a few Shots
+     * const { count } = await prisma.shot.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends StoryboardPanelDeleteManyArgs>(args?: SelectSubset<T, StoryboardPanelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ShotDeleteManyArgs>(args?: SelectSubset<T, ShotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more StoryboardPanels.
+     * Update zero or more Shots.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ShotUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many StoryboardPanels
-     * const storyboardPanel = await prisma.storyboardPanel.updateMany({
+     * // Update many Shots
+     * const shot = await prisma.shot.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -29072,14 +33036,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends StoryboardPanelUpdateManyArgs>(args: SelectSubset<T, StoryboardPanelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ShotUpdateManyArgs>(args: SelectSubset<T, ShotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more StoryboardPanels and returns the data updated in the database.
-     * @param {StoryboardPanelUpdateManyAndReturnArgs} args - Arguments to update many StoryboardPanels.
+     * Update zero or more Shots and returns the data updated in the database.
+     * @param {ShotUpdateManyAndReturnArgs} args - Arguments to update many Shots.
      * @example
-     * // Update many StoryboardPanels
-     * const storyboardPanel = await prisma.storyboardPanel.updateManyAndReturn({
+     * // Update many Shots
+     * const shot = await prisma.shot.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -29088,8 +33052,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more StoryboardPanels and only return the `id`
-     * const storyboardPanelWithIdOnly = await prisma.storyboardPanel.updateManyAndReturn({
+     * // Update zero or more Shots and only return the `id`
+     * const shotWithIdOnly = await prisma.shot.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -29102,56 +33066,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends StoryboardPanelUpdateManyAndReturnArgs>(args: SelectSubset<T, StoryboardPanelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ShotUpdateManyAndReturnArgs>(args: SelectSubset<T, ShotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one StoryboardPanel.
-     * @param {StoryboardPanelUpsertArgs} args - Arguments to update or create a StoryboardPanel.
+     * Create or update one Shot.
+     * @param {ShotUpsertArgs} args - Arguments to update or create a Shot.
      * @example
-     * // Update or create a StoryboardPanel
-     * const storyboardPanel = await prisma.storyboardPanel.upsert({
+     * // Update or create a Shot
+     * const shot = await prisma.shot.upsert({
      *   create: {
-     *     // ... data to create a StoryboardPanel
+     *     // ... data to create a Shot
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the StoryboardPanel we want to update
+     *     // ... the filter for the Shot we want to update
      *   }
      * })
      */
-    upsert<T extends StoryboardPanelUpsertArgs>(args: SelectSubset<T, StoryboardPanelUpsertArgs<ExtArgs>>): Prisma__StoryboardPanelClient<$Result.GetResult<Prisma.$StoryboardPanelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ShotUpsertArgs>(args: SelectSubset<T, ShotUpsertArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of StoryboardPanels.
+     * Count the number of Shots.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelCountArgs} args - Arguments to filter StoryboardPanels to count.
+     * @param {ShotCountArgs} args - Arguments to filter Shots to count.
      * @example
-     * // Count the number of StoryboardPanels
-     * const count = await prisma.storyboardPanel.count({
+     * // Count the number of Shots
+     * const count = await prisma.shot.count({
      *   where: {
-     *     // ... the filter for the StoryboardPanels we want to count
+     *     // ... the filter for the Shots we want to count
      *   }
      * })
     **/
-    count<T extends StoryboardPanelCountArgs>(
-      args?: Subset<T, StoryboardPanelCountArgs>,
+    count<T extends ShotCountArgs>(
+      args?: Subset<T, ShotCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], StoryboardPanelCountAggregateOutputType>
+          : GetScalarType<T['select'], ShotCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a StoryboardPanel.
+     * Allows you to perform aggregations operations on a Shot.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ShotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -29171,13 +33135,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends StoryboardPanelAggregateArgs>(args: Subset<T, StoryboardPanelAggregateArgs>): Prisma.PrismaPromise<GetStoryboardPanelAggregateType<T>>
+    aggregate<T extends ShotAggregateArgs>(args: Subset<T, ShotAggregateArgs>): Prisma.PrismaPromise<GetShotAggregateType<T>>
 
     /**
-     * Group by StoryboardPanel.
+     * Group by Shot.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryboardPanelGroupByArgs} args - Group by arguments.
+     * @param {ShotGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -29192,14 +33156,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends StoryboardPanelGroupByArgs,
+      T extends ShotGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: StoryboardPanelGroupByArgs['orderBy'] }
-        : { orderBy?: StoryboardPanelGroupByArgs['orderBy'] },
+        ? { orderBy: ShotGroupByArgs['orderBy'] }
+        : { orderBy?: ShotGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -29248,22 +33212,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, StoryboardPanelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStoryboardPanelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ShotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the StoryboardPanel model
+   * Fields of the Shot model
    */
-  readonly fields: StoryboardPanelFieldRefs;
+  readonly fields: ShotFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for StoryboardPanel.
+   * The delegate class that acts as a "Promise-like" for Shot.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__StoryboardPanelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ShotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     storyboard<T extends StoryboardDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StoryboardDefaultArgs<ExtArgs>>): Prisma__StoryboardClient<$Result.GetResult<Prisma.$StoryboardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    scene<T extends Shot$sceneArgs<ExtArgs> = {}>(args?: Subset<T, Shot$sceneArgs<ExtArgs>>): Prisma__SceneClient<$Result.GetResult<Prisma.$ScenePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    frame<T extends Shot$frameArgs<ExtArgs> = {}>(args?: Subset<T, Shot$frameArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -29290,433 +33256,1536 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the StoryboardPanel model
+   * Fields of the Shot model
    */
-  interface StoryboardPanelFieldRefs {
-    readonly id: FieldRef<"StoryboardPanel", 'String'>
-    readonly storyboardId: FieldRef<"StoryboardPanel", 'String'>
-    readonly order: FieldRef<"StoryboardPanel", 'Int'>
-    readonly imageUrl: FieldRef<"StoryboardPanel", 'String'>
-    readonly shotType: FieldRef<"StoryboardPanel", 'String'>
-    readonly cameraAngle: FieldRef<"StoryboardPanel", 'String'>
-    readonly cameraMove: FieldRef<"StoryboardPanel", 'String'>
-    readonly description: FieldRef<"StoryboardPanel", 'String'>
-    readonly dialogue: FieldRef<"StoryboardPanel", 'String'>
-    readonly duration: FieldRef<"StoryboardPanel", 'Int'>
-    readonly linkedSceneId: FieldRef<"StoryboardPanel", 'String'>
-    readonly createdAt: FieldRef<"StoryboardPanel", 'DateTime'>
-    readonly updatedAt: FieldRef<"StoryboardPanel", 'DateTime'>
+  interface ShotFieldRefs {
+    readonly id: FieldRef<"Shot", 'String'>
+    readonly storyboardId: FieldRef<"Shot", 'String'>
+    readonly order: FieldRef<"Shot", 'Float'>
+    readonly sceneId: FieldRef<"Shot", 'String'>
+    readonly shotType: FieldRef<"Shot", 'ShotType'>
+    readonly cameraMovement: FieldRef<"Shot", 'CameraMovement'>
+    readonly description: FieldRef<"Shot", 'String'>
+    readonly dialogue: FieldRef<"Shot", 'String'>
+    readonly duration: FieldRef<"Shot", 'Int'>
+    readonly createdAt: FieldRef<"Shot", 'DateTime'>
+    readonly updatedAt: FieldRef<"Shot", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * StoryboardPanel findUnique
+   * Shot findUnique
    */
-  export type StoryboardPanelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter, which StoryboardPanel to fetch.
+     * Filter, which Shot to fetch.
      */
-    where: StoryboardPanelWhereUniqueInput
+    where: ShotWhereUniqueInput
   }
 
   /**
-   * StoryboardPanel findUniqueOrThrow
+   * Shot findUniqueOrThrow
    */
-  export type StoryboardPanelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter, which StoryboardPanel to fetch.
+     * Filter, which Shot to fetch.
      */
-    where: StoryboardPanelWhereUniqueInput
+    where: ShotWhereUniqueInput
   }
 
   /**
-   * StoryboardPanel findFirst
+   * Shot findFirst
    */
-  export type StoryboardPanelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter, which StoryboardPanel to fetch.
+     * Filter, which Shot to fetch.
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of StoryboardPanels to fetch.
+     * Determine the order of Shots to fetch.
      */
-    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for StoryboardPanels.
+     * Sets the position for searching for Shots.
      */
-    cursor?: StoryboardPanelWhereUniqueInput
+    cursor?: ShotWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` StoryboardPanels from the position of the cursor.
+     * Take `±n` Shots from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` StoryboardPanels.
+     * Skip the first `n` Shots.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of StoryboardPanels.
+     * Filter by unique combinations of Shots.
      */
-    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+    distinct?: ShotScalarFieldEnum | ShotScalarFieldEnum[]
   }
 
   /**
-   * StoryboardPanel findFirstOrThrow
+   * Shot findFirstOrThrow
    */
-  export type StoryboardPanelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter, which StoryboardPanel to fetch.
+     * Filter, which Shot to fetch.
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of StoryboardPanels to fetch.
+     * Determine the order of Shots to fetch.
      */
-    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for StoryboardPanels.
+     * Sets the position for searching for Shots.
      */
-    cursor?: StoryboardPanelWhereUniqueInput
+    cursor?: ShotWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` StoryboardPanels from the position of the cursor.
+     * Take `±n` Shots from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` StoryboardPanels.
+     * Skip the first `n` Shots.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of StoryboardPanels.
+     * Filter by unique combinations of Shots.
      */
-    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+    distinct?: ShotScalarFieldEnum | ShotScalarFieldEnum[]
   }
 
   /**
-   * StoryboardPanel findMany
+   * Shot findMany
    */
-  export type StoryboardPanelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter, which StoryboardPanels to fetch.
+     * Filter, which Shots to fetch.
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of StoryboardPanels to fetch.
+     * Determine the order of Shots to fetch.
      */
-    orderBy?: StoryboardPanelOrderByWithRelationInput | StoryboardPanelOrderByWithRelationInput[]
+    orderBy?: ShotOrderByWithRelationInput | ShotOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing StoryboardPanels.
+     * Sets the position for listing Shots.
      */
-    cursor?: StoryboardPanelWhereUniqueInput
+    cursor?: ShotWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` StoryboardPanels from the position of the cursor.
+     * Take `±n` Shots from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` StoryboardPanels.
+     * Skip the first `n` Shots.
      */
     skip?: number
-    distinct?: StoryboardPanelScalarFieldEnum | StoryboardPanelScalarFieldEnum[]
+    distinct?: ShotScalarFieldEnum | ShotScalarFieldEnum[]
   }
 
   /**
-   * StoryboardPanel create
+   * Shot create
    */
-  export type StoryboardPanelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * The data needed to create a StoryboardPanel.
+     * The data needed to create a Shot.
      */
-    data: XOR<StoryboardPanelCreateInput, StoryboardPanelUncheckedCreateInput>
+    data: XOR<ShotCreateInput, ShotUncheckedCreateInput>
   }
 
   /**
-   * StoryboardPanel createMany
+   * Shot createMany
    */
-  export type StoryboardPanelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many StoryboardPanels.
+     * The data used to create many Shots.
      */
-    data: StoryboardPanelCreateManyInput | StoryboardPanelCreateManyInput[]
+    data: ShotCreateManyInput | ShotCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * StoryboardPanel createManyAndReturn
+   * Shot createManyAndReturn
    */
-  export type StoryboardPanelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ShotSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
-     * The data used to create many StoryboardPanels.
+     * The data used to create many Shots.
      */
-    data: StoryboardPanelCreateManyInput | StoryboardPanelCreateManyInput[]
+    data: ShotCreateManyInput | ShotCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ShotIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * StoryboardPanel update
+   * Shot update
    */
-  export type StoryboardPanelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * The data needed to update a StoryboardPanel.
+     * The data needed to update a Shot.
      */
-    data: XOR<StoryboardPanelUpdateInput, StoryboardPanelUncheckedUpdateInput>
+    data: XOR<ShotUpdateInput, ShotUncheckedUpdateInput>
     /**
-     * Choose, which StoryboardPanel to update.
+     * Choose, which Shot to update.
      */
-    where: StoryboardPanelWhereUniqueInput
+    where: ShotWhereUniqueInput
   }
 
   /**
-   * StoryboardPanel updateMany
+   * Shot updateMany
    */
-  export type StoryboardPanelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update StoryboardPanels.
+     * The data used to update Shots.
      */
-    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyInput>
+    data: XOR<ShotUpdateManyMutationInput, ShotUncheckedUpdateManyInput>
     /**
-     * Filter which StoryboardPanels to update
+     * Filter which Shots to update
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
-     * Limit how many StoryboardPanels to update.
+     * Limit how many Shots to update.
      */
     limit?: number
   }
 
   /**
-   * StoryboardPanel updateManyAndReturn
+   * Shot updateManyAndReturn
    */
-  export type StoryboardPanelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ShotSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
-     * The data used to update StoryboardPanels.
+     * The data used to update Shots.
      */
-    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyInput>
+    data: XOR<ShotUpdateManyMutationInput, ShotUncheckedUpdateManyInput>
     /**
-     * Filter which StoryboardPanels to update
+     * Filter which Shots to update
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
-     * Limit how many StoryboardPanels to update.
+     * Limit how many Shots to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ShotIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * StoryboardPanel upsert
+   * Shot upsert
    */
-  export type StoryboardPanelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * The filter to search for the StoryboardPanel to update in case it exists.
+     * The filter to search for the Shot to update in case it exists.
      */
-    where: StoryboardPanelWhereUniqueInput
+    where: ShotWhereUniqueInput
     /**
-     * In case the StoryboardPanel found by the `where` argument doesn't exist, create a new StoryboardPanel with this data.
+     * In case the Shot found by the `where` argument doesn't exist, create a new Shot with this data.
      */
-    create: XOR<StoryboardPanelCreateInput, StoryboardPanelUncheckedCreateInput>
+    create: XOR<ShotCreateInput, ShotUncheckedCreateInput>
     /**
-     * In case the StoryboardPanel was found with the provided `where` argument, update it with this data.
+     * In case the Shot was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<StoryboardPanelUpdateInput, StoryboardPanelUncheckedUpdateInput>
+    update: XOR<ShotUpdateInput, ShotUncheckedUpdateInput>
   }
 
   /**
-   * StoryboardPanel delete
+   * Shot delete
    */
-  export type StoryboardPanelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Shot
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: ShotSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Shot
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: ShotOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: ShotInclude<ExtArgs> | null
     /**
-     * Filter which StoryboardPanel to delete.
+     * Filter which Shot to delete.
      */
-    where: StoryboardPanelWhereUniqueInput
+    where: ShotWhereUniqueInput
   }
 
   /**
-   * StoryboardPanel deleteMany
+   * Shot deleteMany
    */
-  export type StoryboardPanelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ShotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which StoryboardPanels to delete
+     * Filter which Shots to delete
      */
-    where?: StoryboardPanelWhereInput
+    where?: ShotWhereInput
     /**
-     * Limit how many StoryboardPanels to delete.
+     * Limit how many Shots to delete.
      */
     limit?: number
   }
 
   /**
-   * StoryboardPanel without action
+   * Shot.scene
    */
-  export type StoryboardPanelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Shot$sceneArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the StoryboardPanel
+     * Select specific fields to fetch from the Scene
      */
-    select?: StoryboardPanelSelect<ExtArgs> | null
+    select?: SceneSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the StoryboardPanel
+     * Omit specific fields from the Scene
      */
-    omit?: StoryboardPanelOmit<ExtArgs> | null
+    omit?: SceneOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: StoryboardPanelInclude<ExtArgs> | null
+    include?: SceneInclude<ExtArgs> | null
+    where?: SceneWhereInput
+  }
+
+  /**
+   * Shot.frame
+   */
+  export type Shot$frameArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    where?: FrameWhereInput
+  }
+
+  /**
+   * Shot without action
+   */
+  export type ShotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Shot
+     */
+    select?: ShotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Shot
+     */
+    omit?: ShotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ShotInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Frame
+   */
+
+  export type AggregateFrame = {
+    _count: FrameCountAggregateOutputType | null
+    _min: FrameMinAggregateOutputType | null
+    _max: FrameMaxAggregateOutputType | null
+  }
+
+  export type FrameMinAggregateOutputType = {
+    id: string | null
+    shotId: string | null
+    imageAssetId: string | null
+    videoAssetId: string | null
+    updatedAt: Date | null
+  }
+
+  export type FrameMaxAggregateOutputType = {
+    id: string | null
+    shotId: string | null
+    imageAssetId: string | null
+    videoAssetId: string | null
+    updatedAt: Date | null
+  }
+
+  export type FrameCountAggregateOutputType = {
+    id: number
+    shotId: number
+    sketchData: number
+    imageAssetId: number
+    videoAssetId: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FrameMinAggregateInputType = {
+    id?: true
+    shotId?: true
+    imageAssetId?: true
+    videoAssetId?: true
+    updatedAt?: true
+  }
+
+  export type FrameMaxAggregateInputType = {
+    id?: true
+    shotId?: true
+    imageAssetId?: true
+    videoAssetId?: true
+    updatedAt?: true
+  }
+
+  export type FrameCountAggregateInputType = {
+    id?: true
+    shotId?: true
+    sketchData?: true
+    imageAssetId?: true
+    videoAssetId?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FrameAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Frame to aggregate.
+     */
+    where?: FrameWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Frames to fetch.
+     */
+    orderBy?: FrameOrderByWithRelationInput | FrameOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FrameWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Frames from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Frames.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Frames
+    **/
+    _count?: true | FrameCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FrameMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FrameMaxAggregateInputType
+  }
+
+  export type GetFrameAggregateType<T extends FrameAggregateArgs> = {
+        [P in keyof T & keyof AggregateFrame]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFrame[P]>
+      : GetScalarType<T[P], AggregateFrame[P]>
+  }
+
+
+
+
+  export type FrameGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FrameWhereInput
+    orderBy?: FrameOrderByWithAggregationInput | FrameOrderByWithAggregationInput[]
+    by: FrameScalarFieldEnum[] | FrameScalarFieldEnum
+    having?: FrameScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FrameCountAggregateInputType | true
+    _min?: FrameMinAggregateInputType
+    _max?: FrameMaxAggregateInputType
+  }
+
+  export type FrameGroupByOutputType = {
+    id: string
+    shotId: string
+    sketchData: JsonValue | null
+    imageAssetId: string | null
+    videoAssetId: string | null
+    updatedAt: Date
+    _count: FrameCountAggregateOutputType | null
+    _min: FrameMinAggregateOutputType | null
+    _max: FrameMaxAggregateOutputType | null
+  }
+
+  type GetFrameGroupByPayload<T extends FrameGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FrameGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FrameGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FrameGroupByOutputType[P]>
+            : GetScalarType<T[P], FrameGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FrameSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shotId?: boolean
+    sketchData?: boolean
+    imageAssetId?: boolean
+    videoAssetId?: boolean
+    updatedAt?: boolean
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frame"]>
+
+  export type FrameSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shotId?: boolean
+    sketchData?: boolean
+    imageAssetId?: boolean
+    videoAssetId?: boolean
+    updatedAt?: boolean
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frame"]>
+
+  export type FrameSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    shotId?: boolean
+    sketchData?: boolean
+    imageAssetId?: boolean
+    videoAssetId?: boolean
+    updatedAt?: boolean
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frame"]>
+
+  export type FrameSelectScalar = {
+    id?: boolean
+    shotId?: boolean
+    sketchData?: boolean
+    imageAssetId?: boolean
+    videoAssetId?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FrameOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "shotId" | "sketchData" | "imageAssetId" | "videoAssetId" | "updatedAt", ExtArgs["result"]["frame"]>
+  export type FrameInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }
+  export type FrameIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }
+  export type FrameIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    shot?: boolean | ShotDefaultArgs<ExtArgs>
+  }
+
+  export type $FramePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Frame"
+    objects: {
+      shot: Prisma.$ShotPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      shotId: string
+      sketchData: Prisma.JsonValue | null
+      imageAssetId: string | null
+      videoAssetId: string | null
+      updatedAt: Date
+    }, ExtArgs["result"]["frame"]>
+    composites: {}
+  }
+
+  type FrameGetPayload<S extends boolean | null | undefined | FrameDefaultArgs> = $Result.GetResult<Prisma.$FramePayload, S>
+
+  type FrameCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FrameFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FrameCountAggregateInputType | true
+    }
+
+  export interface FrameDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Frame'], meta: { name: 'Frame' } }
+    /**
+     * Find zero or one Frame that matches the filter.
+     * @param {FrameFindUniqueArgs} args - Arguments to find a Frame
+     * @example
+     * // Get one Frame
+     * const frame = await prisma.frame.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FrameFindUniqueArgs>(args: SelectSubset<T, FrameFindUniqueArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Frame that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FrameFindUniqueOrThrowArgs} args - Arguments to find a Frame
+     * @example
+     * // Get one Frame
+     * const frame = await prisma.frame.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FrameFindUniqueOrThrowArgs>(args: SelectSubset<T, FrameFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Frame that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameFindFirstArgs} args - Arguments to find a Frame
+     * @example
+     * // Get one Frame
+     * const frame = await prisma.frame.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FrameFindFirstArgs>(args?: SelectSubset<T, FrameFindFirstArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Frame that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameFindFirstOrThrowArgs} args - Arguments to find a Frame
+     * @example
+     * // Get one Frame
+     * const frame = await prisma.frame.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FrameFindFirstOrThrowArgs>(args?: SelectSubset<T, FrameFindFirstOrThrowArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Frames that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Frames
+     * const frames = await prisma.frame.findMany()
+     * 
+     * // Get first 10 Frames
+     * const frames = await prisma.frame.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const frameWithIdOnly = await prisma.frame.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FrameFindManyArgs>(args?: SelectSubset<T, FrameFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Frame.
+     * @param {FrameCreateArgs} args - Arguments to create a Frame.
+     * @example
+     * // Create one Frame
+     * const Frame = await prisma.frame.create({
+     *   data: {
+     *     // ... data to create a Frame
+     *   }
+     * })
+     * 
+     */
+    create<T extends FrameCreateArgs>(args: SelectSubset<T, FrameCreateArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Frames.
+     * @param {FrameCreateManyArgs} args - Arguments to create many Frames.
+     * @example
+     * // Create many Frames
+     * const frame = await prisma.frame.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FrameCreateManyArgs>(args?: SelectSubset<T, FrameCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Frames and returns the data saved in the database.
+     * @param {FrameCreateManyAndReturnArgs} args - Arguments to create many Frames.
+     * @example
+     * // Create many Frames
+     * const frame = await prisma.frame.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Frames and only return the `id`
+     * const frameWithIdOnly = await prisma.frame.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FrameCreateManyAndReturnArgs>(args?: SelectSubset<T, FrameCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Frame.
+     * @param {FrameDeleteArgs} args - Arguments to delete one Frame.
+     * @example
+     * // Delete one Frame
+     * const Frame = await prisma.frame.delete({
+     *   where: {
+     *     // ... filter to delete one Frame
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FrameDeleteArgs>(args: SelectSubset<T, FrameDeleteArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Frame.
+     * @param {FrameUpdateArgs} args - Arguments to update one Frame.
+     * @example
+     * // Update one Frame
+     * const frame = await prisma.frame.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FrameUpdateArgs>(args: SelectSubset<T, FrameUpdateArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Frames.
+     * @param {FrameDeleteManyArgs} args - Arguments to filter Frames to delete.
+     * @example
+     * // Delete a few Frames
+     * const { count } = await prisma.frame.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FrameDeleteManyArgs>(args?: SelectSubset<T, FrameDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Frames.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Frames
+     * const frame = await prisma.frame.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FrameUpdateManyArgs>(args: SelectSubset<T, FrameUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Frames and returns the data updated in the database.
+     * @param {FrameUpdateManyAndReturnArgs} args - Arguments to update many Frames.
+     * @example
+     * // Update many Frames
+     * const frame = await prisma.frame.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Frames and only return the `id`
+     * const frameWithIdOnly = await prisma.frame.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FrameUpdateManyAndReturnArgs>(args: SelectSubset<T, FrameUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Frame.
+     * @param {FrameUpsertArgs} args - Arguments to update or create a Frame.
+     * @example
+     * // Update or create a Frame
+     * const frame = await prisma.frame.upsert({
+     *   create: {
+     *     // ... data to create a Frame
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Frame we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FrameUpsertArgs>(args: SelectSubset<T, FrameUpsertArgs<ExtArgs>>): Prisma__FrameClient<$Result.GetResult<Prisma.$FramePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Frames.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameCountArgs} args - Arguments to filter Frames to count.
+     * @example
+     * // Count the number of Frames
+     * const count = await prisma.frame.count({
+     *   where: {
+     *     // ... the filter for the Frames we want to count
+     *   }
+     * })
+    **/
+    count<T extends FrameCountArgs>(
+      args?: Subset<T, FrameCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FrameCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Frame.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FrameAggregateArgs>(args: Subset<T, FrameAggregateArgs>): Prisma.PrismaPromise<GetFrameAggregateType<T>>
+
+    /**
+     * Group by Frame.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrameGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FrameGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FrameGroupByArgs['orderBy'] }
+        : { orderBy?: FrameGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FrameGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFrameGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Frame model
+   */
+  readonly fields: FrameFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Frame.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FrameClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    shot<T extends ShotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShotDefaultArgs<ExtArgs>>): Prisma__ShotClient<$Result.GetResult<Prisma.$ShotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Frame model
+   */
+  interface FrameFieldRefs {
+    readonly id: FieldRef<"Frame", 'String'>
+    readonly shotId: FieldRef<"Frame", 'String'>
+    readonly sketchData: FieldRef<"Frame", 'Json'>
+    readonly imageAssetId: FieldRef<"Frame", 'String'>
+    readonly videoAssetId: FieldRef<"Frame", 'String'>
+    readonly updatedAt: FieldRef<"Frame", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Frame findUnique
+   */
+  export type FrameFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter, which Frame to fetch.
+     */
+    where: FrameWhereUniqueInput
+  }
+
+  /**
+   * Frame findUniqueOrThrow
+   */
+  export type FrameFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter, which Frame to fetch.
+     */
+    where: FrameWhereUniqueInput
+  }
+
+  /**
+   * Frame findFirst
+   */
+  export type FrameFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter, which Frame to fetch.
+     */
+    where?: FrameWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Frames to fetch.
+     */
+    orderBy?: FrameOrderByWithRelationInput | FrameOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Frames.
+     */
+    cursor?: FrameWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Frames from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Frames.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Frames.
+     */
+    distinct?: FrameScalarFieldEnum | FrameScalarFieldEnum[]
+  }
+
+  /**
+   * Frame findFirstOrThrow
+   */
+  export type FrameFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter, which Frame to fetch.
+     */
+    where?: FrameWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Frames to fetch.
+     */
+    orderBy?: FrameOrderByWithRelationInput | FrameOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Frames.
+     */
+    cursor?: FrameWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Frames from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Frames.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Frames.
+     */
+    distinct?: FrameScalarFieldEnum | FrameScalarFieldEnum[]
+  }
+
+  /**
+   * Frame findMany
+   */
+  export type FrameFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter, which Frames to fetch.
+     */
+    where?: FrameWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Frames to fetch.
+     */
+    orderBy?: FrameOrderByWithRelationInput | FrameOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Frames.
+     */
+    cursor?: FrameWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Frames from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Frames.
+     */
+    skip?: number
+    distinct?: FrameScalarFieldEnum | FrameScalarFieldEnum[]
+  }
+
+  /**
+   * Frame create
+   */
+  export type FrameCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Frame.
+     */
+    data: XOR<FrameCreateInput, FrameUncheckedCreateInput>
+  }
+
+  /**
+   * Frame createMany
+   */
+  export type FrameCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Frames.
+     */
+    data: FrameCreateManyInput | FrameCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Frame createManyAndReturn
+   */
+  export type FrameCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * The data used to create many Frames.
+     */
+    data: FrameCreateManyInput | FrameCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Frame update
+   */
+  export type FrameUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Frame.
+     */
+    data: XOR<FrameUpdateInput, FrameUncheckedUpdateInput>
+    /**
+     * Choose, which Frame to update.
+     */
+    where: FrameWhereUniqueInput
+  }
+
+  /**
+   * Frame updateMany
+   */
+  export type FrameUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Frames.
+     */
+    data: XOR<FrameUpdateManyMutationInput, FrameUncheckedUpdateManyInput>
+    /**
+     * Filter which Frames to update
+     */
+    where?: FrameWhereInput
+    /**
+     * Limit how many Frames to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Frame updateManyAndReturn
+   */
+  export type FrameUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * The data used to update Frames.
+     */
+    data: XOR<FrameUpdateManyMutationInput, FrameUncheckedUpdateManyInput>
+    /**
+     * Filter which Frames to update
+     */
+    where?: FrameWhereInput
+    /**
+     * Limit how many Frames to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Frame upsert
+   */
+  export type FrameUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Frame to update in case it exists.
+     */
+    where: FrameWhereUniqueInput
+    /**
+     * In case the Frame found by the `where` argument doesn't exist, create a new Frame with this data.
+     */
+    create: XOR<FrameCreateInput, FrameUncheckedCreateInput>
+    /**
+     * In case the Frame was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FrameUpdateInput, FrameUncheckedUpdateInput>
+  }
+
+  /**
+   * Frame delete
+   */
+  export type FrameDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
+    /**
+     * Filter which Frame to delete.
+     */
+    where: FrameWhereUniqueInput
+  }
+
+  /**
+   * Frame deleteMany
+   */
+  export type FrameDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Frames to delete
+     */
+    where?: FrameWhereInput
+    /**
+     * Limit how many Frames to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Frame without action
+   */
+  export type FrameDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Frame
+     */
+    select?: FrameSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Frame
+     */
+    omit?: FrameOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrameInclude<ExtArgs> | null
   }
 
 
@@ -29963,6 +35032,44 @@ export namespace Prisma {
   export type FootageVersionScalarFieldEnum = (typeof FootageVersionScalarFieldEnum)[keyof typeof FootageVersionScalarFieldEnum]
 
 
+  export const EditedStateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    projectId: 'projectId'
+  };
+
+  export type EditedStateScalarFieldEnum = (typeof EditedStateScalarFieldEnum)[keyof typeof EditedStateScalarFieldEnum]
+
+
+  export const EditedScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    approved: 'approved',
+    description: 'description',
+    ownerId: 'ownerId',
+    stateId: 'stateId',
+    status: 'status'
+  };
+
+  export type EditedScalarFieldEnum = (typeof EditedScalarFieldEnum)[keyof typeof EditedScalarFieldEnum]
+
+
+  export const EditedVersionScalarFieldEnum: {
+    id: 'id',
+    versionNumber: 'versionNumber',
+    label: 'label',
+    muxUploadId: 'muxUploadId',
+    muxPlaybackId: 'muxPlaybackId',
+    thumbnailUrl: 'thumbnailUrl',
+    createdAt: 'createdAt',
+    editedId: 'editedId'
+  };
+
+  export type EditedVersionScalarFieldEnum = (typeof EditedVersionScalarFieldEnum)[keyof typeof EditedVersionScalarFieldEnum]
+
+
   export const SoundFolderScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -30007,9 +35114,8 @@ export namespace Prisma {
   export const StoryboardScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    description: 'description',
     projectId: 'projectId',
-    ownerId: 'ownerId',
+    scriptId: 'scriptId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -30017,23 +35123,33 @@ export namespace Prisma {
   export type StoryboardScalarFieldEnum = (typeof StoryboardScalarFieldEnum)[keyof typeof StoryboardScalarFieldEnum]
 
 
-  export const StoryboardPanelScalarFieldEnum: {
+  export const ShotScalarFieldEnum: {
     id: 'id',
     storyboardId: 'storyboardId',
     order: 'order',
-    imageUrl: 'imageUrl',
+    sceneId: 'sceneId',
     shotType: 'shotType',
-    cameraAngle: 'cameraAngle',
-    cameraMove: 'cameraMove',
+    cameraMovement: 'cameraMovement',
     description: 'description',
     dialogue: 'dialogue',
     duration: 'duration',
-    linkedSceneId: 'linkedSceneId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type StoryboardPanelScalarFieldEnum = (typeof StoryboardPanelScalarFieldEnum)[keyof typeof StoryboardPanelScalarFieldEnum]
+  export type ShotScalarFieldEnum = (typeof ShotScalarFieldEnum)[keyof typeof ShotScalarFieldEnum]
+
+
+  export const FrameScalarFieldEnum: {
+    id: 'id',
+    shotId: 'shotId',
+    sketchData: 'sketchData',
+    imageAssetId: 'imageAssetId',
+    videoAssetId: 'videoAssetId',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FrameScalarFieldEnum = (typeof FrameScalarFieldEnum)[keyof typeof FrameScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -30049,6 +35165,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -30170,6 +35294,34 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'ShotType'
+   */
+  export type EnumShotTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ShotType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ShotType[]'
+   */
+  export type ListEnumShotTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ShotType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CameraMovement'
+   */
+  export type EnumCameraMovementFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CameraMovement'>
+    
+
+
+  /**
+   * Reference to a field of type 'CameraMovement[]'
+   */
+  export type ListEnumCameraMovementFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CameraMovement[]'>
+    
   /**
    * Deep Input Types
    */
@@ -30198,7 +35350,7 @@ export namespace Prisma {
     FootageOwner?: FootageListRelationFilter
     SoundOwner?: SoundListRelationFilter
     soundFolderOwner?: SoundFolderListRelationFilter
-    storyboardOwner?: StoryboardListRelationFilter
+    edited?: EditedListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -30221,7 +35373,7 @@ export namespace Prisma {
     FootageOwner?: FootageOrderByRelationAggregateInput
     SoundOwner?: SoundOrderByRelationAggregateInput
     soundFolderOwner?: SoundFolderOrderByRelationAggregateInput
-    storyboardOwner?: StoryboardOrderByRelationAggregateInput
+    edited?: EditedOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -30247,7 +35399,7 @@ export namespace Prisma {
     FootageOwner?: FootageListRelationFilter
     SoundOwner?: SoundListRelationFilter
     soundFolderOwner?: SoundFolderListRelationFilter
-    storyboardOwner?: StoryboardListRelationFilter
+    edited?: EditedListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -30564,6 +35716,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderListRelationFilter
     sounds?: SoundListRelationFilter
     storyboards?: StoryboardListRelationFilter
+    edited?: EditedStateListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -30580,6 +35733,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderOrderByRelationAggregateInput
     sounds?: SoundOrderByRelationAggregateInput
     storyboards?: StoryboardOrderByRelationAggregateInput
+    edited?: EditedStateOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -30599,6 +35753,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderListRelationFilter
     sounds?: SoundListRelationFilter
     storyboards?: StoryboardListRelationFilter
+    edited?: EditedStateListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -30641,6 +35796,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     scenes?: SceneListRelationFilter
+    storyborad?: StoryboardListRelationFilter
   }
 
   export type ScriptOrderByWithRelationInput = {
@@ -30658,6 +35814,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     project?: ProjectOrderByWithRelationInput
     scenes?: SceneOrderByRelationAggregateInput
+    storyborad?: StoryboardOrderByRelationAggregateInput
   }
 
   export type ScriptWhereUniqueInput = Prisma.AtLeast<{
@@ -30678,6 +35835,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     scenes?: SceneListRelationFilter
+    storyborad?: StoryboardListRelationFilter
   }, "id">
 
   export type ScriptOrderByWithAggregationInput = {
@@ -30726,6 +35884,7 @@ export namespace Prisma {
     pageStart?: IntNullableFilter<"Scene"> | number | null
     scriptId?: StringFilter<"Scene"> | string
     script?: XOR<ScriptScalarRelationFilter, ScriptWhereInput>
+    shot?: ShotListRelationFilter
   }
 
   export type SceneOrderByWithRelationInput = {
@@ -30735,6 +35894,7 @@ export namespace Prisma {
     pageStart?: SortOrderInput | SortOrder
     scriptId?: SortOrder
     script?: ScriptOrderByWithRelationInput
+    shot?: ShotOrderByRelationAggregateInput
   }
 
   export type SceneWhereUniqueInput = Prisma.AtLeast<{
@@ -30747,6 +35907,7 @@ export namespace Prisma {
     pageStart?: IntNullableFilter<"Scene"> | number | null
     scriptId?: StringFilter<"Scene"> | string
     script?: XOR<ScriptScalarRelationFilter, ScriptWhereInput>
+    shot?: ShotListRelationFilter
   }, "id">
 
   export type SceneOrderByWithAggregationInput = {
@@ -31426,6 +36587,207 @@ export namespace Prisma {
     footageId?: StringWithAggregatesFilter<"FootageVersion"> | string
   }
 
+  export type EditedStateWhereInput = {
+    AND?: EditedStateWhereInput | EditedStateWhereInput[]
+    OR?: EditedStateWhereInput[]
+    NOT?: EditedStateWhereInput | EditedStateWhereInput[]
+    id?: StringFilter<"EditedState"> | string
+    name?: StringFilter<"EditedState"> | string
+    projectId?: StringNullableFilter<"EditedState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    edited?: EditedListRelationFilter
+  }
+
+  export type EditedStateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    project?: ProjectOrderByWithRelationInput
+    edited?: EditedOrderByRelationAggregateInput
+  }
+
+  export type EditedStateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EditedStateWhereInput | EditedStateWhereInput[]
+    OR?: EditedStateWhereInput[]
+    NOT?: EditedStateWhereInput | EditedStateWhereInput[]
+    name?: StringFilter<"EditedState"> | string
+    projectId?: StringNullableFilter<"EditedState"> | string | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
+    edited?: EditedListRelationFilter
+  }, "id">
+
+  export type EditedStateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrderInput | SortOrder
+    _count?: EditedStateCountOrderByAggregateInput
+    _max?: EditedStateMaxOrderByAggregateInput
+    _min?: EditedStateMinOrderByAggregateInput
+  }
+
+  export type EditedStateScalarWhereWithAggregatesInput = {
+    AND?: EditedStateScalarWhereWithAggregatesInput | EditedStateScalarWhereWithAggregatesInput[]
+    OR?: EditedStateScalarWhereWithAggregatesInput[]
+    NOT?: EditedStateScalarWhereWithAggregatesInput | EditedStateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EditedState"> | string
+    name?: StringWithAggregatesFilter<"EditedState"> | string
+    projectId?: StringNullableWithAggregatesFilter<"EditedState"> | string | null
+  }
+
+  export type EditedWhereInput = {
+    AND?: EditedWhereInput | EditedWhereInput[]
+    OR?: EditedWhereInput[]
+    NOT?: EditedWhereInput | EditedWhereInput[]
+    id?: StringFilter<"Edited"> | string
+    title?: StringFilter<"Edited"> | string
+    createdAt?: DateTimeFilter<"Edited"> | Date | string
+    updatedAt?: DateTimeFilter<"Edited"> | Date | string
+    approved?: BoolFilter<"Edited"> | boolean
+    description?: StringNullableFilter<"Edited"> | string | null
+    ownerId?: StringFilter<"Edited"> | string
+    stateId?: StringNullableFilter<"Edited"> | string | null
+    status?: StringFilter<"Edited"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<EditedStateNullableScalarRelationFilter, EditedStateWhereInput> | null
+    EditedVersions?: EditedVersionListRelationFilter
+  }
+
+  export type EditedOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    user?: UserOrderByWithRelationInput
+    state?: EditedStateOrderByWithRelationInput
+    EditedVersions?: EditedVersionOrderByRelationAggregateInput
+  }
+
+  export type EditedWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EditedWhereInput | EditedWhereInput[]
+    OR?: EditedWhereInput[]
+    NOT?: EditedWhereInput | EditedWhereInput[]
+    title?: StringFilter<"Edited"> | string
+    createdAt?: DateTimeFilter<"Edited"> | Date | string
+    updatedAt?: DateTimeFilter<"Edited"> | Date | string
+    approved?: BoolFilter<"Edited"> | boolean
+    description?: StringNullableFilter<"Edited"> | string | null
+    ownerId?: StringFilter<"Edited"> | string
+    stateId?: StringNullableFilter<"Edited"> | string | null
+    status?: StringFilter<"Edited"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    state?: XOR<EditedStateNullableScalarRelationFilter, EditedStateWhereInput> | null
+    EditedVersions?: EditedVersionListRelationFilter
+  }, "id">
+
+  export type EditedOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    _count?: EditedCountOrderByAggregateInput
+    _max?: EditedMaxOrderByAggregateInput
+    _min?: EditedMinOrderByAggregateInput
+  }
+
+  export type EditedScalarWhereWithAggregatesInput = {
+    AND?: EditedScalarWhereWithAggregatesInput | EditedScalarWhereWithAggregatesInput[]
+    OR?: EditedScalarWhereWithAggregatesInput[]
+    NOT?: EditedScalarWhereWithAggregatesInput | EditedScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Edited"> | string
+    title?: StringWithAggregatesFilter<"Edited"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Edited"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Edited"> | Date | string
+    approved?: BoolWithAggregatesFilter<"Edited"> | boolean
+    description?: StringNullableWithAggregatesFilter<"Edited"> | string | null
+    ownerId?: StringWithAggregatesFilter<"Edited"> | string
+    stateId?: StringNullableWithAggregatesFilter<"Edited"> | string | null
+    status?: StringWithAggregatesFilter<"Edited"> | string
+  }
+
+  export type EditedVersionWhereInput = {
+    AND?: EditedVersionWhereInput | EditedVersionWhereInput[]
+    OR?: EditedVersionWhereInput[]
+    NOT?: EditedVersionWhereInput | EditedVersionWhereInput[]
+    id?: StringFilter<"EditedVersion"> | string
+    versionNumber?: IntFilter<"EditedVersion"> | number
+    label?: StringNullableFilter<"EditedVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"EditedVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"EditedVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"EditedVersion"> | string | null
+    createdAt?: DateTimeFilter<"EditedVersion"> | Date | string
+    editedId?: StringFilter<"EditedVersion"> | string
+    edited?: XOR<EditedScalarRelationFilter, EditedWhereInput>
+  }
+
+  export type EditedVersionOrderByWithRelationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    editedId?: SortOrder
+    edited?: EditedOrderByWithRelationInput
+  }
+
+  export type EditedVersionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EditedVersionWhereInput | EditedVersionWhereInput[]
+    OR?: EditedVersionWhereInput[]
+    NOT?: EditedVersionWhereInput | EditedVersionWhereInput[]
+    versionNumber?: IntFilter<"EditedVersion"> | number
+    label?: StringNullableFilter<"EditedVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"EditedVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"EditedVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"EditedVersion"> | string | null
+    createdAt?: DateTimeFilter<"EditedVersion"> | Date | string
+    editedId?: StringFilter<"EditedVersion"> | string
+    edited?: XOR<EditedScalarRelationFilter, EditedWhereInput>
+  }, "id">
+
+  export type EditedVersionOrderByWithAggregationInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrderInput | SortOrder
+    muxUploadId?: SortOrderInput | SortOrder
+    muxPlaybackId?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    editedId?: SortOrder
+    _count?: EditedVersionCountOrderByAggregateInput
+    _avg?: EditedVersionAvgOrderByAggregateInput
+    _max?: EditedVersionMaxOrderByAggregateInput
+    _min?: EditedVersionMinOrderByAggregateInput
+    _sum?: EditedVersionSumOrderByAggregateInput
+  }
+
+  export type EditedVersionScalarWhereWithAggregatesInput = {
+    AND?: EditedVersionScalarWhereWithAggregatesInput | EditedVersionScalarWhereWithAggregatesInput[]
+    OR?: EditedVersionScalarWhereWithAggregatesInput[]
+    NOT?: EditedVersionScalarWhereWithAggregatesInput | EditedVersionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EditedVersion"> | string
+    versionNumber?: IntWithAggregatesFilter<"EditedVersion"> | number
+    label?: StringNullableWithAggregatesFilter<"EditedVersion"> | string | null
+    muxUploadId?: StringNullableWithAggregatesFilter<"EditedVersion"> | string | null
+    muxPlaybackId?: StringNullableWithAggregatesFilter<"EditedVersion"> | string | null
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"EditedVersion"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EditedVersion"> | Date | string
+    editedId?: StringWithAggregatesFilter<"EditedVersion"> | string
+  }
+
   export type SoundFolderWhereInput = {
     AND?: SoundFolderWhereInput | SoundFolderWhereInput[]
     OR?: SoundFolderWhereInput[]
@@ -31660,27 +37022,25 @@ export namespace Prisma {
     NOT?: StoryboardWhereInput | StoryboardWhereInput[]
     id?: StringFilter<"Storyboard"> | string
     title?: StringFilter<"Storyboard"> | string
-    description?: StringNullableFilter<"Storyboard"> | string | null
     projectId?: StringFilter<"Storyboard"> | string
-    ownerId?: StringFilter<"Storyboard"> | string
+    scriptId?: StringNullableFilter<"Storyboard"> | string | null
     createdAt?: DateTimeFilter<"Storyboard"> | Date | string
     updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    panels?: StoryboardPanelListRelationFilter
+    script?: XOR<ScriptNullableScalarRelationFilter, ScriptWhereInput> | null
+    shots?: ShotListRelationFilter
   }
 
   export type StoryboardOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
     projectId?: SortOrder
-    ownerId?: SortOrder
+    scriptId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     project?: ProjectOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-    panels?: StoryboardPanelOrderByRelationAggregateInput
+    script?: ScriptOrderByWithRelationInput
+    shots?: ShotOrderByRelationAggregateInput
   }
 
   export type StoryboardWhereUniqueInput = Prisma.AtLeast<{
@@ -31689,22 +37049,20 @@ export namespace Prisma {
     OR?: StoryboardWhereInput[]
     NOT?: StoryboardWhereInput | StoryboardWhereInput[]
     title?: StringFilter<"Storyboard"> | string
-    description?: StringNullableFilter<"Storyboard"> | string | null
     projectId?: StringFilter<"Storyboard"> | string
-    ownerId?: StringFilter<"Storyboard"> | string
+    scriptId?: StringNullableFilter<"Storyboard"> | string | null
     createdAt?: DateTimeFilter<"Storyboard"> | Date | string
     updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    panels?: StoryboardPanelListRelationFilter
+    script?: XOR<ScriptNullableScalarRelationFilter, ScriptWhereInput> | null
+    shots?: ShotListRelationFilter
   }, "id">
 
   export type StoryboardOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
     projectId?: SortOrder
-    ownerId?: SortOrder
+    scriptId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: StoryboardCountOrderByAggregateInput
@@ -31718,108 +37076,163 @@ export namespace Prisma {
     NOT?: StoryboardScalarWhereWithAggregatesInput | StoryboardScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Storyboard"> | string
     title?: StringWithAggregatesFilter<"Storyboard"> | string
-    description?: StringNullableWithAggregatesFilter<"Storyboard"> | string | null
     projectId?: StringWithAggregatesFilter<"Storyboard"> | string
-    ownerId?: StringWithAggregatesFilter<"Storyboard"> | string
+    scriptId?: StringNullableWithAggregatesFilter<"Storyboard"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Storyboard"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Storyboard"> | Date | string
   }
 
-  export type StoryboardPanelWhereInput = {
-    AND?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
-    OR?: StoryboardPanelWhereInput[]
-    NOT?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
-    id?: StringFilter<"StoryboardPanel"> | string
-    storyboardId?: StringFilter<"StoryboardPanel"> | string
-    order?: IntFilter<"StoryboardPanel"> | number
-    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
-    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
-    description?: StringNullableFilter<"StoryboardPanel"> | string | null
-    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
-    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
-    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
-    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
-    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+  export type ShotWhereInput = {
+    AND?: ShotWhereInput | ShotWhereInput[]
+    OR?: ShotWhereInput[]
+    NOT?: ShotWhereInput | ShotWhereInput[]
+    id?: StringFilter<"Shot"> | string
+    storyboardId?: StringFilter<"Shot"> | string
+    order?: FloatFilter<"Shot"> | number
+    sceneId?: StringNullableFilter<"Shot"> | string | null
+    shotType?: EnumShotTypeNullableFilter<"Shot"> | $Enums.ShotType | null
+    cameraMovement?: EnumCameraMovementNullableFilter<"Shot"> | $Enums.CameraMovement | null
+    description?: StringNullableFilter<"Shot"> | string | null
+    dialogue?: StringNullableFilter<"Shot"> | string | null
+    duration?: IntNullableFilter<"Shot"> | number | null
+    createdAt?: DateTimeFilter<"Shot"> | Date | string
+    updatedAt?: DateTimeFilter<"Shot"> | Date | string
     storyboard?: XOR<StoryboardScalarRelationFilter, StoryboardWhereInput>
+    scene?: XOR<SceneNullableScalarRelationFilter, SceneWhereInput> | null
+    frame?: XOR<FrameNullableScalarRelationFilter, FrameWhereInput> | null
   }
 
-  export type StoryboardPanelOrderByWithRelationInput = {
+  export type ShotOrderByWithRelationInput = {
     id?: SortOrder
     storyboardId?: SortOrder
     order?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    sceneId?: SortOrderInput | SortOrder
     shotType?: SortOrderInput | SortOrder
-    cameraAngle?: SortOrderInput | SortOrder
-    cameraMove?: SortOrderInput | SortOrder
+    cameraMovement?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     dialogue?: SortOrderInput | SortOrder
     duration?: SortOrderInput | SortOrder
-    linkedSceneId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     storyboard?: StoryboardOrderByWithRelationInput
+    scene?: SceneOrderByWithRelationInput
+    frame?: FrameOrderByWithRelationInput
   }
 
-  export type StoryboardPanelWhereUniqueInput = Prisma.AtLeast<{
+  export type ShotWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
-    OR?: StoryboardPanelWhereInput[]
-    NOT?: StoryboardPanelWhereInput | StoryboardPanelWhereInput[]
-    storyboardId?: StringFilter<"StoryboardPanel"> | string
-    order?: IntFilter<"StoryboardPanel"> | number
-    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
-    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
-    description?: StringNullableFilter<"StoryboardPanel"> | string | null
-    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
-    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
-    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
-    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
-    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
+    AND?: ShotWhereInput | ShotWhereInput[]
+    OR?: ShotWhereInput[]
+    NOT?: ShotWhereInput | ShotWhereInput[]
+    storyboardId?: StringFilter<"Shot"> | string
+    order?: FloatFilter<"Shot"> | number
+    sceneId?: StringNullableFilter<"Shot"> | string | null
+    shotType?: EnumShotTypeNullableFilter<"Shot"> | $Enums.ShotType | null
+    cameraMovement?: EnumCameraMovementNullableFilter<"Shot"> | $Enums.CameraMovement | null
+    description?: StringNullableFilter<"Shot"> | string | null
+    dialogue?: StringNullableFilter<"Shot"> | string | null
+    duration?: IntNullableFilter<"Shot"> | number | null
+    createdAt?: DateTimeFilter<"Shot"> | Date | string
+    updatedAt?: DateTimeFilter<"Shot"> | Date | string
     storyboard?: XOR<StoryboardScalarRelationFilter, StoryboardWhereInput>
+    scene?: XOR<SceneNullableScalarRelationFilter, SceneWhereInput> | null
+    frame?: XOR<FrameNullableScalarRelationFilter, FrameWhereInput> | null
   }, "id">
 
-  export type StoryboardPanelOrderByWithAggregationInput = {
+  export type ShotOrderByWithAggregationInput = {
     id?: SortOrder
     storyboardId?: SortOrder
     order?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    sceneId?: SortOrderInput | SortOrder
     shotType?: SortOrderInput | SortOrder
-    cameraAngle?: SortOrderInput | SortOrder
-    cameraMove?: SortOrderInput | SortOrder
+    cameraMovement?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     dialogue?: SortOrderInput | SortOrder
     duration?: SortOrderInput | SortOrder
-    linkedSceneId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: StoryboardPanelCountOrderByAggregateInput
-    _avg?: StoryboardPanelAvgOrderByAggregateInput
-    _max?: StoryboardPanelMaxOrderByAggregateInput
-    _min?: StoryboardPanelMinOrderByAggregateInput
-    _sum?: StoryboardPanelSumOrderByAggregateInput
+    _count?: ShotCountOrderByAggregateInput
+    _avg?: ShotAvgOrderByAggregateInput
+    _max?: ShotMaxOrderByAggregateInput
+    _min?: ShotMinOrderByAggregateInput
+    _sum?: ShotSumOrderByAggregateInput
   }
 
-  export type StoryboardPanelScalarWhereWithAggregatesInput = {
-    AND?: StoryboardPanelScalarWhereWithAggregatesInput | StoryboardPanelScalarWhereWithAggregatesInput[]
-    OR?: StoryboardPanelScalarWhereWithAggregatesInput[]
-    NOT?: StoryboardPanelScalarWhereWithAggregatesInput | StoryboardPanelScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"StoryboardPanel"> | string
-    storyboardId?: StringWithAggregatesFilter<"StoryboardPanel"> | string
-    order?: IntWithAggregatesFilter<"StoryboardPanel"> | number
-    imageUrl?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    shotType?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    cameraAngle?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    cameraMove?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    description?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    dialogue?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    duration?: IntNullableWithAggregatesFilter<"StoryboardPanel"> | number | null
-    linkedSceneId?: StringNullableWithAggregatesFilter<"StoryboardPanel"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"StoryboardPanel"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"StoryboardPanel"> | Date | string
+  export type ShotScalarWhereWithAggregatesInput = {
+    AND?: ShotScalarWhereWithAggregatesInput | ShotScalarWhereWithAggregatesInput[]
+    OR?: ShotScalarWhereWithAggregatesInput[]
+    NOT?: ShotScalarWhereWithAggregatesInput | ShotScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Shot"> | string
+    storyboardId?: StringWithAggregatesFilter<"Shot"> | string
+    order?: FloatWithAggregatesFilter<"Shot"> | number
+    sceneId?: StringNullableWithAggregatesFilter<"Shot"> | string | null
+    shotType?: EnumShotTypeNullableWithAggregatesFilter<"Shot"> | $Enums.ShotType | null
+    cameraMovement?: EnumCameraMovementNullableWithAggregatesFilter<"Shot"> | $Enums.CameraMovement | null
+    description?: StringNullableWithAggregatesFilter<"Shot"> | string | null
+    dialogue?: StringNullableWithAggregatesFilter<"Shot"> | string | null
+    duration?: IntNullableWithAggregatesFilter<"Shot"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Shot"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Shot"> | Date | string
+  }
+
+  export type FrameWhereInput = {
+    AND?: FrameWhereInput | FrameWhereInput[]
+    OR?: FrameWhereInput[]
+    NOT?: FrameWhereInput | FrameWhereInput[]
+    id?: StringFilter<"Frame"> | string
+    shotId?: StringFilter<"Frame"> | string
+    sketchData?: JsonNullableFilter<"Frame">
+    imageAssetId?: StringNullableFilter<"Frame"> | string | null
+    videoAssetId?: StringNullableFilter<"Frame"> | string | null
+    updatedAt?: DateTimeFilter<"Frame"> | Date | string
+    shot?: XOR<ShotScalarRelationFilter, ShotWhereInput>
+  }
+
+  export type FrameOrderByWithRelationInput = {
+    id?: SortOrder
+    shotId?: SortOrder
+    sketchData?: SortOrderInput | SortOrder
+    imageAssetId?: SortOrderInput | SortOrder
+    videoAssetId?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    shot?: ShotOrderByWithRelationInput
+  }
+
+  export type FrameWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    shotId?: string
+    AND?: FrameWhereInput | FrameWhereInput[]
+    OR?: FrameWhereInput[]
+    NOT?: FrameWhereInput | FrameWhereInput[]
+    sketchData?: JsonNullableFilter<"Frame">
+    imageAssetId?: StringNullableFilter<"Frame"> | string | null
+    videoAssetId?: StringNullableFilter<"Frame"> | string | null
+    updatedAt?: DateTimeFilter<"Frame"> | Date | string
+    shot?: XOR<ShotScalarRelationFilter, ShotWhereInput>
+  }, "id" | "shotId">
+
+  export type FrameOrderByWithAggregationInput = {
+    id?: SortOrder
+    shotId?: SortOrder
+    sketchData?: SortOrderInput | SortOrder
+    imageAssetId?: SortOrderInput | SortOrder
+    videoAssetId?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: FrameCountOrderByAggregateInput
+    _max?: FrameMaxOrderByAggregateInput
+    _min?: FrameMinOrderByAggregateInput
+  }
+
+  export type FrameScalarWhereWithAggregatesInput = {
+    AND?: FrameScalarWhereWithAggregatesInput | FrameScalarWhereWithAggregatesInput[]
+    OR?: FrameScalarWhereWithAggregatesInput[]
+    NOT?: FrameScalarWhereWithAggregatesInput | FrameScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Frame"> | string
+    shotId?: StringWithAggregatesFilter<"Frame"> | string
+    sketchData?: JsonNullableWithAggregatesFilter<"Frame">
+    imageAssetId?: StringNullableWithAggregatesFilter<"Frame"> | string | null
+    videoAssetId?: StringNullableWithAggregatesFilter<"Frame"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"Frame"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -31842,7 +37255,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31865,7 +37278,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -31888,7 +37301,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31911,7 +37324,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -32245,6 +37658,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -32261,6 +37675,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -32277,6 +37692,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -32293,6 +37709,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -32332,6 +37749,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutScriptOwnerInput
     project?: ProjectCreateNestedOneWithoutScriptsInput
     scenes?: SceneCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptUncheckedCreateInput = {
@@ -32347,6 +37765,7 @@ export namespace Prisma {
     ownerId: string
     projectId?: string | null
     scenes?: SceneUncheckedCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardUncheckedCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptUpdateInput = {
@@ -32362,6 +37781,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutScriptOwnerNestedInput
     project?: ProjectUpdateOneWithoutScriptsNestedInput
     scenes?: SceneUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateInput = {
@@ -32377,6 +37797,7 @@ export namespace Prisma {
     ownerId?: StringFieldUpdateOperationsInput | string
     projectId?: NullableStringFieldUpdateOperationsInput | string | null
     scenes?: SceneUncheckedUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUncheckedUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptCreateManyInput = {
@@ -32425,6 +37846,7 @@ export namespace Prisma {
     heading: string
     pageStart?: number | null
     script: ScriptCreateNestedOneWithoutScenesInput
+    shot?: ShotCreateNestedManyWithoutSceneInput
   }
 
   export type SceneUncheckedCreateInput = {
@@ -32433,6 +37855,7 @@ export namespace Prisma {
     heading: string
     pageStart?: number | null
     scriptId: string
+    shot?: ShotUncheckedCreateNestedManyWithoutSceneInput
   }
 
   export type SceneUpdateInput = {
@@ -32441,6 +37864,7 @@ export namespace Prisma {
     heading?: StringFieldUpdateOperationsInput | string
     pageStart?: NullableIntFieldUpdateOperationsInput | number | null
     script?: ScriptUpdateOneRequiredWithoutScenesNestedInput
+    shot?: ShotUpdateManyWithoutSceneNestedInput
   }
 
   export type SceneUncheckedUpdateInput = {
@@ -32449,6 +37873,7 @@ export namespace Prisma {
     heading?: StringFieldUpdateOperationsInput | string
     pageStart?: NullableIntFieldUpdateOperationsInput | number | null
     scriptId?: StringFieldUpdateOperationsInput | string
+    shot?: ShotUncheckedUpdateManyWithoutSceneNestedInput
   }
 
   export type SceneCreateManyInput = {
@@ -33134,6 +38559,213 @@ export namespace Prisma {
     footageId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type EditedStateCreateInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutEditedInput
+    edited?: EditedCreateNestedManyWithoutStateInput
+  }
+
+  export type EditedStateUncheckedCreateInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+    edited?: EditedUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type EditedStateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutEditedNestedInput
+    edited?: EditedUpdateManyWithoutStateNestedInput
+  }
+
+  export type EditedStateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    edited?: EditedUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type EditedStateCreateManyInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type EditedStateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EditedStateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EditedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutEditedInput
+    state?: EditedStateCreateNestedOneWithoutEditedInput
+    EditedVersions?: EditedVersionCreateNestedManyWithoutEditedInput
+  }
+
+  export type EditedUncheckedCreateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+    EditedVersions?: EditedVersionUncheckedCreateNestedManyWithoutEditedInput
+  }
+
+  export type EditedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutEditedNestedInput
+    state?: EditedStateUpdateOneWithoutEditedNestedInput
+    EditedVersions?: EditedVersionUpdateManyWithoutEditedNestedInput
+  }
+
+  export type EditedUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    EditedVersions?: EditedVersionUncheckedUpdateManyWithoutEditedNestedInput
+  }
+
+  export type EditedCreateManyInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type EditedUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EditedUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EditedVersionCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    edited: EditedCreateNestedOneWithoutEditedVersionsInput
+  }
+
+  export type EditedVersionUncheckedCreateInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    editedId: string
+  }
+
+  export type EditedVersionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    edited?: EditedUpdateOneRequiredWithoutEditedVersionsNestedInput
+  }
+
+  export type EditedVersionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editedId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EditedVersionCreateManyInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+    editedId: string
+  }
+
+  export type EditedVersionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EditedVersionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    editedId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type SoundFolderCreateInput = {
     id?: string
     name: string
@@ -33366,53 +38998,48 @@ export namespace Prisma {
   export type StoryboardCreateInput = {
     id?: string
     title: string
-    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutStoryboardsInput
-    user: UserCreateNestedOneWithoutStoryboardOwnerInput
-    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+    script?: ScriptCreateNestedOneWithoutStoryboradInput
+    shots?: ShotCreateNestedManyWithoutStoryboardInput
   }
 
   export type StoryboardUncheckedCreateInput = {
     id?: string
     title: string
-    description?: string | null
     projectId: string
-    ownerId: string
+    scriptId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+    shots?: ShotUncheckedCreateNestedManyWithoutStoryboardInput
   }
 
   export type StoryboardUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
-    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
-    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+    script?: ScriptUpdateOneWithoutStoryboradNestedInput
+    shots?: ShotUpdateManyWithoutStoryboardNestedInput
   }
 
   export type StoryboardUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
+    scriptId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+    shots?: ShotUncheckedUpdateManyWithoutStoryboardNestedInput
   }
 
   export type StoryboardCreateManyInput = {
     id?: string
     title: string
-    description?: string | null
     projectId: string
-    ownerId: string
+    scriptId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33420,7 +39047,6 @@ export namespace Prisma {
   export type StoryboardUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33428,121 +39054,171 @@ export namespace Prisma {
   export type StoryboardUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
+    scriptId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StoryboardPanelCreateInput = {
+  export type ShotCreateInput = {
     id?: string
     order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
     description?: string | null
     dialogue?: string | null
     duration?: number | null
-    linkedSceneId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    storyboard: StoryboardCreateNestedOneWithoutPanelsInput
+    storyboard: StoryboardCreateNestedOneWithoutShotsInput
+    scene?: SceneCreateNestedOneWithoutShotInput
+    frame?: FrameCreateNestedOneWithoutShotInput
   }
 
-  export type StoryboardPanelUncheckedCreateInput = {
-    id?: string
-    storyboardId: string
-    order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
-    description?: string | null
-    dialogue?: string | null
-    duration?: number | null
-    linkedSceneId?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type StoryboardPanelUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
-    duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    storyboard?: StoryboardUpdateOneRequiredWithoutPanelsNestedInput
-  }
-
-  export type StoryboardPanelUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    storyboardId?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
-    duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StoryboardPanelCreateManyInput = {
+  export type ShotUncheckedCreateInput = {
     id?: string
     storyboardId: string
     order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
+    sceneId?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
     description?: string | null
     dialogue?: string | null
     duration?: number | null
-    linkedSceneId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    frame?: FrameUncheckedCreateNestedOneWithoutShotInput
+  }
+
+  export type ShotUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storyboard?: StoryboardUpdateOneRequiredWithoutShotsNestedInput
+    scene?: SceneUpdateOneWithoutShotNestedInput
+    frame?: FrameUpdateOneWithoutShotNestedInput
+  }
+
+  export type ShotUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    sceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    frame?: FrameUncheckedUpdateOneWithoutShotNestedInput
+  }
+
+  export type ShotCreateManyInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    sceneId?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type StoryboardPanelUpdateManyMutationInput = {
+  export type ShotUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     dialogue?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StoryboardPanelUncheckedUpdateManyInput = {
+  export type ShotUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     storyboardId?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: FloatFieldUpdateOperationsInput | number
+    sceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     dialogue?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrameCreateInput = {
+    id?: string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: string | null
+    videoAssetId?: string | null
+    updatedAt?: Date | string
+    shot: ShotCreateNestedOneWithoutFrameInput
+  }
+
+  export type FrameUncheckedCreateInput = {
+    id?: string
+    shotId: string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: string | null
+    videoAssetId?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type FrameUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shot?: ShotUpdateOneRequiredWithoutFrameNestedInput
+  }
+
+  export type FrameUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shotId?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrameCreateManyInput = {
+    id?: string
+    shotId: string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: string | null
+    videoAssetId?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type FrameUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrameUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    shotId?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -33664,10 +39340,10 @@ export namespace Prisma {
     none?: SoundFolderWhereInput
   }
 
-  export type StoryboardListRelationFilter = {
-    every?: StoryboardWhereInput
-    some?: StoryboardWhereInput
-    none?: StoryboardWhereInput
+  export type EditedListRelationFilter = {
+    every?: EditedWhereInput
+    some?: EditedWhereInput
+    none?: EditedWhereInput
   }
 
   export type SortOrderInput = {
@@ -33719,7 +39395,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type StoryboardOrderByRelationAggregateInput = {
+  export type EditedOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -34058,11 +39734,31 @@ export namespace Prisma {
     none?: FootageStateWhereInput
   }
 
+  export type StoryboardListRelationFilter = {
+    every?: StoryboardWhereInput
+    some?: StoryboardWhereInput
+    none?: StoryboardWhereInput
+  }
+
+  export type EditedStateListRelationFilter = {
+    every?: EditedStateWhereInput
+    some?: EditedStateWhereInput
+    none?: EditedStateWhereInput
+  }
+
   export type AnimationStateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type FootageStateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StoryboardOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EditedStateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -34222,6 +39918,16 @@ export namespace Prisma {
   export type ScriptScalarRelationFilter = {
     is?: ScriptWhereInput
     isNot?: ScriptWhereInput
+  }
+
+  export type ShotListRelationFilter = {
+    every?: ShotWhereInput
+    some?: ShotWhereInput
+    none?: ShotWhereInput
+  }
+
+  export type ShotOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type SceneCountOrderByAggregateInput = {
@@ -34621,6 +40327,121 @@ export namespace Prisma {
     versionNumber?: SortOrder
   }
 
+  export type EditedStateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EditedStateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EditedStateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EditedStateNullableScalarRelationFilter = {
+    is?: EditedStateWhereInput | null
+    isNot?: EditedStateWhereInput | null
+  }
+
+  export type EditedVersionListRelationFilter = {
+    every?: EditedVersionWhereInput
+    some?: EditedVersionWhereInput
+    none?: EditedVersionWhereInput
+  }
+
+  export type EditedVersionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EditedCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type EditedMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type EditedMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approved?: SortOrder
+    description?: SortOrder
+    ownerId?: SortOrder
+    stateId?: SortOrder
+    status?: SortOrder
+  }
+
+  export type EditedScalarRelationFilter = {
+    is?: EditedWhereInput
+    isNot?: EditedWhereInput
+  }
+
+  export type EditedVersionCountOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    editedId?: SortOrder
+  }
+
+  export type EditedVersionAvgOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
+  export type EditedVersionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    editedId?: SortOrder
+  }
+
+  export type EditedVersionMinOrderByAggregateInput = {
+    id?: SortOrder
+    versionNumber?: SortOrder
+    label?: SortOrder
+    muxUploadId?: SortOrder
+    muxPlaybackId?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    editedId?: SortOrder
+  }
+
+  export type EditedVersionSumOrderByAggregateInput = {
+    versionNumber?: SortOrder
+  }
+
   export type SoundFolderNullableScalarRelationFilter = {
     is?: SoundFolderWhereInput | null
     isNot?: SoundFolderWhereInput | null
@@ -34745,22 +40566,16 @@ export namespace Prisma {
     versionNumber?: SortOrder
   }
 
-  export type StoryboardPanelListRelationFilter = {
-    every?: StoryboardPanelWhereInput
-    some?: StoryboardPanelWhereInput
-    none?: StoryboardPanelWhereInput
-  }
-
-  export type StoryboardPanelOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ScriptNullableScalarRelationFilter = {
+    is?: ScriptWhereInput | null
+    isNot?: ScriptWhereInput | null
   }
 
   export type StoryboardCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrder
     projectId?: SortOrder
-    ownerId?: SortOrder
+    scriptId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34768,9 +40583,8 @@ export namespace Prisma {
   export type StoryboardMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrder
     projectId?: SortOrder
-    ownerId?: SortOrder
+    scriptId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34778,11 +40592,35 @@ export namespace Prisma {
   export type StoryboardMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    description?: SortOrder
     projectId?: SortOrder
-    ownerId?: SortOrder
+    scriptId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type EnumShotTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ShotType | EnumShotTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumShotTypeNullableFilter<$PrismaModel> | $Enums.ShotType | null
+  }
+
+  export type EnumCameraMovementNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CameraMovement | EnumCameraMovementFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCameraMovementNullableFilter<$PrismaModel> | $Enums.CameraMovement | null
   }
 
   export type StoryboardScalarRelationFilter = {
@@ -34790,62 +40628,181 @@ export namespace Prisma {
     isNot?: StoryboardWhereInput
   }
 
-  export type StoryboardPanelCountOrderByAggregateInput = {
+  export type SceneNullableScalarRelationFilter = {
+    is?: SceneWhereInput | null
+    isNot?: SceneWhereInput | null
+  }
+
+  export type FrameNullableScalarRelationFilter = {
+    is?: FrameWhereInput | null
+    isNot?: FrameWhereInput | null
+  }
+
+  export type ShotCountOrderByAggregateInput = {
     id?: SortOrder
     storyboardId?: SortOrder
     order?: SortOrder
-    imageUrl?: SortOrder
+    sceneId?: SortOrder
     shotType?: SortOrder
-    cameraAngle?: SortOrder
-    cameraMove?: SortOrder
+    cameraMovement?: SortOrder
     description?: SortOrder
     dialogue?: SortOrder
     duration?: SortOrder
-    linkedSceneId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type StoryboardPanelAvgOrderByAggregateInput = {
+  export type ShotAvgOrderByAggregateInput = {
     order?: SortOrder
     duration?: SortOrder
   }
 
-  export type StoryboardPanelMaxOrderByAggregateInput = {
+  export type ShotMaxOrderByAggregateInput = {
     id?: SortOrder
     storyboardId?: SortOrder
     order?: SortOrder
-    imageUrl?: SortOrder
+    sceneId?: SortOrder
     shotType?: SortOrder
-    cameraAngle?: SortOrder
-    cameraMove?: SortOrder
+    cameraMovement?: SortOrder
     description?: SortOrder
     dialogue?: SortOrder
     duration?: SortOrder
-    linkedSceneId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type StoryboardPanelMinOrderByAggregateInput = {
+  export type ShotMinOrderByAggregateInput = {
     id?: SortOrder
     storyboardId?: SortOrder
     order?: SortOrder
-    imageUrl?: SortOrder
+    sceneId?: SortOrder
     shotType?: SortOrder
-    cameraAngle?: SortOrder
-    cameraMove?: SortOrder
+    cameraMovement?: SortOrder
     description?: SortOrder
     dialogue?: SortOrder
     duration?: SortOrder
-    linkedSceneId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type StoryboardPanelSumOrderByAggregateInput = {
+  export type ShotSumOrderByAggregateInput = {
     order?: SortOrder
     duration?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumShotTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ShotType | EnumShotTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumShotTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ShotType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumShotTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumShotTypeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumCameraMovementNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CameraMovement | EnumCameraMovementFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCameraMovementNullableWithAggregatesFilter<$PrismaModel> | $Enums.CameraMovement | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCameraMovementNullableFilter<$PrismaModel>
+    _max?: NestedEnumCameraMovementNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ShotScalarRelationFilter = {
+    is?: ShotWhereInput
+    isNot?: ShotWhereInput
+  }
+
+  export type FrameCountOrderByAggregateInput = {
+    id?: SortOrder
+    shotId?: SortOrder
+    sketchData?: SortOrder
+    imageAssetId?: SortOrder
+    videoAssetId?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FrameMaxOrderByAggregateInput = {
+    id?: SortOrder
+    shotId?: SortOrder
+    imageAssetId?: SortOrder
+    videoAssetId?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FrameMinOrderByAggregateInput = {
+    id?: SortOrder
+    shotId?: SortOrder
+    imageAssetId?: SortOrder
+    videoAssetId?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -34925,11 +40882,11 @@ export namespace Prisma {
     connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
   }
 
-  export type StoryboardCreateNestedManyWithoutUserInput = {
-    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
-    createMany?: StoryboardCreateManyUserInputEnvelope
-    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  export type EditedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput> | EditedCreateWithoutUserInput[] | EditedUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutUserInput | EditedCreateOrConnectWithoutUserInput[]
+    createMany?: EditedCreateManyUserInputEnvelope
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -35009,11 +40966,11 @@ export namespace Prisma {
     connect?: SoundFolderWhereUniqueInput | SoundFolderWhereUniqueInput[]
   }
 
-  export type StoryboardUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
-    createMany?: StoryboardCreateManyUserInputEnvelope
-    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  export type EditedUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput> | EditedCreateWithoutUserInput[] | EditedUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutUserInput | EditedCreateOrConnectWithoutUserInput[]
+    createMany?: EditedCreateManyUserInputEnvelope
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -35186,18 +41143,18 @@ export namespace Prisma {
     deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
   }
 
-  export type StoryboardUpdateManyWithoutUserNestedInput = {
-    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
-    upsert?: StoryboardUpsertWithWhereUniqueWithoutUserInput | StoryboardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: StoryboardCreateManyUserInputEnvelope
-    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    update?: StoryboardUpdateWithWhereUniqueWithoutUserInput | StoryboardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: StoryboardUpdateManyWithWhereWithoutUserInput | StoryboardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  export type EditedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput> | EditedCreateWithoutUserInput[] | EditedUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutUserInput | EditedCreateOrConnectWithoutUserInput[]
+    upsert?: EditedUpsertWithWhereUniqueWithoutUserInput | EditedUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EditedCreateManyUserInputEnvelope
+    set?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    disconnect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    delete?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    update?: EditedUpdateWithWhereUniqueWithoutUserInput | EditedUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EditedUpdateManyWithWhereWithoutUserInput | EditedUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EditedScalarWhereInput | EditedScalarWhereInput[]
   }
 
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
@@ -35354,18 +41311,18 @@ export namespace Prisma {
     deleteMany?: SoundFolderScalarWhereInput | SoundFolderScalarWhereInput[]
   }
 
-  export type StoryboardUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput> | StoryboardCreateWithoutUserInput[] | StoryboardUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryboardCreateOrConnectWithoutUserInput | StoryboardCreateOrConnectWithoutUserInput[]
-    upsert?: StoryboardUpsertWithWhereUniqueWithoutUserInput | StoryboardUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: StoryboardCreateManyUserInputEnvelope
-    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
-    update?: StoryboardUpdateWithWhereUniqueWithoutUserInput | StoryboardUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: StoryboardUpdateManyWithWhereWithoutUserInput | StoryboardUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  export type EditedUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput> | EditedCreateWithoutUserInput[] | EditedUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutUserInput | EditedCreateOrConnectWithoutUserInput[]
+    upsert?: EditedUpsertWithWhereUniqueWithoutUserInput | EditedUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EditedCreateManyUserInputEnvelope
+    set?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    disconnect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    delete?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    update?: EditedUpdateWithWhereUniqueWithoutUserInput | EditedUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EditedUpdateManyWithWhereWithoutUserInput | EditedUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EditedScalarWhereInput | EditedScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -35486,6 +41443,13 @@ export namespace Prisma {
     connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
   }
 
+  export type EditedStateCreateNestedManyWithoutProjectInput = {
+    create?: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput> | EditedStateCreateWithoutProjectInput[] | EditedStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EditedStateCreateOrConnectWithoutProjectInput | EditedStateCreateOrConnectWithoutProjectInput[]
+    createMany?: EditedStateCreateManyProjectInputEnvelope
+    connect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+  }
+
   export type UserProjectUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -35540,6 +41504,13 @@ export namespace Prisma {
     connectOrCreate?: StoryboardCreateOrConnectWithoutProjectInput | StoryboardCreateOrConnectWithoutProjectInput[]
     createMany?: StoryboardCreateManyProjectInputEnvelope
     connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  }
+
+  export type EditedStateUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput> | EditedStateCreateWithoutProjectInput[] | EditedStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EditedStateCreateOrConnectWithoutProjectInput | EditedStateCreateOrConnectWithoutProjectInput[]
+    createMany?: EditedStateCreateManyProjectInputEnvelope
+    connect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
   }
 
   export type UserProjectUpdateManyWithoutProjectNestedInput = {
@@ -35654,6 +41625,20 @@ export namespace Prisma {
     deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
   }
 
+  export type EditedStateUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput> | EditedStateCreateWithoutProjectInput[] | EditedStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EditedStateCreateOrConnectWithoutProjectInput | EditedStateCreateOrConnectWithoutProjectInput[]
+    upsert?: EditedStateUpsertWithWhereUniqueWithoutProjectInput | EditedStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: EditedStateCreateManyProjectInputEnvelope
+    set?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    disconnect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    delete?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    connect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    update?: EditedStateUpdateWithWhereUniqueWithoutProjectInput | EditedStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: EditedStateUpdateManyWithWhereWithoutProjectInput | EditedStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: EditedStateScalarWhereInput | EditedStateScalarWhereInput[]
+  }
+
   export type UserProjectUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<UserProjectCreateWithoutProjectInput, UserProjectUncheckedCreateWithoutProjectInput> | UserProjectCreateWithoutProjectInput[] | UserProjectUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: UserProjectCreateOrConnectWithoutProjectInput | UserProjectCreateOrConnectWithoutProjectInput[]
@@ -35766,6 +41751,20 @@ export namespace Prisma {
     deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
   }
 
+  export type EditedStateUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput> | EditedStateCreateWithoutProjectInput[] | EditedStateUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EditedStateCreateOrConnectWithoutProjectInput | EditedStateCreateOrConnectWithoutProjectInput[]
+    upsert?: EditedStateUpsertWithWhereUniqueWithoutProjectInput | EditedStateUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: EditedStateCreateManyProjectInputEnvelope
+    set?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    disconnect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    delete?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    connect?: EditedStateWhereUniqueInput | EditedStateWhereUniqueInput[]
+    update?: EditedStateUpdateWithWhereUniqueWithoutProjectInput | EditedStateUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: EditedStateUpdateManyWithWhereWithoutProjectInput | EditedStateUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: EditedStateScalarWhereInput | EditedStateScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutScriptOwnerInput = {
     create?: XOR<UserCreateWithoutScriptOwnerInput, UserUncheckedCreateWithoutScriptOwnerInput>
     connectOrCreate?: UserCreateOrConnectWithoutScriptOwnerInput
@@ -35785,11 +41784,25 @@ export namespace Prisma {
     connect?: SceneWhereUniqueInput | SceneWhereUniqueInput[]
   }
 
+  export type StoryboardCreateNestedManyWithoutScriptInput = {
+    create?: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput> | StoryboardCreateWithoutScriptInput[] | StoryboardUncheckedCreateWithoutScriptInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutScriptInput | StoryboardCreateOrConnectWithoutScriptInput[]
+    createMany?: StoryboardCreateManyScriptInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+  }
+
   export type SceneUncheckedCreateNestedManyWithoutScriptInput = {
     create?: XOR<SceneCreateWithoutScriptInput, SceneUncheckedCreateWithoutScriptInput> | SceneCreateWithoutScriptInput[] | SceneUncheckedCreateWithoutScriptInput[]
     connectOrCreate?: SceneCreateOrConnectWithoutScriptInput | SceneCreateOrConnectWithoutScriptInput[]
     createMany?: SceneCreateManyScriptInputEnvelope
     connect?: SceneWhereUniqueInput | SceneWhereUniqueInput[]
+  }
+
+  export type StoryboardUncheckedCreateNestedManyWithoutScriptInput = {
+    create?: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput> | StoryboardCreateWithoutScriptInput[] | StoryboardUncheckedCreateWithoutScriptInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutScriptInput | StoryboardCreateOrConnectWithoutScriptInput[]
+    createMany?: StoryboardCreateManyScriptInputEnvelope
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
   }
 
   export type EnumScriptStatusFieldUpdateOperationsInput = {
@@ -35828,6 +41841,20 @@ export namespace Prisma {
     deleteMany?: SceneScalarWhereInput | SceneScalarWhereInput[]
   }
 
+  export type StoryboardUpdateManyWithoutScriptNestedInput = {
+    create?: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput> | StoryboardCreateWithoutScriptInput[] | StoryboardUncheckedCreateWithoutScriptInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutScriptInput | StoryboardCreateOrConnectWithoutScriptInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutScriptInput | StoryboardUpsertWithWhereUniqueWithoutScriptInput[]
+    createMany?: StoryboardCreateManyScriptInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutScriptInput | StoryboardUpdateWithWhereUniqueWithoutScriptInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutScriptInput | StoryboardUpdateManyWithWhereWithoutScriptInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  }
+
   export type SceneUncheckedUpdateManyWithoutScriptNestedInput = {
     create?: XOR<SceneCreateWithoutScriptInput, SceneUncheckedCreateWithoutScriptInput> | SceneCreateWithoutScriptInput[] | SceneUncheckedCreateWithoutScriptInput[]
     connectOrCreate?: SceneCreateOrConnectWithoutScriptInput | SceneCreateOrConnectWithoutScriptInput[]
@@ -35842,10 +41869,38 @@ export namespace Prisma {
     deleteMany?: SceneScalarWhereInput | SceneScalarWhereInput[]
   }
 
+  export type StoryboardUncheckedUpdateManyWithoutScriptNestedInput = {
+    create?: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput> | StoryboardCreateWithoutScriptInput[] | StoryboardUncheckedCreateWithoutScriptInput[]
+    connectOrCreate?: StoryboardCreateOrConnectWithoutScriptInput | StoryboardCreateOrConnectWithoutScriptInput[]
+    upsert?: StoryboardUpsertWithWhereUniqueWithoutScriptInput | StoryboardUpsertWithWhereUniqueWithoutScriptInput[]
+    createMany?: StoryboardCreateManyScriptInputEnvelope
+    set?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    disconnect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    delete?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    connect?: StoryboardWhereUniqueInput | StoryboardWhereUniqueInput[]
+    update?: StoryboardUpdateWithWhereUniqueWithoutScriptInput | StoryboardUpdateWithWhereUniqueWithoutScriptInput[]
+    updateMany?: StoryboardUpdateManyWithWhereWithoutScriptInput | StoryboardUpdateManyWithWhereWithoutScriptInput[]
+    deleteMany?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+  }
+
   export type ScriptCreateNestedOneWithoutScenesInput = {
     create?: XOR<ScriptCreateWithoutScenesInput, ScriptUncheckedCreateWithoutScenesInput>
     connectOrCreate?: ScriptCreateOrConnectWithoutScenesInput
     connect?: ScriptWhereUniqueInput
+  }
+
+  export type ShotCreateNestedManyWithoutSceneInput = {
+    create?: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput> | ShotCreateWithoutSceneInput[] | ShotUncheckedCreateWithoutSceneInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutSceneInput | ShotCreateOrConnectWithoutSceneInput[]
+    createMany?: ShotCreateManySceneInputEnvelope
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+  }
+
+  export type ShotUncheckedCreateNestedManyWithoutSceneInput = {
+    create?: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput> | ShotCreateWithoutSceneInput[] | ShotUncheckedCreateWithoutSceneInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutSceneInput | ShotCreateOrConnectWithoutSceneInput[]
+    createMany?: ShotCreateManySceneInputEnvelope
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
   }
 
   export type ScriptUpdateOneRequiredWithoutScenesNestedInput = {
@@ -35854,6 +41909,34 @@ export namespace Prisma {
     upsert?: ScriptUpsertWithoutScenesInput
     connect?: ScriptWhereUniqueInput
     update?: XOR<XOR<ScriptUpdateToOneWithWhereWithoutScenesInput, ScriptUpdateWithoutScenesInput>, ScriptUncheckedUpdateWithoutScenesInput>
+  }
+
+  export type ShotUpdateManyWithoutSceneNestedInput = {
+    create?: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput> | ShotCreateWithoutSceneInput[] | ShotUncheckedCreateWithoutSceneInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutSceneInput | ShotCreateOrConnectWithoutSceneInput[]
+    upsert?: ShotUpsertWithWhereUniqueWithoutSceneInput | ShotUpsertWithWhereUniqueWithoutSceneInput[]
+    createMany?: ShotCreateManySceneInputEnvelope
+    set?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    disconnect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    delete?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    update?: ShotUpdateWithWhereUniqueWithoutSceneInput | ShotUpdateWithWhereUniqueWithoutSceneInput[]
+    updateMany?: ShotUpdateManyWithWhereWithoutSceneInput | ShotUpdateManyWithWhereWithoutSceneInput[]
+    deleteMany?: ShotScalarWhereInput | ShotScalarWhereInput[]
+  }
+
+  export type ShotUncheckedUpdateManyWithoutSceneNestedInput = {
+    create?: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput> | ShotCreateWithoutSceneInput[] | ShotUncheckedCreateWithoutSceneInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutSceneInput | ShotCreateOrConnectWithoutSceneInput[]
+    upsert?: ShotUpsertWithWhereUniqueWithoutSceneInput | ShotUpsertWithWhereUniqueWithoutSceneInput[]
+    createMany?: ShotCreateManySceneInputEnvelope
+    set?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    disconnect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    delete?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    update?: ShotUpdateWithWhereUniqueWithoutSceneInput | ShotUpdateWithWhereUniqueWithoutSceneInput[]
+    updateMany?: ShotUpdateManyWithWhereWithoutSceneInput | ShotUpdateManyWithWhereWithoutSceneInput[]
+    deleteMany?: ShotScalarWhereInput | ShotScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutDesignCategoryOwnerInput = {
@@ -36330,6 +42413,150 @@ export namespace Prisma {
     update?: XOR<XOR<FootageUpdateToOneWithWhereWithoutFootageVersionsInput, FootageUpdateWithoutFootageVersionsInput>, FootageUncheckedUpdateWithoutFootageVersionsInput>
   }
 
+  export type ProjectCreateNestedOneWithoutEditedInput = {
+    create?: XOR<ProjectCreateWithoutEditedInput, ProjectUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutEditedInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type EditedCreateNestedManyWithoutStateInput = {
+    create?: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput> | EditedCreateWithoutStateInput[] | EditedUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutStateInput | EditedCreateOrConnectWithoutStateInput[]
+    createMany?: EditedCreateManyStateInputEnvelope
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+  }
+
+  export type EditedUncheckedCreateNestedManyWithoutStateInput = {
+    create?: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput> | EditedCreateWithoutStateInput[] | EditedUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutStateInput | EditedCreateOrConnectWithoutStateInput[]
+    createMany?: EditedCreateManyStateInputEnvelope
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+  }
+
+  export type ProjectUpdateOneWithoutEditedNestedInput = {
+    create?: XOR<ProjectCreateWithoutEditedInput, ProjectUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutEditedInput
+    upsert?: ProjectUpsertWithoutEditedInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutEditedInput, ProjectUpdateWithoutEditedInput>, ProjectUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type EditedUpdateManyWithoutStateNestedInput = {
+    create?: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput> | EditedCreateWithoutStateInput[] | EditedUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutStateInput | EditedCreateOrConnectWithoutStateInput[]
+    upsert?: EditedUpsertWithWhereUniqueWithoutStateInput | EditedUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: EditedCreateManyStateInputEnvelope
+    set?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    disconnect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    delete?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    update?: EditedUpdateWithWhereUniqueWithoutStateInput | EditedUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: EditedUpdateManyWithWhereWithoutStateInput | EditedUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: EditedScalarWhereInput | EditedScalarWhereInput[]
+  }
+
+  export type EditedUncheckedUpdateManyWithoutStateNestedInput = {
+    create?: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput> | EditedCreateWithoutStateInput[] | EditedUncheckedCreateWithoutStateInput[]
+    connectOrCreate?: EditedCreateOrConnectWithoutStateInput | EditedCreateOrConnectWithoutStateInput[]
+    upsert?: EditedUpsertWithWhereUniqueWithoutStateInput | EditedUpsertWithWhereUniqueWithoutStateInput[]
+    createMany?: EditedCreateManyStateInputEnvelope
+    set?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    disconnect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    delete?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    connect?: EditedWhereUniqueInput | EditedWhereUniqueInput[]
+    update?: EditedUpdateWithWhereUniqueWithoutStateInput | EditedUpdateWithWhereUniqueWithoutStateInput[]
+    updateMany?: EditedUpdateManyWithWhereWithoutStateInput | EditedUpdateManyWithWhereWithoutStateInput[]
+    deleteMany?: EditedScalarWhereInput | EditedScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutEditedInput = {
+    create?: XOR<UserCreateWithoutEditedInput, UserUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEditedInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EditedStateCreateNestedOneWithoutEditedInput = {
+    create?: XOR<EditedStateCreateWithoutEditedInput, EditedStateUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: EditedStateCreateOrConnectWithoutEditedInput
+    connect?: EditedStateWhereUniqueInput
+  }
+
+  export type EditedVersionCreateNestedManyWithoutEditedInput = {
+    create?: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput> | EditedVersionCreateWithoutEditedInput[] | EditedVersionUncheckedCreateWithoutEditedInput[]
+    connectOrCreate?: EditedVersionCreateOrConnectWithoutEditedInput | EditedVersionCreateOrConnectWithoutEditedInput[]
+    createMany?: EditedVersionCreateManyEditedInputEnvelope
+    connect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+  }
+
+  export type EditedVersionUncheckedCreateNestedManyWithoutEditedInput = {
+    create?: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput> | EditedVersionCreateWithoutEditedInput[] | EditedVersionUncheckedCreateWithoutEditedInput[]
+    connectOrCreate?: EditedVersionCreateOrConnectWithoutEditedInput | EditedVersionCreateOrConnectWithoutEditedInput[]
+    createMany?: EditedVersionCreateManyEditedInputEnvelope
+    connect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutEditedNestedInput = {
+    create?: XOR<UserCreateWithoutEditedInput, UserUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEditedInput
+    upsert?: UserUpsertWithoutEditedInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEditedInput, UserUpdateWithoutEditedInput>, UserUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type EditedStateUpdateOneWithoutEditedNestedInput = {
+    create?: XOR<EditedStateCreateWithoutEditedInput, EditedStateUncheckedCreateWithoutEditedInput>
+    connectOrCreate?: EditedStateCreateOrConnectWithoutEditedInput
+    upsert?: EditedStateUpsertWithoutEditedInput
+    disconnect?: EditedStateWhereInput | boolean
+    delete?: EditedStateWhereInput | boolean
+    connect?: EditedStateWhereUniqueInput
+    update?: XOR<XOR<EditedStateUpdateToOneWithWhereWithoutEditedInput, EditedStateUpdateWithoutEditedInput>, EditedStateUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type EditedVersionUpdateManyWithoutEditedNestedInput = {
+    create?: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput> | EditedVersionCreateWithoutEditedInput[] | EditedVersionUncheckedCreateWithoutEditedInput[]
+    connectOrCreate?: EditedVersionCreateOrConnectWithoutEditedInput | EditedVersionCreateOrConnectWithoutEditedInput[]
+    upsert?: EditedVersionUpsertWithWhereUniqueWithoutEditedInput | EditedVersionUpsertWithWhereUniqueWithoutEditedInput[]
+    createMany?: EditedVersionCreateManyEditedInputEnvelope
+    set?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    disconnect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    delete?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    connect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    update?: EditedVersionUpdateWithWhereUniqueWithoutEditedInput | EditedVersionUpdateWithWhereUniqueWithoutEditedInput[]
+    updateMany?: EditedVersionUpdateManyWithWhereWithoutEditedInput | EditedVersionUpdateManyWithWhereWithoutEditedInput[]
+    deleteMany?: EditedVersionScalarWhereInput | EditedVersionScalarWhereInput[]
+  }
+
+  export type EditedVersionUncheckedUpdateManyWithoutEditedNestedInput = {
+    create?: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput> | EditedVersionCreateWithoutEditedInput[] | EditedVersionUncheckedCreateWithoutEditedInput[]
+    connectOrCreate?: EditedVersionCreateOrConnectWithoutEditedInput | EditedVersionCreateOrConnectWithoutEditedInput[]
+    upsert?: EditedVersionUpsertWithWhereUniqueWithoutEditedInput | EditedVersionUpsertWithWhereUniqueWithoutEditedInput[]
+    createMany?: EditedVersionCreateManyEditedInputEnvelope
+    set?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    disconnect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    delete?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    connect?: EditedVersionWhereUniqueInput | EditedVersionWhereUniqueInput[]
+    update?: EditedVersionUpdateWithWhereUniqueWithoutEditedInput | EditedVersionUpdateWithWhereUniqueWithoutEditedInput[]
+    updateMany?: EditedVersionUpdateManyWithWhereWithoutEditedInput | EditedVersionUpdateManyWithWhereWithoutEditedInput[]
+    deleteMany?: EditedVersionScalarWhereInput | EditedVersionScalarWhereInput[]
+  }
+
+  export type EditedCreateNestedOneWithoutEditedVersionsInput = {
+    create?: XOR<EditedCreateWithoutEditedVersionsInput, EditedUncheckedCreateWithoutEditedVersionsInput>
+    connectOrCreate?: EditedCreateOrConnectWithoutEditedVersionsInput
+    connect?: EditedWhereUniqueInput
+  }
+
+  export type EditedUpdateOneRequiredWithoutEditedVersionsNestedInput = {
+    create?: XOR<EditedCreateWithoutEditedVersionsInput, EditedUncheckedCreateWithoutEditedVersionsInput>
+    connectOrCreate?: EditedCreateOrConnectWithoutEditedVersionsInput
+    upsert?: EditedUpsertWithoutEditedVersionsInput
+    connect?: EditedWhereUniqueInput
+    update?: XOR<XOR<EditedUpdateToOneWithWhereWithoutEditedVersionsInput, EditedUpdateWithoutEditedVersionsInput>, EditedUncheckedUpdateWithoutEditedVersionsInput>
+  }
+
   export type UserCreateNestedOneWithoutSoundFolderOwnerInput = {
     create?: XOR<UserCreateWithoutSoundFolderOwnerInput, UserUncheckedCreateWithoutSoundFolderOwnerInput>
     connectOrCreate?: UserCreateOrConnectWithoutSoundFolderOwnerInput
@@ -36564,24 +42791,24 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutStoryboardOwnerInput = {
-    create?: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutStoryboardOwnerInput
-    connect?: UserWhereUniqueInput
+  export type ScriptCreateNestedOneWithoutStoryboradInput = {
+    create?: XOR<ScriptCreateWithoutStoryboradInput, ScriptUncheckedCreateWithoutStoryboradInput>
+    connectOrCreate?: ScriptCreateOrConnectWithoutStoryboradInput
+    connect?: ScriptWhereUniqueInput
   }
 
-  export type StoryboardPanelCreateNestedManyWithoutStoryboardInput = {
-    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
-    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
-    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
-    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+  export type ShotCreateNestedManyWithoutStoryboardInput = {
+    create?: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput> | ShotCreateWithoutStoryboardInput[] | ShotUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutStoryboardInput | ShotCreateOrConnectWithoutStoryboardInput[]
+    createMany?: ShotCreateManyStoryboardInputEnvelope
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
   }
 
-  export type StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput = {
-    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
-    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
-    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
-    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
+  export type ShotUncheckedCreateNestedManyWithoutStoryboardInput = {
+    create?: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput> | ShotCreateWithoutStoryboardInput[] | ShotUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutStoryboardInput | ShotCreateOrConnectWithoutStoryboardInput[]
+    createMany?: ShotCreateManyStoryboardInputEnvelope
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
   }
 
   export type ProjectUpdateOneRequiredWithoutStoryboardsNestedInput = {
@@ -36592,54 +42819,134 @@ export namespace Prisma {
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutStoryboardsInput, ProjectUpdateWithoutStoryboardsInput>, ProjectUncheckedUpdateWithoutStoryboardsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput = {
-    create?: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutStoryboardOwnerInput
-    upsert?: UserUpsertWithoutStoryboardOwnerInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStoryboardOwnerInput, UserUpdateWithoutStoryboardOwnerInput>, UserUncheckedUpdateWithoutStoryboardOwnerInput>
+  export type ScriptUpdateOneWithoutStoryboradNestedInput = {
+    create?: XOR<ScriptCreateWithoutStoryboradInput, ScriptUncheckedCreateWithoutStoryboradInput>
+    connectOrCreate?: ScriptCreateOrConnectWithoutStoryboradInput
+    upsert?: ScriptUpsertWithoutStoryboradInput
+    disconnect?: ScriptWhereInput | boolean
+    delete?: ScriptWhereInput | boolean
+    connect?: ScriptWhereUniqueInput
+    update?: XOR<XOR<ScriptUpdateToOneWithWhereWithoutStoryboradInput, ScriptUpdateWithoutStoryboradInput>, ScriptUncheckedUpdateWithoutStoryboradInput>
   }
 
-  export type StoryboardPanelUpdateManyWithoutStoryboardNestedInput = {
-    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
-    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
-    upsert?: StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput[]
-    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
-    set?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    disconnect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    delete?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    update?: StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput[]
-    updateMany?: StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput | StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput[]
-    deleteMany?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+  export type ShotUpdateManyWithoutStoryboardNestedInput = {
+    create?: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput> | ShotCreateWithoutStoryboardInput[] | ShotUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutStoryboardInput | ShotCreateOrConnectWithoutStoryboardInput[]
+    upsert?: ShotUpsertWithWhereUniqueWithoutStoryboardInput | ShotUpsertWithWhereUniqueWithoutStoryboardInput[]
+    createMany?: ShotCreateManyStoryboardInputEnvelope
+    set?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    disconnect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    delete?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    update?: ShotUpdateWithWhereUniqueWithoutStoryboardInput | ShotUpdateWithWhereUniqueWithoutStoryboardInput[]
+    updateMany?: ShotUpdateManyWithWhereWithoutStoryboardInput | ShotUpdateManyWithWhereWithoutStoryboardInput[]
+    deleteMany?: ShotScalarWhereInput | ShotScalarWhereInput[]
   }
 
-  export type StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput = {
-    create?: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput> | StoryboardPanelCreateWithoutStoryboardInput[] | StoryboardPanelUncheckedCreateWithoutStoryboardInput[]
-    connectOrCreate?: StoryboardPanelCreateOrConnectWithoutStoryboardInput | StoryboardPanelCreateOrConnectWithoutStoryboardInput[]
-    upsert?: StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput[]
-    createMany?: StoryboardPanelCreateManyStoryboardInputEnvelope
-    set?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    disconnect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    delete?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    connect?: StoryboardPanelWhereUniqueInput | StoryboardPanelWhereUniqueInput[]
-    update?: StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput | StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput[]
-    updateMany?: StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput | StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput[]
-    deleteMany?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
+  export type ShotUncheckedUpdateManyWithoutStoryboardNestedInput = {
+    create?: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput> | ShotCreateWithoutStoryboardInput[] | ShotUncheckedCreateWithoutStoryboardInput[]
+    connectOrCreate?: ShotCreateOrConnectWithoutStoryboardInput | ShotCreateOrConnectWithoutStoryboardInput[]
+    upsert?: ShotUpsertWithWhereUniqueWithoutStoryboardInput | ShotUpsertWithWhereUniqueWithoutStoryboardInput[]
+    createMany?: ShotCreateManyStoryboardInputEnvelope
+    set?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    disconnect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    delete?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    connect?: ShotWhereUniqueInput | ShotWhereUniqueInput[]
+    update?: ShotUpdateWithWhereUniqueWithoutStoryboardInput | ShotUpdateWithWhereUniqueWithoutStoryboardInput[]
+    updateMany?: ShotUpdateManyWithWhereWithoutStoryboardInput | ShotUpdateManyWithWhereWithoutStoryboardInput[]
+    deleteMany?: ShotScalarWhereInput | ShotScalarWhereInput[]
   }
 
-  export type StoryboardCreateNestedOneWithoutPanelsInput = {
-    create?: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
-    connectOrCreate?: StoryboardCreateOrConnectWithoutPanelsInput
+  export type StoryboardCreateNestedOneWithoutShotsInput = {
+    create?: XOR<StoryboardCreateWithoutShotsInput, StoryboardUncheckedCreateWithoutShotsInput>
+    connectOrCreate?: StoryboardCreateOrConnectWithoutShotsInput
     connect?: StoryboardWhereUniqueInput
   }
 
-  export type StoryboardUpdateOneRequiredWithoutPanelsNestedInput = {
-    create?: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
-    connectOrCreate?: StoryboardCreateOrConnectWithoutPanelsInput
-    upsert?: StoryboardUpsertWithoutPanelsInput
+  export type SceneCreateNestedOneWithoutShotInput = {
+    create?: XOR<SceneCreateWithoutShotInput, SceneUncheckedCreateWithoutShotInput>
+    connectOrCreate?: SceneCreateOrConnectWithoutShotInput
+    connect?: SceneWhereUniqueInput
+  }
+
+  export type FrameCreateNestedOneWithoutShotInput = {
+    create?: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+    connectOrCreate?: FrameCreateOrConnectWithoutShotInput
+    connect?: FrameWhereUniqueInput
+  }
+
+  export type FrameUncheckedCreateNestedOneWithoutShotInput = {
+    create?: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+    connectOrCreate?: FrameCreateOrConnectWithoutShotInput
+    connect?: FrameWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableEnumShotTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ShotType | null
+  }
+
+  export type NullableEnumCameraMovementFieldUpdateOperationsInput = {
+    set?: $Enums.CameraMovement | null
+  }
+
+  export type StoryboardUpdateOneRequiredWithoutShotsNestedInput = {
+    create?: XOR<StoryboardCreateWithoutShotsInput, StoryboardUncheckedCreateWithoutShotsInput>
+    connectOrCreate?: StoryboardCreateOrConnectWithoutShotsInput
+    upsert?: StoryboardUpsertWithoutShotsInput
     connect?: StoryboardWhereUniqueInput
-    update?: XOR<XOR<StoryboardUpdateToOneWithWhereWithoutPanelsInput, StoryboardUpdateWithoutPanelsInput>, StoryboardUncheckedUpdateWithoutPanelsInput>
+    update?: XOR<XOR<StoryboardUpdateToOneWithWhereWithoutShotsInput, StoryboardUpdateWithoutShotsInput>, StoryboardUncheckedUpdateWithoutShotsInput>
+  }
+
+  export type SceneUpdateOneWithoutShotNestedInput = {
+    create?: XOR<SceneCreateWithoutShotInput, SceneUncheckedCreateWithoutShotInput>
+    connectOrCreate?: SceneCreateOrConnectWithoutShotInput
+    upsert?: SceneUpsertWithoutShotInput
+    disconnect?: SceneWhereInput | boolean
+    delete?: SceneWhereInput | boolean
+    connect?: SceneWhereUniqueInput
+    update?: XOR<XOR<SceneUpdateToOneWithWhereWithoutShotInput, SceneUpdateWithoutShotInput>, SceneUncheckedUpdateWithoutShotInput>
+  }
+
+  export type FrameUpdateOneWithoutShotNestedInput = {
+    create?: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+    connectOrCreate?: FrameCreateOrConnectWithoutShotInput
+    upsert?: FrameUpsertWithoutShotInput
+    disconnect?: FrameWhereInput | boolean
+    delete?: FrameWhereInput | boolean
+    connect?: FrameWhereUniqueInput
+    update?: XOR<XOR<FrameUpdateToOneWithWhereWithoutShotInput, FrameUpdateWithoutShotInput>, FrameUncheckedUpdateWithoutShotInput>
+  }
+
+  export type FrameUncheckedUpdateOneWithoutShotNestedInput = {
+    create?: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+    connectOrCreate?: FrameCreateOrConnectWithoutShotInput
+    upsert?: FrameUpsertWithoutShotInput
+    disconnect?: FrameWhereInput | boolean
+    delete?: FrameWhereInput | boolean
+    connect?: FrameWhereUniqueInput
+    update?: XOR<XOR<FrameUpdateToOneWithWhereWithoutShotInput, FrameUpdateWithoutShotInput>, FrameUncheckedUpdateWithoutShotInput>
+  }
+
+  export type ShotCreateNestedOneWithoutFrameInput = {
+    create?: XOR<ShotCreateWithoutFrameInput, ShotUncheckedCreateWithoutFrameInput>
+    connectOrCreate?: ShotCreateOrConnectWithoutFrameInput
+    connect?: ShotWhereUniqueInput
+  }
+
+  export type ShotUpdateOneRequiredWithoutFrameNestedInput = {
+    create?: XOR<ShotCreateWithoutFrameInput, ShotUncheckedCreateWithoutFrameInput>
+    connectOrCreate?: ShotCreateOrConnectWithoutFrameInput
+    upsert?: ShotUpsertWithoutFrameInput
+    connect?: ShotWhereUniqueInput
+    update?: XOR<XOR<ShotUpdateToOneWithWhereWithoutFrameInput, ShotUpdateWithoutFrameInput>, ShotUncheckedUpdateWithoutFrameInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -36883,6 +43190,79 @@ export namespace Prisma {
     _max?: NestedEnumScriptStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumShotTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ShotType | EnumShotTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumShotTypeNullableFilter<$PrismaModel> | $Enums.ShotType | null
+  }
+
+  export type NestedEnumCameraMovementNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CameraMovement | EnumCameraMovementFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCameraMovementNullableFilter<$PrismaModel> | $Enums.CameraMovement | null
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumShotTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ShotType | EnumShotTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ShotType[] | ListEnumShotTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumShotTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ShotType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumShotTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumShotTypeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCameraMovementNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CameraMovement | EnumCameraMovementFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CameraMovement[] | ListEnumCameraMovementFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCameraMovementNullableWithAggregatesFilter<$PrismaModel> | $Enums.CameraMovement | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCameraMovementNullableFilter<$PrismaModel>
+    _max?: NestedEnumCameraMovementNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type AccountCreateWithoutUserInput = {
     type: string
     provider: string
@@ -36989,6 +43369,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     project?: ProjectCreateNestedOneWithoutScriptsInput
     scenes?: SceneCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptUncheckedCreateWithoutUserInput = {
@@ -37003,6 +43384,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectId?: string | null
     scenes?: SceneUncheckedCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardUncheckedCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptCreateOrConnectWithoutUserInput = {
@@ -37223,33 +43605,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type StoryboardCreateWithoutUserInput = {
+  export type EditedCreateWithoutUserInput = {
     id?: string
     title: string
-    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    project: ProjectCreateNestedOneWithoutStoryboardsInput
-    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+    approved?: boolean
+    description?: string | null
+    status: string
+    state?: EditedStateCreateNestedOneWithoutEditedInput
+    EditedVersions?: EditedVersionCreateNestedManyWithoutEditedInput
   }
 
-  export type StoryboardUncheckedCreateWithoutUserInput = {
+  export type EditedUncheckedCreateWithoutUserInput = {
     id?: string
     title: string
-    description?: string | null
-    projectId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
+    EditedVersions?: EditedVersionUncheckedCreateNestedManyWithoutEditedInput
   }
 
-  export type StoryboardCreateOrConnectWithoutUserInput = {
-    where: StoryboardWhereUniqueInput
-    create: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput>
+  export type EditedCreateOrConnectWithoutUserInput = {
+    where: EditedWhereUniqueInput
+    create: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput>
   }
 
-  export type StoryboardCreateManyUserInputEnvelope = {
-    data: StoryboardCreateManyUserInput | StoryboardCreateManyUserInput[]
+  export type EditedCreateManyUserInputEnvelope = {
+    data: EditedCreateManyUserInput | EditedCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -37580,33 +43966,35 @@ export namespace Prisma {
     parentFolderId?: StringNullableFilter<"SoundFolder"> | string | null
   }
 
-  export type StoryboardUpsertWithWhereUniqueWithoutUserInput = {
-    where: StoryboardWhereUniqueInput
-    update: XOR<StoryboardUpdateWithoutUserInput, StoryboardUncheckedUpdateWithoutUserInput>
-    create: XOR<StoryboardCreateWithoutUserInput, StoryboardUncheckedCreateWithoutUserInput>
+  export type EditedUpsertWithWhereUniqueWithoutUserInput = {
+    where: EditedWhereUniqueInput
+    update: XOR<EditedUpdateWithoutUserInput, EditedUncheckedUpdateWithoutUserInput>
+    create: XOR<EditedCreateWithoutUserInput, EditedUncheckedCreateWithoutUserInput>
   }
 
-  export type StoryboardUpdateWithWhereUniqueWithoutUserInput = {
-    where: StoryboardWhereUniqueInput
-    data: XOR<StoryboardUpdateWithoutUserInput, StoryboardUncheckedUpdateWithoutUserInput>
+  export type EditedUpdateWithWhereUniqueWithoutUserInput = {
+    where: EditedWhereUniqueInput
+    data: XOR<EditedUpdateWithoutUserInput, EditedUncheckedUpdateWithoutUserInput>
   }
 
-  export type StoryboardUpdateManyWithWhereWithoutUserInput = {
-    where: StoryboardScalarWhereInput
-    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyWithoutUserInput>
+  export type EditedUpdateManyWithWhereWithoutUserInput = {
+    where: EditedScalarWhereInput
+    data: XOR<EditedUpdateManyMutationInput, EditedUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type StoryboardScalarWhereInput = {
-    AND?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
-    OR?: StoryboardScalarWhereInput[]
-    NOT?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
-    id?: StringFilter<"Storyboard"> | string
-    title?: StringFilter<"Storyboard"> | string
-    description?: StringNullableFilter<"Storyboard"> | string | null
-    projectId?: StringFilter<"Storyboard"> | string
-    ownerId?: StringFilter<"Storyboard"> | string
-    createdAt?: DateTimeFilter<"Storyboard"> | Date | string
-    updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
+  export type EditedScalarWhereInput = {
+    AND?: EditedScalarWhereInput | EditedScalarWhereInput[]
+    OR?: EditedScalarWhereInput[]
+    NOT?: EditedScalarWhereInput | EditedScalarWhereInput[]
+    id?: StringFilter<"Edited"> | string
+    title?: StringFilter<"Edited"> | string
+    createdAt?: DateTimeFilter<"Edited"> | Date | string
+    updatedAt?: DateTimeFilter<"Edited"> | Date | string
+    approved?: BoolFilter<"Edited"> | boolean
+    description?: StringNullableFilter<"Edited"> | string | null
+    ownerId?: StringFilter<"Edited"> | string
+    stateId?: StringNullableFilter<"Edited"> | string | null
+    status?: StringFilter<"Edited"> | string
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -37628,7 +44016,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -37650,7 +44038,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -37688,7 +44076,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -37710,7 +44098,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -37732,7 +44120,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -37754,7 +44142,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -37792,7 +44180,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -37814,7 +44202,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAuthenticatorInput = {
@@ -37836,7 +44224,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAuthenticatorInput = {
@@ -37858,7 +44246,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAuthenticatorInput = {
@@ -37896,7 +44284,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAuthenticatorInput = {
@@ -37918,7 +44306,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserProjectCreateWithoutProjectInput = {
@@ -37955,6 +44343,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutScriptOwnerInput
     scenes?: SceneCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptUncheckedCreateWithoutProjectInput = {
@@ -37969,6 +44358,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     ownerId: string
     scenes?: SceneUncheckedCreateNestedManyWithoutScriptInput
+    storyborad?: StoryboardUncheckedCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptCreateOrConnectWithoutProjectInput = {
@@ -38118,21 +44508,19 @@ export namespace Prisma {
   export type StoryboardCreateWithoutProjectInput = {
     id?: string
     title: string
-    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutStoryboardOwnerInput
-    panels?: StoryboardPanelCreateNestedManyWithoutStoryboardInput
+    script?: ScriptCreateNestedOneWithoutStoryboradInput
+    shots?: ShotCreateNestedManyWithoutStoryboardInput
   }
 
   export type StoryboardUncheckedCreateWithoutProjectInput = {
     id?: string
     title: string
-    description?: string | null
-    ownerId: string
+    scriptId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    panels?: StoryboardPanelUncheckedCreateNestedManyWithoutStoryboardInput
+    shots?: ShotUncheckedCreateNestedManyWithoutStoryboardInput
   }
 
   export type StoryboardCreateOrConnectWithoutProjectInput = {
@@ -38142,6 +44530,28 @@ export namespace Prisma {
 
   export type StoryboardCreateManyProjectInputEnvelope = {
     data: StoryboardCreateManyProjectInput | StoryboardCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EditedStateCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    edited?: EditedCreateNestedManyWithoutStateInput
+  }
+
+  export type EditedStateUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    edited?: EditedUncheckedCreateNestedManyWithoutStateInput
+  }
+
+  export type EditedStateCreateOrConnectWithoutProjectInput = {
+    where: EditedStateWhereUniqueInput
+    create: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type EditedStateCreateManyProjectInputEnvelope = {
+    data: EditedStateCreateManyProjectInput | EditedStateCreateManyProjectInput[]
     skipDuplicates?: boolean
   }
 
@@ -38291,6 +44701,43 @@ export namespace Prisma {
     data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyWithoutProjectInput>
   }
 
+  export type StoryboardScalarWhereInput = {
+    AND?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+    OR?: StoryboardScalarWhereInput[]
+    NOT?: StoryboardScalarWhereInput | StoryboardScalarWhereInput[]
+    id?: StringFilter<"Storyboard"> | string
+    title?: StringFilter<"Storyboard"> | string
+    projectId?: StringFilter<"Storyboard"> | string
+    scriptId?: StringNullableFilter<"Storyboard"> | string | null
+    createdAt?: DateTimeFilter<"Storyboard"> | Date | string
+    updatedAt?: DateTimeFilter<"Storyboard"> | Date | string
+  }
+
+  export type EditedStateUpsertWithWhereUniqueWithoutProjectInput = {
+    where: EditedStateWhereUniqueInput
+    update: XOR<EditedStateUpdateWithoutProjectInput, EditedStateUncheckedUpdateWithoutProjectInput>
+    create: XOR<EditedStateCreateWithoutProjectInput, EditedStateUncheckedCreateWithoutProjectInput>
+  }
+
+  export type EditedStateUpdateWithWhereUniqueWithoutProjectInput = {
+    where: EditedStateWhereUniqueInput
+    data: XOR<EditedStateUpdateWithoutProjectInput, EditedStateUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type EditedStateUpdateManyWithWhereWithoutProjectInput = {
+    where: EditedStateScalarWhereInput
+    data: XOR<EditedStateUpdateManyMutationInput, EditedStateUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type EditedStateScalarWhereInput = {
+    AND?: EditedStateScalarWhereInput | EditedStateScalarWhereInput[]
+    OR?: EditedStateScalarWhereInput[]
+    NOT?: EditedStateScalarWhereInput | EditedStateScalarWhereInput[]
+    id?: StringFilter<"EditedState"> | string
+    name?: StringFilter<"EditedState"> | string
+    projectId?: StringNullableFilter<"EditedState"> | string | null
+  }
+
   export type UserCreateWithoutScriptOwnerInput = {
     id?: string
     name?: string | null
@@ -38310,7 +44757,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutScriptOwnerInput = {
@@ -38332,7 +44779,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutScriptOwnerInput = {
@@ -38353,6 +44800,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutScriptsInput = {
@@ -38368,6 +44816,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutScriptsInput = {
@@ -38380,6 +44829,7 @@ export namespace Prisma {
     sceneNumber: number
     heading: string
     pageStart?: number | null
+    shot?: ShotCreateNestedManyWithoutSceneInput
   }
 
   export type SceneUncheckedCreateWithoutScriptInput = {
@@ -38387,6 +44837,7 @@ export namespace Prisma {
     sceneNumber: number
     heading: string
     pageStart?: number | null
+    shot?: ShotUncheckedCreateNestedManyWithoutSceneInput
   }
 
   export type SceneCreateOrConnectWithoutScriptInput = {
@@ -38396,6 +44847,34 @@ export namespace Prisma {
 
   export type SceneCreateManyScriptInputEnvelope = {
     data: SceneCreateManyScriptInput | SceneCreateManyScriptInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StoryboardCreateWithoutScriptInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutStoryboardsInput
+    shots?: ShotCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardUncheckedCreateWithoutScriptInput = {
+    id?: string
+    title: string
+    projectId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    shots?: ShotUncheckedCreateNestedManyWithoutStoryboardInput
+  }
+
+  export type StoryboardCreateOrConnectWithoutScriptInput = {
+    where: StoryboardWhereUniqueInput
+    create: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput>
+  }
+
+  export type StoryboardCreateManyScriptInputEnvelope = {
+    data: StoryboardCreateManyScriptInput | StoryboardCreateManyScriptInput[]
     skipDuplicates?: boolean
   }
 
@@ -38429,7 +44908,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScriptOwnerInput = {
@@ -38451,7 +44930,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutScriptsInput = {
@@ -38478,6 +44957,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutScriptsInput = {
@@ -38493,6 +44973,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SceneUpsertWithWhereUniqueWithoutScriptInput = {
@@ -38522,6 +45003,22 @@ export namespace Prisma {
     scriptId?: StringFilter<"Scene"> | string
   }
 
+  export type StoryboardUpsertWithWhereUniqueWithoutScriptInput = {
+    where: StoryboardWhereUniqueInput
+    update: XOR<StoryboardUpdateWithoutScriptInput, StoryboardUncheckedUpdateWithoutScriptInput>
+    create: XOR<StoryboardCreateWithoutScriptInput, StoryboardUncheckedCreateWithoutScriptInput>
+  }
+
+  export type StoryboardUpdateWithWhereUniqueWithoutScriptInput = {
+    where: StoryboardWhereUniqueInput
+    data: XOR<StoryboardUpdateWithoutScriptInput, StoryboardUncheckedUpdateWithoutScriptInput>
+  }
+
+  export type StoryboardUpdateManyWithWhereWithoutScriptInput = {
+    where: StoryboardScalarWhereInput
+    data: XOR<StoryboardUpdateManyMutationInput, StoryboardUncheckedUpdateManyWithoutScriptInput>
+  }
+
   export type ScriptCreateWithoutScenesInput = {
     id?: string
     title: string
@@ -38534,6 +45031,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutScriptOwnerInput
     project?: ProjectCreateNestedOneWithoutScriptsInput
+    storyborad?: StoryboardCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptUncheckedCreateWithoutScenesInput = {
@@ -38548,11 +45046,50 @@ export namespace Prisma {
     updatedAt?: Date | string
     ownerId: string
     projectId?: string | null
+    storyborad?: StoryboardUncheckedCreateNestedManyWithoutScriptInput
   }
 
   export type ScriptCreateOrConnectWithoutScenesInput = {
     where: ScriptWhereUniqueInput
     create: XOR<ScriptCreateWithoutScenesInput, ScriptUncheckedCreateWithoutScenesInput>
+  }
+
+  export type ShotCreateWithoutSceneInput = {
+    id?: string
+    order: number
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    storyboard: StoryboardCreateNestedOneWithoutShotsInput
+    frame?: FrameCreateNestedOneWithoutShotInput
+  }
+
+  export type ShotUncheckedCreateWithoutSceneInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    frame?: FrameUncheckedCreateNestedOneWithoutShotInput
+  }
+
+  export type ShotCreateOrConnectWithoutSceneInput = {
+    where: ShotWhereUniqueInput
+    create: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput>
+  }
+
+  export type ShotCreateManySceneInputEnvelope = {
+    data: ShotCreateManySceneInput | ShotCreateManySceneInput[]
+    skipDuplicates?: boolean
   }
 
   export type ScriptUpsertWithoutScenesInput = {
@@ -38578,6 +45115,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutScriptOwnerNestedInput
     project?: ProjectUpdateOneWithoutScriptsNestedInput
+    storyborad?: StoryboardUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateWithoutScenesInput = {
@@ -38592,6 +45130,40 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ownerId?: StringFieldUpdateOperationsInput | string
     projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    storyborad?: StoryboardUncheckedUpdateManyWithoutScriptNestedInput
+  }
+
+  export type ShotUpsertWithWhereUniqueWithoutSceneInput = {
+    where: ShotWhereUniqueInput
+    update: XOR<ShotUpdateWithoutSceneInput, ShotUncheckedUpdateWithoutSceneInput>
+    create: XOR<ShotCreateWithoutSceneInput, ShotUncheckedCreateWithoutSceneInput>
+  }
+
+  export type ShotUpdateWithWhereUniqueWithoutSceneInput = {
+    where: ShotWhereUniqueInput
+    data: XOR<ShotUpdateWithoutSceneInput, ShotUncheckedUpdateWithoutSceneInput>
+  }
+
+  export type ShotUpdateManyWithWhereWithoutSceneInput = {
+    where: ShotScalarWhereInput
+    data: XOR<ShotUpdateManyMutationInput, ShotUncheckedUpdateManyWithoutSceneInput>
+  }
+
+  export type ShotScalarWhereInput = {
+    AND?: ShotScalarWhereInput | ShotScalarWhereInput[]
+    OR?: ShotScalarWhereInput[]
+    NOT?: ShotScalarWhereInput | ShotScalarWhereInput[]
+    id?: StringFilter<"Shot"> | string
+    storyboardId?: StringFilter<"Shot"> | string
+    order?: FloatFilter<"Shot"> | number
+    sceneId?: StringNullableFilter<"Shot"> | string | null
+    shotType?: EnumShotTypeNullableFilter<"Shot"> | $Enums.ShotType | null
+    cameraMovement?: EnumCameraMovementNullableFilter<"Shot"> | $Enums.CameraMovement | null
+    description?: StringNullableFilter<"Shot"> | string | null
+    dialogue?: StringNullableFilter<"Shot"> | string | null
+    duration?: IntNullableFilter<"Shot"> | number | null
+    createdAt?: DateTimeFilter<"Shot"> | Date | string
+    updatedAt?: DateTimeFilter<"Shot"> | Date | string
   }
 
   export type UserCreateWithoutDesignCategoryOwnerInput = {
@@ -38613,7 +45185,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignCategoryOwnerInput = {
@@ -38635,7 +45207,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignCategoryOwnerInput = {
@@ -38656,6 +45228,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutDesignCategoriesInput = {
@@ -38671,6 +45244,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutDesignCategoriesInput = {
@@ -38736,7 +45310,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignCategoryOwnerInput = {
@@ -38758,7 +45332,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutDesignCategoriesInput = {
@@ -38785,6 +45359,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutDesignCategoriesInput = {
@@ -38800,6 +45375,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type DesignSubClassUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -38837,7 +45413,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDesignOwnerInput = {
@@ -38859,7 +45435,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDesignOwnerInput = {
@@ -38948,7 +45524,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDesignOwnerInput = {
@@ -38970,7 +45546,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type DesignCategoryUpsertWithoutDesignsInput = {
@@ -39096,6 +45672,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutProjectMembersInput = {
@@ -39111,6 +45688,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutProjectMembersInput = {
@@ -39137,7 +45715,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectMembersInput = {
@@ -39159,7 +45737,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectMembersInput = {
@@ -39191,6 +45769,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutProjectMembersInput = {
@@ -39206,6 +45785,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutProjectMembersInput = {
@@ -39238,7 +45818,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectMembersInput = {
@@ -39260,7 +45840,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutAnimationCategoriesInput = {
@@ -39276,6 +45856,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutAnimationCategoriesInput = {
@@ -39291,6 +45872,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutAnimationCategoriesInput = {
@@ -39356,6 +45938,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutAnimationCategoriesInput = {
@@ -39371,6 +45954,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type AnimationUpsertWithWhereUniqueWithoutStateInput = {
@@ -39408,7 +45992,7 @@ export namespace Prisma {
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnimationOwnerInput = {
@@ -39430,7 +46014,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnimationOwnerInput = {
@@ -39515,7 +46099,7 @@ export namespace Prisma {
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnimationOwnerInput = {
@@ -39537,7 +46121,7 @@ export namespace Prisma {
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AnimationStateUpsertWithoutAnimationsInput = {
@@ -39670,6 +46254,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutFootageCategoriesInput = {
@@ -39685,6 +46270,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutFootageCategoriesInput = {
@@ -39750,6 +46336,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutFootageCategoriesInput = {
@@ -39765,6 +46352,7 @@ export namespace Prisma {
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type FootageUpsertWithWhereUniqueWithoutStateInput = {
@@ -39802,7 +46390,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFootageOwnerInput = {
@@ -39824,7 +46412,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFootageOwnerInput = {
@@ -39909,7 +46497,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFootageOwnerInput = {
@@ -39931,7 +46519,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type FootageStateUpsertWithoutFootageInput = {
@@ -40051,6 +46639,404 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
   }
 
+  export type ProjectCreateWithoutEditedInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectCreateNestedManyWithoutProjectInput
+    scripts?: ScriptCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
+    sounds?: SoundCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutEditedInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutProjectInput
+    scripts?: ScriptUncheckedCreateNestedManyWithoutProjectInput
+    designCategories?: DesignCategoryUncheckedCreateNestedManyWithoutProjectInput
+    animationCategories?: AnimationStateUncheckedCreateNestedManyWithoutProjectInput
+    footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
+    soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
+    sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutEditedInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutEditedInput, ProjectUncheckedCreateWithoutEditedInput>
+  }
+
+  export type EditedCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutEditedInput
+    EditedVersions?: EditedVersionCreateNestedManyWithoutEditedInput
+  }
+
+  export type EditedUncheckedCreateWithoutStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+    EditedVersions?: EditedVersionUncheckedCreateNestedManyWithoutEditedInput
+  }
+
+  export type EditedCreateOrConnectWithoutStateInput = {
+    where: EditedWhereUniqueInput
+    create: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput>
+  }
+
+  export type EditedCreateManyStateInputEnvelope = {
+    data: EditedCreateManyStateInput | EditedCreateManyStateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectUpsertWithoutEditedInput = {
+    update: XOR<ProjectUpdateWithoutEditedInput, ProjectUncheckedUpdateWithoutEditedInput>
+    create: XOR<ProjectCreateWithoutEditedInput, ProjectUncheckedCreateWithoutEditedInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutEditedInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutEditedInput, ProjectUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type ProjectUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutProjectNestedInput
+    scripts?: ScriptUncheckedUpdateManyWithoutProjectNestedInput
+    designCategories?: DesignCategoryUncheckedUpdateManyWithoutProjectNestedInput
+    animationCategories?: AnimationStateUncheckedUpdateManyWithoutProjectNestedInput
+    footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
+    soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
+    sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type EditedUpsertWithWhereUniqueWithoutStateInput = {
+    where: EditedWhereUniqueInput
+    update: XOR<EditedUpdateWithoutStateInput, EditedUncheckedUpdateWithoutStateInput>
+    create: XOR<EditedCreateWithoutStateInput, EditedUncheckedCreateWithoutStateInput>
+  }
+
+  export type EditedUpdateWithWhereUniqueWithoutStateInput = {
+    where: EditedWhereUniqueInput
+    data: XOR<EditedUpdateWithoutStateInput, EditedUncheckedUpdateWithoutStateInput>
+  }
+
+  export type EditedUpdateManyWithWhereWithoutStateInput = {
+    where: EditedScalarWhereInput
+    data: XOR<EditedUpdateManyMutationInput, EditedUncheckedUpdateManyWithoutStateInput>
+  }
+
+  export type UserCreateWithoutEditedInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEditedInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    emailVerified?: Date | string | null
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
+    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
+    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
+    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
+    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
+    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
+    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
+    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
+    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEditedInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEditedInput, UserUncheckedCreateWithoutEditedInput>
+  }
+
+  export type EditedStateCreateWithoutEditedInput = {
+    id?: string
+    name: string
+    project?: ProjectCreateNestedOneWithoutEditedInput
+  }
+
+  export type EditedStateUncheckedCreateWithoutEditedInput = {
+    id?: string
+    name: string
+    projectId?: string | null
+  }
+
+  export type EditedStateCreateOrConnectWithoutEditedInput = {
+    where: EditedStateWhereUniqueInput
+    create: XOR<EditedStateCreateWithoutEditedInput, EditedStateUncheckedCreateWithoutEditedInput>
+  }
+
+  export type EditedVersionCreateWithoutEditedInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EditedVersionUncheckedCreateWithoutEditedInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EditedVersionCreateOrConnectWithoutEditedInput = {
+    where: EditedVersionWhereUniqueInput
+    create: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput>
+  }
+
+  export type EditedVersionCreateManyEditedInputEnvelope = {
+    data: EditedVersionCreateManyEditedInput | EditedVersionCreateManyEditedInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutEditedInput = {
+    update: XOR<UserUpdateWithoutEditedInput, UserUncheckedUpdateWithoutEditedInput>
+    create: XOR<UserCreateWithoutEditedInput, UserUncheckedCreateWithoutEditedInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEditedInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEditedInput, UserUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type UserUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
+    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
+    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
+    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
+    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
+    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
+    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
+    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
+    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type EditedStateUpsertWithoutEditedInput = {
+    update: XOR<EditedStateUpdateWithoutEditedInput, EditedStateUncheckedUpdateWithoutEditedInput>
+    create: XOR<EditedStateCreateWithoutEditedInput, EditedStateUncheckedCreateWithoutEditedInput>
+    where?: EditedStateWhereInput
+  }
+
+  export type EditedStateUpdateToOneWithWhereWithoutEditedInput = {
+    where?: EditedStateWhereInput
+    data: XOR<EditedStateUpdateWithoutEditedInput, EditedStateUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type EditedStateUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    project?: ProjectUpdateOneWithoutEditedNestedInput
+  }
+
+  export type EditedStateUncheckedUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EditedVersionUpsertWithWhereUniqueWithoutEditedInput = {
+    where: EditedVersionWhereUniqueInput
+    update: XOR<EditedVersionUpdateWithoutEditedInput, EditedVersionUncheckedUpdateWithoutEditedInput>
+    create: XOR<EditedVersionCreateWithoutEditedInput, EditedVersionUncheckedCreateWithoutEditedInput>
+  }
+
+  export type EditedVersionUpdateWithWhereUniqueWithoutEditedInput = {
+    where: EditedVersionWhereUniqueInput
+    data: XOR<EditedVersionUpdateWithoutEditedInput, EditedVersionUncheckedUpdateWithoutEditedInput>
+  }
+
+  export type EditedVersionUpdateManyWithWhereWithoutEditedInput = {
+    where: EditedVersionScalarWhereInput
+    data: XOR<EditedVersionUpdateManyMutationInput, EditedVersionUncheckedUpdateManyWithoutEditedInput>
+  }
+
+  export type EditedVersionScalarWhereInput = {
+    AND?: EditedVersionScalarWhereInput | EditedVersionScalarWhereInput[]
+    OR?: EditedVersionScalarWhereInput[]
+    NOT?: EditedVersionScalarWhereInput | EditedVersionScalarWhereInput[]
+    id?: StringFilter<"EditedVersion"> | string
+    versionNumber?: IntFilter<"EditedVersion"> | number
+    label?: StringNullableFilter<"EditedVersion"> | string | null
+    muxUploadId?: StringNullableFilter<"EditedVersion"> | string | null
+    muxPlaybackId?: StringNullableFilter<"EditedVersion"> | string | null
+    thumbnailUrl?: StringNullableFilter<"EditedVersion"> | string | null
+    createdAt?: DateTimeFilter<"EditedVersion"> | Date | string
+    editedId?: StringFilter<"EditedVersion"> | string
+  }
+
+  export type EditedCreateWithoutEditedVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    status: string
+    user: UserCreateNestedOneWithoutEditedInput
+    state?: EditedStateCreateNestedOneWithoutEditedInput
+  }
+
+  export type EditedUncheckedCreateWithoutEditedVersionsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    stateId?: string | null
+    status: string
+  }
+
+  export type EditedCreateOrConnectWithoutEditedVersionsInput = {
+    where: EditedWhereUniqueInput
+    create: XOR<EditedCreateWithoutEditedVersionsInput, EditedUncheckedCreateWithoutEditedVersionsInput>
+  }
+
+  export type EditedUpsertWithoutEditedVersionsInput = {
+    update: XOR<EditedUpdateWithoutEditedVersionsInput, EditedUncheckedUpdateWithoutEditedVersionsInput>
+    create: XOR<EditedCreateWithoutEditedVersionsInput, EditedUncheckedCreateWithoutEditedVersionsInput>
+    where?: EditedWhereInput
+  }
+
+  export type EditedUpdateToOneWithWhereWithoutEditedVersionsInput = {
+    where?: EditedWhereInput
+    data: XOR<EditedUpdateWithoutEditedVersionsInput, EditedUncheckedUpdateWithoutEditedVersionsInput>
+  }
+
+  export type EditedUpdateWithoutEditedVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutEditedNestedInput
+    state?: EditedStateUpdateOneWithoutEditedNestedInput
+  }
+
+  export type EditedUncheckedUpdateWithoutEditedVersionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserCreateWithoutSoundFolderOwnerInput = {
     id?: string
     name?: string | null
@@ -40070,7 +47056,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     SoundOwner?: SoundCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSoundFolderOwnerInput = {
@@ -40092,7 +47078,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSoundFolderOwnerInput = {
@@ -40113,6 +47099,7 @@ export namespace Prisma {
     footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutSoundFoldersInput = {
@@ -40128,6 +47115,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutSoundFoldersInput = {
@@ -40254,7 +47242,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSoundFolderOwnerInput = {
@@ -40276,7 +47264,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutSoundFoldersInput = {
@@ -40303,6 +47291,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutSoundFoldersInput = {
@@ -40318,6 +47307,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SoundFolderUpsertWithoutSubFoldersInput = {
@@ -40404,7 +47394,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
     FootageOwner?: FootageCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardCreateNestedManyWithoutUserInput
+    edited?: EditedCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSoundOwnerInput = {
@@ -40426,7 +47416,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
     FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
     soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
-    storyboardOwner?: StoryboardUncheckedCreateNestedManyWithoutUserInput
+    edited?: EditedUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSoundOwnerInput = {
@@ -40447,6 +47437,7 @@ export namespace Prisma {
     footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutSoundsInput = {
@@ -40462,6 +47453,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     storyboards?: StoryboardUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutSoundsInput = {
@@ -40558,7 +47550,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
     FootageOwner?: FootageUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUpdateManyWithoutUserNestedInput
+    edited?: EditedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSoundOwnerInput = {
@@ -40580,7 +47572,7 @@ export namespace Prisma {
     AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
     FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
     soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
-    storyboardOwner?: StoryboardUncheckedUpdateManyWithoutUserNestedInput
+    edited?: EditedUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectUpsertWithoutSoundsInput = {
@@ -40607,6 +47599,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutSoundsInput = {
@@ -40622,6 +47615,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     storyboards?: StoryboardUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type SoundFolderUpsertWithoutSoundsInput = {
@@ -40757,6 +47751,7 @@ export namespace Prisma {
     footageCategories?: FootageStateCreateNestedManyWithoutProjectInput
     soundFolders?: SoundFolderCreateNestedManyWithoutProjectInput
     sounds?: SoundCreateNestedManyWithoutProjectInput
+    edited?: EditedStateCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutStoryboardsInput = {
@@ -40772,6 +47767,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedCreateNestedManyWithoutProjectInput
     soundFolders?: SoundFolderUncheckedCreateNestedManyWithoutProjectInput
     sounds?: SoundUncheckedCreateNestedManyWithoutProjectInput
+    edited?: EditedStateUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutStoryboardsInput = {
@@ -40779,92 +47775,76 @@ export namespace Prisma {
     create: XOR<ProjectCreateWithoutStoryboardsInput, ProjectUncheckedCreateWithoutStoryboardsInput>
   }
 
-  export type UserCreateWithoutStoryboardOwnerInput = {
+  export type ScriptCreateWithoutStoryboradInput = {
     id?: string
-    name?: string | null
-    email: string
-    password?: string | null
-    emailVerified?: Date | string | null
-    image?: string | null
+    title: string
+    description?: string | null
+    author?: string | null
+    content?: JsonNullValueInput | InputJsonValue
+    status?: $Enums.ScriptStatus
+    version?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    Authenticator?: AuthenticatorCreateNestedManyWithoutUserInput
-    scriptOwner?: ScriptCreateNestedManyWithoutUserInput
-    projectMembers?: UserProjectCreateNestedManyWithoutUserInput
-    DesignCategoryOwner?: DesignCategoryCreateNestedManyWithoutUserInput
-    DesignOwner?: DesignSubClassCreateNestedManyWithoutUserInput
-    AnimationOwner?: AnimationCreateNestedManyWithoutUserInput
-    FootageOwner?: FootageCreateNestedManyWithoutUserInput
-    SoundOwner?: SoundCreateNestedManyWithoutUserInput
-    soundFolderOwner?: SoundFolderCreateNestedManyWithoutUserInput
+    user: UserCreateNestedOneWithoutScriptOwnerInput
+    project?: ProjectCreateNestedOneWithoutScriptsInput
+    scenes?: SceneCreateNestedManyWithoutScriptInput
   }
 
-  export type UserUncheckedCreateWithoutStoryboardOwnerInput = {
+  export type ScriptUncheckedCreateWithoutStoryboradInput = {
     id?: string
-    name?: string | null
-    email: string
-    password?: string | null
-    emailVerified?: Date | string | null
-    image?: string | null
+    title: string
+    description?: string | null
+    author?: string | null
+    content?: JsonNullValueInput | InputJsonValue
+    status?: $Enums.ScriptStatus
+    version?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Authenticator?: AuthenticatorUncheckedCreateNestedManyWithoutUserInput
-    scriptOwner?: ScriptUncheckedCreateNestedManyWithoutUserInput
-    projectMembers?: UserProjectUncheckedCreateNestedManyWithoutUserInput
-    DesignCategoryOwner?: DesignCategoryUncheckedCreateNestedManyWithoutUserInput
-    DesignOwner?: DesignSubClassUncheckedCreateNestedManyWithoutUserInput
-    AnimationOwner?: AnimationUncheckedCreateNestedManyWithoutUserInput
-    FootageOwner?: FootageUncheckedCreateNestedManyWithoutUserInput
-    SoundOwner?: SoundUncheckedCreateNestedManyWithoutUserInput
-    soundFolderOwner?: SoundFolderUncheckedCreateNestedManyWithoutUserInput
+    ownerId: string
+    projectId?: string | null
+    scenes?: SceneUncheckedCreateNestedManyWithoutScriptInput
   }
 
-  export type UserCreateOrConnectWithoutStoryboardOwnerInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
+  export type ScriptCreateOrConnectWithoutStoryboradInput = {
+    where: ScriptWhereUniqueInput
+    create: XOR<ScriptCreateWithoutStoryboradInput, ScriptUncheckedCreateWithoutStoryboradInput>
   }
 
-  export type StoryboardPanelCreateWithoutStoryboardInput = {
+  export type ShotCreateWithoutStoryboardInput = {
     id?: string
     order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
     description?: string | null
     dialogue?: string | null
     duration?: number | null
-    linkedSceneId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    scene?: SceneCreateNestedOneWithoutShotInput
+    frame?: FrameCreateNestedOneWithoutShotInput
   }
 
-  export type StoryboardPanelUncheckedCreateWithoutStoryboardInput = {
+  export type ShotUncheckedCreateWithoutStoryboardInput = {
     id?: string
     order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
+    sceneId?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
     description?: string | null
     dialogue?: string | null
     duration?: number | null
-    linkedSceneId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    frame?: FrameUncheckedCreateNestedOneWithoutShotInput
   }
 
-  export type StoryboardPanelCreateOrConnectWithoutStoryboardInput = {
-    where: StoryboardPanelWhereUniqueInput
-    create: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput>
+  export type ShotCreateOrConnectWithoutStoryboardInput = {
+    where: ShotWhereUniqueInput
+    create: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput>
   }
 
-  export type StoryboardPanelCreateManyStoryboardInputEnvelope = {
-    data: StoryboardPanelCreateManyStoryboardInput | StoryboardPanelCreateManyStoryboardInput[]
+  export type ShotCreateManyStoryboardInputEnvelope = {
+    data: ShotCreateManyStoryboardInput | ShotCreateManyStoryboardInput[]
     skipDuplicates?: boolean
   }
 
@@ -40892,6 +47872,7 @@ export namespace Prisma {
     footageCategories?: FootageStateUpdateManyWithoutProjectNestedInput
     soundFolders?: SoundFolderUpdateManyWithoutProjectNestedInput
     sounds?: SoundUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutStoryboardsInput = {
@@ -40907,150 +47888,282 @@ export namespace Prisma {
     footageCategories?: FootageStateUncheckedUpdateManyWithoutProjectNestedInput
     soundFolders?: SoundFolderUncheckedUpdateManyWithoutProjectNestedInput
     sounds?: SoundUncheckedUpdateManyWithoutProjectNestedInput
+    edited?: EditedStateUncheckedUpdateManyWithoutProjectNestedInput
   }
 
-  export type UserUpsertWithoutStoryboardOwnerInput = {
-    update: XOR<UserUpdateWithoutStoryboardOwnerInput, UserUncheckedUpdateWithoutStoryboardOwnerInput>
-    create: XOR<UserCreateWithoutStoryboardOwnerInput, UserUncheckedCreateWithoutStoryboardOwnerInput>
-    where?: UserWhereInput
+  export type ScriptUpsertWithoutStoryboradInput = {
+    update: XOR<ScriptUpdateWithoutStoryboradInput, ScriptUncheckedUpdateWithoutStoryboradInput>
+    create: XOR<ScriptCreateWithoutStoryboradInput, ScriptUncheckedCreateWithoutStoryboradInput>
+    where?: ScriptWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutStoryboardOwnerInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutStoryboardOwnerInput, UserUncheckedUpdateWithoutStoryboardOwnerInput>
+  export type ScriptUpdateToOneWithWhereWithoutStoryboradInput = {
+    where?: ScriptWhereInput
+    data: XOR<ScriptUpdateWithoutStoryboradInput, ScriptUncheckedUpdateWithoutStoryboradInput>
   }
 
-  export type UserUpdateWithoutStoryboardOwnerInput = {
+  export type ScriptUpdateWithoutStoryboradInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: JsonNullValueInput | InputJsonValue
+    status?: EnumScriptStatusFieldUpdateOperationsInput | $Enums.ScriptStatus
+    version?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    Authenticator?: AuthenticatorUpdateManyWithoutUserNestedInput
-    scriptOwner?: ScriptUpdateManyWithoutUserNestedInput
-    projectMembers?: UserProjectUpdateManyWithoutUserNestedInput
-    DesignCategoryOwner?: DesignCategoryUpdateManyWithoutUserNestedInput
-    DesignOwner?: DesignSubClassUpdateManyWithoutUserNestedInput
-    AnimationOwner?: AnimationUpdateManyWithoutUserNestedInput
-    FootageOwner?: FootageUpdateManyWithoutUserNestedInput
-    SoundOwner?: SoundUpdateManyWithoutUserNestedInput
-    soundFolderOwner?: SoundFolderUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneRequiredWithoutScriptOwnerNestedInput
+    project?: ProjectUpdateOneWithoutScriptsNestedInput
+    scenes?: SceneUpdateManyWithoutScriptNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutStoryboardOwnerInput = {
+  export type ScriptUncheckedUpdateWithoutStoryboradInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: JsonNullValueInput | InputJsonValue
+    status?: EnumScriptStatusFieldUpdateOperationsInput | $Enums.ScriptStatus
+    version?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Authenticator?: AuthenticatorUncheckedUpdateManyWithoutUserNestedInput
-    scriptOwner?: ScriptUncheckedUpdateManyWithoutUserNestedInput
-    projectMembers?: UserProjectUncheckedUpdateManyWithoutUserNestedInput
-    DesignCategoryOwner?: DesignCategoryUncheckedUpdateManyWithoutUserNestedInput
-    DesignOwner?: DesignSubClassUncheckedUpdateManyWithoutUserNestedInput
-    AnimationOwner?: AnimationUncheckedUpdateManyWithoutUserNestedInput
-    FootageOwner?: FootageUncheckedUpdateManyWithoutUserNestedInput
-    SoundOwner?: SoundUncheckedUpdateManyWithoutUserNestedInput
-    soundFolderOwner?: SoundFolderUncheckedUpdateManyWithoutUserNestedInput
+    ownerId?: StringFieldUpdateOperationsInput | string
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
+    scenes?: SceneUncheckedUpdateManyWithoutScriptNestedInput
   }
 
-  export type StoryboardPanelUpsertWithWhereUniqueWithoutStoryboardInput = {
-    where: StoryboardPanelWhereUniqueInput
-    update: XOR<StoryboardPanelUpdateWithoutStoryboardInput, StoryboardPanelUncheckedUpdateWithoutStoryboardInput>
-    create: XOR<StoryboardPanelCreateWithoutStoryboardInput, StoryboardPanelUncheckedCreateWithoutStoryboardInput>
+  export type ShotUpsertWithWhereUniqueWithoutStoryboardInput = {
+    where: ShotWhereUniqueInput
+    update: XOR<ShotUpdateWithoutStoryboardInput, ShotUncheckedUpdateWithoutStoryboardInput>
+    create: XOR<ShotCreateWithoutStoryboardInput, ShotUncheckedCreateWithoutStoryboardInput>
   }
 
-  export type StoryboardPanelUpdateWithWhereUniqueWithoutStoryboardInput = {
-    where: StoryboardPanelWhereUniqueInput
-    data: XOR<StoryboardPanelUpdateWithoutStoryboardInput, StoryboardPanelUncheckedUpdateWithoutStoryboardInput>
+  export type ShotUpdateWithWhereUniqueWithoutStoryboardInput = {
+    where: ShotWhereUniqueInput
+    data: XOR<ShotUpdateWithoutStoryboardInput, ShotUncheckedUpdateWithoutStoryboardInput>
   }
 
-  export type StoryboardPanelUpdateManyWithWhereWithoutStoryboardInput = {
-    where: StoryboardPanelScalarWhereInput
-    data: XOR<StoryboardPanelUpdateManyMutationInput, StoryboardPanelUncheckedUpdateManyWithoutStoryboardInput>
+  export type ShotUpdateManyWithWhereWithoutStoryboardInput = {
+    where: ShotScalarWhereInput
+    data: XOR<ShotUpdateManyMutationInput, ShotUncheckedUpdateManyWithoutStoryboardInput>
   }
 
-  export type StoryboardPanelScalarWhereInput = {
-    AND?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
-    OR?: StoryboardPanelScalarWhereInput[]
-    NOT?: StoryboardPanelScalarWhereInput | StoryboardPanelScalarWhereInput[]
-    id?: StringFilter<"StoryboardPanel"> | string
-    storyboardId?: StringFilter<"StoryboardPanel"> | string
-    order?: IntFilter<"StoryboardPanel"> | number
-    imageUrl?: StringNullableFilter<"StoryboardPanel"> | string | null
-    shotType?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraAngle?: StringNullableFilter<"StoryboardPanel"> | string | null
-    cameraMove?: StringNullableFilter<"StoryboardPanel"> | string | null
-    description?: StringNullableFilter<"StoryboardPanel"> | string | null
-    dialogue?: StringNullableFilter<"StoryboardPanel"> | string | null
-    duration?: IntNullableFilter<"StoryboardPanel"> | number | null
-    linkedSceneId?: StringNullableFilter<"StoryboardPanel"> | string | null
-    createdAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
-    updatedAt?: DateTimeFilter<"StoryboardPanel"> | Date | string
-  }
-
-  export type StoryboardCreateWithoutPanelsInput = {
+  export type StoryboardCreateWithoutShotsInput = {
     id?: string
     title: string
-    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutStoryboardsInput
-    user: UserCreateNestedOneWithoutStoryboardOwnerInput
+    script?: ScriptCreateNestedOneWithoutStoryboradInput
   }
 
-  export type StoryboardUncheckedCreateWithoutPanelsInput = {
+  export type StoryboardUncheckedCreateWithoutShotsInput = {
     id?: string
     title: string
-    description?: string | null
     projectId: string
-    ownerId: string
+    scriptId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type StoryboardCreateOrConnectWithoutPanelsInput = {
+  export type StoryboardCreateOrConnectWithoutShotsInput = {
     where: StoryboardWhereUniqueInput
-    create: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+    create: XOR<StoryboardCreateWithoutShotsInput, StoryboardUncheckedCreateWithoutShotsInput>
   }
 
-  export type StoryboardUpsertWithoutPanelsInput = {
-    update: XOR<StoryboardUpdateWithoutPanelsInput, StoryboardUncheckedUpdateWithoutPanelsInput>
-    create: XOR<StoryboardCreateWithoutPanelsInput, StoryboardUncheckedCreateWithoutPanelsInput>
+  export type SceneCreateWithoutShotInput = {
+    id?: string
+    sceneNumber: number
+    heading: string
+    pageStart?: number | null
+    script: ScriptCreateNestedOneWithoutScenesInput
+  }
+
+  export type SceneUncheckedCreateWithoutShotInput = {
+    id?: string
+    sceneNumber: number
+    heading: string
+    pageStart?: number | null
+    scriptId: string
+  }
+
+  export type SceneCreateOrConnectWithoutShotInput = {
+    where: SceneWhereUniqueInput
+    create: XOR<SceneCreateWithoutShotInput, SceneUncheckedCreateWithoutShotInput>
+  }
+
+  export type FrameCreateWithoutShotInput = {
+    id?: string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: string | null
+    videoAssetId?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type FrameUncheckedCreateWithoutShotInput = {
+    id?: string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: string | null
+    videoAssetId?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type FrameCreateOrConnectWithoutShotInput = {
+    where: FrameWhereUniqueInput
+    create: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+  }
+
+  export type StoryboardUpsertWithoutShotsInput = {
+    update: XOR<StoryboardUpdateWithoutShotsInput, StoryboardUncheckedUpdateWithoutShotsInput>
+    create: XOR<StoryboardCreateWithoutShotsInput, StoryboardUncheckedCreateWithoutShotsInput>
     where?: StoryboardWhereInput
   }
 
-  export type StoryboardUpdateToOneWithWhereWithoutPanelsInput = {
+  export type StoryboardUpdateToOneWithWhereWithoutShotsInput = {
     where?: StoryboardWhereInput
-    data: XOR<StoryboardUpdateWithoutPanelsInput, StoryboardUncheckedUpdateWithoutPanelsInput>
+    data: XOR<StoryboardUpdateWithoutShotsInput, StoryboardUncheckedUpdateWithoutShotsInput>
   }
 
-  export type StoryboardUpdateWithoutPanelsInput = {
+  export type StoryboardUpdateWithoutShotsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
-    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
+    script?: ScriptUpdateOneWithoutStoryboradNestedInput
   }
 
-  export type StoryboardUncheckedUpdateWithoutPanelsInput = {
+  export type StoryboardUncheckedUpdateWithoutShotsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
-    ownerId?: StringFieldUpdateOperationsInput | string
+    scriptId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SceneUpsertWithoutShotInput = {
+    update: XOR<SceneUpdateWithoutShotInput, SceneUncheckedUpdateWithoutShotInput>
+    create: XOR<SceneCreateWithoutShotInput, SceneUncheckedCreateWithoutShotInput>
+    where?: SceneWhereInput
+  }
+
+  export type SceneUpdateToOneWithWhereWithoutShotInput = {
+    where?: SceneWhereInput
+    data: XOR<SceneUpdateWithoutShotInput, SceneUncheckedUpdateWithoutShotInput>
+  }
+
+  export type SceneUpdateWithoutShotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sceneNumber?: IntFieldUpdateOperationsInput | number
+    heading?: StringFieldUpdateOperationsInput | string
+    pageStart?: NullableIntFieldUpdateOperationsInput | number | null
+    script?: ScriptUpdateOneRequiredWithoutScenesNestedInput
+  }
+
+  export type SceneUncheckedUpdateWithoutShotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sceneNumber?: IntFieldUpdateOperationsInput | number
+    heading?: StringFieldUpdateOperationsInput | string
+    pageStart?: NullableIntFieldUpdateOperationsInput | number | null
+    scriptId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FrameUpsertWithoutShotInput = {
+    update: XOR<FrameUpdateWithoutShotInput, FrameUncheckedUpdateWithoutShotInput>
+    create: XOR<FrameCreateWithoutShotInput, FrameUncheckedCreateWithoutShotInput>
+    where?: FrameWhereInput
+  }
+
+  export type FrameUpdateToOneWithWhereWithoutShotInput = {
+    where?: FrameWhereInput
+    data: XOR<FrameUpdateWithoutShotInput, FrameUncheckedUpdateWithoutShotInput>
+  }
+
+  export type FrameUpdateWithoutShotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrameUncheckedUpdateWithoutShotInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sketchData?: NullableJsonNullValueInput | InputJsonValue
+    imageAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    videoAssetId?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShotCreateWithoutFrameInput = {
+    id?: string
+    order: number
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    storyboard: StoryboardCreateNestedOneWithoutShotsInput
+    scene?: SceneCreateNestedOneWithoutShotInput
+  }
+
+  export type ShotUncheckedCreateWithoutFrameInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    sceneId?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ShotCreateOrConnectWithoutFrameInput = {
+    where: ShotWhereUniqueInput
+    create: XOR<ShotCreateWithoutFrameInput, ShotUncheckedCreateWithoutFrameInput>
+  }
+
+  export type ShotUpsertWithoutFrameInput = {
+    update: XOR<ShotUpdateWithoutFrameInput, ShotUncheckedUpdateWithoutFrameInput>
+    create: XOR<ShotCreateWithoutFrameInput, ShotUncheckedCreateWithoutFrameInput>
+    where?: ShotWhereInput
+  }
+
+  export type ShotUpdateToOneWithWhereWithoutFrameInput = {
+    where?: ShotWhereInput
+    data: XOR<ShotUpdateWithoutFrameInput, ShotUncheckedUpdateWithoutFrameInput>
+  }
+
+  export type ShotUpdateWithoutFrameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storyboard?: StoryboardUpdateOneRequiredWithoutShotsNestedInput
+    scene?: SceneUpdateOneWithoutShotNestedInput
+  }
+
+  export type ShotUncheckedUpdateWithoutFrameInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    sceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -41162,13 +48275,15 @@ export namespace Prisma {
     parentFolderId?: string | null
   }
 
-  export type StoryboardCreateManyUserInput = {
+  export type EditedCreateManyUserInput = {
     id?: string
     title: string
-    description?: string | null
-    projectId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    stateId?: string | null
+    status: string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -41279,6 +48394,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneWithoutScriptsNestedInput
     scenes?: SceneUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateWithoutUserInput = {
@@ -41293,6 +48409,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: NullableStringFieldUpdateOperationsInput | string | null
     scenes?: SceneUncheckedUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUncheckedUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateManyWithoutUserInput = {
@@ -41508,33 +48625,39 @@ export namespace Prisma {
     parentFolderId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type StoryboardUpdateWithoutUserInput = {
+  export type EditedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
-    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    state?: EditedStateUpdateOneWithoutEditedNestedInput
+    EditedVersions?: EditedVersionUpdateManyWithoutEditedNestedInput
   }
 
-  export type StoryboardUncheckedUpdateWithoutUserInput = {
+  export type EditedUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    EditedVersions?: EditedVersionUncheckedUpdateManyWithoutEditedNestedInput
   }
 
-  export type StoryboardUncheckedUpdateManyWithoutUserInput = {
+  export type EditedUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    stateId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserProjectCreateManyProjectInput = {
@@ -41595,10 +48718,14 @@ export namespace Prisma {
   export type StoryboardCreateManyProjectInput = {
     id?: string
     title: string
-    description?: string | null
-    ownerId: string
+    scriptId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type EditedStateCreateManyProjectInput = {
+    id?: string
+    name: string
   }
 
   export type UserProjectUpdateWithoutProjectInput = {
@@ -41631,6 +48758,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutScriptOwnerNestedInput
     scenes?: SceneUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateWithoutProjectInput = {
@@ -41645,6 +48773,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ownerId?: StringFieldUpdateOperationsInput | string
     scenes?: SceneUncheckedUpdateManyWithoutScriptNestedInput
+    storyborad?: StoryboardUncheckedUpdateManyWithoutScriptNestedInput
   }
 
   export type ScriptUncheckedUpdateManyWithoutProjectInput = {
@@ -41783,30 +48912,44 @@ export namespace Prisma {
   export type StoryboardUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutStoryboardOwnerNestedInput
-    panels?: StoryboardPanelUpdateManyWithoutStoryboardNestedInput
+    script?: ScriptUpdateOneWithoutStoryboradNestedInput
+    shots?: ShotUpdateManyWithoutStoryboardNestedInput
   }
 
   export type StoryboardUncheckedUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: StringFieldUpdateOperationsInput | string
+    scriptId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    panels?: StoryboardPanelUncheckedUpdateManyWithoutStoryboardNestedInput
+    shots?: ShotUncheckedUpdateManyWithoutStoryboardNestedInput
   }
 
   export type StoryboardUncheckedUpdateManyWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: StringFieldUpdateOperationsInput | string
+    scriptId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EditedStateUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    edited?: EditedUpdateManyWithoutStateNestedInput
+  }
+
+  export type EditedStateUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    edited?: EditedUncheckedUpdateManyWithoutStateNestedInput
+  }
+
+  export type EditedStateUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type SceneCreateManyScriptInput = {
@@ -41816,11 +48959,20 @@ export namespace Prisma {
     pageStart?: number | null
   }
 
+  export type StoryboardCreateManyScriptInput = {
+    id?: string
+    title: string
+    projectId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type SceneUpdateWithoutScriptInput = {
     id?: StringFieldUpdateOperationsInput | string
     sceneNumber?: IntFieldUpdateOperationsInput | number
     heading?: StringFieldUpdateOperationsInput | string
     pageStart?: NullableIntFieldUpdateOperationsInput | number | null
+    shot?: ShotUpdateManyWithoutSceneNestedInput
   }
 
   export type SceneUncheckedUpdateWithoutScriptInput = {
@@ -41828,6 +48980,7 @@ export namespace Prisma {
     sceneNumber?: IntFieldUpdateOperationsInput | number
     heading?: StringFieldUpdateOperationsInput | string
     pageStart?: NullableIntFieldUpdateOperationsInput | number | null
+    shot?: ShotUncheckedUpdateManyWithoutSceneNestedInput
   }
 
   export type SceneUncheckedUpdateManyWithoutScriptInput = {
@@ -41835,6 +48988,86 @@ export namespace Prisma {
     sceneNumber?: IntFieldUpdateOperationsInput | number
     heading?: StringFieldUpdateOperationsInput | string
     pageStart?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type StoryboardUpdateWithoutScriptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutStoryboardsNestedInput
+    shots?: ShotUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateWithoutScriptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    shots?: ShotUncheckedUpdateManyWithoutStoryboardNestedInput
+  }
+
+  export type StoryboardUncheckedUpdateManyWithoutScriptInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ShotCreateManySceneInput = {
+    id?: string
+    storyboardId: string
+    order: number
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
+    description?: string | null
+    dialogue?: string | null
+    duration?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ShotUpdateWithoutSceneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    storyboard?: StoryboardUpdateOneRequiredWithoutShotsNestedInput
+    frame?: FrameUpdateOneWithoutShotNestedInput
+  }
+
+  export type ShotUncheckedUpdateWithoutSceneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    frame?: FrameUncheckedUpdateOneWithoutShotNestedInput
+  }
+
+  export type ShotUncheckedUpdateManyWithoutSceneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    storyboardId?: StringFieldUpdateOperationsInput | string
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    dialogue?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DesignSubClassCreateManyCategoryInput = {
@@ -42079,6 +49312,92 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EditedCreateManyStateInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approved?: boolean
+    description?: string | null
+    ownerId: string
+    status: string
+  }
+
+  export type EditedUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutEditedNestedInput
+    EditedVersions?: EditedVersionUpdateManyWithoutEditedNestedInput
+  }
+
+  export type EditedUncheckedUpdateWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    EditedVersions?: EditedVersionUncheckedUpdateManyWithoutEditedNestedInput
+  }
+
+  export type EditedUncheckedUpdateManyWithoutStateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EditedVersionCreateManyEditedInput = {
+    id?: string
+    versionNumber: number
+    label?: string | null
+    muxUploadId?: string | null
+    muxPlaybackId?: string | null
+    thumbnailUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EditedVersionUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EditedVersionUncheckedUpdateWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EditedVersionUncheckedUpdateManyWithoutEditedInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    versionNumber?: IntFieldUpdateOperationsInput | number
+    label?: NullableStringFieldUpdateOperationsInput | string | null
+    muxUploadId?: NullableStringFieldUpdateOperationsInput | string | null
+    muxPlaybackId?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SoundFolderCreateManyParentFolderInput = {
     id?: string
     name: string
@@ -42201,62 +49520,56 @@ export namespace Prisma {
     versionNumber?: IntFieldUpdateOperationsInput | number
   }
 
-  export type StoryboardPanelCreateManyStoryboardInput = {
+  export type ShotCreateManyStoryboardInput = {
     id?: string
     order: number
-    imageUrl?: string | null
-    shotType?: string | null
-    cameraAngle?: string | null
-    cameraMove?: string | null
+    sceneId?: string | null
+    shotType?: $Enums.ShotType | null
+    cameraMovement?: $Enums.CameraMovement | null
     description?: string | null
     dialogue?: string | null
     duration?: number | null
-    linkedSceneId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type StoryboardPanelUpdateWithoutStoryboardInput = {
+  export type ShotUpdateWithoutStoryboardInput = {
     id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: FloatFieldUpdateOperationsInput | number
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     dialogue?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scene?: SceneUpdateOneWithoutShotNestedInput
+    frame?: FrameUpdateOneWithoutShotNestedInput
   }
 
-  export type StoryboardPanelUncheckedUpdateWithoutStoryboardInput = {
+  export type ShotUncheckedUpdateWithoutStoryboardInput = {
     id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: FloatFieldUpdateOperationsInput | number
+    sceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     dialogue?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    frame?: FrameUncheckedUpdateOneWithoutShotNestedInput
   }
 
-  export type StoryboardPanelUncheckedUpdateManyWithoutStoryboardInput = {
+  export type ShotUncheckedUpdateManyWithoutStoryboardInput = {
     id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    shotType?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraAngle?: NullableStringFieldUpdateOperationsInput | string | null
-    cameraMove?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: FloatFieldUpdateOperationsInput | number
+    sceneId?: NullableStringFieldUpdateOperationsInput | string | null
+    shotType?: NullableEnumShotTypeFieldUpdateOperationsInput | $Enums.ShotType | null
+    cameraMovement?: NullableEnumCameraMovementFieldUpdateOperationsInput | $Enums.CameraMovement | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     dialogue?: NullableStringFieldUpdateOperationsInput | string | null
     duration?: NullableIntFieldUpdateOperationsInput | number | null
-    linkedSceneId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

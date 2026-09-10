@@ -1,5 +1,6 @@
 "use client";
 
+
 import SideBarDesign from '@/app/components/workspace/design/SideBarDesign';
 import SideBarStoryBoard from '@/app/components/workspace/storyboard/SideBarStoryBoard';
 import SideBarWorkFlow from '@/app/components/SideBarVideo'
@@ -9,18 +10,22 @@ import { useCurrentUser } from '@/hooks/use-current-user';
 import { usePathname } from 'next/navigation';
 import { createNewStoryboard, getStoryboardByProjectId } from '@/action/storyboard';
 import { AlertBasic } from '@/app/components/Aleart';
-import { Button } from '@/components/ui/button';
-
+import StoryboardBoard from '@/app/components/workspace/storyboard/StoryboardBoard';
+import { getStoryboard } from "@/action/storyboard"; // เพิ่ม export นี้ในไฟล์เดียวกับ createNewStoryboard
+import type { ShotWithRelations } from "@/action/storyboard";
 
 type Props = {}
 
 const page = (props: Props) => {
     const [storyboard, setStoryboard] = useState<Storyboard[]>([]);
-    const [storyboardName, setStoryboardName] = useState<string>("");
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, startTransition] = useTransition();   
     const [aleart, setAleart] = useState(false);
+    const [shots, setShots] = useState<ShotWithRelations[]>([]);
+    const [boardLoading, setBoardLoading] = useState(false);
+
+   
     
     const user = useCurrentUser();
 
@@ -29,7 +34,6 @@ const page = (props: Props) => {
     const pathType = path.split("/")[4];
     const boardPath = path.split("/")[5];
 
-    const storyboardId = storyboard.find((item) => item.title === storyboardName)?.id || "";
 
     const handleAleart = () => {
         setAleart(true);
@@ -70,7 +74,7 @@ const page = (props: Props) => {
                 setError("Failed to create storyboard.");
             })
             .finally(() => {
-                setStoryboardName("");
+                // setStoryboardName("");
                 handleAleart();
             });
         });
@@ -90,6 +94,22 @@ const page = (props: Props) => {
         });
     }, [])
 
+     useEffect(() => {
+        if (!boardPath) {
+            setShots([]);
+            return;
+        }
+
+        setBoardLoading(true);
+        getStoryboard(boardPath)
+            .then((data) => setShots(data.shots))
+            .catch(() => {
+                setError("Failed to load storyboard.");
+                handleAleart();
+            })
+            .finally(() => setBoardLoading(false));
+    }, [boardPath]);
+
    
   return (
     <div className='flex flex-row bg-custom w-full h-screen relative overflow-x-hidden'>
@@ -101,18 +121,12 @@ const page = (props: Props) => {
             pathType={pathType}
             boardPath={boardPath}
         />
-
-        {storyboardId && (
-            <div className="w-full flex justify-center items-center">
-                <div className="flex flex-col items-center gap-5 text-2xl font-bold text-white">
-                    <span className="text-2xl font-normal text-white">{storyboardName}</span>
-                    <span className="text-lg font-normal text-white">
-                        No storyboard yet.
-                    </span>
-                    <Button className='text-xl p-5 py-5 cursor-pointer'>Add new</Button>
-                </div>
-            </div>
-        )}
+        <StoryboardBoard
+            key={boardPath}
+            storyboardId={boardPath}
+            projectPath={projectPath}
+            // initialShots={shots}
+        />
 
         <div
             className={`absolute bottom-4 -right-10

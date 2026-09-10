@@ -36,6 +36,17 @@ export const createNewVideoCategory = async (values: z.infer<typeof VideoCategor
         if (existingCategory) {
             return {error: "footage category already exists!"};
         }
+    }else if(type === "edited") {
+         const existingCategory = await db.editedState.findFirst({
+            where: {
+                name,
+                projectId
+            }
+        });
+
+        if (existingCategory) {
+            return {error: "edited category already exists!"};
+        }
     }
 
     if(type === "animation") {
@@ -57,6 +68,15 @@ export const createNewVideoCategory = async (values: z.infer<typeof VideoCategor
         });
 
         return {success: "Create Footage Category Success", footageCategory: newFootageCategory};
+    }else if(type === "edited") {
+        const newEditedCategory = await db.editedState.create({
+            data: {
+                name,
+                projectId,
+            }
+        });
+
+        return {success: "Create Edited Category Success", editedCategory: newEditedCategory};
     }
 };
 
@@ -92,7 +112,18 @@ export const createNewVideo = async (values: z.infer<typeof VideoSchema>, type: 
         if (existingCategory) {
             return {error: "footage category already exists!"};
         }
-    } else {
+    } else if(type === "edited"){
+        const existingCategory = await db.edited.findFirst({
+            where: {
+                title,
+                stateId: categoryId
+            }
+        });
+
+        if (existingCategory) {
+            return {error: "edited category already exists!"};
+        }
+    }else {
         return { error: "invalid type!" };
     }
 
@@ -120,8 +151,19 @@ export const createNewVideo = async (values: z.infer<typeof VideoSchema>, type: 
         });
 
         return {success: "Create Footage Category Success", footage: newVideo};
-    }
+    }else if(type === "edited"){
+        const newVideo = await db.edited.create({
+            data: {
+                title,
+                stateId: categoryId,
+                ownerId: userId,
+                status,
+                description
+            }
+        });
 
+        return {success: "Create Edited Category Success", edited: newVideo};
+    }
 };
 
 export const createNewAnimationVersion = async (values: z.infer<typeof VideoVersionSchema>, type: string) => {
@@ -187,6 +229,42 @@ export const createNewFootageVersion = async (values: z.infer<typeof VideoVersio
                 muxPlaybackId,
                 thumbnailUrl,
                 footageId: videoId,
+                versionNumber: existingVersions.length + 1,
+            }
+        });
+
+        return { success: "Create Video Version Success", videoVersion: newVideoVersion };
+    }
+
+    return { error: "invalid type!" };
+};
+
+export const createNewEditedVersion = async (values: z.infer<typeof VideoVersionSchema>, type: string) => {
+    const validateFields = VideoVersionSchema.safeParse(values);
+
+    if (!validateFields.success) {
+        return { error: "invalid field!" };
+    }
+
+    const { label, muxUploadId, muxPlaybackId, thumbnailUrl, videoId } = validateFields.data;
+
+    if(type === "edited") {
+         const existingVersions = await db.editedVersion.findMany({
+            where: { editedId: videoId }
+        });
+
+        const labelTaken = existingVersions.some((item) => item.label === label);
+        if (labelTaken) {
+            return { error: "edited version label already in use!" };
+        }
+
+        const newVideoVersion = await db.editedVersion.create({
+            data: {
+                label,
+                muxUploadId,
+                muxPlaybackId,
+                thumbnailUrl,
+                editedId: videoId,
                 versionNumber: existingVersions.length + 1,
             }
         });

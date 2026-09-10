@@ -144,6 +144,16 @@ export async function getScripts(userId: string) {
   })
 }
 
+export async function getScriptFromProjectId(id: string) {
+  return await db.script.findMany({
+    where: { projectId: id },
+    include: {
+      scenes: { orderBy: { sceneNumber: "asc" } },
+    },
+  })
+}
+
+
 // // ดู Revision ทั้งหมด
 // export async function getRevisions(scriptId: string) {
 //   return await db.revision.findMany({
@@ -171,3 +181,4 @@ export async function deleteScript(id: string) {
   await db.script.delete({ where: { id } })
   revalidatePath("/editor")
 }
+

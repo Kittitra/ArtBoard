@@ -466,7 +466,7 @@ export default function VideoEditModal({
         {duration > 0 && (
           <div className="flex flex-col gap-2">
             <div
-              onClick={handleTimelineClick}
+              onMouseDown={handleTimelineClick}
               className="relative h-10 rounded-md bg-[#141414] cursor-pointer overflow-hidden"
             >
               <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,#2a2a2a,#2a2a2a_4px,#1a1a1a_4px,#1a1a1a_8px)]" />

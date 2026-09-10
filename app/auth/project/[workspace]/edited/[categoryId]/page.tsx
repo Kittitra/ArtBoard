@@ -1,28 +1,57 @@
 'use client';
 
-import { createNewVideoCategory } from '@/action/video';
+import { createNewVideo, createNewVideoCategory } from '@/action/video';
 import SideBarVideo from '@/app/components/SideBarVideo';
+import Animation from '@/app/components/workspace/animation/Animation';
+import Edited from '@/app/components/workspace/edited/Edited';
+import Footage from '@/app/components/workspace/footage/Footage';
+import { getUserById } from '@/data/user';
 import { useCurrentUser } from '@/hooks/use-current-user';
-import { getEditedCategoriesByProjectId } from '@/lib/api/Edited';
-import { getFootageCategoriesByProjectId } from '@/lib/api/Footage';
+import { getAnimationByStateId, getAnimationCategoriesByProjectId } from '@/lib/api/Animation';
+import { getEditedByStateId, getEditedCategoriesByProjectId } from '@/lib/api/Edited';
+import { getFootageByStateId, getFootageCategoriesByProjectId } from '@/lib/api/Footage';
+import { getUserByUserId } from '@/lib/api/User';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react'
 
-interface EditedState {
+interface FootageState {
     id:string
     name: string
     projectId: string | null
 }
 
+interface FootageProps {
+    id: string
+    title: string
+    content: any
+    description: string
+    ownerId: string
+    stateId: string
+    createAt: string
+    status: string
+}
+
+// interface Users {
+//     id:            string         
+//     name:          string
+//     email:         string        
+//     password:      string
+//     emailVerified: string
+//     image:         string
+// }
+
 const page = () => {
 
-    const [editedCategories, setEditedCategories] = useState<EditedState[]>([]);
-    const [selected, setSelected] = useState(editedCategories[0]?.name || "");
+    const [selected, setSelected] = useState("");
     const [newCategoryName, setNewCategoryName] = useState("");
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
+    const [editedCategories, setEditedCategories] = useState<FootageState[]>([]);
     const [aleart, setAleart] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [edited, setEdited] = useState<FootageProps[]>([])
+    const [users, setUsers] = useState<any>(null)
+    const [showUploader, setShowUploader] = useState<boolean>(true)
     
     const [isPending, startTransition] = useTransition();
 
@@ -38,9 +67,9 @@ const page = () => {
         if(!newCategoryName.trim()){
             setError("Category name is required");
             return;
-        }
+            }
 
-        if(!user?.id) return;
+            if(!user?.id) return;
 
         setError("");
         setSuccess("");
@@ -83,9 +112,9 @@ const page = () => {
     useEffect(() => {
         getEditedCategoriesByProjectId(projectPath)
         .then((categories) => {
-        //   console.log("Footage Categories:", categories);
+            //   console.log("Footage Categories:", categories);
             setEditedCategories(categories);
-            console.log("Footage Categories:", categories); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
+            // console.log("Footage Categories:", categories); // ✅ ตรวจสอบข้อมูลที่ได้รับจาก API
         })
         .catch((error) => {
             console.error("Failed to fetch footage categories:", error);
@@ -93,6 +122,35 @@ const page = () => {
             setLoading(false);
         })
     }, [projectPath]);
+
+    useEffect(() => {
+        getEditedByStateId(MoviePath)
+        .then((edited) => {
+            setEdited(edited);
+        })
+        .catch((error) => {
+            console.error("Failed to fetch edited:", error);
+        }).finally(() => {
+            setLoading(false);
+        })
+    }, [MoviePath]);
+
+     useEffect(() => {
+        if(!user?.id){
+            return;
+        }
+        getUserByUserId(user?.id)
+        .then((users) => {
+            setUsers(users);
+        })
+        .catch((error) => {
+            console.error("Failed to fetch edited:", error);
+        }).finally(() => {
+            setLoading(false);
+        })
+
+        console.log(users)
+    }, [user]);
 
 
     return (
@@ -104,6 +162,7 @@ const page = () => {
                 data={editedCategories}
                 loading={loading}
             />
+            {users && <Edited data={edited} moviePath={MoviePath} projectId={projectPath} user={users} />}
         </div>
     )
 }

@@ -295,6 +295,35 @@ exports.Prisma.FootageVersionScalarFieldEnum = {
   footageId: 'footageId'
 };
 
+exports.Prisma.EditedStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.EditedScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.EditedVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  editedId: 'editedId'
+};
+
 exports.Prisma.SoundFolderScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -330,26 +359,32 @@ exports.Prisma.SoundVersionScalarFieldEnum = {
 exports.Prisma.StoryboardScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description',
   projectId: 'projectId',
-  ownerId: 'ownerId',
+  scriptId: 'scriptId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.StoryboardPanelScalarFieldEnum = {
+exports.Prisma.ShotScalarFieldEnum = {
   id: 'id',
   storyboardId: 'storyboardId',
   order: 'order',
-  imageUrl: 'imageUrl',
+  sceneId: 'sceneId',
   shotType: 'shotType',
-  cameraAngle: 'cameraAngle',
-  cameraMove: 'cameraMove',
+  cameraMovement: 'cameraMovement',
   description: 'description',
   dialogue: 'dialogue',
   duration: 'duration',
-  linkedSceneId: 'linkedSceneId',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FrameScalarFieldEnum = {
+  id: 'id',
+  shotId: 'shotId',
+  sketchData: 'sketchData',
+  imageAssetId: 'imageAssetId',
+  videoAssetId: 'videoAssetId',
   updatedAt: 'updatedAt'
 };
 
@@ -359,6 +394,11 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
 };
 
@@ -384,6 +424,24 @@ exports.ScriptStatus = exports.$Enums.ScriptStatus = {
   ARCHIVED: 'ARCHIVED'
 };
 
+exports.ShotType = exports.$Enums.ShotType = {
+  WIDE: 'WIDE',
+  MEDIUM: 'MEDIUM',
+  CLOSE_UP: 'CLOSE_UP',
+  EXTREME_CLOSE_UP: 'EXTREME_CLOSE_UP',
+  OVER_THE_SHOULDER: 'OVER_THE_SHOULDER',
+  POV: 'POV'
+};
+
+exports.CameraMovement = exports.$Enums.CameraMovement = {
+  STATIC: 'STATIC',
+  PAN: 'PAN',
+  TILT: 'TILT',
+  DOLLY: 'DOLLY',
+  TRACKING: 'TRACKING',
+  HANDHELD: 'HANDHELD'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
@@ -403,11 +461,15 @@ exports.Prisma.ModelName = {
   FootageState: 'FootageState',
   Footage: 'Footage',
   FootageVersion: 'FootageVersion',
+  EditedState: 'EditedState',
+  Edited: 'Edited',
+  EditedVersion: 'EditedVersion',
   SoundFolder: 'SoundFolder',
   Sound: 'Sound',
   SoundVersion: 'SoundVersion',
   Storyboard: 'Storyboard',
-  StoryboardPanel: 'StoryboardPanel'
+  Shot: 'Shot',
+  Frame: 'Frame'
 };
 
 /**

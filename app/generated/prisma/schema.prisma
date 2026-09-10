@@ -33,7 +33,7 @@ model User {
   FootageOwner        Footage[]
   SoundOwner          Sound[]
   soundFolderOwner    SoundFolder[]
-  storyboardOwner     Storyboard[]
+  edited              Edited[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -109,6 +109,7 @@ model Project {
   soundFolders        SoundFolder[]
   sounds              Sound[]
   storyboards         Storyboard[]
+  edited              EditedState[]
 }
 
 //script-----------------------------------------------------------------------------------------------------------------------------------
@@ -131,9 +132,10 @@ model Script {
   ownerId String
   user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
-  projectId String?
-  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
-  scenes    Scene[]
+  projectId  String?
+  project    Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  scenes     Scene[]
+  storyborad Storyboard[]
 
   @@index([ownerId])
 }
@@ -147,6 +149,7 @@ model Scene {
 
   scriptId String
   script   Script @relation(fields: [scriptId], references: [id], onDelete: Cascade)
+  shot     Shot[]
 
   @@index([scriptId])
 }
@@ -291,6 +294,45 @@ model FootageVersion {
   footage Footage @relation(fields: [footageId], references: [id], onDelete: Cascade)
 }
 
+//Footage-----------------------------------------------------------------------------------------------------------------------------------
+model EditedState {
+  id   String @id @default(uuid())
+  name String
+
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  edited    Edited[]
+}
+
+model Edited {
+  id          String   @id @default(uuid())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  approved    Boolean  @default(false)
+  description String?
+  ownerId     String
+  stateId     String?
+  status      String
+
+  user           User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  state          EditedState?    @relation(fields: [stateId], references: [id], onDelete: SetNull)
+  EditedVersions EditedVersion[]
+}
+
+model EditedVersion {
+  id            String   @id @default(uuid())
+  versionNumber Int // 1, 2, 3, ...
+  label         String? // "Version 1", "Draft 2" ฯลฯ
+  muxUploadId   String?
+  muxPlaybackId String?
+  thumbnailUrl  String?
+  createdAt     DateTime @default(now())
+  editedId      String
+
+  edited Edited @relation(fields: [editedId], references: [id], onDelete: Cascade)
+}
+
 //Sound-----------------------------------------------------------------------------------------------------------------------------------
 model SoundFolder {
   id        String   @id @default(uuid())
@@ -348,40 +390,72 @@ model SoundVersion {
 /////////////////////////////////////////////////////////////////////////////////////// Stortboard
 
 model Storyboard {
-  id          String            @id @default(cuid())
-  title       String
-  description String?
-  projectId   String
-  project     Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  ownerId     String
-  user        User              @relation(fields: [ownerId], references: [id])
-  panels      StoryboardPanel[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id        String  @id @default(uuid())
+  title     String
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id])
 
-  @@index([projectId])
+  scriptId String?
+  script   Script? @relation(fields: [scriptId], references: [id], onDelete: SetNull)
+
+  shots     Shot[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([scriptId])
 }
 
-model StoryboardPanel {
-  id           String     @id @default(cuid())
+model Shot {
+  id           String     @id @default(uuid())
   storyboardId String
   storyboard   Storyboard @relation(fields: [storyboardId], references: [id], onDelete: Cascade)
 
-  order    Int // ลำดับภาพ ใช้เรียง drag-and-drop reorder
-  imageUrl String? // ภาพร่าง (Cloudinary เหมือน image อื่นๆ ในระบบคุณ)
+  order Float // fractional index สำหรับ drag reorder ผ่าน dnd-kit
 
-  shotType    String? // เช่น "Wide", "Close-up", "Medium"
-  cameraAngle String? // เช่น "Eye-level", "High angle", "Low angle"
-  cameraMove  String? // เช่น "Pan", "Zoom", "Static"
+  sceneId String?
+  scene   Scene?  @relation(fields: [sceneId], references: [id], onDelete: SetNull)
 
-  description String? // สิ่งที่เกิดขึ้นในช็อตนี้ (action)
-  dialogue    String? // บทพูด/เสียงประกอบ
-  duration    Int? // ระยะเวลาโดยประมาณ (วินาที)
+  shotType       ShotType?
+  cameraMovement CameraMovement?
+  description    String?         @db.Text
+  dialogue       String?         @db.Text
+  duration       Int?
 
-  linkedSceneId String? // เชื่อมกับ scene ใน screenplay editor (ถ้ามี)
+  frame Frame?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([storyboardId, order])
+  @@index([sceneId])
+}
+
+model Frame {
+  id     String @id @default(uuid())
+  shotId String @unique
+  shot   Shot   @relation(fields: [shotId], references: [id], onDelete: Cascade)
+
+  sketchData   Json?
+  imageAssetId String?
+  videoAssetId String?
+
+  updatedAt DateTime @updatedAt
+}
+
+enum ShotType {
+  WIDE
+  MEDIUM
+  CLOSE_UP
+  EXTREME_CLOSE_UP
+  OVER_THE_SHOULDER
+  POV
+}
+
+enum CameraMovement {
+  STATIC
+  PAN
+  TILT
+  DOLLY
+  TRACKING
+  HANDHELD
 }

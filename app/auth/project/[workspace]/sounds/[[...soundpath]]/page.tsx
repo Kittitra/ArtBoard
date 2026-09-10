@@ -225,7 +225,7 @@ const Page = () => {
     }
 
   const handleCreateNewSound = () => {
-    if (!newSoundName.trim()) {
+    if (!newSoundName.trim() || newSoundName == null) {
       setError("Sound name is required");
       return;
     }
@@ -233,7 +233,6 @@ const Page = () => {
 
     setError("");
     setSuccess("");
-
     startTransition(() => {
       createSound({
         title: newSoundName,           // ✅ ตรงกับ Sound.title
@@ -585,7 +584,13 @@ const Page = () => {
               value={newSoundName}
               onChange={(e) => setNewSoundName(e.target.value)}
             />
-            <Button onClick={handleOpenUploader}>Add new</Button> 
+            <Button onClick={() => {
+              if(!newSoundName.trim()){
+                alert("please fill sound version Name")
+              }else{
+                handleOpenUploader()
+              }
+            }}>Add new</Button> 
 
             <div className="flex flex-col gap-3">
               {soundVersion.map((version) => (
