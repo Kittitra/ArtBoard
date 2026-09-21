@@ -172,9 +172,234 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
   transports: 'transports'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ScriptScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  author: 'author',
+  content: 'content',
+  status: 'status',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId'
+};
+
+exports.Prisma.SceneScalarFieldEnum = {
+  id: 'id',
+  sceneNumber: 'sceneNumber',
+  heading: 'heading',
+  pageStart: 'pageStart',
+  scriptId: 'scriptId'
+};
+
+exports.Prisma.DesignCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId'
+};
+
+exports.Prisma.DesignSubClassScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.DesignSubClassVersionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  DesignSubClassId: 'DesignSubClassId'
+};
+
+exports.Prisma.UserProjectScalarFieldEnum = {
+  userId: 'userId',
+  projectId: 'projectId',
+  role: 'role',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AnimationStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.AnimationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.AnimationVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  animationId: 'animationId'
+};
+
+exports.Prisma.FootageStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.FootageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.FootageVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  footageId: 'footageId'
+};
+
+exports.Prisma.EditedStateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  projectId: 'projectId'
+};
+
+exports.Prisma.EditedScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approved: 'approved',
+  description: 'description',
+  ownerId: 'ownerId',
+  stateId: 'stateId',
+  status: 'status'
+};
+
+exports.Prisma.EditedVersionScalarFieldEnum = {
+  id: 'id',
+  versionNumber: 'versionNumber',
+  label: 'label',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  editedId: 'editedId'
+};
+
+exports.Prisma.SoundFolderScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId',
+  parentFolderId: 'parentFolderId'
+};
+
+exports.Prisma.SoundScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId',
+  projectId: 'projectId',
+  folderId: 'folderId'
+};
+
+exports.Prisma.SoundVersionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  soundId: 'soundId',
+  muxUploadId: 'muxUploadId',
+  muxPlaybackId: 'muxPlaybackId',
+  status: 'status',
+  versionNumber: 'versionNumber'
+};
+
+exports.Prisma.StoryboardScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  projectId: 'projectId',
+  scriptId: 'scriptId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ShotScalarFieldEnum = {
+  id: 'id',
+  storyboardId: 'storyboardId',
+  order: 'order',
+  sceneId: 'sceneId',
+  shotType: 'shotType',
+  cameraMovement: 'cameraMovement',
+  description: 'description',
+  dialogue: 'dialogue',
+  duration: 'duration',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FrameScalarFieldEnum = {
+  id: 'id',
+  shotId: 'shotId',
+  sketchData: 'sketchData',
+  imageAssetId: 'imageAssetId',
+  videoAssetId: 'videoAssetId',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -187,13 +412,64 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.ScriptStatus = exports.$Enums.ScriptStatus = {
+  DRAFT: 'DRAFT',
+  IN_REVIEW: 'IN_REVIEW',
+  FINAL: 'FINAL',
+  ARCHIVED: 'ARCHIVED'
+};
+
+exports.ShotType = exports.$Enums.ShotType = {
+  WIDE: 'WIDE',
+  MEDIUM: 'MEDIUM',
+  CLOSE_UP: 'CLOSE_UP',
+  EXTREME_CLOSE_UP: 'EXTREME_CLOSE_UP',
+  OVER_THE_SHOULDER: 'OVER_THE_SHOULDER',
+  POV: 'POV'
+};
+
+exports.CameraMovement = exports.$Enums.CameraMovement = {
+  STATIC: 'STATIC',
+  PAN: 'PAN',
+  TILT: 'TILT',
+  DOLLY: 'DOLLY',
+  TRACKING: 'TRACKING',
+  HANDHELD: 'HANDHELD'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
-  Authenticator: 'Authenticator'
+  Authenticator: 'Authenticator',
+  Project: 'Project',
+  Script: 'Script',
+  Scene: 'Scene',
+  DesignCategory: 'DesignCategory',
+  DesignSubClass: 'DesignSubClass',
+  DesignSubClassVersion: 'DesignSubClassVersion',
+  UserProject: 'UserProject',
+  AnimationState: 'AnimationState',
+  Animation: 'Animation',
+  AnimationVersion: 'AnimationVersion',
+  FootageState: 'FootageState',
+  Footage: 'Footage',
+  FootageVersion: 'FootageVersion',
+  EditedState: 'EditedState',
+  Edited: 'Edited',
+  EditedVersion: 'EditedVersion',
+  SoundFolder: 'SoundFolder',
+  Sound: 'Sound',
+  SoundVersion: 'SoundVersion',
+  Storyboard: 'Storyboard',
+  Shot: 'Shot',
+  Frame: 'Frame'
 };
 
 /**

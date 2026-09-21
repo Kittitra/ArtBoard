@@ -10,6 +10,13 @@ type NoteProps = {
     links: LinkItem[];
     selectedLinkId: string | null;
     updateLink: (id: string, updates: Partial<LinkItem>) => void;
+    parentBoardId: string | undefined;
+    onDragMove?: () => void;
+    onDragEnd?: (id: string, x: number, y: number) => void;
+    selectedIds?: string[];
+    onDragMove_group?: (id: string, dx: number, dy: number) => void;
+    onDragStart?: (id: string, x: number, y: number) => void;
+    onSelect?: () => void;
 };
 
 const FONT = {
@@ -26,7 +33,7 @@ const MAX_TEXT_LINES = 2;
 const HANDLE_OFFSET = 6;
 const HANDLE_SIZE = 8;
 
-const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProps) => {
+const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId, parentBoardId, onDragMove, onDragEnd, selectedIds, onDragStart, onDragMove_group, onSelect }: NoteProps) => {
     const startEdit = (id: string) => {
       updateLink(id, { isEditing: true });
       setSelectedLinkId(id);
@@ -37,145 +44,168 @@ const Link = ({ links, updateLink, setSelectedLinkId, selectedLinkId }: NoteProp
     
 
   return (
-        <Layer>
+        <>
             {links.map((link) => {
-            const isSelected = link.id === selectedLinkId;
-            const imageHeight = link.previewImage
-            ? Math.min(
-                link.height * 0.8,
-                link.height - textHeight - PADDING * 2
-                )
-            : 0;
-            const proxiedSrc = `/api/image-proxy?url=${encodeURIComponent(link.previewImage!)}`;
+                const isSelected = link.id === selectedLinkId;
+                const imageHeight = link.previewImage
+                ? Math.min(
+                    link.height * 0.8,
+                    link.height - textHeight - PADDING * 2
+                    )
+                : 0;
+                const proxiedSrc = `/api/image-proxy?url=${encodeURIComponent(link.previewImage!)}`;
 
-            //ขยายรูปภาพให้พอดีกับกล่อง
-            return (
-                <Group key={link.id}>
-                <Group
-                    x={link.x}
-                    y={link.y}
-                    draggable={!link.isEditing}
-                    onClick={() => setSelectedLinkId(link.id)}
-                    onTap={() => setSelectedLinkId(link.id)}
-                    onDblClick={() => startEdit(link.id)}
-                    onDblTap={() => startEdit(link.id)}
-                    onDragEnd={(e) => {
-                        const { x, y } = e.target.position();
-                        updateLink(link.id, { x, y });
-                    }}
-                >
-                    <Rect
-                     width={link.width}
-                    height={link.height}
-                    fill="white"
-                    cornerRadius={0}
-                    shadowBlur={4}
-                    shadowOpacity={0.1}
-                    shadowOffsetY={2}
-                    stroke={isSelected ? "gray" : "transparent"}
-                    strokeWidth={2}
-                    />
-                    {link.previewImage && (
-                        <Group
-                        clip={{
-                            x: 0,
-                            y: 0,
-                            width: link.width,
-                            height: imageHeight,
-                        }}
-                        >
-                        <LinkPreviewImage
-                            src={proxiedSrc}
-                            width={link.width}
-                            height={imageHeight}
-                       
-                        />
-                        </Group>
-                    )}
-                    <Text
-                    text={link.title || link.text}
-                    x={PADDING}
-                    y={imageHeight + PADDING}
-                    width={link.width - PADDING * 2}
-                    height={textHeight}
-                    fontFamily={FONT.family}
-                    fontSize={FONT.size}
-                    lineHeight={FONT.lineHeight}
-                    letterSpacing={FONT.letterSpacing}
-                    ellipsis
-                    fill="blue"
-                    opacity={link.isEditing ? 0 : 1}
-                    wrap="word"
-                    textDecoration={isSelected ? "underline" : "none"}
-                    onMouseEnter={(e) => {
-                        const stage = e.target.getStage();
-                        stage!.container().style.cursor = "pointer";
-                    }}
-                    onMouseLeave={(e) => {
-                        const stage = e.target.getStage();
-                        stage!.container().style.cursor = "default";
-                    }}
-                    onClick={() => window.open(link.text, "_blank")}
-                    />
-                </Group>
-                
-                {/* Resize Handle */}
-                {isSelected && !link.isEditing && (
+                 if(link.parentBoardId && !parentBoardId || link.parentBoardId !== parentBoardId) {
+                    return null; // ข้ามการเรนเดอร์ถ้า parentBoardId มีค่า
+                }
+
+                //ขยายรูปภาพให้พอดีกับกล่อง
+                return (
+                    <Group key={link.id}>
                     <Group
-                        x={link.x + link.width - HANDLE_SIZE}
-                        y={link.y + link.height - HANDLE_SIZE}
-                        draggable
-                        onMouseEnter={(e) => {
-                            const stage = e.target.getStage();
-                            if (stage) {
-                                stage.container().style.cursor = "nwse-resize";
-                            }
+                        x={link.x}
+                        y={link.y}
+                        draggable={!link.isEditing}
+                        onClick={() => {
+                            onSelect?.();
+                            setSelectedLinkId(link.id);
                         }}
-                        onMouseLeave={(e) => {
-                            const stage = e.target.getStage();
-                            if (stage) {
-                                stage.container().style.cursor = "default";
-                            }
+                        onTap={() => {
+                            onSelect?.();
+                            setSelectedLinkId(link.id);
+                        }}
+                        onDblClick={() => startEdit(link.id)}
+                        onDblTap={() => startEdit(link.id)}
+                         onDragStart={(e) => {
+                            const { x, y } = e.target.position();
+                            onDragStart?.(link.id, x, y);
                         }}
                         onDragMove={(e) => {
-                        const pos = e.target.position();
-
-                        const newWidth = Math.max(
-                            MIN_SIZE,
-                            pos.x - link.x + HANDLE_SIZE
-                        );
-
-                        const newHeight = link.imageRatio
-                            ? newWidth / link.imageRatio
-                            : Math.max(
-                                MIN_SIZE,
-                                pos.y - link.y + HANDLE_SIZE
-                            );
-
-                        updateLink(link.id, {
-                            width: newWidth,
-                            height: newHeight,
-                        });
-
-                        e.target.position({
-                            x: link.x + newWidth - HANDLE_SIZE,
-                            y: link.y + newHeight - HANDLE_SIZE,
-                        });
+                            const { x, y } = e.target.position();
+                            updateLink(link.id, { x, y });  // ← ต้องมีบรรทัดนี้
+                            onDragMove?.();
+                            if (selectedIds?.includes(link.id)) {
+                                onDragMove_group?.(link.id, x, y);
+                            }
+                        }}
+                        onDragEnd={(e) => {
+                            const { x, y } = e.target.position();
+                            updateLink(link.id, { x, y });
+                            onDragEnd?.(link.id, x, y);
                         }}
                     >
                         <Rect
-                        width={HANDLE_SIZE}
-                        height={HANDLE_SIZE}
-                        fill="rgba(0,0,0,0.25)"
-                        cornerRadius={HANDLE_SIZE}
+                        width={link.width}
+                        height={link.height}
+                        fill="white"
+                        cornerRadius={0}
+                        shadowBlur={4}
+                        shadowOpacity={0.1}
+                        shadowOffsetY={2}
+                        stroke={selectedIds?.includes(link.id) ? "#4A90D9" : isSelected ? "gray" : "transparent"}
+                        strokeWidth={2}
+                        />
+                        {link.previewImage && (
+                            <Group
+                            clip={{
+                                x: 0,
+                                y: 0,
+                                width: link.width,
+                                height: imageHeight,
+                            }}
+                            >
+                            <LinkPreviewImage
+                                src={proxiedSrc}
+                                width={link.width}
+                                height={imageHeight}
+                        
+                            />
+                            </Group>
+                        )}
+                        <Text
+                            text={link.title || link.text}
+                            x={PADDING}
+                            y={imageHeight + PADDING}
+                            width={link.width - PADDING * 2}
+                            height={textHeight}
+                            fontFamily={FONT.family}
+                            fontSize={FONT.size}
+                            lineHeight={FONT.lineHeight}
+                            letterSpacing={FONT.letterSpacing}
+                            ellipsis
+                            fill="blue"
+                            opacity={link.isEditing ? 0 : 1}
+                            wrap="word"
+                            textDecoration={isSelected ? "underline" : "none"}
+                            onMouseEnter={(e) => {
+                                const stage = e.target.getStage();
+                                stage!.container().style.cursor = "pointer";
+                            }}
+                            onMouseLeave={(e) => {
+                                const stage = e.target.getStage();
+                                stage!.container().style.cursor = "default";
+                            }}
+                            onClick={link.text || link.title ? () => window.open(link.text, "_blank") : undefined}
                         />
                     </Group>
-                    )}
+                    
+                    {/* Resize Handle */}
+                    {isSelected && !link.isEditing && (
+                        <Group
+                            x={link.x + link.width - HANDLE_SIZE}
+                            y={link.y + link.height - HANDLE_SIZE}
+                            draggable
+                            onMouseEnter={(e) => {
+                                const stage = e.target.getStage();
+                                if (stage) {
+                                    stage.container().style.cursor = "nwse-resize";
+                                }
+                            }}
+                            onMouseLeave={(e) => {
+                                const stage = e.target.getStage();
+                                if (stage) {
+                                    stage.container().style.cursor = "default";
+                                }
+                            }}
+                            onDragMove={(e) => {
+                            const pos = e.target.position();
 
-                </Group>
-            );
+                            const newWidth = Math.max(
+                                MIN_SIZE,
+                                pos.x - link.x + HANDLE_SIZE
+                            );
+
+                            const newHeight = link.imageRatio
+                                ? newWidth / link.imageRatio
+                                : Math.max(
+                                    MIN_SIZE,
+                                    pos.y - link.y + HANDLE_SIZE
+                                );
+
+                            updateLink(link.id, {
+                                width: newWidth,
+                                height: newHeight,
+                            });
+
+                            e.target.position({
+                                x: link.x + newWidth - HANDLE_SIZE,
+                                y: link.y + newHeight - HANDLE_SIZE,
+                            });
+                            }}
+                        >
+                            <Rect
+                            width={HANDLE_SIZE}
+                            height={HANDLE_SIZE}
+                            fill="rgba(0,0,0,0.25)"
+                            cornerRadius={HANDLE_SIZE}
+                            />
+                        </Group>
+                        )}
+
+                    </Group>
+                );
             })}
-        </Layer>
+        </>
   )}
 export default Link
 
