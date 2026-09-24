@@ -14,26 +14,23 @@ datasource db {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String    @unique
   password      String?
   emailVerified DateTime?
   image         String?
+
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
   Authenticator Authenticator[]
 
-  scriptOwner         Script[]
+  organizationMembers OrganizationMember[]
   projectMembers      UserProject[]
-  DesignCategoryOwner DesignCategory[]
-  DesignOwner         DesignSubClass[]
-  AnimationOwner      Animation[]
-  FootageOwner        Footage[]
-  SoundOwner          Sound[]
-  soundFolderOwner    SoundFolder[]
-  edited              Edited[]
+  userJobPosition     UserJobPosition[]
+  createdAssets       Asset[]              @relation("AssetCreatedBy")
+  assignedAssets      Asset[]              @relation("AssetAssignedTo")
+  // tasks               Task[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -78,7 +75,7 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-// Optional for WebAuthn support
+// Optional for WebAuthn support-----------------------------------------------------------------------------------------------------------------------------------
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -94,22 +91,161 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 
+///organization-----------------------------------------------------------------------------------------------------------------------------------
+model Organization {
+  id       String               @id @default(cuid())
+  name     String
+  ownerId  String
+  members  OrganizationMember[]
+  projects Project[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrganizationMember {
+  organizationId String
+  userId         String
+
+  role OrganizationRole
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@id([organizationId, userId])
+}
+
+enum OrganizationRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+///project-----------------------------------------------------------------------------------------------------------------------------------
 model Project {
-  id          String   @id @default(uuid())
+  id             String @id @default(cuid())
+  organizationId String
+
   name        String
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  projectMembers      UserProject[]
-  scripts             Script[]
-  designCategories    DesignCategory[]
-  animationCategories AnimationState[]
-  footageCategories   FootageState[]
-  soundFolders        SoundFolder[]
-  sounds              Sound[]
-  storyboards         Storyboard[]
-  edited              EditedState[]
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  projectMembers UserProject[]
+  asset          Asset[]
+  soundFolder    SoundFolder[]
+  animationState AnimationState[]
+  footageState   FootageState[]
+  editedState    EditedState[]
+  // tasks          Task[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserProject {
+  userId    String
+  projectId String
+
+  role ProjectRole
+
+  user    User    @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
+
+  joinedAt DateTime @default(now())
+
+  @@id([userId, projectId])
+}
+
+enum ProjectRole {
+  OWNER
+  PRODUCER
+  DIRECTOR
+  DEPARTMENT_LEAD
+  MEMBER
+}
+
+///jobs-----------------------------------------------------------------------------------------------------------------------------------
+model JobPosition {
+  id   String @id @default(cuid())
+  name String
+
+  members UserJobPosition[]
+}
+
+model UserJobPosition {
+  userId        String
+  jobPositionId String
+
+  user        User        @relation(fields: [userId], references: [id])
+  jobPosition JobPosition @relation(fields: [jobPositionId], references: [id])
+
+  @@id([userId, jobPositionId])
+}
+
+//task-----------------------------------------------------------------------------------------------------------------------------------
+// model Task {
+//   id          String @id @default(cuid())
+//   title       String
+//   description String?
+
+//   projectId   String
+//   assigneeId  String?
+
+//   status      TaskStatus
+//   priority    TaskPriority?
+
+//   dueDate     DateTime?
+
+//   project     Project @relation(fields: [projectId],references: [id])
+
+//   assignee    User? @relation( fields: [assigneeId], references: [id])
+
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+// }
+
+//Assets
+model Asset {
+  id String @id @default(uuid())
+
+  projectId    String
+  createdById  String
+  assignedToId String?
+
+  type   AssetType
+  title  String?
+  status String?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  createdBy User @relation("AssetCreatedBy", fields: [createdById], references: [id])
+
+  assignedTo User? @relation("AssetAssignedTo", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  script         Script?
+  // animation   Animation?
+  // footage     Footage?
+  // edited      Edited?
+  sound          Sound?
+  storyboard     Storyboard?
+  designCategory DesignCategory?
+
+  @@index([projectId, type])
+}
+
+enum AssetType {
+  SCRIPT
+  ANIMATION
+  FOOTAGE
+  EDITED
+  SOUND
+  STORYBOARD
+  DESIGN
 }
 
 //script-----------------------------------------------------------------------------------------------------------------------------------
@@ -129,15 +265,10 @@ model Script {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ownerId String
-  user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  projectId  String?
-  project    Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  assetId    String?      @unique
+  asset      Asset?       @relation(fields: [assetId], references: [id], onDelete: Cascade)
   scenes     Scene[]
-  storyborad Storyboard[]
-
-  @@index([ownerId])
+  storyboard Storyboard[]
 }
 
 // แยก Scene ออกมาเพื่อ query ได้ง่าย
@@ -168,11 +299,8 @@ model DesignCategory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ownerId String
-  user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assetId String? @unique
+  asset   Asset?  @relation(fields: [assetId], references: [id], onDelete: Cascade)
 
   designs DesignSubClass[]
 }
@@ -182,8 +310,6 @@ model DesignSubClass {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  ownerId   String
-  user      User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   categoryId String?
   category   DesignCategory?         @relation(fields: [categoryId], references: [id], onDelete: SetNull)
@@ -196,24 +322,9 @@ model DesignSubClassVersion {
   content   Json     @default("{}") // เก็บข้อมูลการออกแบบทั้งหมดเป็น Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  ownerId   String
 
   DesignSubClassId String?
   DesignSubClass   DesignSubClass? @relation(fields: [DesignSubClassId], references: [id], onDelete: SetNull)
-}
-
-//project-----------------------------------------------------------------------------------------------------------------------------------
-model UserProject {
-  userId    String
-  projectId String
-
-  role      String // "owner", "editor
-  createdAt DateTime @default(now())
-
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, projectId])
 }
 
 //Animation-----------------------------------------------------------------------------------------------------------------------------------
@@ -221,9 +332,12 @@ model AnimationState {
   id   String @id @default(uuid())
   name String
 
-  projectId  String?
-  project    Project?    @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  projectId  String
+  project    Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
   animations Animation[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
 }
 
 model Animation {
@@ -233,11 +347,8 @@ model Animation {
   updatedAt   DateTime @updatedAt
   approved    Boolean  @default(false)
   description String?
-  ownerId     String
-  stateId     String?
-  status      String
 
-  user              User               @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  stateId           String?
   state             AnimationState?    @relation(fields: [stateId], references: [id], onDelete: SetNull)
   AnimationVersions AnimationVersion[]
 }
@@ -260,9 +371,12 @@ model FootageState {
   id   String @id @default(uuid())
   name String
 
-  projectId String?
-  project   Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  projectId String
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   footage   Footage[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
 }
 
 model Footage {
@@ -272,11 +386,9 @@ model Footage {
   updatedAt   DateTime @updatedAt
   approved    Boolean  @default(false)
   description String?
-  ownerId     String
-  stateId     String?
-  status      String
 
-  user            User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  stateId String?
+
   state           FootageState?    @relation(fields: [stateId], references: [id], onDelete: SetNull)
   FootageVersions FootageVersion[]
 }
@@ -299,9 +411,12 @@ model EditedState {
   id   String @id @default(uuid())
   name String
 
-  projectId String?
-  project   Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   edited    Edited[]
+
+  @@unique([projectId, name])
+  @@index([projectId])
 }
 
 model Edited {
@@ -311,11 +426,10 @@ model Edited {
   updatedAt   DateTime @updatedAt
   approved    Boolean  @default(false)
   description String?
-  ownerId     String
-  stateId     String?
-  status      String
 
-  user           User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  stateId String?
+  status  String
+
   state          EditedState?    @relation(fields: [stateId], references: [id], onDelete: SetNull)
   EditedVersions EditedVersion[]
 }
@@ -340,11 +454,8 @@ model SoundFolder {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ownerId String
-  user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String?  @unique
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   parentFolderId String?
   parentFolder   SoundFolder?  @relation("SoundFolderToSubFolders", fields: [parentFolderId], references: [id], onDelete: SetNull)
@@ -359,11 +470,8 @@ model Sound {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ownerId String
-  user    User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assetId String? @unique
+  asset   Asset?  @relation(fields: [assetId], references: [id], onDelete: Cascade)
 
   folderId String?
   folder   SoundFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
@@ -390,10 +498,10 @@ model SoundVersion {
 /////////////////////////////////////////////////////////////////////////////////////// Stortboard
 
 model Storyboard {
-  id        String  @id @default(uuid())
-  title     String
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id])
+  id      String  @id @default(uuid())
+  title   String
+  assetId String? @unique
+  asset   Asset?  @relation(fields: [assetId], references: [id], onDelete: Cascade)
 
   scriptId String?
   script   Script? @relation(fields: [scriptId], references: [id], onDelete: SetNull)

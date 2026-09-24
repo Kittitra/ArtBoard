@@ -17,17 +17,12 @@ import { Button } from '@/components/ui/button'
 import { AlertBasic } from '@/app/components/Aleart'
 import { createProject } from '@/action/project'
 import { getProjectByUserId } from '@/lib/api/Project'
+import { Project } from '@/app/generated/prisma'
 
 type Props = {}
 
-interface Project {
-    id: string;
-    name: string;
-    createdAt: Date;
 
-}
-
-const Project = (props: Props) => {
+const page = (props: Props) => {
     const [name, setName] = React.useState("");
     const [isPending, startTransition] = useTransition();
     const [error, setError] = React.useState<string | undefined>("");
@@ -53,7 +48,7 @@ const Project = (props: Props) => {
         startTransition(() => {
             createProject({
                 name,
-                userId: user?.id || "",
+                orgId: "",
             })
             .then((data) => {
                 const newProject = data?.project;
@@ -71,10 +66,6 @@ const Project = (props: Props) => {
                 setName("");
             })
         });
-
-        getProjectByUserId(user?.id || "").then((data) => {
-            setProject(data);
-        })
     }
 
     const handleAleart = () => {
@@ -92,9 +83,12 @@ const Project = (props: Props) => {
             setProject(data);
             // console.log("project: ", data); // 👈 log ตรงนี้
         }).finally(() => {
+
             setLoading(false);
         });
     }, [user?.id]); // 👈 สำคัญมาก
+
+    console.log("project: ", project)
 
   return (
     <div className='flex flex-col bg-custom w-full h-screen px-15 !pt-[5rem] relative overflow-x-hidden '>
@@ -189,4 +183,4 @@ const Project = (props: Props) => {
   )
 }
 
-export default Project
+export default page

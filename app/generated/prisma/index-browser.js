@@ -172,10 +172,54 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
   transports: 'transports'
 };
 
-exports.Prisma.ProjectScalarFieldEnum = {
+exports.Prisma.OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  ownerId: 'ownerId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrganizationMemberScalarFieldEnum = {
+  organizationId: 'organizationId',
+  userId: 'userId',
+  role: 'role'
+};
+
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  organizationId: 'organizationId',
+  name: 'name',
   description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserProjectScalarFieldEnum = {
+  userId: 'userId',
+  projectId: 'projectId',
+  role: 'role',
+  joinedAt: 'joinedAt'
+};
+
+exports.Prisma.JobPositionScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.UserJobPositionScalarFieldEnum = {
+  userId: 'userId',
+  jobPositionId: 'jobPositionId'
+};
+
+exports.Prisma.AssetScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  createdById: 'createdById',
+  assignedToId: 'assignedToId',
+  type: 'type',
+  title: 'title',
+  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -190,8 +234,7 @@ exports.Prisma.ScriptScalarFieldEnum = {
   version: 'version',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
-  projectId: 'projectId'
+  assetId: 'assetId'
 };
 
 exports.Prisma.SceneScalarFieldEnum = {
@@ -207,8 +250,7 @@ exports.Prisma.DesignCategoryScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
-  projectId: 'projectId'
+  assetId: 'assetId'
 };
 
 exports.Prisma.DesignSubClassScalarFieldEnum = {
@@ -216,7 +258,6 @@ exports.Prisma.DesignSubClassScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
   categoryId: 'categoryId'
 };
 
@@ -226,15 +267,7 @@ exports.Prisma.DesignSubClassVersionScalarFieldEnum = {
   content: 'content',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
   DesignSubClassId: 'DesignSubClassId'
-};
-
-exports.Prisma.UserProjectScalarFieldEnum = {
-  userId: 'userId',
-  projectId: 'projectId',
-  role: 'role',
-  createdAt: 'createdAt'
 };
 
 exports.Prisma.AnimationStateScalarFieldEnum = {
@@ -250,9 +283,7 @@ exports.Prisma.AnimationScalarFieldEnum = {
   updatedAt: 'updatedAt',
   approved: 'approved',
   description: 'description',
-  ownerId: 'ownerId',
-  stateId: 'stateId',
-  status: 'status'
+  stateId: 'stateId'
 };
 
 exports.Prisma.AnimationVersionScalarFieldEnum = {
@@ -279,9 +310,7 @@ exports.Prisma.FootageScalarFieldEnum = {
   updatedAt: 'updatedAt',
   approved: 'approved',
   description: 'description',
-  ownerId: 'ownerId',
-  stateId: 'stateId',
-  status: 'status'
+  stateId: 'stateId'
 };
 
 exports.Prisma.FootageVersionScalarFieldEnum = {
@@ -308,7 +337,6 @@ exports.Prisma.EditedScalarFieldEnum = {
   updatedAt: 'updatedAt',
   approved: 'approved',
   description: 'description',
-  ownerId: 'ownerId',
   stateId: 'stateId',
   status: 'status'
 };
@@ -329,7 +357,6 @@ exports.Prisma.SoundFolderScalarFieldEnum = {
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
   projectId: 'projectId',
   parentFolderId: 'parentFolderId'
 };
@@ -339,8 +366,7 @@ exports.Prisma.SoundScalarFieldEnum = {
   title: 'title',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  ownerId: 'ownerId',
-  projectId: 'projectId',
+  assetId: 'assetId',
   folderId: 'folderId'
 };
 
@@ -359,7 +385,7 @@ exports.Prisma.SoundVersionScalarFieldEnum = {
 exports.Prisma.StoryboardScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  projectId: 'projectId',
+  assetId: 'assetId',
   scriptId: 'scriptId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -417,6 +443,30 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.OrganizationRole = exports.$Enums.OrganizationRole = {
+  OWNER: 'OWNER',
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER'
+};
+
+exports.ProjectRole = exports.$Enums.ProjectRole = {
+  OWNER: 'OWNER',
+  PRODUCER: 'PRODUCER',
+  DIRECTOR: 'DIRECTOR',
+  DEPARTMENT_LEAD: 'DEPARTMENT_LEAD',
+  MEMBER: 'MEMBER'
+};
+
+exports.AssetType = exports.$Enums.AssetType = {
+  SCRIPT: 'SCRIPT',
+  ANIMATION: 'ANIMATION',
+  FOOTAGE: 'FOOTAGE',
+  EDITED: 'EDITED',
+  SOUND: 'SOUND',
+  STORYBOARD: 'STORYBOARD',
+  DESIGN: 'DESIGN'
+};
+
 exports.ScriptStatus = exports.$Enums.ScriptStatus = {
   DRAFT: 'DRAFT',
   IN_REVIEW: 'IN_REVIEW',
@@ -448,13 +498,18 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
+  Organization: 'Organization',
+  OrganizationMember: 'OrganizationMember',
   Project: 'Project',
+  UserProject: 'UserProject',
+  JobPosition: 'JobPosition',
+  UserJobPosition: 'UserJobPosition',
+  Asset: 'Asset',
   Script: 'Script',
   Scene: 'Scene',
   DesignCategory: 'DesignCategory',
   DesignSubClass: 'DesignSubClass',
   DesignSubClassVersion: 'DesignSubClassVersion',
-  UserProject: 'UserProject',
   AnimationState: 'AnimationState',
   Animation: 'Animation',
   AnimationVersion: 'AnimationVersion',

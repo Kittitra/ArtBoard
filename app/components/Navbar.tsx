@@ -37,7 +37,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const fetchProject = async () => {
-            const project = await getProjectById(projectId.toString());
+            const project = await getProjectById(projectId);
             if(!project?.name){
                 setTitle("");
                 return;

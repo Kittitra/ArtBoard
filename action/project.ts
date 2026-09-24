@@ -12,19 +12,13 @@ export const createProject = async (values: z.infer<typeof ProjectSchema>) => {
         return {error: "invalid field!"};
     }
 
-    const { name, userId } = validateFields.data;
+    const { name, orgId } = validateFields.data;
 
     const newProject = await db.project.create({
         data: {
             name,
-            projectMembers:{
-                create: [
-                    {
-                        userId,
-                        role: "owner",
-                    },
-                ]
-            }
+            organizationId: orgId,
+
         }
     })
 

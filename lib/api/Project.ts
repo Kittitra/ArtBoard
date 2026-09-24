@@ -28,8 +28,10 @@ export const getProjectByUserId = async (userId: string) => {
   try {
         const res = await fetch(`/api/project/user/${userId}`);
         const data = await res.json();
+        console.log("data : " , data)
         return data;
     } catch (error) {
         return { error: "Failed to fetch project" };
     }
 };
+

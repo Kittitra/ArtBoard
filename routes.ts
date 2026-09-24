@@ -15,7 +15,7 @@ export const artworkRoute = "/auth/artwork";
 
 export const profileRoute = "/auth/profile";
 
-export const DEFAULT_LOGIN_REDIRECT = "/auth/home"
+export const DEFAULT_LOGIN_REDIRECT = "/auth/organization"
 
 export const LoggedInRoute = [
     "/auth/",

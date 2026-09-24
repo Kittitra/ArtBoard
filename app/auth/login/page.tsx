@@ -47,7 +47,7 @@ const page = (props: Props) => {
         //   setSuccess(data?.success);
           if (data?.success) {
             setSuccess("Login successful!");
-            router.push("/auth/project"); // redirect manual
+            // router.push("/auth/home"); // redirect manual
           }
         })
         .catch((_error) => {

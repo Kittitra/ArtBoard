@@ -94,7 +94,7 @@ model Authenticator {
 model Organization {
   id        String   @id @default(cuid())
   name      String
-
+  ownerId   String
   members   OrganizationMember[]
   projects  Project[]
 
