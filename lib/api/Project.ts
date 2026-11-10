@@ -11,7 +11,7 @@ export const getAllProject = async () => {
 
 export const getProjectById = async (projectId: string) => {
    try {
-        const res = await fetch(`/api/project/${projectId}`);
+        const res = await fetch(`/api/script/project/${projectId}`);
         
         if (!res.ok) {  // ← เพิ่มตรงนี้
             return null;
@@ -34,4 +34,3 @@ export const getProjectByUserId = async (userId: string) => {
         return { error: "Failed to fetch project" };
     }
 };
-

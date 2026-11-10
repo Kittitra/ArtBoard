@@ -7,36 +7,34 @@ import { revalidatePath } from "next/cache"
 import { ScriptStatus } from "@/app/generated/prisma";
 
 export const createDraft = async (values: z.infer<typeof ScriptSchema>) => {
-    const validateFields = ScriptSchema.safeParse(values);
+  const validateFields = ScriptSchema.safeParse(values);
+  if (!validateFields.success) return { error: "invalid field!" };
 
-    if (!validateFields.success) {
-        return {error: "invalid field!"};
-    }
+  const { title, userId, projectId } = validateFields.data;
 
-    const { title, userId, projectId } = validateFields.data;
-
+  try {
     const exitDraft = await db.script.findFirst({
-        where: {
-            title,
-            ownerId: userId,
-            projectId
-        }
-    })
+      where: { title, asset: { projectId } },
+      select: { id: true },
+    });
+    if (exitDraft) return { error: "Script already exists!" };
 
-    if (exitDraft) {
-        return {error: "Script already exists!"};
-    }
+    const newDraft = await db.asset.create({
+      data: {
+        projectId,
+        title,
+        type: "SCRIPT",
+        createdById: userId,
+        script: { create: { title } },
+      },
+      include: { script: true },
+    });
 
-    const newDraft = await db.script.create({
-        data: {
-            title,
-            ownerId: userId,
-            projectId
-        }
-    })
-
-    return {success: "Create Script Success", script: newDraft}
-}
+    return { success: "Create Script Success", script: newDraft.script };
+  } catch {
+    return { error: "Failed to create script." };
+  }
+};
 
 export async function createScript(data: {
   title: string
@@ -132,7 +130,7 @@ export async function getScript(id: string) {
 // โหลดรายการ Script ทั้งหมด
 export async function getScripts(userId: string) {
   return await db.script.findMany({
-    where: { ownerId: userId },
+    where: { asset: { createdById: userId } },
     orderBy: { updatedAt: "desc" },
     select: {
       id: true,
@@ -146,7 +144,7 @@ export async function getScripts(userId: string) {
 
 export async function getScriptFromProjectId(id: string) {
   return await db.script.findMany({
-    where: { projectId: id },
+    where: { asset: { projectId: id } },
     include: {
       scenes: { orderBy: { sceneNumber: "asc" } },
     },

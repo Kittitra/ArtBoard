@@ -56,7 +56,7 @@ const Navbar = () => {
         <div className='w-full flex justify-between items-center'>
 
             <div className='flex flex-row gap-5 justify-between items-center'>
-                <Link href={"/auth/project"}>
+                <Link href={"/"}>
                     <div className='bg-gray-600 rounded-full w-6 h-6'></div>
                 </Link>
 

@@ -8,7 +8,7 @@ export async function GET(
   const { id } = await params;  // ← await ก่อน
 
   try {
-    const script = await db.script.findUnique({
+    const script = await db.script.findMany({
       where: { id },  // ← ใช้ id ที่ได้จาก await
     //   include: {
     //     projectMembers: {

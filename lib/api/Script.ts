@@ -1,3 +1,5 @@
+import db from "../db";
+
 export const getScriptByUserId = async(userId: string) => {
     try {
         const script = await fetch(`/api/script/user/${userId}`);
@@ -19,3 +21,11 @@ export const getScriptByProjectId = async(projectId: string) => {
         return { error: "Fail to get script data." }
     }
 }
+
+export const getScriptById = async (id: string) => {
+  return db.script.findUnique({
+    where: { id },
+    include: { asset: { select: { projectId: true } } },
+  });
+};
+// ใน Editor ใช้ draft.asset?.projectId ได้

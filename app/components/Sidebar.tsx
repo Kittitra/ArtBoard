@@ -10,53 +10,54 @@ type Props = {}
 const Sidebar = (props: Props) => {
 
        const pathname = usePathname()
-       const secment = pathname.split('/')[3]; // Get the third segment of the URL
+       const org = pathname.split('/')[3]; // Get the third segment of the URL
+       const project = pathname.split('/')[5]; 
 
-       const category = pathname.split('/')[4]; // Get the fourth segment of the URL
+       const category = pathname.split('/')[6]; // Get the fourth segment of the URL
 
     const arrIcon = [
         {
             title: "Script",
             icon: "/icons/Script.png",
-            link: `/auth/project/${secment}/script`,
+            link: `/auth/org/${org}/project/${project}/script`,
             category: "script"
         },
         {
             title: "Design",
             icon: "/icons/Design.png",
-            link: `/auth/project/${secment}/design`,
+            link: `/auth/org/${org}/project/${project}/design`,
             category: "design"
         },
         {
             title: "Storyboard",
             icon: "/icons/Storyboard.png",
-            link: `/auth/project/${secment}/storyboard` ,
+            link: `/auth/org/${org}/project/${project}/storyboard` ,
             category: "storyboard"
         },
         {
             title: "Animation",
             icon: "/icons/Animation.png",
-            link: `/auth/project/${secment}/animation`,
+            link: `/auth/org/${org}/project/${project}/animation`,
             category: "animation"
         },
         {
             title: "Footages",
             icon: "/icons/Footages.png",
-            link: `/auth/project/${secment}/footages`,
+            link: `/auth/org/${org}/project/${project}/footages`,
             category: "footages"
 
         },
         {
             title: "Sounds",
             icon: "/icons/Sounds.png",
-            link: `/auth/project/${secment}/sounds`,
+            link: `/auth/org/${org}/project/${project}/sounds`,
             category: "sounds"
 
         },
         {
             title: "Edited",
             icon: "/icons/Edited.png",
-            link: `/auth/project/${secment}/edited`,
+            link: `/auth/org/${org}/project/${project}/edited`,
             category: "edited"
         },
         

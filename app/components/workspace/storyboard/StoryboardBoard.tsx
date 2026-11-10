@@ -61,7 +61,7 @@ type Props = {
 
 const StoryboardBoard = ({ storyboardId: storyboardIdProp, projectPath }: Props) => {
   const pathname = usePathname();
-  const boardPath = storyboardIdProp ?? pathname.split("/")[5];
+  const boardPath = storyboardIdProp ?? pathname.split("/")[7];
 
   const [shots, setShots] = useState<ShotWithRelations[]>([]);
   const [loading, setLoading] = useState(false);
@@ -194,13 +194,13 @@ const StoryboardBoard = ({ storyboardId: storyboardIdProp, projectPath }: Props)
   };
 
   useEffect(() => {
-    setLoading(true);
-    getScriptFromProjectId(projectId.current)
-      .then((script) => setScripts(script))
-      .catch(() => setLoadError("can't load the script"))
-      .finally(() => setLoading(false))
+      setLoading(true);
+      getScriptFromProjectId(projectId.current)
+        .then((script) => setScripts(script))
+        .catch(() => setLoadError("can't load the script"))
+        .finally(() => setLoading(false))
     }, [])
-    console.log("script: ", scripts)
+    // console.log("script: ", scripts)
 
   // ---- render ----
   if (!boardPath) {
@@ -436,11 +436,14 @@ function FrameCard({
         }`}
       >
         {imageUrl ? (
-          <Dialog>
+          <Dialog >
             <DialogTrigger onClick={(e) => e.stopPropagation()}>
               <img src={imageUrl} alt={`Shot ${index + 1}`} className="w-full h-full object-cover" />
             </DialogTrigger>
-            <DialogContent className="flex-col h-screen overflow-auto">
+            <DialogContent className="flex-col h-fit overflow-auto">
+              <DialogTitle>
+                
+              </DialogTitle>
               <DialogHeader>
                 <DialogDescription>
                   <img src={imageUrl} alt={`Shot ${index + 1}`} className="w-full object-contain" />

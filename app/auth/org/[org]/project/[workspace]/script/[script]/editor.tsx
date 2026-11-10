@@ -43,6 +43,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useUnsavedChanges } from "@/hooks/use-unsaved-changes"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { getScriptById } from "@/lib/api/Script";
 
 Font.register({
   family: "Sarabun",
@@ -181,9 +182,12 @@ export default function Editor( { draft }: DraftProps ) {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const [title, setTitle] = useState("")
   
+  
   const path = usePathname();
   
-  const scriptId = path.split("/")[5];
+  const org = path.split("/")[3];
+  const projectId = path.split("/")[5];
+  const scriptId = path.split("/")[7];
 
   const user = useCurrentUser();
 
@@ -195,6 +199,8 @@ export default function Editor( { draft }: DraftProps ) {
     const file = e.target.files?.[0]
     if (file) importPDF(file)
   }
+
+  const script = Array.isArray(draft) ? draft[0] : draft;
 
   const editor = useEditor({
     extensions: [
@@ -211,7 +217,7 @@ export default function Editor( { draft }: DraftProps ) {
       
       
     ],
-    content: draft?.content || "",
+    content: script?.content ?? "",
     immediatelyRender: false,
     editorProps: {
       attributes: {
@@ -417,11 +423,12 @@ export default function Editor( { draft }: DraftProps ) {
       }
 
       const content = JSON.parse(JSON.stringify(editor?.getJSON()))
+      console.log("draft projectId :", draft)
 
       const result = await createDraft({
         title,
         userId: user.id,
-        projectId: draft?.projectId,
+        projectId
       })
 
       if (result.error || !result.script) {
@@ -431,7 +438,7 @@ export default function Editor( { draft }: DraftProps ) {
 
       await updateScript({ id: result.script.id, content })
 
-      router.push(`/auth/project/${draft?.projectId}/script/${result.script.id}`)
+      router.push(`/auth/org/${org}/project/${draft?.projectId}/script/${result.script.id}`)
 
       setSuccess(result.success ?? "Save Success")
       setHasUnsavedChanges(false)
@@ -462,7 +469,13 @@ export default function Editor( { draft }: DraftProps ) {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload)
   }, [hasUnsavedChanges])
 
-  
+  // useEffect(() => {
+  //   getScriptById(scriptId).then((data) => {
+      
+  //   })
+  // }, [scriptId])
+
+  console.log("draft : ", draft)
 
 
   if (!editor) return null;
@@ -540,9 +553,7 @@ export default function Editor( { draft }: DraftProps ) {
         </div>
 
         <div className="group flex flex-row items-center w-fit pr-20 gap-7">
-          
 
-            
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <div>

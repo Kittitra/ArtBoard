@@ -41,6 +41,7 @@ import {
 import { SlPeople } from "react-icons/sl";
 import { Prisma } from "@/app/generated/prisma";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import Link from "next/link";
 
 type OrganizationWithMembers =
   Prisma.OrganizationGetPayload<{
@@ -116,7 +117,7 @@ const Home = () => {
       }, 3000);
   };
 
-  console.log("org: ", org)
+  // console.log("org: ", org)
 
 
   return (
@@ -152,7 +153,9 @@ const Home = () => {
               <CardHeader className="flex flex-col">
                 <CardTitle className="w-full flex flex-row justify-between">
                   <span className="cursor-pointer">
-                    {item.name}
+                    <Link  href={`/auth/org/${item.id}/project`}>
+                      {item.name}
+                    </Link>
                   </span>
 
                   <DropdownMenu>
@@ -161,7 +164,9 @@ const Home = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuGroup>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <Link href={`/auth/org//${item.id}/orgsetting`}>
+                          <DropdownMenuItem>Edit</DropdownMenuItem>
+                        </Link>
                         <DropdownMenuItem className="text-destructive ">Delete</DropdownMenuItem>
                       </DropdownMenuGroup>
                     </DropdownMenuContent>

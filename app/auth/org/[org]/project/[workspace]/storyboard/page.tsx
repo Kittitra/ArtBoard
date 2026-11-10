@@ -1,6 +1,5 @@
 "use client";
 
-
 import SideBarDesign from '@/app/components/workspace/design/SideBarDesign';
 import SideBarStoryBoard from '@/app/components/workspace/storyboard/SideBarStoryBoard';
 import SideBarWorkFlow from '@/app/components/SideBarVideo'
@@ -10,30 +9,28 @@ import { useCurrentUser } from '@/hooks/use-current-user';
 import { usePathname } from 'next/navigation';
 import { createNewStoryboard, getStoryboardByProjectId } from '@/action/storyboard';
 import { AlertBasic } from '@/app/components/Aleart';
-import StoryboardBoard from '@/app/components/workspace/storyboard/StoryboardBoard';
-import { getStoryboard } from "@/action/storyboard"; // เพิ่ม export นี้ในไฟล์เดียวกับ createNewStoryboard
-import type { ShotWithRelations } from "@/action/storyboard";
+import { Button } from '@/components/ui/button';
+
 
 type Props = {}
 
 const page = (props: Props) => {
     const [storyboard, setStoryboard] = useState<Storyboard[]>([]);
+    const [storyboardName, setStoryboardName] = useState<string>("");
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, startTransition] = useTransition();   
     const [aleart, setAleart] = useState(false);
-    const [shots, setShots] = useState<ShotWithRelations[]>([]);
-    const [boardLoading, setBoardLoading] = useState(false);
-
-   
     
     const user = useCurrentUser();
 
     const path = usePathname();
-    const projectPath = path.split("/")[3];
-    const pathType = path.split("/")[4];
-    const boardPath = path.split("/")[5];
+    const orgPath = path.split("/")[3];
+    const projectPath = path.split("/")[5];
+    const pathType = path.split("/")[6];
+    const boardPath = path.split("/")[6];
 
+    const storyboardId = storyboard.find((item) => item.title === storyboardName)?.id || "";
 
     const handleAleart = () => {
         setAleart(true);
@@ -74,7 +71,8 @@ const page = (props: Props) => {
                 setError("Failed to create storyboard.");
             })
             .finally(() => {
-                // setStoryboardName("");
+                console.log(storyboardName, user.id, projectPath)
+                setStoryboardName("");
                 handleAleart();
             });
         });
@@ -82,33 +80,18 @@ const page = (props: Props) => {
 
     useEffect(() => {
         getStoryboardByProjectId(projectPath)
-        .then((data) => {
-            if (data?.storyboards) {
-                setStoryboard(data.storyboards);
-            } else {
-                setError(data?.error || "Failed to fetch storyboards.");
-            }
-        })
+            .then((data) => {
+                if (data?.storyboards) {
+                    setStoryboard(data.storyboards);
+                } else {
+                    setError(data?.error || "Failed to fetch storyboards.");
+                }
+            })
         .catch(() => {
             setError("Failed to fetch storyboards.");
         });
     }, [])
 
-     useEffect(() => {
-        if (!boardPath) {
-            setShots([]);
-            return;
-        }
-
-        setBoardLoading(true);
-        getStoryboard(boardPath)
-            .then((data) => setShots(data.shots))
-            .catch(() => {
-                setError("Failed to load storyboard.");
-                handleAleart();
-            })
-            .finally(() => setBoardLoading(false));
-    }, [boardPath]);
 
    
   return (
@@ -120,13 +103,20 @@ const page = (props: Props) => {
             projectPath={projectPath}
             pathType={pathType}
             boardPath={boardPath}
+            orgPath={orgPath}
         />
-        <StoryboardBoard
-            key={boardPath}
-            storyboardId={boardPath}
-            projectPath={projectPath}
-            // initialShots={shots}
-        />
+
+        {storyboardId && (
+            <div className="w-full flex justify-center items-center">
+                <div className="flex flex-col items-center gap-5 text-2xl font-bold text-white">
+                    <span className="text-2xl font-normal text-white">{storyboardName}</span>
+                    <span className="text-lg font-normal text-white">
+                        No storyboard yet.
+                    </span>
+                    <Button className='text-xl p-5 py-5 cursor-pointer'>Add new</Button>
+                </div>
+            </div>
+        )}
 
         <div
             className={`absolute bottom-4 -right-10

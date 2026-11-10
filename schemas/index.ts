@@ -40,6 +40,9 @@ export const ProjectSchema = z.object({
     orgId: z.string().min(1, {
         message: "Organization ID is required"
     }),
+    ownerId: z.string().min(1, {
+        message: "owner ID is required"
+    }),
 });
 
 export const OrganizationSchema = z.object({
@@ -84,6 +87,19 @@ export const DesignVersionSchema = z.object({
     }),
     ownerId: z.string().min(1, {
         message: "Owner ID is required"
+    })
+})
+
+
+export const StoryboardSchema = z.object({
+    title: z.string().min(1, {
+        message: "title is required"
+    }),
+    userId: z.string().min(1, {
+        message: "user ID is required"
+    }),
+    projectId: z.string().min(1, {
+        message: "Project ID is required"
     })
 })
 

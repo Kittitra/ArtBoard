@@ -11,24 +11,26 @@ import { usePathname } from 'next/navigation';
 import { createDesignCategory, createDesignSubClass, createDesignVersion, updateDesignVersionContent } from '@/action/design';
 import { getDesignCategoryByProjectId, getDesignVersionByVersionId } from '@/lib/api/Design';
 import { Version } from '@/lib/type';
+import { DesignCategory, DesignSubClass } from '@/app/generated/prisma';
+import Link from 'next/link';
 
 
 
-interface SubClass {
-    id:string
-    name: string
-    ownerId: string
-    categoryId: string | null
-    versions: Version[]
-}
+// interface SubClass {
+//     id:string
+//     name: string
+//     ownerId: string
+//     categoryId: string | null
+//     versions: Version[]
+// }
 
-interface DesignCategory {
-    id:string
-    name: string
-    ownerId: string
-    projectId: string
-    designs?: SubClass[]  // ✅ เพิ่ม subclass array ใน DesignCategory
-}
+// interface DesignCategory {
+//     id:string
+//     name: string
+//     ownerId: string
+//     projectId: string
+//     designs?: SubClass[]  // ✅ เพิ่ม subclass array ใน DesignCategory
+// }
 
 const page = () => {
 
@@ -41,7 +43,7 @@ const page = () => {
   const [newVersionName, setNewVersionName] = useState("");
   const [isPending, startTransition] = useTransition();
   const [designCategories, setDesignCategories] = useState<DesignCategory[]>([]);
-  const [designCategoriesSubClass, setDesignCategoriesSubClass] = useState<SubClass[]>([]);
+  const [designCategoriesSubClass, setDesignCategoriesSubClass] = useState<DesignSubClass[]>([]);
   const [selected, setSelected] = useState(designCategories[0]?.name || ""); // ✅ ตั้งค่าเริ่มต้นเป็นชื่อของ design category แรก
   const [loading, setLoading] = React.useState(true);
 
@@ -49,8 +51,9 @@ const page = () => {
 
   const path = usePathname();
   
-  const projectPath = path.split("/")[3];
-  const versionPath = path.split("/")[5];
+  const org = path.split("/")[3];
+  const projectPath = path.split("/")[5];
+  const versionPath = path.split("/")[7];
 
   const handleAleart = () => {
       setAleart(true);
@@ -241,12 +244,19 @@ const page = () => {
         handleCreateNewVersion={handleCreateNewVersion}
         setNewVersionName={setNewVersionName}
       />
-      <div className='flex-1 bg-custom'>
-        {version && version.length > 0 ? (
-            <Design versions={version} updateVersionData={updateVersionData} />
-        ):(
-            <></>
-        )}
+      <div className='flex-1 bg-custom flex flex-col h-full relative'>
+        <div className='w-full bg-white h-10 absolute z-30 mt-1 flex justify-start items-center p-2'>
+            <Link href={`/auth/org/${org}/project/${projectPath}/design/${versionPath}`}>
+                <span>Root</span>
+            </Link>
+        </div>
+            {version && version.length > 0 ? (
+                <div className='mt-10'>
+                    <Design versions={version} updateVersionData={updateVersionData} />
+                </div>
+            ):(
+                <></>
+            )}
       </div>
 
       <div

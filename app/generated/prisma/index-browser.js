@@ -175,15 +175,24 @@ exports.Prisma.AuthenticatorScalarFieldEnum = {
 exports.Prisma.OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  ownerId: 'ownerId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  logoUrl: 'logoUrl',
+  timezone: 'timezone',
+  createdAt: 'createdAt'
 };
 
-exports.Prisma.OrganizationMemberScalarFieldEnum = {
-  organizationId: 'organizationId',
+exports.Prisma.MembershipScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
   userId: 'userId',
-  role: 'role'
+  organizationId: 'organizationId'
+};
+
+exports.Prisma.InviteScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  role: 'role',
+  organizationId: 'organizationId',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ProjectScalarFieldEnum = {
@@ -191,6 +200,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   organizationId: 'organizationId',
   name: 'name',
   description: 'description',
+  ownerId: 'ownerId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -443,10 +453,11 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-exports.OrganizationRole = exports.$Enums.OrganizationRole = {
+exports.Role = exports.$Enums.Role = {
   OWNER: 'OWNER',
   ADMIN: 'ADMIN',
-  MEMBER: 'MEMBER'
+  MEMBER: 'MEMBER',
+  VIEWER: 'VIEWER'
 };
 
 exports.ProjectRole = exports.$Enums.ProjectRole = {
@@ -499,7 +510,8 @@ exports.Prisma.ModelName = {
   VerificationToken: 'VerificationToken',
   Authenticator: 'Authenticator',
   Organization: 'Organization',
-  OrganizationMember: 'OrganizationMember',
+  Membership: 'Membership',
+  Invite: 'Invite',
   Project: 'Project',
   UserProject: 'UserProject',
   JobPosition: 'JobPosition',

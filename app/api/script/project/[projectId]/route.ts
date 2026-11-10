@@ -3,20 +3,21 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { projectId: string } }
+  { params }: { params: Promise<{ projectId: string }> }  // ← เปลี่ยน type เป็น Promise
 ) {
+  const { projectId } = await params;  // ← await ก่อน
+
   try {
     const script = await db.script.findMany({
-      where: {
-       projectId: params.projectId
-      },
+      where: { asset: { projectId } },  // ← ใช้ id ที่ได้จาก await
     });
+
+    if (!script) {
+      return Response.json({ error: "Script not found" }, { status: 404 });
+    }
 
     return Response.json(script);
   } catch (error) {
-    return Response.json(
-      { error: "Failed to fetch script" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }

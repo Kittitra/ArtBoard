@@ -1,7 +1,7 @@
 
 'use server';
 
-import { CameraMovement, ShotType } from "@/app/generated/prisma";
+import { AssetType, CameraMovement, ShotType } from "@/app/generated/prisma";
 import  db  from "@/lib/db";
 import Mux from "@mux/mux-node";
 import { revalidatePath } from "next/cache";
@@ -9,14 +9,10 @@ import { v2 as cloudinary } from "cloudinary"
 
 // import type { ShotType, CameraMovement } from "@prisma/client";
 
-export const getStoryboardByProjectId = async (
-  projectId: string
-) => {
+export const getStoryboardByProjectId = async (projectId: string) => {
   try {
     const storyboards = await db.storyboard.findMany({
-      where: {
-        projectId,
-      },
+      where: { asset: { projectId } },
       orderBy: { createdAt: "desc" },
     });
     return { storyboards };
@@ -32,29 +28,33 @@ export const createNewStoryboard = async ({
 }: {
   title: string;
   projectId: string;
-    ownerId: string;
+  ownerId: string;
 }) => {
-
-  const exitingStoryboard = await db.storyboard.findFirst({
-    where: {
-      title,
-      projectId,
-    },
+  // เช็คชื่อซ้ำภายใน project เดียวกัน (ผ่าน asset เพราะ Storyboard ไม่มี projectId)
+  const existingStoryboard = await db.storyboard.findFirst({
+    where: { title, asset: { projectId } },
+    select: { id: true },
   });
 
-  if(exitingStoryboard?.title === title){
+  if (existingStoryboard) {
     return { error: "Storyboard name already exists." };
   }
-  
+
   try {
-    const newStoryboard = await db.storyboard.create({
-        data: {
-            title,
-            projectId,
-        },
+    // สร้าง Asset กับ Storyboard พร้อมกันในคำสั่งเดียว (เกิดพร้อมกันหรือไม่เกิดเลย)
+    const asset = await db.asset.create({
+      data: {
+        projectId,
+        createdById: ownerId,
+        type: "STORYBOARD",
+        title,
+        storyboard: { create: { title } }, // ผูก assetId ให้อัตโนมัติ
+      },
+      include: { storyboard: true },
     });
+
     revalidatePath(`/auth/project/${projectId}/storyboard`);
-    return { newStoryboard, success: "Storyboard created successfully." };
+    return { newStoryboard: asset.storyboard, success: "Storyboard created successfully." };
   } catch {
     return { error: "Failed to create storyboard." };
   }
@@ -252,3 +252,36 @@ export async function uploadFrameImage(shotId: string, formData: FormData) {
 
   return attachFrameImage(shotId, uploaded.secure_url);
 }
+
+
+// export const getStoryboardByProjectId = async (
+//   values: z.infer<typeof StoryboardSchema>
+// ) => {
+
+//     const validateFields = StoryboardSchema.safeParse(values);
+//   if (!validateFields.success) return { error: "invalid field!" };
+
+//   const { title, userId, projectId } = validateFields.data;
+
+
+//   const existingStoryboard = await db.storyboard.findFirst({
+//       where: { title, asset: { projectId } },
+//     });
+//     if (existingStoryboard) return { error: "Design category already exists!" };
+
+//     const asset = await db.asset.create({
+//       data: {
+//         projectId,
+//         createdById: userId,
+//         type: "STORYBOARD",
+//         title,
+//         storyboard: { create: { title } }, // ผูก assetId ให้อัตโนมัติ
+//       },
+//       include: { designCategory: true },
+//     });
+
+//     return {
+//       success: "Create Design Category Success",
+//       designCategory: asset.designCategory,
+//     };
+// };

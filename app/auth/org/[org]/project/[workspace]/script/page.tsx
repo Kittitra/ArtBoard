@@ -49,7 +49,8 @@ const Script = () => {
 
   const path = usePathname();
 
-  const moviePath = path.split("/")[3];
+  const projectPath = path.split("/")[5];
+  const org = path.split("/")[3];
 
  const handleCreateScript = async () => {
     if (!title.trim()) {
@@ -67,7 +68,7 @@ const Script = () => {
       createDraft({
         title,
         userId: user.id,
-        projectId: moviePath,
+        projectId: projectPath,
 
       })
         .then((data) => {
@@ -86,7 +87,7 @@ const Script = () => {
           setError(data?.error);
           setSuccess(data?.success);
           handleAleart();
-          router.push(`/auth/project/${moviePath}/script/${newScript.id}`);
+          router.push(`/auth/org/${org}/project/${projectPath}/script/${newScript.id}`);
         })
         .catch(() => {
           setError("Failed to create script.");
@@ -122,9 +123,9 @@ const Script = () => {
   useEffect(() => {
       if (!user?.id) return; // 👈 รอ user มาก่อน
 
-      getProjectById(moviePath).then((data) => {
-          setScript(data.scripts);
-          // console.log("project: ", data.scripts); // 👈 log ตรงนี้
+      getProjectById(projectPath).then((data) => {
+          setScript(data);
+          // console.log("project: ", data); // 👈 log ตรงนี้
       }).finally(() => {
           setLoading(false);
       });
@@ -194,7 +195,7 @@ const Script = () => {
               {script.map((item, index) => (
                 <div key={index} className='relative flex flex-col w-60 h-32 bg-white'>
                   {/* Link ครอบแค่ส่วน content ไม่ครอบ dropdown */}
-                  <Link href={`/auth/project/${moviePath}/script/${item.id}`} className="flex flex-col h-full">
+                  <Link href={`/auth/org/${org}/project/${projectPath}/script/${item.id}`} className="flex flex-col h-full">
                     <div className='flex flex-col p-5 h-full justify-between items-start'>
                       <span className='text-black font-bold'>{item.title}</span>
                       <span className='text-gray-500 text-sm mt-10'>

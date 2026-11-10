@@ -1,0 +1,5 @@
+fixcode fetch from assetId in design 31/10/69
+
+fix path in stroryboard
+
+design function 

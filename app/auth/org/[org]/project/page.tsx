@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -15,12 +16,13 @@ import { useCurrentUser } from '@/hooks/use-current-user'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { AlertBasic } from '@/app/components/Aleart'
-import { createProject } from '@/action/project'
-import { getProjectByUserId } from '@/lib/api/Project'
+import { createProject, getProjectsWithAccess } from '@/action/project'
 import { Project } from '@/app/generated/prisma'
+import { usePathname } from 'next/navigation'
 
 type Props = {}
 
+type ProjectWithAccess = Project & { isMember: boolean }
 
 const page = (props: Props) => {
     const [name, setName] = React.useState("");
@@ -28,38 +30,52 @@ const page = (props: Props) => {
     const [error, setError] = React.useState<string | undefined>("");
     const [success, setSuccess] = React.useState<string | undefined>("");
     const [aleart, setAleart] = React.useState(false);
-    const [project, setProject] = React.useState<Project[]>([]);
-
+    const [project, setProject] = React.useState<ProjectWithAccess[]>([]);
     const [loading, setLoading] = React.useState(true);
+    // ชื่อ project ที่ผู้ใช้พยายามเข้าแต่ยังไม่ได้รับเชิญ (null = dialog ปิดอยู่)
+    const [blockedProjectName, setBlockedProjectName] = React.useState<string | null>(null);
 
     const user = useCurrentUser();
 
+    const path = usePathname();
+
+    const orgPath = path.split("/")[3];
+
+    // ถ้าไม่ใช่สมาชิก project → ยกเลิกการนำทางแล้วเปิด dialog แทน
+    const guardAccess = (e: React.MouseEvent, item: ProjectWithAccess) => {
+        if (item.isMember) return;
+        if(item.ownerId === user?.id) return
+        e.preventDefault();
+        setBlockedProjectName(item.name);
+    };
+
     const handleCreateProject = async () => {
         if (!name.trim()) {
-            setError("Project name is required"); // 👈 error ตรงนี้
+            setError("Project name is required");
             handleAleart();
             return;
         }
 
         setError("");
         setSuccess("");
-        
-        
+
         startTransition(() => {
             createProject({
                 name,
-                orgId: "",
+                orgId: orgPath,
+                ownerId: user?.id || ""
             })
             .then((data) => {
                 const newProject = data?.project;
-                
+
                 if (newProject) {
-                    setProject((prev) => [...prev, newProject]); // ✅ เพิ่มทันที
+                    // ผู้สร้างถูกบันทึกเป็น OWNER ใน createProject แล้ว จึงเข้าได้ทันที
+                    setProject((prev) => [...prev, { ...newProject, isMember: true }]);
                 }
                 setError(data?.error);
                 setSuccess(data?.success);
                 handleAleart();
-            }).catch((error) => {
+            }).catch(() => {
                 setError("Failed to create project. Please try again.");
                 handleAleart();
             }).finally(() => {
@@ -77,18 +93,16 @@ const page = (props: Props) => {
     };
 
     useEffect(() => {
-        if (!user?.id) return; // 👈 รอ user มาก่อน
+        if (!user?.id) return; // รอ user มาก่อน
 
-        getProjectByUserId(user.id).then((data) => {
+        getProjectsWithAccess(orgPath, user.id).then((data) => {
             setProject(data);
-            // console.log("project: ", data); // 👈 log ตรงนี้
         }).finally(() => {
-
             setLoading(false);
         });
-    }, [user?.id]); // 👈 สำคัญมาก
+    }, [user?.id]);
 
-    console.log("project: ", project)
+    // console.log(project)
 
   return (
     <div className='flex flex-col bg-custom w-full h-screen px-15 !pt-[5rem] relative overflow-x-hidden '>
@@ -100,7 +114,7 @@ const page = (props: Props) => {
             </div>
         </div>
 
-        <div className='w-full flex flex-row gap-5 mt-10 flex-wrap '> 
+        <div className='w-full flex flex-row gap-5 mt-10 flex-wrap '>
 
             <Dialog>
                 <DialogTrigger>
@@ -115,7 +129,7 @@ const page = (props: Props) => {
                     <DialogDescription>
                         Enter the title of your project.
                     </DialogDescription>
-                    <Input 
+                    <Input
                         placeholder="Project Title"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -133,7 +147,7 @@ const page = (props: Props) => {
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
-            {loading ? 
+            {loading ?
 
                 <div className="w-full max-w-sm rounded-md border border-white p-4">
                     <div className="flex animate-pulse space-x-4">
@@ -149,16 +163,22 @@ const page = (props: Props) => {
                         </div>
                     </div>
                 </div>
-            
-            : 
+
+            :
                 <>
-                     {project.map((items, index) => (
+                    {project.map((items) => (
                         <div key={items.id} className='w-64 h-42 bg-white rounded-lg flex flex-col justify-start items-start p-5 relative'>
-                            <Link href={`/auth/project/${items.id.toLowerCase()}/script`}>
+                            <Link
+                                href={`/auth/org/${orgPath}/project/${items.id}/script`}
+                                onClick={(e) => guardAccess(e, items)}
+                            >
                                 <span className='text-black hover:cursor-pointer'>{items.name}</span>
                             </Link>
                             <span className='text-gray-500 text-sm mt-22'>Create date: {new Date(items.createdAt).toLocaleDateString()}</span>
-                            <Link href={`/auth/${items.id.toLowerCase()}/settings`}>
+                            <Link
+                                href={`/auth/org/${orgPath}/project/projectsetting/${items.id}`}
+                                onClick={(e) => guardAccess(e, items)}
+                            >
                                 <span className='absolute bottom-2 right-2 hover:cursor-pointer'>⚙️</span>
                             </Link>
                         </div>
@@ -166,7 +186,25 @@ const page = (props: Props) => {
                 </>
             }
         </div>
-           
+
+        {/* Dialog สำหรับผู้ที่ยังไม่ได้รับเชิญเข้า project */}
+        <Dialog
+            open={blockedProjectName !== null}
+            onOpenChange={(open) => { if (!open) setBlockedProjectName(null); }}
+        >
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>ยังไม่ได้รับคำเชิญ</DialogTitle>
+                    <DialogDescription>
+                        คุณยังไม่ได้รับคำเชิญให้เข้าร่วม project &ldquo;{blockedProjectName}&rdquo;
+                        กรุณาติดต่อเจ้าของ project เพื่อขอเข้าร่วม
+                    </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <Button onClick={() => setBlockedProjectName(null)}>ตกลง</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
 
         <div
             className={`absolute bottom-4 -right-10

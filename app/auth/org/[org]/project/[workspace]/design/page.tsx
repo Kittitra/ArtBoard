@@ -11,24 +11,25 @@ import { usePathname } from 'next/navigation';
 import { createDesignCategory, createDesignSubClass, createDesignVersion, updateDesignVersionContent } from '@/action/design';
 import { getDesignCategoryByProjectId } from '@/lib/api/Design';
 import { Version } from '@/lib/type';
+import { DesignCategory, DesignSubClass } from '@/app/generated/prisma';
 
 
 
-interface SubClass {
-    id:string
-    name: string
-    ownerId: string
-    categoryId: string | null
-    versions: Version[]
-}
+// interface SubClass {
+//     id:string
+//     name: string
+//     ownerId: string
+//     categoryId: string | null
+//     versions: Version[]
+// }
 
-interface DesignCategory {
-    id:string
-    name: string
-    ownerId: string
-    projectId: string
-    designs?: SubClass[]  // ✅ เพิ่ม subclass array ใน DesignCategory
-}
+// interface DesignCategory {
+//     id:string
+//     name: string
+//     ownerId: string
+//     projectId: string
+//     designs?: SubClass[]  // ✅ เพิ่ม subclass array ใน DesignCategory
+// }
 
 const page = () => {
 
@@ -41,7 +42,7 @@ const page = () => {
   const [newVersionName, setNewVersionName] = useState("");
   const [isPending, startTransition] = useTransition();
   const [designCategories, setDesignCategories] = useState<DesignCategory[]>([]);
-  const [designCategoriesSubClass, setDesignCategoriesSubClass] = useState<SubClass[]>([]);
+  const [designCategoriesSubClass, setDesignCategoriesSubClass] = useState<DesignSubClass[]>([]);
   const [selected, setSelected] = useState(designCategories[0]?.name || ""); // ✅ ตั้งค่าเริ่มต้นเป็นชื่อของ design category แรก
   const [loading, setLoading] = React.useState(true);
 
@@ -49,7 +50,7 @@ const page = () => {
 
   const path = usePathname();
   
-  const projectPath = path.split("/")[3];
+  const projectPath = path.split("/")[5];
 
   const handleAleart = () => {
       setAleart(true);
@@ -161,9 +162,9 @@ const page = () => {
                 if (!newVersion) return;
 
                 setDesignCategories((prev) =>
-                    prev.map((category) => ({
+                    prev.map((category:any) => ({
                         ...category,
-                        designs: category.designs?.map((sub) =>
+                        designs: category.designs?.map((sub : any) =>
                             sub.id === subCategoryId
                                 ? {
                                     ...sub,
@@ -189,32 +190,32 @@ const page = () => {
         });
     }
 
-    const updateVersionData = (versionContent: any) => {
-         if(!version || version.length === 0) {
-            setError("Data is required to update version content");
-            return;
-         }
+    // const updateVersionData = (versionContent: any) => {
+    //      if(!version || version.length === 0) {
+    //         setError("Data is required to update version content");
+    //         return;
+    //      }
 
-         if(!user?.id) return;
+    //      if(!user?.id) return;
 
-        setError("");
-        setSuccess("");
+    //     setError("");
+    //     setSuccess("");
     
-        startTransition(() => {
-            updateDesignVersionContent(version[0].id, versionContent)
-            .then((data) => {
-                setError(data?.error);
-                setSuccess(data?.success);
-            })
-             .catch(() => {
-                setError("Failed to update design version content.");
-            })
-            .finally(() => {
-                handleAleart();
-            });
-        });
+    //     startTransition(() => {
+    //         updateDesignVersionContent(version[0].id, versionContent)
+    //         .then((data) => {
+    //             setError(data?.error);
+    //             setSuccess(data?.success);
+    //         })
+    //          .catch(() => {
+    //             setError("Failed to update design version content.");
+    //         })
+    //         .finally(() => {
+    //             handleAleart();
+    //         });
+    //     });
 
-    }
+    // }
 
     useEffect(() => {
       getDesignCategoryByProjectId(projectPath)

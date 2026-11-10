@@ -11,7 +11,7 @@ export async function GET(
   try {
     const designCategory = await db.designCategory.findMany({
         where: {
-            projectId
+            asset: {projectId}
         },
         include: {
           designs: {

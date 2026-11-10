@@ -11,7 +11,7 @@ export async function GET(
     const project = await db.project.findUnique({
       where: { id },  // ← ใช้ id ที่ได้จาก await
       include: {
-        projectMembers: {
+        members: {
           include: {
             user: true,
           },

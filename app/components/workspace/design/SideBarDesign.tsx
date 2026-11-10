@@ -36,9 +36,11 @@ interface SubClass {
 interface DesignCategory {
     id: string
     name: string
-    ownerId: string
-    projectId: string
+    // ownerId: string
+    // projectId: string
     designs?: SubClass[]  // ✅ เพิ่ม subclass array ใน DesignCategory
+    assetId: string | null
+
 }
 
 // interface Props {
@@ -60,6 +62,7 @@ interface Props {
     handleCreateNewVersion: (subCategoryId: string) => void
     setNewVersionName: (name: string) => void
     version: Version[]
+    
 }
 
 type DialogMethod = "re_name" | "new_sub" | null;
@@ -95,7 +98,8 @@ const SideBarDesign = ({
 
     const path = usePathname();
     const router = useRouter();
-    const projectPath = path.split("/")[3];
+    const org = path.split("/")[3];
+    const projectPath = path.split("/")[5];
 
     // const { selectedVersions, setSelectedVersions, setCurrentVersion } = useDesignStore();
 
@@ -133,7 +137,7 @@ const SideBarDesign = ({
     }
 
     const handleVersion = (v: Version[]) => {
-        router.push(`/auth/project/${projectPath}/design/${v[0].id}`); // ✅ เปลี่ยนเส้นทางไปยัง version ที่เลือก
+        router.push(`/auth/org/${org}/project/${projectPath}/design/${v[0].id}`); // ✅ เปลี่ยนเส้นทางไปยัง version ที่เลือก
         setVersion(v);
         // setCurrentVersion(v[0]);  // ← เก็บใน store แทน
         handleClose();
@@ -191,7 +195,7 @@ const SideBarDesign = ({
                             <div key={inx}>
                                 <div className={`w-full h-10 px-2 flex justify-between items-center text-sm font-medium ${click === item.name ? "bg-gray-400 text-black" : "bg-white"}`}>
                                     <span
-                                        className="px-3 truncate flex-1 min-w-0 hover:cursor-pointer"
+                                        className="px-3 truncate flex-1 min-w-0 "
                                         onClick={() => handleClick(item.id)}>
                                         {item.name}
                                     </span>

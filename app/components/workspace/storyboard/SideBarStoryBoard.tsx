@@ -34,10 +34,11 @@ interface Props {
     handleCreateNewStoryboard: (storyboardName: string) => void
     boardPath?: string
     projectPath?: string
+    orgPath?: string
     pathType?: string
 }
 
-const SideBardStoryBoard = ({ storyboards, handleCreateNewStoryboard, boardPath, projectPath, pathType }: Props) => {
+const SideBardStoryBoard = ({ storyboards, handleCreateNewStoryboard, boardPath, projectPath, pathType, orgPath }: Props) => {
     const [click, setClick] = useState(storyboards[0]?.title);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [dialogDelete, setDialogDelete] = useState(false);
@@ -79,6 +80,8 @@ const SideBardStoryBoard = ({ storyboards, handleCreateNewStoryboard, boardPath,
         setDialogAddNew(false);
     }
 
+    console.log("storyboard: ", storyboards)
+
     return (
         <>
             <div className="flex flex-col h-full justify-between w-fit">
@@ -91,7 +94,7 @@ const SideBardStoryBoard = ({ storyboards, handleCreateNewStoryboard, boardPath,
                                 {/* เพิ่ม flex-1 min-w-0 เพื่อให้ truncate ทำงาน */}
                                 <span className="px-3 truncate flex-1 w-fit min-w-0 hover:cursor-pointer"
                                 >
-                                    <Link href={`/auth/project/${projectPath}/${pathType}/${storyboard.id}`} className="w-full h-full flex items-center">
+                                    <Link href={`/auth/org/${orgPath}/project/${projectPath}/storyboard/${storyboard.id}`} className="w-full h-full flex items-center">
                                         {storyboard.title}
                                     </Link>
                                 </span>

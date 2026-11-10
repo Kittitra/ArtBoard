@@ -25,7 +25,7 @@ model User {
   sessions      Session[]
   Authenticator Authenticator[]
 
-  organizationMembers OrganizationMember[]
+  membership Membership[]
   projectMembers      UserProject[]
   userJobPosition    UserJobPosition[]
   createdAssets  Asset[] @relation("AssetCreatedBy")
@@ -91,35 +91,46 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 ///organization-----------------------------------------------------------------------------------------------------------------------------------
+
 model Organization {
-  id        String   @id @default(cuid())
+  id        String       @id @default(uuid())
   name      String
-  ownerId   String
-  members   OrganizationMember[]
+  // slug      String       @unique
+  logoUrl   String?
+  timezone  String       @default("UTC")
+  members   Membership[]
   projects  Project[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  invites   Invite[]
+  createdAt DateTime     @default(now())
 }
 
-model OrganizationMember {
-  organizationId String
+model Membership {
+  id             String       @id @default(uuid())
+  role           Role         @default(MEMBER)
   userId         String
-
-  role OrganizationRole
-
-  organization Organization @relation(fields: [organizationId],references: [id])
-
-  user User @relation( fields: [userId],references: [id])
-
-  @@id([organizationId, userId])
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  @@unique([userId, organizationId])
 }
 
-enum OrganizationRole {
+model Invite {
+  id             String       @id @default(uuid())
+  email          String
+  role           Role
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+  @@unique([email, organizationId])
+}
+
+enum Role { 
   OWNER
   ADMIN
   MEMBER
+  VIEWER 
 }
+ 
 
 ///project-----------------------------------------------------------------------------------------------------------------------------------
 model Project {
@@ -128,10 +139,11 @@ model Project {
 
   name           String
   description    String?
+  ownerId         String
 
   organization   Organization @relation(fields: [organizationId],references: [id])
 
-  projectMembers UserProject[]
+  members UserProject[]
   asset          Asset[]
   soundFolder    SoundFolder[]
   animationState   AnimationState[]
@@ -233,8 +245,6 @@ model Asset {
   sound       Sound?
   storyboard  Storyboard?
   designCategory DesignCategory?
-
-
 
   @@index([projectId, type])
 }

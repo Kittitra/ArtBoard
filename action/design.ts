@@ -6,36 +6,33 @@ import db from "@/lib/db";
 import { version } from "os";
 
 export const createDesignCategory = async (values: z.infer<typeof DesignCategorySchema>) => {
-    const validateFields = DesignCategorySchema.safeParse(values);
+  const validateFields = DesignCategorySchema.safeParse(values);
+  if (!validateFields.success) return { error: "invalid field!" };
 
-    if (!validateFields.success) {
-        return {error: "invalid field!"};
-    }
+  const { name, userId, projectId } = validateFields.data;
 
-    const { name, userId, projectId } = validateFields.data;
+  // เช็คซ้ำภายใน project เดียวกัน (ผ่าน asset เพราะ DesignCategory ไม่มี projectId)
+  const existingCategory = await db.designCategory.findFirst({
+    where: { name, asset: { projectId } },
+  });
+  if (existingCategory) return { error: "Design category already exists!" };
 
-    const existingCategory = await db.designCategory.findFirst({
-        where: {
-            name,
-            ownerId: userId,
-            projectId
-        }
-    });
+  const asset = await db.asset.create({
+    data: {
+      projectId,
+      createdById: userId,
+      type: "DESIGN",
+      title: name,
+      designCategory: { create: { name } }, // ผูก assetId ให้อัตโนมัติ
+      
+    },
+    include: { designCategory: true },
+  });
 
-    if (existingCategory) {
-        return {error: "Design category already exists!"};
-    }
-
-    const newCategory = await db.designCategory.create({
-        data: {
-            name,
-            ownerId: userId,
-            projectId,
-            
-        }
-    });
-
-    return {success: "Create Design Category Success", designCategory: newCategory};
+  return {
+    success: "Create Design Category Success",
+    designCategory: asset.designCategory,
+  };
 };
 
 export const createDesignSubClass = async (values: z.infer<typeof DesignSubCategorySchema>) => {
@@ -50,7 +47,6 @@ export const createDesignSubClass = async (values: z.infer<typeof DesignSubCateg
     const existingDesign = await db.designSubClass.findFirst({
         where: {
             name,
-            ownerId: userId,
             categoryId
         }
     });
@@ -62,7 +58,6 @@ export const createDesignSubClass = async (values: z.infer<typeof DesignSubCateg
     const newDesign = await db.designSubClass.create({
         data: {
             name,
-            ownerId: userId,
             categoryId,
         }
     });
@@ -77,7 +72,7 @@ export const createDesignVersion = async (value: z.infer<typeof DesignVersionSch
         return {error: "Invalid field!"};
     }
 
-    const { name, subCategoryId, ownerId } = validateFields.data;
+    const { name, subCategoryId } = validateFields.data;
 
     const existingVersion = await db.designSubClassVersion.findFirst({
         where: {
@@ -94,7 +89,6 @@ export const createDesignVersion = async (value: z.infer<typeof DesignVersionSch
         data: {
             name,
             DesignSubClassId: subCategoryId,
-            ownerId
         }
     });
 

@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Group, Image, Layer, Rect, Stage, Text } from 'react-konva'
 import { renderToStaticMarkup } from "react-dom/server";
 import { FaFlipboard } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 
 type BoardProps = {
@@ -48,6 +48,11 @@ const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startE
         const [img, setImg] = useState<HTMLImageElement | null>(null);
 
         const router = useRouter();
+        const path = usePathname();
+
+        const org = path.split("/")[3];
+        const projectPath = path.split("/")[5];
+
 
         useEffect(() => {
             const svgString = renderToStaticMarkup(
@@ -118,7 +123,7 @@ const Board = ({ board, updateBoard, selectedBoardId, setSelectedBoardId, startE
                                 }}
                                 onDblClick={() => {
                                     router.push(
-                                    `/auth/project/ce34db1d-e682-4de3-8a9f-e88e0620d94e/design/${versionId}/${item.id}`
+                                    `/auth/org/${org}/project/${projectPath}/design/${versionId}/${item.id}`
                                     );
                                 }}
                             >
